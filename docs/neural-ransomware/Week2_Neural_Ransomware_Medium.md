@@ -1,7 +1,7 @@
 ---
 title: "Week2_Neural_Ransomware_Medium"
 source: "Week2_Neural_Ransomware_Medium.docx"
-converted: "2026-01-18T00:07:34.389121"
+converted: "2026-01-18T00:34:18.583325"
 ---
 
 *The technical kill chain for holding a brain implant hostage — and why

@@ -22,6 +22,7 @@ If you have questions or thoughts, feel free to highlight text in the article an
 
 Thank you.
 
+
 ---
 
 *[Medium](https://medium.com/@qikevinl/about)*

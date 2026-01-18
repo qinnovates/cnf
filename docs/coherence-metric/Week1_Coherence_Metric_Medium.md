@@ -1,7 +1,7 @@
 ---
 title: "Week1_Coherence_Metric_Medium"
 source: "Week1_Coherence_Metric_Medium.docx"
-converted: "2026-01-18T00:07:34.028344"
+converted: "2026-01-18T00:34:18.214733"
 ---
 
 *Inside the math that could protect your mind from neural hackers.*

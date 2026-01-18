@@ -1,7 +1,7 @@
 ---
 title: "Week2_Neural_Ransomware_Paper"
 source: "Week2_Neural_Ransomware_Paper.docx"
-converted: "2026-01-18T00:07:34.147221"
+converted: "2026-01-18T00:34:18.332295"
 ---
 
 *Attack Vectors and Defensive Architectures for Brain-Computer

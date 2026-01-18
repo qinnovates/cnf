@@ -1,7 +1,7 @@
 ---
 title: "Week3_Scale_Frequency_Medium"
 source: "Week3_Scale_Frequency_Medium.docx"
-converted: "2026-01-18T00:07:33.932250"
+converted: "2026-01-18T00:34:18.108254"
 ---
 
 *From millisecond spikes to lifetime memories, one relationship holds: f

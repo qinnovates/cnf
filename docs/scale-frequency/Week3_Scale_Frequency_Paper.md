@@ -1,7 +1,7 @@
 ---
 title: "Week3_Scale_Frequency_Paper"
 source: "Week3_Scale_Frequency_Paper.docx"
-converted: "2026-01-18T00:07:33.827651"
+converted: "2026-01-18T00:34:17.991305"
 ---
 
 *Mathematical Foundations for Hierarchical Neural Processing in the ONI
