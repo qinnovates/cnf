@@ -11,7 +11,7 @@ Use this template for all Medium-style posts in the ONI Framework series. This f
 ```markdown
 ---
 title: "[Compelling Title - Use Questions or Bold Statements]"
-date: [Publication date in RFC 2822 format, e.g., Fri, 16 Jan 2026 23:37:28 GMT]
+date_posted: [Publication date in RFC 2822 format, e.g., Fri, 16 Jan 2026 23:37:28 GMT]
 url: [Medium URL after publishing]
 tags: ['tag1', 'tag2', 'tag3', 'tag4', 'tag5']
 ---
@@ -99,11 +99,24 @@ Choose 5 tags that:
 ```yaml
 ---
 title: "Your Brain Has a Spam Filter. Can We Reverse-Engineer It?"
-date: Fri, 16 Jan 2026 23:37:28 GMT
+date_posted: Fri, 16 Jan 2026 23:37:28 GMT
 url: https://medium.com/@qikevinl/your-brain-has-a-spam-filter-799da714238e
 tags: ['firewall', 'neuroscience', 'ai', 'reverse-engineering', 'cybersecurity']
 ---
 ```
+
+## Footer Format
+
+At the end of each Medium post, include:
+
+```markdown
+**Sub-Tags:** #Tag1 #Tag2 #Tag3 #Tag4 #Tag5
+
+---
+*Originally published on [Medium](URL) on [Month Day, Year] at [HH:MM:SS GMT]*
+```
+
+**Note:** Use `Sub-Tags:` (not `Tags:`) for the hashtag line at the bottom of posts.
 
 ---
 

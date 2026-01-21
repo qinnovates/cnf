@@ -1,6 +1,6 @@
 ---
 title: "Your Brain Needs a Firewall — Here’s What It Would Look Like"
-date: Fri, 16 Jan 2026 02:16:05 GMT
+date_posted: Fri, 16 Jan 2026 02:16:05 GMT
 url: https://medium.com/@qikevinl/your-brain-needs-a-firewall-heres-what-it-would-look-like-87b46d292219?source=rss-a9bec2f50cd4------2
 tags: ['ai', 'firewall', 'security', 'neuroscience', 'neuralink']
 ---
@@ -150,9 +150,9 @@ But the conversation needs to start now — before the first brain gets  _pwned_
 
 
 
-**Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust
+**Sub-Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust
 
 ![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=87b46d292219)
 
 ---
-*Originally published on [Medium](https://medium.com/@qikevinl/your-brain-needs-a-firewall-heres-what-it-would-look-like-87b46d292219?source=rss-a9bec2f50cd4------2)*
+*Originally published on [Medium](https://medium.com/@qikevinl/your-brain-needs-a-firewall-heres-what-it-would-look-like-87b46d292219) on January 16, 2026 at 02:16:05 GMT*

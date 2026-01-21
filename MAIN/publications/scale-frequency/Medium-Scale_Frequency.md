@@ -1,7 +1,9 @@
 ---
 title: "The Hidden Equation Your Brain Runs On — And Why It Matters"
 author: "Kevin L. Qi"
-published: "2026-01-20"
+date_posted: Mon, 20 Jan 2026
+url: https://medium.com/@qikevinl/the-hidden-equation-your-brain-runs-on-and-why-it-matters-5be5598eac1f
+tags: ['neuroscience', 'brain-computer-interface', 'physics', 'information-theory', 'complexity']
 type: "Medium Blog Post"
 series: "ONI Framework"
 week: 3
@@ -190,8 +192,8 @@ The scale-frequency invariant is a hypothesis, not a proven theorem. It needs te
 
 ---
 
-**Tags:** #Neuroscience #BrainComputerInterface #Physics #InformationTheory #Complexity #ONI #Neuralink
+**Sub-Tags:** #Neuroscience #BrainComputerInterface #Physics #InformationTheory #Complexity #ONI #Neuralink
 
 ---
 
-*Originally published on [Medium](https://medium.com/@qikevinl/the-hidden-equation-your-brain-runs-on-and-why-it-matters-5be5598eac1f)*
+*Originally published on [Medium](https://medium.com/@qikevinl/the-hidden-equation-your-brain-runs-on-and-why-it-matters-5be5598eac1f) on January 20, 2026*

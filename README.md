@@ -87,14 +87,14 @@ Threat analysis, attack vectors, kill chains, and defensive architectures.
 | [Medium-Neural_Ransomware](MAIN/publications/neural-ransomware/Medium-Neural_Ransomware.md) | *The technical threat model for holding a brain implant hostage.* |
 | [Neural Ransomware Paper](MAIN/publications/neural-ransomware/Neural_Ransomware_Paper.md) | *Attack Vectors and Defensive Architectures for Brain-Computer Interfaces.* |
 
-### 🏗️ ONI Framework
+### 🏗️ ONI Framework (Base)
 
-Core ONI architecture, 14-layer model extending OSI into biological territory.
+Core ONI architecture, 14-layer model extending OSI into biological territory. **This is the foundational content for all other publications.**
 
 | Document | Summary |
 |----------|----------|
-| [Medium-ONI_Framework](MAIN/publications/oni-framework/Medium-ONI_Framework.md) | *If you've worked in IT, you know the OSI model.* |
-| [ONI Framework Paper](MAIN/publications/oni-framework/ONI_Framework_Paper.md) | *A Unified Neuro-Computational Stack for Secure Bio-Digital Integration.* |
+| [Medium-ONI_Framework](MAIN/oni-framework/Medium-ONI_Framework.md) | *If you've worked in IT, you know the OSI model.* |
+| [ONI Framework Paper](MAIN/oni-framework/ONI_Framework_Paper.md) | *A Unified Neuro-Computational Stack for Secure Bio-Digital Integration.* |
 
 ### 🔬 Scale-Frequency
 
@@ -141,6 +141,8 @@ ONI/
 ├── LICENSE                      # Apache 2.0
 │
 └── MAIN/
+    ├── oni-framework/           # Base/foundational content
+    │
     ├── templates/               # Formatting templates
     │   ├── PAPER_TEMPLATE_APA.md
     │   └── MEDIUM_TEMPLATE.md
@@ -161,7 +163,6 @@ ONI/
         ├── coherence-metric/
         ├── neural-firewall/
         ├── neural-ransomware/
-        ├── oni-framework/
         └── scale-frequency/
 ```
 

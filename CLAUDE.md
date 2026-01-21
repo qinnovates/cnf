@@ -27,6 +27,10 @@ ONI/
 ├── LICENSE                             # Apache 2.0 License
 │
 └── MAIN/
+    ├── oni-framework/                  # BASE CONTENT (foundational)
+    │   ├── Medium-ONI_Framework.md
+    │   └── ONI_Framework_Paper.md
+    │
     ├── templates/                      # Formatting templates
     │   ├── PAPER_TEMPLATE_APA.md       # APA 7th edition template
     │   └── MEDIUM_TEMPLATE.md          # Medium post template
@@ -56,10 +60,6 @@ ONI/
         │   ├── Medium-Neural_Ransomware.md
         │   └── Neural_Ransomware_Paper.md
         │
-        ├── oni-framework/
-        │   ├── Medium-ONI_Framework.md
-        │   └── ONI_Framework_Paper.md
-        │
         └── scale-frequency/
             ├── Medium-Scale_Frequency.md
             └── Scale_Frequency_Paper.md
@@ -71,6 +71,7 @@ ONI/
 
 | Folder | Purpose | What Goes Here |
 |--------|---------|----------------|
+| `oni-framework/` | **Base content** | Foundational ONI Framework publications |
 | `templates/` | Formatting templates | APA template, Medium template, future templates |
 | `processes/` | Workflow documentation | Publishing instructions, improvement strategies |
 | `scripts/` | Automation scripts | Research monitoring, CI/CD pipelines |
@@ -78,7 +79,9 @@ ONI/
 | `CICD/processed/` | Reviewed research | Archived after integration |
 | `publications/` | **Content only** | Medium posts, technical papers |
 
-**IMPORTANT:** The `publications/` folder is for **content only**. Never put templates, instructions, or scripts in this folder.
+**IMPORTANT:**
+- The `oni-framework/` folder at `MAIN/` level contains the base/foundational content.
+- The `publications/` folder is for **content only**. Never put templates, instructions, or scripts in this folder.
 
 ---
 
@@ -222,7 +225,8 @@ Before committing, verify:
 - [ ] Content files are in `publications/` only
 - [ ] Templates are in `templates/` only
 - [ ] Process docs are in `processes/` only
-- [ ] Medium posts have proper front matter (title, date, tags)
+- [ ] Medium posts have proper front matter (title, date_posted, url, tags)
+- [ ] Medium posts have proper footer (Sub-Tags, Originally published with datetime)
 - [ ] Papers follow APA template structure
 - [ ] Tables use bold numbers (`**Table 1**`) and italic titles
 - [ ] References are in APA format
@@ -237,9 +241,11 @@ Before committing, verify:
 
 ### Extract Content from Medium RSS
 1. Fetch content from RSS feed URL
-2. Extract title, date, URL, tags
+2. Extract title, date_posted, URL, tags for front matter
 3. Clean formatting artifacts
-4. Save as `Medium-[Topic_Name].md` in `publications/[topic]/`
+4. Rename bottom `Tags:` section to `Sub-Tags:`
+5. Update "Originally published" line with full datetime
+6. Save as `Medium-[Topic_Name].md` in `publications/[topic]/`
 
 ### Convert Draft to Paper
 1. Apply `MAIN/templates/PAPER_TEMPLATE_APA.md` structure

@@ -19,6 +19,10 @@ ONI/
 ├── LICENSE                             # Apache 2.0
 │
 └── MAIN/
+    ├── oni-framework/                  # BASE CONTENT (foundational)
+    │   ├── Medium-ONI_Framework.md
+    │   └── ONI_Framework_Paper.md
+    │
     ├── templates/                      # Formatting templates
     │   ├── PAPER_TEMPLATE_APA.md
     │   └── MEDIUM_TEMPLATE.md
@@ -45,9 +49,6 @@ ONI/
         ├── neural-ransomware/
         │   ├── Medium-Neural_Ransomware.md
         │   └── Neural_Ransomware_Paper.md
-        ├── oni-framework/
-        │   ├── Medium-ONI_Framework.md
-        │   └── ONI_Framework_Paper.md
         └── scale-frequency/
             ├── Medium-Scale_Frequency.md
             └── Scale_Frequency_Paper.md
@@ -64,6 +65,7 @@ ONI/
 | `scripts/` | Automation scripts | Research monitoring, CI/CD pipelines |
 | `CICD/incoming/` | New research discoveries | Auto-fetched papers, pending review |
 | `CICD/processed/` | Reviewed research | Archived after integration |
+| `oni-framework/` | **Base content** | Foundational ONI Framework publications |
 | `publications/` | **Content only** | Medium posts, technical papers |
 
 ---
@@ -113,11 +115,21 @@ ONI/
 ```yaml
 ---
 title: "Article Title"
-date: [Publication date in RFC 2822 format]
+date_posted: [Publication date in RFC 2822 format]
 url: [Medium URL if published]
 tags: ['tag1', 'tag2', 'tag3']
 ---
 ```
+
+**Required Footer:**
+```markdown
+**Sub-Tags:** #Tag1 #Tag2 #Tag3
+
+---
+*Originally published on [Medium](URL) on [Month Day, Year] at [HH:MM:SS GMT]*
+```
+
+**Note:** Use `date_posted` (not `date`) in front matter. Use `Sub-Tags:` (not `Tags:`) for the hashtag line at the bottom.
 
 ### 2. Technical Papers (`*_Paper.md`)
 **Location:** `MAIN/publications/[topic]/`

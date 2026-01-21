@@ -1,6 +1,6 @@
 ---
 title: "Neural Ransomware Isn’t Science Fiction"
-date: Sat, 17 Jan 2026 22:46:13 GMT
+date_posted: Sat, 17 Jan 2026 22:46:13 GMT
 url: https://medium.com/@qikevinl/neural-ransomware-isnt-science-fiction-e3f9efe4ffb1?source=rss-a9bec2f50cd4------2
 tags: ['neuralink', 'lockheed-martin', 'ai', 'cybersecurity', 'mitre-attack']
 ---
@@ -362,9 +362,9 @@ If you’re a security researcher: This field needs you. The attack surface is e
 <https://medium.com/media/a3175b6a8327b063747ce4d3003d668b/href>
 
 
-**Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust #ONI
+**Sub-Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust #ONI
 
 ![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=e3f9efe4ffb1)
 
 ---
-*Originally published on [Medium](https://medium.com/@qikevinl/neural-ransomware-isnt-science-fiction-e3f9efe4ffb1?source=rss-a9bec2f50cd4------2)*
+*Originally published on [Medium](https://medium.com/@qikevinl/neural-ransomware-isnt-science-fiction-e3f9efe4ffb1) on January 17, 2026 at 22:46:13 GMT*

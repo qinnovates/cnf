@@ -1,6 +1,6 @@
 ---
 title: "Your Brain Has a Spam Filter. Can We Reverse-Engineer It?"
-date: Fri, 16 Jan 2026 23:37:28 GMT
+date_posted: Fri, 16 Jan 2026 23:37:28 GMT
 url: https://medium.com/@qikevinl/your-brain-has-a-spam-filter-can-we-reverse-engineer-it-799da714238e?source=rss-a9bec2f50cd4------2
 tags: ['firewall', 'neuroscience', 'ai', 'reverse-engineering', 'cybersecurity']
 ---
@@ -297,9 +297,9 @@ _This is the first article in a series on the ONI (Organic Neural Firewall) Fram
 
 **Read the full technical paper:** “The Coherence Metric for Neural Signal Integrity” [[link]](https://docs.google.com/document/d/126RMDRYjDS8nLAG_1o9FbjBuwhp6EE31lockjNHwXFA/edit?usp=sharing)
 
-**Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust #ONI
+**Sub-Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust #ONI
 
 ![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=799da714238e)
 
 ---
-*Originally published on [Medium](https://medium.com/@qikevinl/your-brain-has-a-spam-filter-can-we-reverse-engineer-it-799da714238e?source=rss-a9bec2f50cd4------2)*
+*Originally published on [Medium](https://medium.com/@qikevinl/your-brain-has-a-spam-filter-can-we-reverse-engineer-it-799da714238e) on January 16, 2026 at 23:37:28 GMT*

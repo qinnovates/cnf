@@ -1,6 +1,6 @@
 ---
 title: "The OSI of Mind: Securing Human-AI Interfaces"
-date: Thu, 15 Jan 2026 00:43:36 GMT
+date_posted: Thu, 15 Jan 2026 00:43:36 GMT
 url: https://medium.com/@qikevinl/the-osi-of-mind-securing-human-ai-interfaces-3ca381b95c29?source=rss-a9bec2f50cd4------2
 tags: ['neuroscience', 'technology', 'cybersecurity', 'ai', 'science']
 ---
@@ -76,9 +76,9 @@ _I’m sharing this framework to start a conversation. I don’t have all the an
 
 
 
-**Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust
+**Sub-Tags:** #Cybersecurity #Neuroscience #BrainComputerInterface #Neuralink #AI #Privacy #ZeroTrust
 
 ![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=3ca381b95c29)
 
 ---
-*Originally published on [Medium](https://medium.com/@qikevinl/the-osi-of-mind-securing-human-ai-interfaces-3ca381b95c29?source=rss-a9bec2f50cd4------2)*
+*Originally published on [Medium](https://medium.com/@qikevinl/the-osi-of-mind-securing-human-ai-interfaces-3ca381b95c29) on January 15, 2026 at 00:43:36 GMT*
