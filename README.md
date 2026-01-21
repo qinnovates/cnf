@@ -94,6 +94,29 @@ Physiology-first defense framework with checkpoints:
 
 ---
 
+## Quick Reference
+
+### Attack Surfaces by Layer
+
+| Layer | Attack Surface | Example Threat |
+|-------|---------------|----------------|
+| L1-2 | RF/Bluetooth | BlueBorne-style exploits |
+| L3-4 | Protocol | Packet injection, replay attacks |
+| L8 | Electrode | Signal injection at hardware |
+| L9-10 | Neural | Phase-locked malicious stimulation |
+| L11-14 | Cognitive | Memory manipulation, identity attacks |
+
+### Hardware Constraints (Neuralink N1 Reference)
+
+| Constraint | Value | Security Implication |
+|------------|-------|---------------------|
+| Power budget | 25mW total | Firewall gets ~3-5mW max |
+| Latency | <1ms required | Real-time validation needed |
+| Electrodes | 1,024 channels | High-bandwidth monitoring |
+| Form factor | ~1mm² | Minimal silicon for security |
+
+---
+
 ## Topics & Documents
 
 ### 📊 Coherence Metric
@@ -140,29 +163,6 @@ Cross-scale neural patterns, frequency invariants, and information compression.
 |----------|----------|
 | [Medium-Scale_Frequency](MAIN/publications/scale-frequency/Medium-Scale_Frequency.md) | *From millisecond spikes to lifetime memories.* |
 | [Scale Frequency TechDoc](MAIN/publications/scale-frequency/Scale_Frequency_TechDoc.md) | *Mathematical Foundations for Hierarchical Neural Processing in the ONI Framework.* |
-
----
-
-## Quick Reference
-
-### Attack Surfaces by Layer
-
-| Layer | Attack Surface | Example Threat |
-|-------|---------------|----------------|
-| L1-2 | RF/Bluetooth | BlueBorne-style exploits |
-| L3-4 | Protocol | Packet injection, replay attacks |
-| L8 | Electrode | Signal injection at hardware |
-| L9-10 | Neural | Phase-locked malicious stimulation |
-| L11-14 | Cognitive | Memory manipulation, identity attacks |
-
-### Hardware Constraints (Neuralink N1 Reference)
-
-| Constraint | Value | Security Implication |
-|------------|-------|---------------------|
-| Power budget | 25mW total | Firewall gets ~3-5mW max |
-| Latency | <1ms required | Real-time validation needed |
-| Electrodes | 1,024 channels | High-bandwidth monitoring |
-| Form factor | ~1mm² | Minimal silicon for security |
 
 ---
 
