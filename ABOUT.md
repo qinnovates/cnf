@@ -1,8 +1,10 @@
-# Hello World
+# 👋 Hello, World
 
 I'm an independent security researcher with an incurable curiosity for how complex systems break—and how to design them at scale so they don't. My work lives at the intersection of a fascinating vector space: cybersecurity, science, and AI-driven systems.
 
-My obsession with "how things work" didn't start in a lab; it started in middle school, the moment we got our first family Packard Bell computer. I spent those early years playing "Mavis Beacon Teaches Typing" which lead to me discovering PHPBB forums and eventually learning how to build my own so I could share my uniquely sophisticated, yet simple to replicate Photoshop tutorials to the 3,700 registered members.
+My obsession with "how things work" didn't start in a lab; it started in middle school, the moment we got our first family Packard Bell computer. I spent those early years playing "Mavis Beacon Teaches Typing" which led to me discovering PHPBB forums and eventually learning how to build my own. By 11, I had built my first website—navigating the vast, unlimited knowledge of the early internet to teach myself how. I created a community where I could share my uniquely sophisticated, yet simple to replicate Photoshop tutorials to 3,700 registered members.
+
+That experience shaped me. I was inspired by strangers on the internet who freely shared their knowledge, helping a curious kid figure things out. I want to do the same. The ONI Framework is my way of giving back—a framework I hope can inspire and help others in the industry who share the same interests and passion as me.
 
 Maybe it was because I was always so curious about how the internet works, the community we each can derive, or maybe because I really just wanted to push off on doing my summer school homework. Frankly, the foundation of my work ethic and passion goes deeper than a screen.
 
