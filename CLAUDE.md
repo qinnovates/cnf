@@ -183,6 +183,12 @@ Options:
 
 ## README.md Update Protocol
 
+> **CRITICAL:** README.md is the public face of the repository. Update it for ANY major change:
+> - New topics or publications
+> - Structural changes (new folders, renamed files)
+> - New navigation features (like ONI_NEXUS.md)
+> - Changes to key concepts or framework components
+
 **After every commit that adds or modifies content, update README.md:**
 
 ### Step 1: Locate the Topics & Documents Section
@@ -202,13 +208,27 @@ For each topic, maintain this format:
 | [TechDoc-Topic_Name](MAIN/publications/topic-folder/TechDoc-Topic_Name.md) | *One-line description* |
 ```
 
-### Step 3: Update Footer Stats
-Update the document count at the bottom:
+### Step 3: Update Navigation Section (if needed)
+If adding new navigation features or structural changes:
 ```markdown
-*Documents: [X] | Topics: [Y]*
+## Navigation
+
+| Start Here | Purpose |
+|------------|---------|
+| **[ONI_NEXUS.md](ONI_NEXUS.md)** | Central hub — dependency map, cross-references, reading order, roadmap |
+| **This README** | Public overview — key concepts, quick reference, document list |
 ```
 
-### Step 4: Update Date
+### Step 4: Update Repository Structure (if needed)
+If folder structure changes, update the file tree diagram in README.md.
+
+### Step 5: Update Footer Stats
+Update the document count at the bottom:
+```markdown
+*Documents: [X] | Topics: [Y] | Topic Indexes: [Z]*
+```
+
+### Step 6: Update Date
 ```markdown
 *Last update: YYYY-MM-DD*
 ```
@@ -336,11 +356,13 @@ mkdir MAIN/publications/[topic-name]/
 ### Common Mistakes to Avoid
 1. **Wrong location:** Don't put templates or instructions in `publications/` - use `artifacts/`
 2. **Wrong naming:** Don't use dates in publication filenames (use `Medium-*` or `TechDoc-*` prefix)
-3. **Missing updates:** Always update README.md after adding content
-4. **Missing keywords:** Always extract and add keywords to keywords.json
-5. **Inconsistent formatting:** Always check template before writing
-6. **Broken links:** Use relative paths from repository root
-7. **Wrong table format:** Numbers are BOLD, titles are ITALIC
+3. **Missing README updates:** Always update README.md after ANY major change (topics, structure, navigation)
+4. **Missing NEXUS updates:** Always update ONI_NEXUS.md when adding topics or changing dependencies
+5. **Missing keywords:** Always extract and add keywords to keywords.json
+6. **Inconsistent formatting:** Always check template before writing
+7. **Broken links:** Use relative paths from repository root
+8. **Wrong table format:** Numbers are BOLD, titles are ITALIC
+9. **Stale footer:** Always update document/topic counts and date in README.md footer
 
 ### If Unsure
 1. Read `MAIN/artifacts/processes/PUBLISHING_INSTRUCTIONS.md`
@@ -349,6 +371,6 @@ mkdir MAIN/publications/[topic-name]/
 
 ---
 
-*Version: 3.1*
+*Version: 3.2*
 *Last Updated: January 2026*
 *For: Claude AI Assistant*
