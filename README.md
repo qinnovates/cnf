@@ -143,27 +143,20 @@ ONI/
 └── MAIN/
     ├── oni-framework/           # Base/foundational content
     │
-    ├── templates/               # Formatting templates
-    │   ├── PAPER_TEMPLATE_APA.md
-    │   └── MEDIUM_TEMPLATE.md
+    ├── publications/            # Content only
+    │   ├── coherence-metric/
+    │   ├── neural-firewall/
+    │   ├── neural-ransomware/
+    │   └── scale-frequency/
     │
-    ├── processes/               # Workflow documentation
-    │   ├── PUBLISHING_INSTRUCTIONS.md
-    │   └── PROCESS_IMPROVEMENTS.md
-    │
-    ├── scripts/                 # Automation
-    │   └── continuous-research-delivery/
-    │       └── research_monitor.py
-    │
-    ├── CICD/                    # Research pipeline
-    │   ├── incoming/            # New discoveries
-    │   └── processed/           # Reviewed research
-    │
-    └── publications/            # Content only
-        ├── coherence-metric/
-        ├── neural-firewall/
-        ├── neural-ransomware/
-        └── scale-frequency/
+    └── artifacts/               # Non-content (infrastructure)
+        ├── templates/           # Formatting templates
+        ├── processes/           # Workflow documentation
+        ├── scripts/             # Automation (research monitor)
+        └── CICD/                # Research pipeline
+            ├── keywords.json    # Publication keywords for research
+            ├── incoming/        # New discoveries
+            └── processed/       # Reviewed research
 ```
 
 ---

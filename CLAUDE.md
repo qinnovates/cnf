@@ -8,10 +8,11 @@
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
-| APA Template | `MAIN/templates/PAPER_TEMPLATE_APA.md` | Formatting for technical papers |
-| Medium Template | `MAIN/templates/MEDIUM_TEMPLATE.md` | Formatting for Medium posts |
-| Publishing Instructions | `MAIN/processes/PUBLISHING_INSTRUCTIONS.md` | Step-by-step publishing workflow |
-| Research Monitor | `MAIN/scripts/continuous-research-delivery/research_monitor.py` | Fetch new academic papers |
+| APA Template | `MAIN/artifacts/templates/PAPER_TEMPLATE_APA.md` | Formatting for technical papers |
+| Medium Template | `MAIN/artifacts/templates/MEDIUM_TEMPLATE.md` | Formatting for Medium posts |
+| Publishing Instructions | `MAIN/artifacts/processes/PUBLISHING_INSTRUCTIONS.md` | Step-by-step publishing workflow |
+| Research Monitor | `MAIN/artifacts/scripts/continuous-research-delivery/research_monitor.py` | Fetch new academic papers |
+| Keywords File | `MAIN/artifacts/CICD/keywords.json` | Research search terms |
 | This File | `CLAUDE.md` | Claude-specific instructions |
 
 ---
@@ -31,38 +32,29 @@ ONI/
     │   ├── Medium-ONI_Framework.md
     │   └── ONI_Framework_Paper.md
     │
-    ├── templates/                      # Formatting templates
-    │   ├── PAPER_TEMPLATE_APA.md       # APA 7th edition template
-    │   └── MEDIUM_TEMPLATE.md          # Medium post template
+    ├── publications/                   # CONTENT ONLY
+    │   ├── coherence-metric/
+    │   ├── neural-firewall/
+    │   ├── neural-ransomware/
+    │   └── scale-frequency/
     │
-    ├── processes/                      # Workflow documentation
-    │   ├── PUBLISHING_INSTRUCTIONS.md  # Publishing workflow guide
-    │   └── PROCESS_IMPROVEMENTS.md     # Improvement strategies
-    │
-    ├── scripts/                        # Automation scripts
-    │   └── continuous-research-delivery/
-    │       └── research_monitor.py     # Academic paper monitoring
-    │
-    ├── CICD/                           # Continuous Research Delivery
-    │   ├── incoming/                   # New research discoveries
-    │   └── processed/                  # Reviewed and integrated
-    │
-    └── publications/                   # CONTENT ONLY
-        ├── coherence-metric/
-        │   ├── Medium-Coherence_Metric.md
-        │   └── Coherence_Metric_Detailed_Paper.md
+    └── artifacts/                      # NON-CONTENT (infrastructure)
+        ├── templates/                  # Formatting templates
+        │   ├── PAPER_TEMPLATE_APA.md
+        │   └── MEDIUM_TEMPLATE.md
         │
-        ├── neural-firewall/
-        │   ├── Medium-Neural_Firewall.md
-        │   └── Neural_Firewall_Architecture_Paper.md
+        ├── processes/                  # Workflow documentation
+        │   ├── PUBLISHING_INSTRUCTIONS.md
+        │   └── PROCESS_IMPROVEMENTS.md
         │
-        ├── neural-ransomware/
-        │   ├── Medium-Neural_Ransomware.md
-        │   └── Neural_Ransomware_Paper.md
+        ├── scripts/                    # Automation scripts
+        │   └── continuous-research-delivery/
+        │       └── research_monitor.py
         │
-        └── scale-frequency/
-            ├── Medium-Scale_Frequency.md
-            └── Scale_Frequency_Paper.md
+        └── CICD/                       # Continuous Research Delivery
+            ├── keywords.json           # Research keywords from publications
+            ├── incoming/               # New research discoveries
+            └── processed/              # Reviewed and integrated
 ```
 
 ---
@@ -72,16 +64,16 @@ ONI/
 | Folder | Purpose | What Goes Here |
 |--------|---------|----------------|
 | `oni-framework/` | **Base content** | Foundational ONI Framework publications |
-| `templates/` | Formatting templates | APA template, Medium template, future templates |
-| `processes/` | Workflow documentation | Publishing instructions, improvement strategies |
-| `scripts/` | Automation scripts | Research monitoring, CI/CD pipelines |
-| `CICD/incoming/` | New research discoveries | Auto-fetched papers, pending review |
-| `CICD/processed/` | Reviewed research | Archived after integration |
 | `publications/` | **Content only** | Medium posts, technical papers |
+| `artifacts/templates/` | Formatting templates | APA template, Medium template |
+| `artifacts/processes/` | Workflow documentation | Publishing instructions, improvements |
+| `artifacts/scripts/` | Automation scripts | Research monitoring, CI/CD pipelines |
+| `artifacts/CICD/` | Research pipeline | Keywords, incoming papers, processed |
 
 **IMPORTANT:**
 - The `oni-framework/` folder at `MAIN/` level contains the base/foundational content.
-- The `publications/` folder is for **content only**. Never put templates, instructions, or scripts in this folder.
+- The `publications/` folder is for **content only**. Never put templates, instructions, or scripts there.
+- The `artifacts/` folder contains ALL non-content files (templates, processes, scripts, CICD).
 
 ---
 
@@ -116,9 +108,9 @@ ONI/
 
 1. **Read the templates first:**
    ```
-   Read: MAIN/templates/PAPER_TEMPLATE_APA.md
-   Read: MAIN/templates/MEDIUM_TEMPLATE.md
-   Read: MAIN/processes/PUBLISHING_INSTRUCTIONS.md
+   Read: MAIN/artifacts/templates/PAPER_TEMPLATE_APA.md
+   Read: MAIN/artifacts/templates/MEDIUM_TEMPLATE.md
+   Read: MAIN/artifacts/processes/PUBLISHING_INSTRUCTIONS.md
    ```
 
 2. **Create topic folder (if new topic):**
@@ -134,20 +126,50 @@ ONI/
    - Medium: Conversational, storytelling, web-optimized
    - Paper: APA 7th edition, formal, with references
 
-5. **Update README.md** (see section below)
+5. **Extract keywords and update keywords.json** (see below)
 
-6. **Commit with proper message format**
+6. **Update README.md** with new links
+
+7. **Commit with proper message format**
+
+### Keyword Extraction (REQUIRED for new publications)
+
+**For every new publication:**
+
+1. Extract keywords in these categories:
+   - **Primary Keywords** (5-8): Core concepts
+   - **Technical Terms** (8-12): Technical vocabulary
+   - **Biological Terms** (5-8): Neuroscience terms
+   - **Security Terms** (5-8): Cybersecurity terms
+
+2. Update `MAIN/artifacts/CICD/keywords.json`:
+   ```json
+   {
+     "publications": {
+       "new-topic": {
+         "title": "New Topic Title",
+         "primary_keywords": [...],
+         "technical_terms": [...],
+         "biological_terms": [...],
+         "security_terms": [...]
+       }
+     }
+   }
+   ```
+
+3. Update `combined_search_terms` if new research areas introduced
 
 ### When Running Research Monitor
 
 ```bash
-cd MAIN/scripts/continuous-research-delivery
+cd MAIN/artifacts/scripts/continuous-research-delivery
 python research_monitor.py --days 7 --sources all
 ```
 
 Options:
 - `--days N` - Look back N days (default: 7)
-- `--sources arxiv,pubmed,biorxiv` - Specific sources or "all"
+- `--sources arxiv,pubmed,biorxiv,semantic_scholar,ieee` - Specific sources or "all"
+- `--keywords-file path` - Custom keywords file
 - `--quiet` - Suppress progress output
 - `--summary-only` - Print summary without saving files
 
@@ -203,6 +225,7 @@ Use this text in all technical papers:
 - Bullet point details
 - What changed
 - Why it changed
+- Updated keywords.json (if applicable)
 
 Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 ```
@@ -222,15 +245,15 @@ Before committing, verify:
 
 - [ ] File naming follows conventions
 - [ ] Folder naming follows conventions
-- [ ] Content files are in `publications/` only
-- [ ] Templates are in `templates/` only
-- [ ] Process docs are in `processes/` only
+- [ ] Content files are in `publications/` or `oni-framework/` only
+- [ ] Non-content files are in `artifacts/` only
 - [ ] Medium posts have proper front matter (title, date_posted, url, tags)
 - [ ] Medium posts have proper footer (Sub-Tags, Originally published with datetime)
 - [ ] Papers follow APA template structure
 - [ ] Tables use bold numbers (`**Table 1**`) and italic titles
 - [ ] References are in APA format
 - [ ] Acknowledgments section included (papers only)
+- [ ] **Keywords extracted and added to keywords.json**
 - [ ] README.md updated with new links
 - [ ] Document count updated in README.md footer
 - [ ] Date updated in README.md footer
@@ -246,27 +269,30 @@ Before committing, verify:
 4. Rename bottom `Tags:` section to `Sub-Tags:`
 5. Update "Originally published" line with full datetime
 6. Save as `Medium-[Topic_Name].md` in `publications/[topic]/`
+7. **Extract keywords and update keywords.json**
 
 ### Convert Draft to Paper
-1. Apply `MAIN/templates/PAPER_TEMPLATE_APA.md` structure
+1. Apply `MAIN/artifacts/templates/PAPER_TEMPLATE_APA.md` structure
 2. Add Abstract with keywords
 3. Number sections
 4. Format tables (bold numbers, italic titles)
 5. Add References in APA format
 6. Add standard Acknowledgments
+7. **Extract keywords and update keywords.json**
 
 ### Add New Topic
 1. Create folder: `MAIN/publications/[topic-name]/`
 2. Create Medium file: `Medium-[Topic_Name].md`
 3. Create Paper file: `[Topic_Name]_Paper.md`
-4. Add section to README.md Topics & Documents
-5. Update document count
+4. **Extract keywords and update keywords.json**
+5. Add section to README.md Topics & Documents
+6. Update document count
 
 ### Process CICD Incoming Research
-1. Review files in `MAIN/CICD/incoming/`
+1. Review files in `MAIN/artifacts/CICD/incoming/`
 2. Determine relevance to ONI Framework
 3. If relevant: Extract key findings, create summary
-4. Move processed file to `MAIN/CICD/processed/`
+4. Move processed file to `MAIN/artifacts/CICD/processed/`
 5. Update publications if new content warranted
 
 ### Rename/Reorganize Files
@@ -280,20 +306,21 @@ Before committing, verify:
 ## Error Prevention
 
 ### Common Mistakes to Avoid
-1. **Wrong location:** Don't put templates or instructions in `publications/`
+1. **Wrong location:** Don't put templates or instructions in `publications/` - use `artifacts/`
 2. **Wrong naming:** Don't use dates in publication filenames (use `Medium-*` prefix)
 3. **Missing updates:** Always update README.md after adding content
-4. **Inconsistent formatting:** Always check template before writing
-5. **Broken links:** Use relative paths from repository root
-6. **Wrong table format:** Numbers are BOLD, titles are ITALIC
+4. **Missing keywords:** Always extract and add keywords to keywords.json
+5. **Inconsistent formatting:** Always check template before writing
+6. **Broken links:** Use relative paths from repository root
+7. **Wrong table format:** Numbers are BOLD, titles are ITALIC
 
 ### If Unsure
-1. Read `MAIN/processes/PUBLISHING_INSTRUCTIONS.md`
+1. Read `MAIN/artifacts/processes/PUBLISHING_INSTRUCTIONS.md`
 2. Check existing files for examples
 3. Ask user for clarification before proceeding
 
 ---
 
-*Version: 2.0*
+*Version: 3.0*
 *Last Updated: January 2026*
 *For: Claude AI Assistant*
