@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONI Layer Explorer | 14-Layer Model</title>
+    <style>
+        :root {
+            --oni-dark: #0a0e17;
+            --oni-darker: #060912;
+            --oni-blue: #00d4ff;
+            --oni-purple: #8b5cf6;
+            --oni-pink: #ec4899;
+            --oni-green: #10b981;
+            --oni-yellow: #f59e0b;
+            --oni-red: #ef4444;
+            --oni-orange: #f97316;
+            --oni-gray: #1e293b;
+            --oni-light: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--oni-dark);
+            color: var(--oni-light);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            padding: 1.5rem 2rem;
+            background: var(--oni-darker);
+            border-bottom: 1px solid var(--oni-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--oni-blue), var(--oni-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--oni-gray);
+            background: transparent;
+            color: var(--oni-light);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-btn:hover, .view-btn.active {
+            background: var(--oni-blue);
+            border-color: var(--oni-blue);
+            color: var(--oni-dark);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            height: calc(100vh - 80px);
+        }
+
+        /* Layer Stack (Left) */
+        .layer-stack {
+            background: var(--oni-darker);
+            border-right: 1px solid var(--oni-gray);
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .domain-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .domain-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--oni-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .layer-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .layer-card:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .layer-card.active {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--oni-blue);
+        }
+
+        .layer-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .layer-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .layer-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.125rem;
+        }
+
+        .layer-brief {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .layer-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Domain Colors */
+        .domain-traditional .layer-number { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .domain-traditional .layer-indicator { background: #3b82f6; }
+
+        .domain-interface .layer-number { background: linear-gradient(135deg, var(--oni-purple), #6d28d9); }
+        .domain-interface .layer-indicator { background: var(--oni-purple); }
+
+        .domain-cognitive .layer-number { background: linear-gradient(135deg, var(--oni-pink), #be185d); }
+        .domain-cognitive .layer-indicator { background: var(--oni-pink); }
+
+        /* Detail Panel (Right) */
+        .detail-panel {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--oni-gray);
+        }
+
+        .detail-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .detail-title h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-domain {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: var(--oni-gray);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .info-card.full-width {
+            grid-column: span 2;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Attack Surface */
+        .attack-surface {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .attack-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--oni-red);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .attack-list {
+            list-style: none;
+        }
+
+        .attack-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: #fca5a5;
+        }
+
+        .attack-list li::before {
+            content: "!";
+            position: absolute;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--oni-red);
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Defense Mechanisms */
+        .defense-surface {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .defense-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--oni-green);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .defense-list {
+            list-style: none;
+        }
+
+        .defense-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: #6ee7b7;
+        }
+
+        .defense-list li::before {
+            content: "&#10003;";
+            position: absolute;
+            left: 0;
+            color: var(--oni-green);
+            font-weight: 700;
+        }
+
+        /* Visual Diagram */
+        .layer-diagram {
+            background: var(--oni-darker);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .diagram-title {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .diagram-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .diagram-visual svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Analogy Box */
+        .analogy-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .analogy-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--oni-purple);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .analogy-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #c4b5fd;
+        }
+
+        /* Mini Layer Navigator */
+        .mini-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mini-layer {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: all 0.2s;
+        }
+
+        .mini-layer:hover {
+            opacity: 0.8;
+            transform: scale(1.2);
+        }
+
+        .mini-layer.active {
+            opacity: 1;
+            transform: scale(1.3);
+        }
+
+        .mini-layer.traditional { background: #3b82f6; }
+        .mini-layer.interface { background: var(--oni-purple); }
+        .mini-layer.cognitive { background: var(--oni-pink); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ONI Layer Explorer</h1>
+        <div class="header-controls">
+            <button class="view-btn active">Stack View</button>
+            <button class="view-btn">3D View</button>
+            <button class="view-btn">Flow View</button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Layer Stack -->
+        <aside class="layer-stack">
+            <!-- Traditional OSI -->
+            <div class="domain-section domain-traditional">
+                <div class="domain-header">Traditional OSI (Layers 1-7)</div>
+                <div class="layer-card" data-layer="1">
+                    <div class="layer-number">1</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Physical</div>
+                        <div class="layer-brief">RF, Bluetooth, electrical signals</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="2">
+                    <div class="layer-number">2</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Data Link</div>
+                        <div class="layer-brief">Frame formatting, MAC addressing</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="3">
+                    <div class="layer-number">3</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Network</div>
+                        <div class="layer-brief">Routing, IP addressing</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="4">
+                    <div class="layer-number">4</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Transport</div>
+                        <div class="layer-brief">TCP/UDP, flow control</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="5">
+                    <div class="layer-number">5</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Session</div>
+                        <div class="layer-brief">Connection management</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="6">
+                    <div class="layer-number">6</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Presentation</div>
+                        <div class="layer-brief">Encryption, formatting</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="7">
+                    <div class="layer-number">7</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Application</div>
+                        <div class="layer-brief">BCI software interface</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+            </div>
+
+            <!-- Neural Interface -->
+            <div class="domain-section domain-interface">
+                <div class="domain-header">Neural Interface (Layers 8-10)</div>
+                <div class="layer-card" data-layer="8">
+                    <div class="layer-number">8</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Electrode</div>
+                        <div class="layer-brief">Physical neural contact</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="9">
+                    <div class="layer-number">9</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Local Field Potential</div>
+                        <div class="layer-brief">Regional neural activity</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="10">
+                    <div class="layer-number">10</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Oscillatory</div>
+                        <div class="layer-brief">Brain wave patterns</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+            </div>
+
+            <!-- Cognitive -->
+            <div class="domain-section domain-cognitive">
+                <div class="domain-header">Cognitive (Layers 11-14)</div>
+                <div class="layer-card active" data-layer="11">
+                    <div class="layer-number">11</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Working Memory</div>
+                        <div class="layer-brief">Short-term information storage</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="12">
+                    <div class="layer-number">12</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Attention</div>
+                        <div class="layer-brief">Focus and selection</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="13">
+                    <div class="layer-number">13</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Executive Function</div>
+                        <div class="layer-brief">Decision making, planning</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+                <div class="layer-card" data-layer="14">
+                    <div class="layer-number">14</div>
+                    <div class="layer-info">
+                        <div class="layer-name">Identity</div>
+                        <div class="layer-brief">Self-model, personality</div>
+                    </div>
+                    <div class="layer-indicator"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Detail Panel -->
+        <section class="detail-panel" id="detailPanel">
+            <div class="detail-header">
+                <div class="detail-number" style="background: linear-gradient(135deg, var(--oni-pink), #be185d);">11</div>
+                <div class="detail-title">
+                    <h2>Working Memory</h2>
+                    <div class="detail-domain">Cognitive Domain / Layer 11 of 14</div>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Function</div>
+                    <div class="info-content">Temporary storage and manipulation of information needed for complex cognitive tasks like learning, reasoning, and comprehension.</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Capacity</div>
+                    <div class="info-content">~4 items (chunks) simultaneously, with decay over 15-30 seconds without rehearsal.</div>
+                </div>
+                <div class="info-card full-width">
+                    <div class="info-label">Neural Correlates</div>
+                    <div class="info-content">Prefrontal cortex (dorsolateral), posterior parietal cortex. Sustained neural firing maintains representations. Theta oscillations (4-8 Hz) coordinate with gamma bursts for item encoding.</div>
+                </div>
+            </div>
+
+            <div class="attack-surface">
+                <div class="attack-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Attack Surfaces
+                </div>
+                <ul class="attack-list">
+                    <li>Theta rhythm disruption causing memory dropout</li>
+                    <li>False item injection during encoding windows</li>
+                    <li>Capacity overflow attacks (cognitive DoS)</li>
+                    <li>Rehearsal loop interference</li>
+                </ul>
+            </div>
+
+            <div class="defense-surface">
+                <div class="defense-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Defense Mechanisms
+                </div>
+                <ul class="defense-list">
+                    <li>Coherence metric validation (phase variance check)</li>
+                    <li>Encoding window authentication</li>
+                    <li>Capacity monitoring with anomaly detection</li>
+                    <li>Theta-gamma coupling verification</li>
+                </ul>
+            </div>
+
+            <div class="analogy-box">
+                <div class="analogy-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Real-World Analogy
+                </div>
+                <div class="analogy-text">
+                    Think of working memory like a whiteboard in a meeting room. It can only hold so much information at once, gets erased after the meeting, and anyone who can access the room could potentially alter what's written. The ONI Framework ensures only authorized "participants" can write to your mental whiteboard.
+                </div>
+            </div>
+
+            <div class="layer-diagram">
+                <div class="diagram-title">Data Flow at Layer 11</div>
+                <div class="diagram-visual">
+                    <svg width="500" height="200" viewBox="0 0 500 200">
+                        <!-- Background -->
+                        <rect x="0" y="0" width="500" height="200" fill="#060912" rx="8"/>
+
+                        <!-- Layer 10 Input -->
+                        <rect x="20" y="80" width="80" height="40" fill="#8b5cf6" rx="6" opacity="0.3"/>
+                        <text x="60" y="105" fill="#c4b5fd" font-size="12" text-anchor="middle">L10: Oscillatory</text>
+
+                        <!-- Arrow -->
+                        <path d="M105 100 L140 100" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                        <!-- Working Memory Box -->
+                        <rect x="145" y="40" width="210" height="120" fill="rgba(236, 72, 153, 0.2)" rx="8" stroke="#ec4899" stroke-width="2"/>
+                        <text x="250" y="65" fill="#ec4899" font-size="14" text-anchor="middle" font-weight="600">Layer 11: Working Memory</text>
+
+                        <!-- Memory Slots -->
+                        <rect x="160" y="80" width="40" height="40" fill="#ec4899" rx="4" opacity="0.8"/>
+                        <text x="180" y="105" fill="white" font-size="10" text-anchor="middle">Item 1</text>
+
+                        <rect x="210" y="80" width="40" height="40" fill="#ec4899" rx="4" opacity="0.6"/>
+                        <text x="230" y="105" fill="white" font-size="10" text-anchor="middle">Item 2</text>
+
+                        <rect x="260" y="80" width="40" height="40" fill="#ec4899" rx="4" opacity="0.4"/>
+                        <text x="280" y="105" fill="white" font-size="10" text-anchor="middle">Item 3</text>
+
+                        <rect x="310" y="80" width="40" height="40" fill="#ec4899" rx="4" opacity="0.2"/>
+                        <text x="330" y="105" fill="white" font-size="10" text-anchor="middle">Item 4</text>
+
+                        <!-- Theta Wave -->
+                        <path d="M160 135 Q180 125, 200 135 Q220 145, 240 135 Q260 125, 280 135 Q300 145, 320 135 Q340 125, 350 135"
+                              stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.6"/>
+                        <text x="255" y="155" fill="#f59e0b" font-size="9" text-anchor="middle">Theta Rhythm (4-8 Hz)</text>
+
+                        <!-- Arrow to L12 -->
+                        <path d="M360 100 L395 100" stroke="#ec4899" stroke-width="2" marker-end="url(#arrowhead2)"/>
+
+                        <!-- Layer 12 Output -->
+                        <rect x="400" y="80" width="80" height="40" fill="#ec4899" rx="6" opacity="0.3"/>
+                        <text x="440" y="105" fill="#f9a8d4" font-size="12" text-anchor="middle">L12: Attention</text>
+
+                        <!-- Arrowhead markers -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6"/>
+                            </marker>
+                            <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#ec4899"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mini Navigator -->
+    <nav class="mini-nav">
+        <div class="mini-layer traditional" data-layer="1" title="L1: Physical"></div>
+        <div class="mini-layer traditional" data-layer="2" title="L2: Data Link"></div>
+        <div class="mini-layer traditional" data-layer="3" title="L3: Network"></div>
+        <div class="mini-layer traditional" data-layer="4" title="L4: Transport"></div>
+        <div class="mini-layer traditional" data-layer="5" title="L5: Session"></div>
+        <div class="mini-layer traditional" data-layer="6" title="L6: Presentation"></div>
+        <div class="mini-layer traditional" data-layer="7" title="L7: Application"></div>
+        <div class="mini-layer interface" data-layer="8" title="L8: Electrode"></div>
+        <div class="mini-layer interface" data-layer="9" title="L9: LFP"></div>
+        <div class="mini-layer interface" data-layer="10" title="L10: Oscillatory"></div>
+        <div class="mini-layer cognitive active" data-layer="11" title="L11: Working Memory"></div>
+        <div class="mini-layer cognitive" data-layer="12" title="L12: Attention"></div>
+        <div class="mini-layer cognitive" data-layer="13" title="L13: Executive"></div>
+        <div class="mini-layer cognitive" data-layer="14" title="L14: Identity"></div>
+    </nav>
+
+    <script>
+        // Layer data
+        const layers = {
+            1: {
+                name: "Physical",
+                domain: "Traditional OSI",
+                domainColor: "#3b82f6",
+                function: "Transmission of raw bit streams over physical medium. In BCIs: RF transmission, Bluetooth Low Energy, inductive coupling for power/data.",
+                capacity: "Neuralink N1: 1Mbps data rate, 25mW power budget, 2.4GHz wireless",
+                correlates: "Antenna design, RF shielding, electromagnetic interference management, power harvesting circuits.",
+                attacks: [
+                    "RF jamming / denial of service",
+                    "BlueBorne-style Bluetooth exploits",
+                    "Side-channel attacks via EM emissions",
+                    "Power analysis attacks"
+                ],
+                defenses: [
+                    "Frequency hopping spread spectrum",
+                    "Encrypted RF channels",
+                    "EM shielding in implant housing",
+                    "Anomaly detection on signal strength"
+                ],
+                analogy: "Like the physical wires or radio waves that carry your phone calls. If someone cuts the wire or jams the radio signal, communication stops entirely."
+            },
+            2: {
+                name: "Data Link",
+                domain: "Traditional OSI",
+                domainColor: "#3b82f6",
+                function: "Reliable transfer of data frames between adjacent nodes. Error detection, flow control, MAC addressing.",
+                capacity: "Frame sizes optimized for neural data packets (~100-500 bytes typical)",
+                correlates: "CRC checksums, frame synchronization, collision detection protocols.",
+                attacks: [
+                    "MAC spoofing to impersonate device",
+                    "Frame injection attacks",
+                    "Replay attacks with captured frames",
+                    "Desynchronization attacks"
+                ],
+                defenses: [
+                    "Cryptographic frame authentication",
+                    "Sequence number validation",
+                    "Rolling codes for freshness",
+                    "Hardware-bound device certificates"
+                ],
+                analogy: "Like the addressing on an envelope. The data link layer ensures each packet knows where it came from and where it's going."
+            },
+            8: {
+                name: "Electrode",
+                domain: "Neural Interface",
+                domainColor: "#8b5cf6",
+                function: "Physical contact point between electronics and neural tissue. Converts ionic signals to electronic and vice versa.",
+                capacity: "Neuralink N1: 1,024 electrodes, ~1mm² footprint, 6μm electrode diameter",
+                correlates: "Electrode impedance (target: 100kΩ-1MΩ), biocompatibility coatings, signal-to-noise ratio, recording/stimulation modes.",
+                attacks: [
+                    "Signal injection at electrode site",
+                    "Impedance manipulation",
+                    "Electrode poisoning (chemical attacks)",
+                    "Micro-motion exploitation"
+                ],
+                defenses: [
+                    "Impedance monitoring and validation",
+                    "Signal authentication at hardware level",
+                    "Redundant electrode verification",
+                    "Anomaly detection on electrode characteristics"
+                ],
+                analogy: "Like tiny microphones and speakers implanted in brain tissue. They listen to neurons and can also speak to them - which means they can be hijacked to play the wrong music."
+            },
+            11: {
+                name: "Working Memory",
+                domain: "Cognitive",
+                domainColor: "#ec4899",
+                function: "Temporary storage and manipulation of information needed for complex cognitive tasks like learning, reasoning, and comprehension.",
+                capacity: "~4 items (chunks) simultaneously, with decay over 15-30 seconds without rehearsal.",
+                correlates: "Prefrontal cortex (dorsolateral), posterior parietal cortex. Sustained neural firing maintains representations. Theta oscillations (4-8 Hz) coordinate with gamma bursts for item encoding.",
+                attacks: [
+                    "Theta rhythm disruption causing memory dropout",
+                    "False item injection during encoding windows",
+                    "Capacity overflow attacks (cognitive DoS)",
+                    "Rehearsal loop interference"
+                ],
+                defenses: [
+                    "Coherence metric validation (phase variance check)",
+                    "Encoding window authentication",
+                    "Capacity monitoring with anomaly detection",
+                    "Theta-gamma coupling verification"
+                ],
+                analogy: "Think of working memory like a whiteboard in a meeting room. It can only hold so much information at once, gets erased after the meeting, and anyone who can access the room could potentially alter what's written."
+            },
+            14: {
+                name: "Identity",
+                domain: "Cognitive",
+                domainColor: "#ec4899",
+                function: "The self-model - persistent sense of who you are, your values, personality, autobiographical continuity. The 'crown jewel' of neural security.",
+                capacity: "Distributed across cortical and subcortical regions. Emerges from integrated activity across all lower layers.",
+                correlates: "Default mode network, medial prefrontal cortex, posterior cingulate, hippocampal-cortical memory systems. Global workspace integration.",
+                attacks: [
+                    "Gradual personality drift through subtle stimulation",
+                    "Value system manipulation",
+                    "Autobiographical memory corruption",
+                    "Identity fragmentation attacks"
+                ],
+                defenses: [
+                    "Long-term baseline tracking (identity signature)",
+                    "Rate limiting on stimulation patterns",
+                    "Cross-layer coherence validation",
+                    "Human-in-the-loop sovereignty checks"
+                ],
+                analogy: "Your identity is like your operating system's core kernel. Everything else runs on top of it. If compromised, nothing else can be trusted - but it's also the hardest thing to attack because changes are immediately noticeable to the 'user' (you)."
+            }
+        };
+
+        // Add more layer data as needed...
+        // For brevity, adding placeholders for remaining layers
+        [3,4,5,6,7,9,10,12,13].forEach(n => {
+            if (!layers[n]) {
+                layers[n] = {
+                    name: document.querySelector(`[data-layer="${n}"] .layer-name`).textContent,
+                    domain: n <= 7 ? "Traditional OSI" : n <= 10 ? "Neural Interface" : "Cognitive",
+                    domainColor: n <= 7 ? "#3b82f6" : n <= 10 ? "#8b5cf6" : "#ec4899",
+                    function: "Detailed function description for Layer " + n,
+                    capacity: "Layer-specific metrics and constraints",
+                    correlates: "Technical and biological correlates",
+                    attacks: ["Attack vector 1", "Attack vector 2", "Attack vector 3"],
+                    defenses: ["Defense mechanism 1", "Defense mechanism 2", "Defense mechanism 3"],
+                    analogy: "A relatable real-world analogy for this layer."
+                };
+            }
+        });
+
+        // UI Interaction
+        const layerCards = document.querySelectorAll('.layer-card');
+        const miniLayers = document.querySelectorAll('.mini-layer');
+
+        function selectLayer(layerNum) {
+            const layer = layers[layerNum];
+
+            // Update active states
+            layerCards.forEach(card => {
+                card.classList.toggle('active', card.dataset.layer == layerNum);
+            });
+            miniLayers.forEach(mini => {
+                mini.classList.toggle('active', mini.dataset.layer == layerNum);
+            });
+
+            // Scroll to card
+            document.querySelector(`[data-layer="${layerNum}"]`).scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+
+            // Update detail panel (simplified - full implementation would rebuild entire panel)
+            document.querySelector('.detail-number').textContent = layerNum;
+            document.querySelector('.detail-number').style.background =
+                `linear-gradient(135deg, ${layer.domainColor}, ${layer.domainColor}88)`;
+            document.querySelector('.detail-title h2').textContent = layer.name;
+            document.querySelector('.detail-domain').textContent =
+                `${layer.domain} Domain / Layer ${layerNum} of 14`;
+        }
+
+        layerCards.forEach(card => {
+            card.addEventListener('click', () => selectLayer(card.dataset.layer));
+        });
+
+        miniLayers.forEach(mini => {
+            mini.addEventListener('click', () => selectLayer(mini.dataset.layer));
+        });
+    </script>
+</body>
+</html>
