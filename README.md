@@ -35,7 +35,7 @@
 
 | Start Here | Purpose |
 |------------|---------|
-| **[MAIN/](MAIN/)** | All research content — publications, prototypes, resources |
+| **[MAIN/](MAIN/)** | All research content — publications, visualizations, resources |
 | **[INDEX.md](MAIN/INDEX.md)** | Central hub — navigation, dependencies, cross-references, roadmap |
 | **This README** | Public overview — key concepts, quick reference |
 

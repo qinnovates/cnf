@@ -28,11 +28,10 @@ ONI/
     │   ├── coherence-metric/
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
-    │   ├── quantum-security/
+    │   ├── quantum-encryption/
     │   └── scale-frequency/
     │
-    ├── prototypes/                     # Interactive demos
-    │   └── oni-visualizations/
+    ├── oni-visualizations/             # Interactive demos
     │
     └── resources/                      # NON-CONTENT (infrastructure)
         ├── templates/                  # Formatting templates
@@ -60,7 +59,7 @@ ONI/
 |--------|---------|----------------|
 | `publications/0-oni-framework/` | **Base content** | Foundational ONI Framework publications |
 | `publications/` | **Content only** | Blog posts, technical documents |
-| `prototypes/` | **Interactive demos** | Web apps, visualizations |
+| `oni-visualizations/` | **Interactive demos** | Web apps, visualizations |
 | `resources/templates/` | Formatting templates | APA template, Blog template, INDEX template |
 | `resources/processes/` | Workflow documentation | Publishing instructions, improvements |
 | `resources/pipeline/` | Research pipeline | Scripts, incoming papers, processed research |
