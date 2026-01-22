@@ -1,6 +1,6 @@
 # Security Audit Pipeline
 
-Automated security scanning for secrets, credentials, PII, and sensitive data in your git repository.
+Automated security scanning for secrets, credentials, PII, and sensitive data.
 
 ## Features
 
