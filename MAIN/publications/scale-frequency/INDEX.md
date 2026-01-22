@@ -82,4 +82,4 @@ For BCI security, this invariant establishes expectations for legitimate signals
 
 ---
 
-← Back to [ONI Wiki](../../ONI_WIKI.md)
+← Back to [Index](../../INDEX.md)

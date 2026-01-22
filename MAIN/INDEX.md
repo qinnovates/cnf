@@ -1,6 +1,6 @@
-# ONI Framework Wiki
+# ONI Framework — Index
 
-> **The central connection point for all ONI Framework research, publications, and development.**
+> **The central navigation hub for all ONI Framework research, publications, and development.**
 
 **Version:** 1.0
 **Last Updated:** 2026-01-21
@@ -8,9 +8,35 @@
 
 ---
 
-## Framework Overview
+## Overview
 
-The **Organic Neural Interface (ONI) Framework** extends the OSI networking model into biological neural systems, creating a unified architecture for brain-computer interface security. This wiki connects all research topics, maps dependencies, and provides navigation paths for readers and contributors.
+The **Organic Neural Interface (ONI) Framework** extends the OSI networking model into biological neural systems, creating a unified architecture for brain-computer interface security. This index connects all research topics, maps dependencies, and provides navigation paths for readers and contributors.
+
+---
+
+## Quick Navigation
+
+| Topic | Description | Documents |
+|-------|-------------|-----------|
+| [ONI Framework](publications/0-oni-framework/INDEX.md) | Foundational 14-layer model | [Blog](publications/0-oni-framework/Blog-ONI_Framework.md) · [TechDoc](publications/0-oni-framework/TechDoc-ONI_Framework.md) |
+| [Coherence Metric](publications/coherence-metric/INDEX.md) | Signal trust scoring (Cₛ formula) | [Blog](publications/coherence-metric/Blog-Coherence_Metric.md) · [TechDoc](publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md) |
+| [Scale-Frequency](publications/scale-frequency/INDEX.md) | Cross-scale invariants (f × S ≈ k) | [Blog](publications/scale-frequency/Blog-Scale_Frequency.md) · [TechDoc](publications/scale-frequency/TechDoc-Scale_Frequency.md) |
+| [Neural Firewall](publications/neural-firewall/INDEX.md) | Zero-trust security at L8 | [Blog](publications/neural-firewall/Blog-Neural_Firewall.md) · [TechDoc](publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md) |
+| [Neural Ransomware](publications/neural-ransomware/INDEX.md) | Threat analysis & defense | [Blog](publications/neural-ransomware/Blog-Neural_Ransomware.md) · [TechDoc](publications/neural-ransomware/TechDoc-Neural_Ransomware.md) |
+| [Quantum Security](publications/quantum-security/INDEX.md) | HNDL attacks & post-quantum crypto | [Blog](publications/quantum-security/Blog-Quantum_Security.md) |
+
+---
+
+## Reading Order
+
+**Recommended path through the framework:**
+
+1. **ONI Framework** → Foundation concepts (14-layer model)
+2. **Scale-Frequency** → Mathematical invariants (f × S ≈ k)
+3. **Coherence Metric** → Signal validation (Cₛ formula)
+4. **Neural Firewall** → Security architecture (zero-trust at L8)
+5. **Neural Ransomware** → Threat landscape
+6. **Quantum Security** → Cryptographic threats & defenses
 
 ---
 
@@ -38,14 +64,6 @@ The **Organic Neural Interface (ONI) Framework** extends the OSI networking mode
    │ HNDL, PQC, f×S≈k│            │   Threat modeling   │
    └─────────────────┘            └─────────────────────┘
 ```
-
-**Reading Order (Recommended):**
-1. ONI Framework → Foundation concepts
-2. Scale-Frequency → Mathematical invariants
-3. Coherence Metric → Signal validation
-4. Neural Firewall → Security architecture
-5. Neural Ransomware → Threat landscape
-6. Quantum Security → Cryptographic threats & defenses
 
 ---
 
@@ -114,6 +132,72 @@ The ONI Framework extends OSI's 7 layers to 14, bridging silicon and biology:
 
 ---
 
+## Prototypes
+
+| Prototype | Description |
+|-----------|-------------|
+| [ONI Visualizations](prototypes/oni-visualizations/README.md) | Interactive web apps for ONI concepts |
+
+---
+
+## Resources
+
+### Templates
+
+| Template | Purpose |
+|----------|---------|
+| [BLOG_TEMPLATE.md](resources/templates/BLOG_TEMPLATE.md) | Blog post formatting guide |
+| [TECHDOC_TEMPLATE_APA.md](resources/templates/TECHDOC_TEMPLATE_APA.md) | Technical document (APA format) |
+| [INDEX_TEMPLATE.md](resources/templates/INDEX_TEMPLATE.md) | Topic index template |
+
+### Processes
+
+| Document | Purpose |
+|----------|---------|
+| [PUBLISHING_INSTRUCTIONS.md](resources/processes/PUBLISHING_INSTRUCTIONS.md) | Step-by-step publishing workflow |
+| [PROCESS_IMPROVEMENTS.md](resources/processes/PROCESS_IMPROVEMENTS.md) | Workflow enhancement tracking |
+
+### Research Pipeline
+
+| Resource | Purpose |
+|----------|---------|
+| [research_monitor.py](resources/pipeline/scripts/research_monitor.py) | Automated academic paper discovery |
+| [keywords.json](resources/pipeline/scripts/keywords.json) | Research search terms database |
+| [incoming/](resources/pipeline/incoming/) | New research discoveries |
+| [processed/](resources/pipeline/processed/) | Reviewed and integrated research |
+
+---
+
+## Adding New Topics
+
+When expanding the framework, follow this process:
+
+### 1. Create Topic Folder
+```bash
+mkdir MAIN/publications/[topic-name]/
+```
+
+### 2. Create Topic INDEX.md
+Use the [INDEX template](resources/templates/INDEX_TEMPLATE.md) with:
+- Topic summary
+- Dependency list (what this topic builds on)
+- Document inventory
+- Related topics
+
+### 3. Add Publications
+- `Blog-[Topic_Name].md` — Accessible narrative (include original URL if applicable)
+- `TechDoc-[Topic_Name].md` — Academic depth
+
+### 4. Update This Index
+- Add topic to appropriate section table
+- Update dependency map if needed
+- Add to cross-reference matrix
+
+### 5. Update keywords.json
+Add keywords for research monitoring integration.
+
+---
+
 ## Roadmap: Future Topics
 
 Planned research areas for framework expansion:
@@ -128,50 +212,28 @@ Planned research areas for framework expansion:
 
 ---
 
-## Adding New Topics
+## Folder Structure
 
-When expanding the framework, follow this process:
-
-### 1. Create Topic Folder
-```bash
-mkdir MAIN/publications/[topic-name]/
 ```
-
-### 2. Create Topic INDEX.md
-Use the [INDEX template](artifacts/templates/INDEX_TEMPLATE.md) with:
-- Topic summary
-- Dependency list (what this topic builds on)
-- Document inventory
-- Related topics
-
-### 3. Add Publications
-- `Blog-[Topic_Name].md` — Accessible narrative (includes original Medium link)
-- `TechDoc-[Topic_Name].md` — Academic depth
-
-### 4. Update This Wiki
-- Add topic to appropriate section table
-- Update dependency map if needed
-- Add to cross-reference matrix
-
-### 5. Update keywords.json
-Add keywords for research monitoring integration.
-
----
-
-## Resources
-
-### Templates
-- [TechDoc Template (APA)](artifacts/templates/TECHDOC_TEMPLATE_APA.md)
-- [Blog Template](artifacts/templates/BLOG_TEMPLATE.md)
-- [Topic INDEX Template](artifacts/templates/INDEX_TEMPLATE.md)
-
-### Processes
-- [Publishing Instructions](artifacts/processes/PUBLISHING_INSTRUCTIONS.md)
-- [Process Improvements](artifacts/processes/PROCESS_IMPROVEMENTS.md)
-
-### Research Pipeline
-- [Keywords Registry](artifacts/cicd-pipeline/continuous-research-delivery/scripts/keywords.json)
-- [Research Monitor](artifacts/cicd-pipeline/continuous-research-delivery/scripts/research_monitor.py)
+MAIN/
+├── INDEX.md                    # This file (central hub)
+├── publications/               # Research content
+│   ├── 0-oni-framework/
+│   ├── coherence-metric/
+│   ├── neural-firewall/
+│   ├── neural-ransomware/
+│   ├── quantum-security/
+│   └── scale-frequency/
+├── prototypes/                 # Interactive demos
+│   └── oni-visualizations/
+└── resources/                  # Templates, processes, tools
+    ├── templates/
+    ├── processes/
+    └── pipeline/
+        ├── scripts/
+        ├── incoming/
+        └── processed/
+```
 
 ---
 
@@ -183,6 +245,7 @@ Add keywords for research monitoring integration.
 | Published Documents | 11 |
 | Blog Posts | 6 |
 | Technical Documents | 5 |
+| Prototypes | 1 |
 | Planned Topics | 5 |
 
 ---
@@ -199,4 +262,6 @@ Apache 2.0 — See [LICENSE](../LICENSE)
 
 ---
 
-*This wiki is a living document. It evolves as the framework grows.*
+← Back to [Repository Root](../README.md)
+
+*This index is a living document. It evolves as the framework grows.*

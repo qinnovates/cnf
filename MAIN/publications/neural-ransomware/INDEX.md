@@ -84,4 +84,4 @@ The goal is proactive defense: by understanding potential attack patterns before
 
 ---
 
-← Back to [ONI Wiki](../../ONI_WIKI.md)
+← Back to [Index](../../INDEX.md)

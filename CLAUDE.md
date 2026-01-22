@@ -8,13 +8,13 @@
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
-| **ONI Wiki** | `MAIN/ONI_WIKI.md` | **Central hub - start here for navigation** |
-| Topic INDEX Template | `MAIN/artifacts/templates/INDEX_TEMPLATE.md` | Template for topic-level indexes |
-| APA Template | `MAIN/artifacts/templates/TECHDOC_TEMPLATE_APA.md` | Formatting for technical documents |
-| Blog Template | `MAIN/artifacts/templates/BLOG_TEMPLATE.md` | Formatting for blog posts |
-| Publishing Instructions | `MAIN/artifacts/processes/PUBLISHING_INSTRUCTIONS.md` | Step-by-step publishing workflow |
-| Research Monitor | `MAIN/artifacts/cicd-pipeline/continuous-research-delivery/scripts/research_monitor.py` | Fetch new academic papers |
-| Keywords File | `MAIN/artifacts/cicd-pipeline/continuous-research-delivery/scripts/keywords.json` | Research search terms |
+| **INDEX** | `MAIN/INDEX.md` | **Central hub - navigation, dependencies, cross-references** |
+| Topic INDEX Template | `MAIN/resources/templates/INDEX_TEMPLATE.md` | Template for topic-level indexes |
+| APA Template | `MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md` | Formatting for technical documents |
+| Blog Template | `MAIN/resources/templates/BLOG_TEMPLATE.md` | Formatting for blog posts |
+| Publishing Instructions | `MAIN/resources/processes/PUBLISHING_INSTRUCTIONS.md` | Step-by-step publishing workflow |
+| Research Monitor | `MAIN/resources/pipeline/scripts/research_monitor.py` | Fetch new academic papers |
+| Keywords File | `MAIN/resources/pipeline/scripts/keywords.json` | Research search terms |
 | This File | `CLAUDE.md` | Claude-specific instructions |
 
 ---
@@ -30,24 +30,24 @@ ONI/
 ├── LICENSE                             # Apache 2.0 License
 │
 └── MAIN/
-    ├── ONI_WIKI.md                     # Central hub - all topics, dependencies, navigation
+    ├── INDEX.md                        # Central hub - navigation, dependencies, cross-references
     ├── publications/                   # CONTENT ONLY
     │   ├── 0-oni-framework/            # Base/foundational content (sorted first)
     │   │   ├── INDEX.md                # Topic index (each topic has one)
     │   │   ├── Blog-ONI_Framework.md
     │   │   └── TechDoc-ONI_Framework.md
     │   ├── coherence-metric/
-    │   │   └── INDEX.md
     │   ├── neural-firewall/
-    │   │   └── INDEX.md
     │   ├── neural-ransomware/
-    │   │   └── INDEX.md
+    │   ├── quantum-security/
     │   └── scale-frequency/
-    │       └── INDEX.md
     │
-    └── artifacts/                      # NON-CONTENT (infrastructure)
+    ├── prototypes/                     # Interactive demos
+    │   └── oni-visualizations/
+    │
+    └── resources/                      # NON-CONTENT (infrastructure)
         ├── templates/                  # Formatting templates
-        │   ├── INDEX_TEMPLATE.md       # Template for topic indexes
+        │   ├── INDEX_TEMPLATE.md
         │   ├── TECHDOC_TEMPLATE_APA.md
         │   └── BLOG_TEMPLATE.md
         │
@@ -55,13 +55,12 @@ ONI/
         │   ├── PUBLISHING_INSTRUCTIONS.md
         │   └── PROCESS_IMPROVEMENTS.md
         │
-        └── cicd-pipeline/              # Continuous Research Delivery
+        └── pipeline/                   # Research pipeline
+            ├── scripts/                # Automation scripts
+            │   ├── research_monitor.py
+            │   └── keywords.json
             ├── incoming/               # New research discoveries
-            ├── processed/              # Reviewed and integrated
-            └── continuous-research-delivery/
-                └── scripts/            # Automation scripts
-                    ├── research_monitor.py
-                    └── keywords.json   # Research keywords from publications
+            └── processed/              # Reviewed and integrated
 ```
 
 ---
@@ -72,14 +71,14 @@ ONI/
 |--------|---------|----------------|
 | `publications/0-oni-framework/` | **Base content** | Foundational ONI Framework publications |
 | `publications/` | **Content only** | Blog posts, technical documents |
-| `artifacts/templates/` | Formatting templates | APA template, Blog template |
-| `artifacts/processes/` | Workflow documentation | Publishing instructions, improvements |
-| `artifacts/cicd-pipeline/` | Research pipeline | Incoming papers, processed, scripts, keywords |
+| `resources/templates/` | Formatting templates | APA template, Blog template |
+| `resources/processes/` | Workflow documentation | Publishing instructions, improvements |
+| `resources/pipeline/` | Research pipeline | Incoming papers, processed, scripts, keywords |
 
 **IMPORTANT:**
 - The `0-oni-framework/` folder inside `publications/` contains the base/foundational content and sorts first alphabetically.
 - The `publications/` folder is for **content only**. Never put templates, instructions, or scripts there.
-- The `artifacts/` folder contains ALL non-content files (templates, processes, scripts, CICD).
+- The `resources/` folder contains ALL non-content files (templates, processes, scripts, Pipeline).
 
 ---
 
@@ -97,7 +96,7 @@ ONI/
 | Technical Documents | `TechDoc-[Topic_Name].md` | `TechDoc-Neural_Ransomware.md` |
 | Detailed TechDocs | `TechDoc-[Topic_Name]_Detailed.md` | `TechDoc-Coherence_Metric_Detailed.md` |
 | Templates | `[NAME]_TEMPLATE_[TYPE].md` | `TECHDOC_TEMPLATE_APA.md` |
-| CICD Research | `YYYY-MM-DD_[source]_[title].md` | `2026-01-21_arxiv_neural-security.md` |
+| Pipeline Research | `YYYY-MM-DD_[source]_[title].md` | `2026-01-21_arxiv_neural-security.md` |
 
 ### Topic Name Rules
 - Use PascalCase with underscores between words
@@ -114,9 +113,9 @@ ONI/
 
 1. **Read the templates first:**
    ```
-   Read: MAIN/artifacts/templates/TECHDOC_TEMPLATE_APA.md
-   Read: MAIN/artifacts/templates/BLOG_TEMPLATE.md
-   Read: MAIN/artifacts/processes/PUBLISHING_INSTRUCTIONS.md
+   Read: MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md
+   Read: MAIN/resources/templates/BLOG_TEMPLATE.md
+   Read: MAIN/resources/processes/PUBLISHING_INSTRUCTIONS.md
    ```
 
 2. **Create topic folder (if new topic):**
@@ -148,7 +147,7 @@ ONI/
    - **Biological Terms** (5-8): Neuroscience terms
    - **Security Terms** (5-8): Cybersecurity terms
 
-2. Update `MAIN/artifacts/cicd-pipeline/continuous-research-delivery/scripts/keywords.json`:
+2. Update `MAIN/resources/pipeline/scripts/keywords.json`:
    ```json
    {
      "publications": {
@@ -168,7 +167,7 @@ ONI/
 ### When Running Research Monitor
 
 ```bash
-cd MAIN/artifacts/cicd-pipeline/continuous-research-delivery/scripts
+cd MAIN/resources/pipeline/scripts
 python research_monitor.py --days 7 --sources all
 ```
 
@@ -186,7 +185,7 @@ Options:
 > **CRITICAL:** README.md is the public face of the repository. Update it for ANY major change:
 > - New topics or publications
 > - Structural changes (new folders, renamed files)
-> - New navigation features (like ONI_WIKI.md)
+> - New navigation features (like INDEX.md)
 > - Changes to key concepts or framework components
 
 **After every commit that adds or modifies content, update README.md:**
@@ -215,7 +214,7 @@ If adding new navigation features or structural changes:
 
 | Start Here | Purpose |
 |------------|---------|
-| **[ONI_WIKI.md](MAIN/ONI_WIKI.md)** | Central hub — dependency map, cross-references, reading order, roadmap |
+| **[INDEX.md](MAIN/INDEX.md)** | Central hub — dependency map, cross-references, reading order, roadmap |
 | **This README** | Public overview — key concepts, quick reference, document list |
 ```
 
@@ -272,7 +271,7 @@ Before committing, verify:
 - [ ] File naming follows conventions
 - [ ] Folder naming follows conventions
 - [ ] Content files are in `publications/` only
-- [ ] Non-content files are in `artifacts/` only
+- [ ] Non-content files are in `resources/` only
 - [ ] Blog posts have proper front matter (title, date_posted, original_url, tags)
 - [ ] Blog posts have proper footer (Sub-Tags, Originally published with datetime and link)
 - [ ] TechDocs follow APA template structure
@@ -284,7 +283,7 @@ Before committing, verify:
 - [ ] Document count updated in README.md footer
 - [ ] Date updated in README.md footer
 - [ ] **Topic INDEX.md created** (for new topics)
-- [ ] **ONI_WIKI.md updated** (dependency map, tables, metrics)
+- [ ] **INDEX.md updated** (dependency map, tables, metrics)
 
 ---
 
@@ -293,14 +292,14 @@ Before committing, verify:
 ### Extract Content from Medium RSS
 1. Fetch content from RSS feed URL
 2. Extract title, date_posted, URL, tags for front matter
-3. Clean formatting artifacts
+3. Clean formatting resources
 4. Rename bottom `Tags:` section to `Sub-Tags:`
 5. Update "Originally published" line with full datetime and Medium link
 6. Save as `Blog-[Topic_Name].md` in `publications/[topic]/`
 7. **Extract keywords and update keywords.json**
 
 ### Convert Draft to TechDoc
-1. Apply `MAIN/artifacts/templates/TECHDOC_TEMPLATE_APA.md` structure
+1. Apply `MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md` structure
 2. Add Abstract with keywords
 3. Number sections
 4. Format tables (bold numbers, italic titles)
@@ -316,9 +315,9 @@ mkdir MAIN/publications/[topic-name]/
 ```
 
 **Step 2: Create topic INDEX.md**
-- Copy from `MAIN/artifacts/templates/INDEX_TEMPLATE.md`
+- Copy from `MAIN/resources/templates/INDEX_TEMPLATE.md`
 - Fill in: summary, dependencies, key concepts, related topics
-- Link back to `MAIN/ONI_WIKI.md`
+- Link back to `MAIN/INDEX.md`
 
 **Step 3: Create publications**
 - `Blog-[Topic_Name].md` — Accessible narrative (include original Medium URL if applicable)
@@ -326,7 +325,7 @@ mkdir MAIN/publications/[topic-name]/
 
 **Step 4: Extract keywords and update keywords.json**
 
-**Step 5: Update ONI_WIKI.md**
+**Step 5: Update INDEX.md**
 - Add topic to appropriate section table
 - Update dependency map (if new dependencies)
 - Update cross-reference matrix
@@ -336,11 +335,11 @@ mkdir MAIN/publications/[topic-name]/
 - Add section to Topics & Documents
 - Update document count in footer
 
-### Process CICD Incoming Research
-1. Review files in `MAIN/artifacts/cicd-pipeline/incoming/`
+### Process Pipeline Incoming Research
+1. Review files in `MAIN/resources/pipeline/incoming/`
 2. Determine relevance to ONI Framework
 3. If relevant: Extract key findings, create summary
-4. Move processed file to `MAIN/artifacts/cicd-pipeline/processed/`
+4. Move processed file to `MAIN/resources/pipeline/processed/`
 5. Update publications if new content warranted
 
 ### Rename/Reorganize Files
@@ -354,10 +353,10 @@ mkdir MAIN/publications/[topic-name]/
 ## Error Prevention
 
 ### Common Mistakes to Avoid
-1. **Wrong location:** Don't put templates or instructions in `publications/` - use `artifacts/`
+1. **Wrong location:** Don't put templates or instructions in `publications/` - use `resources/`
 2. **Wrong naming:** Don't use dates in publication filenames (use `Blog-*` or `TechDoc-*` prefix)
 3. **Missing README updates:** Always update README.md after ANY major change (topics, structure, navigation)
-4. **Missing WIKI updates:** Always update ONI_WIKI.md when adding topics or changing dependencies
+4. **Missing WIKI updates:** Always update INDEX.md when adding topics or changing dependencies
 5. **Missing keywords:** Always extract and add keywords to keywords.json
 6. **Inconsistent formatting:** Always check template before writing
 7. **Broken links:** Use relative paths from repository root
@@ -365,12 +364,12 @@ mkdir MAIN/publications/[topic-name]/
 9. **Stale footer:** Always update document/topic counts and date in README.md footer
 
 ### If Unsure
-1. Read `MAIN/artifacts/processes/PUBLISHING_INSTRUCTIONS.md`
+1. Read `MAIN/resources/processes/PUBLISHING_INSTRUCTIONS.md`
 2. Check existing files for examples
 3. Ask user for clarification before proceeding
 
 ---
 
-*Version: 3.3*
+*Version: 4.0*
 *Last Updated: January 2026*
 *For: Claude AI Assistant*

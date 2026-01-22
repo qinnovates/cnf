@@ -6,7 +6,7 @@ This document provides standardized instructions for Claude to follow when extra
 
 **Important:**
 - The `publications/` folder is for **content only**
-- All templates, processes, scripts, and CICD files live in `MAIN/artifacts/`
+- All templates, processes, and scripts live in `MAIN/resources/`
 
 ---
 
@@ -21,31 +21,35 @@ ONI/
 ├── LICENSE                             # Apache 2.0
 │
 └── MAIN/
+    ├── INDEX.md                        # Master index
+    ├── INDEX.md                     # Central hub
     ├── publications/                   # CONTENT ONLY
-    │   ├── 0-oni-framework/            # Base/foundational content (sorted first)
-    │   │   ├── Blog-ONI_Framework.md
-    │   │   └── TechDoc-ONI_Framework.md
+    │   ├── 0-oni-framework/
     │   ├── coherence-metric/
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
+    │   ├── quantum-security/
     │   └── scale-frequency/
     │
-    └── artifacts/                      # NON-CONTENT (infrastructure)
+    ├── prototypes/                     # Interactive demos
+    │   └── oni-visualizations/
+    │
+    └── resources/                      # NON-CONTENT (infrastructure)
         ├── templates/                  # Formatting templates
         │   ├── TECHDOC_TEMPLATE_APA.md
-        │   └── BLOG_TEMPLATE.md
+        │   ├── BLOG_TEMPLATE.md
+        │   └── INDEX_TEMPLATE.md
         │
         ├── processes/                  # Workflow documentation
         │   ├── PUBLISHING_INSTRUCTIONS.md  # This file
         │   └── PROCESS_IMPROVEMENTS.md
         │
-        └── cicd-pipeline/              # Continuous Research Delivery
+        └── pipeline/                   # Research pipeline
+            ├── scripts/
+            │   ├── research_monitor.py
+            │   └── keywords.json
             ├── incoming/               # New research discoveries
-            ├── processed/              # Reviewed and integrated
-            └── continuous-research-delivery/
-                └── scripts/            # Automation scripts
-                    ├── research_monitor.py
-                    └── keywords.json   # Auto-generated research keywords
+            └── processed/              # Reviewed and integrated
 ```
 
 ---
@@ -56,9 +60,10 @@ ONI/
 |--------|---------|----------------|
 | `publications/0-oni-framework/` | **Base content** | Foundational ONI Framework publications |
 | `publications/` | **Content only** | Blog posts, technical documents |
-| `artifacts/templates/` | Formatting templates | APA template, Blog template |
-| `artifacts/processes/` | Workflow documentation | Publishing instructions, improvements |
-| `artifacts/cicd-pipeline/` | Research pipeline | Incoming papers, processed, scripts, keywords |
+| `prototypes/` | **Interactive demos** | Web apps, visualizations |
+| `resources/templates/` | Formatting templates | APA template, Blog template, INDEX template |
+| `resources/processes/` | Workflow documentation | Publishing instructions, improvements |
+| `resources/pipeline/` | Research pipeline | Scripts, incoming papers, processed research |
 
 ---
 
@@ -77,7 +82,7 @@ ONI/
 | TechDoc Templates | `[TYPE]_TEMPLATE_[FORMAT].md` | `TECHDOC_TEMPLATE_APA.md` |
 | Post Templates | `[TYPE]_TEMPLATE.md` | `BLOG_TEMPLATE.md` |
 
-### CICD Research
+### Pipeline Research
 | Type | Format | Example |
 |------|--------|---------|
 | Incoming | `YYYY-MM-DD_[source]_[title].md` | `2026-01-21_arxiv_neural-security.md` |
@@ -94,7 +99,7 @@ ONI/
 
 ### 1. Blog Posts (`Blog-*.md`)
 **Location:** `MAIN/publications/[topic]/`
-**Template:** `MAIN/artifacts/templates/BLOG_TEMPLATE.md`
+**Template:** `MAIN/resources/templates/BLOG_TEMPLATE.md`
 
 **Characteristics:**
 - Conversational tone
@@ -125,7 +130,7 @@ tags: ['tag1', 'tag2', 'tag3']
 
 ### 2. Technical Documents (`*_TechDoc.md`)
 **Location:** `MAIN/publications/[topic]/`
-**Template:** `MAIN/artifacts/templates/TECHDOC_TEMPLATE_APA.md`
+**Template:** `MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md`
 
 **Characteristics:**
 - Formal academic tone
@@ -162,7 +167,7 @@ After creating a new publication, extract keywords in these categories:
 
 ### Step 2: Update keywords.json
 
-Add keywords to `MAIN/artifacts/cicd-pipeline/continuous-research-delivery/scripts/keywords.json`:
+Add keywords to `MAIN/resources/pipeline/scripts/keywords.json`:
 
 ```json
 {
@@ -194,24 +199,24 @@ When extracting content from a new source:
    - Draft document
    - Conversation notes
    - Research synthesis
-   - CICD incoming folder
+   - Pipeline incoming folder
 
 2. **Determine publication category:**
    - Which existing topic folder does this belong to?
    - Does it require a new topic folder?
 
 3. **Extract and clean:**
-   - Remove conversion artifacts
+   - Remove conversion resources
    - Fix encoding issues (em-dashes, quotes, etc.)
    - Preserve meaningful formatting
 
 ### Step 2: Formatting
 
 **For Blog Posts:**
-- Reference: `MAIN/artifacts/templates/BLOG_TEMPLATE.md`
+- Reference: `MAIN/resources/templates/BLOG_TEMPLATE.md`
 
 **For Technical Documents:**
-- Reference: `MAIN/artifacts/templates/TECHDOC_TEMPLATE_APA.md`
+- Reference: `MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md`
 - Use bold table numbers: `**Table 1**`
 - Use italic table titles: `*Table Title*`
 - Include standard acknowledgments
@@ -222,7 +227,7 @@ When extracting content from a new source:
 
 1. Read the complete publication
 2. Extract keywords by category
-3. Update `MAIN/artifacts/cicd-pipeline/continuous-research-delivery/scripts/keywords.json`
+3. Update `MAIN/resources/pipeline/scripts/keywords.json`
 4. This ensures the research monitor finds relevant new papers
 
 ### Step 4: Quality Checks
@@ -231,9 +236,9 @@ Before committing:
 
 1. **Verify file location:**
    - Content → `publications/`
-   - Templates → `artifacts/templates/`
-   - Process docs → `artifacts/processes/`
-   - Scripts → `artifacts/cicd-pipeline/continuous-research-delivery/scripts/`
+   - Templates → `resources/templates/`
+   - Process docs → `resources/processes/`
+   - Scripts → `resources/pipeline/scripts/`
 
 2. **Verify file naming:**
    - Blog files: `Blog-[Topic].md`
@@ -284,7 +289,7 @@ The research monitor script uses keywords from publications to find relevant new
 ### Running the Monitor
 
 ```bash
-cd MAIN/artifacts/cicd-pipeline/continuous-research-delivery/scripts
+cd MAIN/resources/pipeline/scripts
 python research_monitor.py --days 7 --sources all
 ```
 
@@ -314,12 +319,12 @@ python research_monitor.py --days 7 --sources all
 4. **Extract keywords and update keywords.json**
 5. Update README.md with new links
 
-### Processing CICD Incoming Research
+### Processing Pipeline Incoming Research
 
-1. Review files in `MAIN/artifacts/cicd-pipeline/incoming/`
+1. Review files in `MAIN/resources/pipeline/incoming/`
 2. Determine relevance to ONI Framework
 3. If relevant: Extract key findings, create summary
-4. Move processed file to `MAIN/artifacts/cicd-pipeline/processed/`
+4. Move processed file to `MAIN/resources/pipeline/processed/`
 5. Update publications if new content warranted
 
 ### Updating Existing Content
@@ -349,6 +354,6 @@ python research_monitor.py --days 7 --sources all
 
 ---
 
-*Instructions Version: 3.1*
+*Instructions Version: 4.0*
 *Last Updated: January 2026*
 *Series: ONI Framework Publications*

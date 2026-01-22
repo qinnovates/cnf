@@ -3,11 +3,11 @@
 ## Current State Analysis
 
 ### What's Working
-1. **Clear folder structure** - Topic-based organization with `MAIN/publications/` and `MAIN/artifacts/` separation
+1. **Clear folder structure** - Topic-based organization with `MAIN/publications/` and `MAIN/resources/` separation
 2. **Naming conventions** - Consistent `Medium-*` and `TechDoc-*` patterns across all 10 publications
 3. **Templates exist** - APA, Medium (v2), and INDEX templates provide comprehensive formatting guidance
 4. **CLAUDE.md** - Comprehensive AI instructions with file trees, workflows, and quality checklists
-5. **MAIN/ONI_WIKI.md** - Cross-reference registry with dependency maps and publication matrix
+5. **MAIN/INDEX.md** - Cross-reference registry with dependency maps and publication matrix
 6. **Research Pipeline** - Automated research monitoring via `keywords.json` and `research_monitor.py`
 7. **YAML front-matter** - Implemented on all publications with title, date, URL, and tags
 
@@ -15,7 +15,7 @@
 1. ~~No automated validation of file naming~~ → Checklist documented, automation pending
 2. ~~README.md updates are manual and error-prone~~ → Process documented in CLAUDE.md
 3. ~~No version tracking for individual documents~~ → Partial (front-matter on publications)
-4. ~~Cross-references between papers not systematically maintained~~ → **RESOLVED: MAIN/ONI_WIKI.md**
+4. ~~Cross-references between papers not systematically maintained~~ → **RESOLVED: MAIN/INDEX.md**
 5. No content calendar or publishing schedule tracking
 6. INDEX.md only deployed to 1 of 5 topic folders
 7. No CHANGELOG.md at repository root
@@ -130,11 +130,11 @@ For each document, track:
 ### Current Templates
 | Template | Purpose | Location | Status |
 |----------|---------|----------|--------|
-| TECHDOC_TEMPLATE_APA.md | Technical papers | MAIN/artifacts/templates/ | ✓ Active |
-| MEDIUM_TEMPLATE.md | Medium posts (v2) | MAIN/artifacts/templates/ | ✓ Active |
-| medium_template_v2.py | Python template generator | MAIN/artifacts/templates/ | ✓ Active |
-| INDEX_TEMPLATE.md | Topic folder indexes | MAIN/artifacts/templates/ | ✓ Active |
-| PUBLISHING_INSTRUCTIONS.md | Workflow guide | MAIN/artifacts/processes/ | ✓ Active |
+| TECHDOC_TEMPLATE_APA.md | Technical papers | MAIN/resources/templates/ | ✓ Active |
+| MEDIUM_TEMPLATE.md | Medium posts (v2) | MAIN/resources/templates/ | ✓ Active |
+| medium_template_v2.py | Python template generator | MAIN/resources/templates/ | ✓ Active |
+| INDEX_TEMPLATE.md | Topic folder indexes | MAIN/resources/templates/ | ✓ Active |
+| PUBLISHING_INSTRUCTIONS.md | Workflow guide | MAIN/resources/processes/ | ✓ Active |
 
 ### Proposed Additional Templates
 
@@ -167,7 +167,7 @@ For shorter, less formal research notes that may become papers later:
 ```
 
 #### 2. Topic Index Template — ✓ IMPLEMENTED
-Template exists at `MAIN/artifacts/templates/INDEX_TEMPLATE.md`. Deployed to `0-oni-framework/INDEX.md`.
+Template exists at `MAIN/resources/templates/INDEX_TEMPLATE.md`. Deployed to `0-oni-framework/INDEX.md`.
 For each topic folder, create an INDEX.md:
 
 ```markdown
@@ -230,14 +230,14 @@ After editing any paper:
 ONI/
 ├── README.md
 ├── CLAUDE.md                       # ✓ AI instructions (was README.AI.md)
-├── MAIN/ONI_WIKI.md                    # ✓ Cross-reference registry
+├── MAIN/INDEX.md                    # ✓ Cross-reference registry
 ├── ABOUT.md
 ├── CHANGELOG.md                    # ✗ PENDING
 ├── CONTRIBUTING.md
 ├── LICENSE
 │
 └── MAIN/
-    ├── artifacts/
+    ├── resources/
     │   ├── templates/
     │   │   ├── TECHDOC_TEMPLATE_APA.md
     │   │   ├── MEDIUM_TEMPLATE.md
@@ -246,7 +246,7 @@ ONI/
     │   ├── processes/
     │   │   ├── PUBLISHING_INSTRUCTIONS.md
     │   │   └── PROCESS_IMPROVEMENTS.md   # This file
-    │   └── CICD-Pipeline/
+    │   └── pipeline/
     │       └── continuous-research-delivery/
     │           └── scripts/
     │               ├── keywords.json
@@ -287,7 +287,7 @@ ONI/
 - [x] Create README.AI.md → **Implemented as CLAUDE.md** (11KB, comprehensive instructions)
 - [x] Create MEDIUM_TEMPLATE.md → **v2 with Python generator**
 - [x] Standardize file naming → **`Medium-*` and `TechDoc-*` patterns**
-- [x] Update all file trees in documentation → **MAIN/publications + artifacts structure**
+- [x] Update all file trees in documentation → **MAIN/publications + resources structure**
 
 ### Phase 2 (Next Session) — 🔄 IN PROGRESS
 - [ ] Create CHANGELOG.md at repository root
@@ -301,7 +301,7 @@ ONI/
 - [ ] Create Research Note template file
 
 ### Phase 3 (Future) — 🔄 PARTIALLY COMPLETE
-- [x] Build cross-reference registry → **MAIN/ONI_WIKI.md with dependency map & matrix**
+- [x] Build cross-reference registry → **MAIN/INDEX.md with dependency map & matrix**
 - [x] Document pre-commit checklist → **In CLAUDE.md (lines 239-256)**
 - [ ] Automate pre-commit checklist as `.git/hooks/pre-commit`
 - [x] Add document metadata to publications → **YAML front-matter on all 10 publications**
@@ -320,8 +320,8 @@ ONI/
    - `scale-frequency/`
 
 ### Short-Term
-3. **Create Research Note template** as `MAIN/artifacts/templates/RESEARCH_NOTE_TEMPLATE.md`
-4. **Add YAML metadata** to all infrastructure files in `artifacts/`
+3. **Create Research Note template** as `MAIN/resources/templates/RESEARCH_NOTE_TEMPLATE.md`
+4. **Add YAML metadata** to all infrastructure files in `resources/`
 
 ### Medium-Term
 5. **Create pre-commit hook** (`.git/hooks/pre-commit`) to automate validation

@@ -35,10 +35,10 @@
 
 | Start Here | Purpose |
 |------------|---------|
-| **[ONI_WIKI.md](MAIN/ONI_WIKI.md)** | Central hub — dependency map, cross-references, reading order, roadmap |
-| **This README** | Public overview — key concepts, quick reference, document list |
+| **[INDEX.md](MAIN/INDEX.md)** | Central hub — navigation, dependencies, cross-references, roadmap |
+| **This README** | Public overview — key concepts, quick reference |
 
-**For deep exploration:** Each topic folder contains an `INDEX.md` with summaries, dependencies, and related topics. Start at the Wiki, then drill into specific topics.
+**For deep exploration:** Each topic folder contains an `INDEX.md` with summaries, dependencies, and related topics.
 
 ---
 
@@ -55,20 +55,22 @@ ONI/
 ├── LICENSE                      # Apache 2.0
 │
 └── MAIN/
-    ├── ONI_WIKI.md              # Central hub — start here for navigation
-    ├── publications/            # Content only
+    ├── INDEX.md                 # Central hub — navigation, dependencies, cross-references
+    ├── publications/            # Research content
     │   ├── 0-oni-framework/     # Base/foundational content
-    │   │   └── INDEX.md         # Topic index (each topic has one)
     │   ├── coherence-metric/
     │   ├── neural-firewall/
     │   ├── neural-ransomware/
     │   ├── quantum-security/
     │   └── scale-frequency/
     │
-    └── artifacts/               # Non-content (infrastructure)
-        ├── templates/           # Formatting templates (including INDEX_TEMPLATE.md)
+    ├── prototypes/              # Interactive demos
+    │   └── oni-visualizations/
+    │
+    └── resources/               # Infrastructure
+        ├── templates/           # Formatting templates
         ├── processes/           # Workflow documentation
-        └── cicd-pipeline/       # Research pipeline
+        └── pipeline/            # Research pipeline
 ```
 
 ---
@@ -154,7 +156,7 @@ Physiology-first defense framework with checkpoints:
 
 ## Topics & Documents
 
-> **Tip:** For dependency maps and reading order, see [ONI_WIKI.md](MAIN/ONI_WIKI.md). Each topic below also has an INDEX.md with detailed summaries.
+> **Tip:** For dependency maps and reading order, see [INDEX.md](MAIN/INDEX.md). Each topic below also has an INDEX.md with detailed summaries.
 
 ### 📊 Coherence Metric — [INDEX](MAIN/publications/coherence-metric/INDEX.md)
 

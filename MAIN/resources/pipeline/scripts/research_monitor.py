@@ -45,8 +45,8 @@ import xml.etree.ElementTree as ET
 # Configuration
 SCRIPT_DIR = Path(__file__).parent.resolve()
 PROJECT_ROOT = SCRIPT_DIR.parent.parent.parent.parent  # Up to ONI/
-CICD_DIR = PROJECT_ROOT / "MAIN" / "artifacts" / "cicd-pipeline"
-CICD_INCOMING = CICD_DIR / "incoming"
+PIPELINE_DIR = PROJECT_ROOT / "MAIN" / "resources" / "pipeline"
+PIPELINE_INCOMING = PIPELINE_DIR / "incoming"
 KEYWORDS_FILE = SCRIPT_DIR / "keywords.json"  # Same directory as script
 
 
@@ -465,10 +465,10 @@ class ResearchMonitor:
         return self.results
 
     def save_results(self) -> List[str]:
-        """Save results to cicd-pipeline/incoming folder."""
+        """Save results to pipeline/incoming folder."""
         saved_files = []
 
-        CICD_INCOMING.mkdir(parents=True, exist_ok=True)
+        PIPELINE_INCOMING.mkdir(parents=True, exist_ok=True)
 
         for paper in self.results:
             date = paper.get('date', datetime.now().strftime('%Y-%m-%d'))
@@ -480,7 +480,7 @@ class ResearchMonitor:
             title_slug = re.sub(r'[\s_]+', '-', title_slug)[:50]
 
             filename = f"{date}_{paper['source']}_{title_slug}.md"
-            filepath = CICD_INCOMING / filename
+            filepath = PIPELINE_INCOMING / filename
 
             if filepath.exists():
                 continue
@@ -636,13 +636,13 @@ def main():
 
     if not args.summary_only:
         saved = monitor.save_results()
-        print(f"\nSaved {len(saved)} new papers to: {CICD_INCOMING}")
+        print(f"\nSaved {len(saved)} new papers to: {PIPELINE_INCOMING}")
 
     print(monitor.generate_summary())
 
     print("-" * 60)
-    print("Monitor complete. Review papers in cicd-pipeline/incoming/ folder.")
-    print("Move reviewed papers to cicd-pipeline/processed/ when done.")
+    print("Monitor complete. Review papers in resources/pipeline/incoming/ folder.")
+    print("Move reviewed papers to resources/pipeline/processed/ when done.")
 
 
 if __name__ == '__main__':

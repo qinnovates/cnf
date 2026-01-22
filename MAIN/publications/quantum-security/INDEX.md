@@ -101,4 +101,4 @@ The article proposes a three-category threat taxonomy: attacks BY quantum comput
 
 ---
 
-← Back to [ONI Wiki](../../ONI_WIKI.md)
+← Back to [Index](../../INDEX.md)

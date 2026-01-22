@@ -83,4 +83,4 @@ By treating the neural gateway as an untrusted boundary — regardless of whethe
 
 ---
 
-← Back to [ONI Wiki](../../ONI_WIKI.md)
+← Back to [Index](../../INDEX.md)
