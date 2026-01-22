@@ -1,6 +1,6 @@
 # 👋 Hello, World
 
-I'm an independent security researcher with an incurable curiosity for how complex systems break—and how to design them at scale so they don't. My work lives at the intersection of a fascinating vector space: cybersecurity, innovations, and AI-driven systems.
+I'm an independent security researcher with an incurable curiosity for how complex systems break—and how to design them at scale so they don't. My passions intersection at an entangled vector space in time: cybersecurity, science, and technology.
 
 My obsession with "how things work" didn't start in a lab; it started in middle school, the moment we got our first family Packard Bell computer. I spent those early years playing "Mavis Beacon Teaches Typing" which led to me discovering PHPBB forums and eventually learning how to build my own. By 11, I had built my first website—navigating the vast, unlimited knowledge of the early internet to teach myself how. I created a community where I could share my uniquely sophisticated, yet simple to replicate Photoshop tutorials to 3,700 registered members.
 
