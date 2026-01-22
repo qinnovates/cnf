@@ -9,6 +9,7 @@
 ## Table of Contents
 
 - [Navigation](#navigation)
+- [Python Library](#python-library)
 - [Repository Structure](#repository-structure)
 - [Objective](#objective)
 - [Key Components](#key-components)
@@ -43,6 +44,49 @@
 
 ---
 
+## Python Library
+
+[![PyPI version](https://badge.fury.io/py/oni-framework.svg)](https://badge.fury.io/py/oni-framework)
+[![Tests](https://github.com/qikevinl/ONI/actions/workflows/tests.yml/badge.svg)](https://github.com/qikevinl/ONI/actions/workflows/tests.yml)
+
+The ONI Framework is available as a Python package for researchers and developers.
+
+### Installation
+
+```bash
+pip install oni-framework
+```
+
+### Quick Start
+
+```python
+from oni import CoherenceMetric, NeuralFirewall, ONIStack
+
+# Calculate signal coherence (Cₛ)
+metric = CoherenceMetric(reference_freq=40.0)  # 40 Hz gamma band
+cs = metric.calculate(
+    arrival_times=[0.0, 0.025, 0.050, 0.075],
+    amplitudes=[100, 98, 102, 99]
+)
+print(f"Coherence Score: {cs:.3f}")  # 0 = untrusted, 1 = fully coherent
+
+# Use the Neural Firewall
+firewall = NeuralFirewall(threshold_high=0.6, threshold_low=0.3)
+from oni.firewall import Signal
+signal = Signal(arrival_times=[0.0, 0.025], amplitudes=[100, 102], authenticated=True)
+result = firewall.filter(signal)
+print(f"Decision: {result.decision.name}")  # ACCEPT, ACCEPT_FLAG, or REJECT
+
+# Explore the 14-layer model
+stack = ONIStack()
+print(stack.layer(8).name)  # "Neural Gateway" - the firewall layer
+print(stack.ascii_diagram())  # Visual representation
+```
+
+**Full documentation:** [MAIN/oni-framework/README.md](MAIN/oni-framework/README.md)
+
+---
+
 ## Repository Structure
 
 All research, publications, and supporting infrastructure live in the `MAIN/` directory. Navigate there to explore the full body of work.
@@ -57,6 +101,15 @@ ONI/
 │
 └── MAIN/
     ├── INDEX.md                 # Central hub — navigation, dependencies, cross-references
+    │
+    ├── oni-framework/           # Python library (pip install oni-framework)
+    │   ├── oni/                 # Source code
+    │   │   ├── coherence.py     # Cₛ calculation
+    │   │   ├── layers.py        # 14-layer model
+    │   │   ├── firewall.py      # Neural Firewall
+    │   │   └── scale_freq.py    # f × S ≈ k invariant
+    │   └── tests/               # Unit tests
+    │
     ├── publications/            # Research content
     │   ├── 0-oni-framework/     # Base/foundational content
     │   ├── coherence-metric/
@@ -64,8 +117,6 @@ ONI/
     │   ├── neural-ransomware/
     │   ├── quantum-encryption/
     │   └── scale-frequency/
-    │
-    ├── oni-visualizations/      # Interactive demos
     │
     └── resources/               # Infrastructure
         ├── templates/           # Formatting templates
@@ -245,4 +296,4 @@ Apache License 2.0 - See [LICENSE](LICENSE)
 
 *Auto-published from research pipeline*
 *Last update: 2026-01-22*
-*Documents: 14 | Topics: 6 | Topic Indexes: 6*
+*Documents: 14 | Topics: 6 | Python Package: v0.1.0*
