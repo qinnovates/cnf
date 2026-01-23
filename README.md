@@ -133,6 +133,26 @@ anonymizer = BCIAnonymizer()
 
 **Neurosecurity Integration:** Based on [Kohno et al. (2009)](https://doi.org/10.3171/2009.4.FOCUS0985) and [BCI Anonymizer patent](https://patents.google.com/patent/US20140228701A1). See [NEUROSECURITY_IMPLEMENTATION.md](MAIN/NEUROSECURITY_IMPLEMENTATION.md).
 
+### TARA - Neural Security Platform
+
+[![PyPI version](https://badge.fury.io/py/oni-tara.svg)](https://badge.fury.io/py/oni-tara)
+
+**TARA** (Telemetry Awareness and Response Analyzer) is a neural security platform for BCI monitoring, simulation, and attack testing. Named after the Buddhist goddess of protection, TARA provides real-time security analysis aligned with the ONI 14-layer model.
+
+**Features:** Neural network simulation, attack pattern testing, Neural Signal Assurance Monitoring (NSAM), 3D brain topology visualization, and a Streamlit web dashboard.
+
+```bash
+# Installation
+pip install oni-tara[full]  # Full installation with UI and simulation
+
+# Launch the dashboard
+tara ui
+```
+
+**Note:** TARA is a research and development tool for BCI security analysis. It requires `oni-framework` as a dependency and is intended for security researchers, not production BCI systems.
+
+**Full documentation:** [MAIN/tara/README.md](MAIN/tara/README.md)
+
 ---
 
 ## Repository Structure
