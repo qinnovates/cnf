@@ -203,7 +203,7 @@ Extends the classical OSI networking model with 7 additional layers for neural a
 
 | Layers | Domain | Description |
 |--------|--------|-------------|
-| **L1-L7** | OSI Networking | Physical → Application (standard networking) |
+| **L1-L7** | Classical OSI Networking | Physical → Application (standard networking) |
 | **L8** | Neural Gateway | **THE FIREWALL** — Bridge between silicon and biology |
 | **L9-L10** | Signal Processing | Neural filtering, digitization, protocol encoding |
 | **L11-L12** | Cognitive Transport | Session management, state tracking, reliable delivery |
