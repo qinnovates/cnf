@@ -9,17 +9,9 @@ An extensible framework for monitoring and securing neural communications, desig
 
 ## Privacy & Ethics Statement
 
-**ONI is NOT a surveillance framework.**
+**ONI is NOT a surveillance framework.** It exists to **protect** neural privacy, not compromise it. Signal integrity can be validated without reading thoughts. Attacks can be detected without decoding intent.
 
-The ONI Framework exists to **protect** neural privacy and ensure the **integrity** of brain-computer interfaces. Its purpose is:
-
-- **Defense** against malicious attacks (nation-state actors, cybercriminals, ransomware)
-- **Protection** from accidental risks (MRI exposure, electromagnetic interference, device malfunction)
-- **Privacy preservation** ensuring neural data remains confidential
-- **Availability** maintaining BCI functionality when users depend on it
-- **Human sovereignty** keeping humans in control of their own neural interfaces
-
-The framework provides security without requiring surveillance. Signal integrity can be validated without reading thoughts. Attacks can be detected without decoding intent. The goal is to implement BCI security that preserves confidentiality, integrity, and availability — the same principles that protect all other computing systems.
+**Full statement:** [NEUROETHICS_ALIGNMENT.md](MAIN/NEUROETHICS_ALIGNMENT.md)
 
 ---
 
