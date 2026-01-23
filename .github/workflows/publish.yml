@@ -57,3 +57,5 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/
+          # Skip if version already exists on PyPI (prevents failures on re-runs)
+          skip-existing: true
