@@ -1,0 +1,102 @@
+{
+  "project": "ONI Framework",
+  "version": "1.0.0",
+  "last_updated": "2026-01-22",
+  "loop_iteration": 1,
+
+  "exit_conditions": {
+    "global": "All tasks complete, Editor Agent passes with 0 critical issues",
+    "max_iterations": 10
+  },
+
+  "tasks": [
+    {
+      "id": "layer-validation",
+      "description": "All 14-layer tables match authoritative TechDoc",
+      "status": "complete",
+      "exit_condition": "grep finds 0 layer mismatches across all README.md files",
+      "completed_at": "2026-01-22",
+      "learnings": "README.md had inverted layer domains - always cross-check TechDoc"
+    },
+    {
+      "id": "editor-agent-implementation",
+      "description": "Editor Agent with hybrid auto-fix/approval model",
+      "status": "complete",
+      "exit_condition": "EDITOR_AGENT.md exists with 4 check files",
+      "completed_at": "2026-01-22",
+      "learnings": "Sub-instruction files allow modular expansion"
+    },
+    {
+      "id": "claude-md-integration",
+      "description": "CLAUDE.md updated to v6.0 with Editor Agent workflow",
+      "status": "complete",
+      "exit_condition": "CLAUDE.md contains Editor Agent section and references",
+      "completed_at": "2026-01-22",
+      "learnings": "Quick Reference table is key entry point for agents"
+    },
+    {
+      "id": "documentation-sync",
+      "description": "README.md, INDEX.md, PROCESS_IMPROVEMENTS.md all updated",
+      "status": "complete",
+      "exit_condition": "All docs reference editor/ folder",
+      "completed_at": "2026-01-22",
+      "learnings": "Multiple files need sync - Editor Agent sync_rules.md handles this"
+    },
+    {
+      "id": "ralph-loop-integration",
+      "description": "Implement Ralph Loop with AGENTS.md and prd.json",
+      "status": "complete",
+      "exit_condition": "AGENTS.md and prd.json exist, CLAUDE.md documents workflow",
+      "completed_at": "2026-01-22",
+      "learnings": "Knowledge compounding via AGENTS.md accelerates future iterations"
+    },
+    {
+      "id": "changelog-creation",
+      "description": "Create CHANGELOG.md at repository root",
+      "status": "pending",
+      "exit_condition": "CHANGELOG.md exists with semantic versioning",
+      "priority": "high"
+    },
+    {
+      "id": "docx-generation",
+      "description": "Generate docx files for all publications",
+      "status": "pending",
+      "exit_condition": "Every Blog-*.md and TechDoc-*.md has corresponding .docx",
+      "priority": "medium"
+    },
+    {
+      "id": "formula-validation",
+      "description": "Add formula regex validation to Editor Agent",
+      "status": "pending",
+      "exit_condition": "checks/formula_validation.md exists and catches formula mismatches",
+      "priority": "medium"
+    },
+    {
+      "id": "git-hooks",
+      "description": "Create pre-commit hook that invokes Editor Agent",
+      "status": "pending",
+      "exit_condition": ".git/hooks/pre-commit exists and runs validation",
+      "priority": "low"
+    },
+    {
+      "id": "python-code-sync",
+      "description": "Verify oni-framework/oni/layers.py matches TechDoc",
+      "status": "pending",
+      "exit_condition": "Layer definitions in Python match TechDoc exactly",
+      "priority": "high"
+    }
+  ],
+
+  "metrics": {
+    "total_tasks": 10,
+    "completed": 5,
+    "pending": 5,
+    "completion_rate": "50%"
+  },
+
+  "next_iteration": {
+    "focus": ["changelog-creation", "python-code-sync"],
+    "blocked_by": [],
+    "estimated_tasks": 2
+  }
+}

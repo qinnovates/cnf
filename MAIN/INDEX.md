@@ -196,6 +196,20 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 | [incoming/](resources/pipeline/incoming/) | New research discoveries |
 | [processed/](resources/pipeline/processed/) | Reviewed and integrated research |
 
+### Editor Agent (Quality & Sync)
+
+| Resource | Purpose |
+|----------|---------|
+| [EDITOR_AGENT.md](resources/editor/EDITOR_AGENT.md) | **Main instructions — run before commits** |
+| [AGENTS.md](../AGENTS.md) | **Ralph Loop learnings — read at session start** |
+| [prd.json](../prd.json) | **Task tracker with exit conditions** |
+| [layer_validation.md](resources/editor/checks/layer_validation.md) | 14-layer model accuracy checks |
+| [sync_rules.md](resources/editor/checks/sync_rules.md) | Cross-reference cascade rules |
+| [naming_rules.md](resources/editor/checks/naming_rules.md) | File/folder naming validation |
+| [format_rules.md](resources/editor/checks/format_rules.md) | Template compliance checks |
+
+**Mode:** Hybrid — auto-fixes mechanical issues (dates, counts, links), requires approval for content changes.
+
 ---
 
 ## Adding New Topics

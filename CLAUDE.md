@@ -18,6 +18,9 @@
 | Publishing Instructions | `MAIN/resources/processes/PUBLISHING_INSTRUCTIONS.md` | Step-by-step publishing workflow |
 | Research Monitor | `MAIN/resources/pipeline/scripts/research_monitor.py` | Fetch new academic papers |
 | Keywords File | `MAIN/resources/pipeline/scripts/keywords.json` | Research search terms |
+| **Editor Agent** | `MAIN/resources/editor/EDITOR_AGENT.md` | **Automated quality & sync (run before commits)** |
+| **AGENTS.md** | `AGENTS.md` | **Ralph Loop learnings — read at session start** |
+| **prd.json** | `prd.json` | **Task tracker with exit conditions** |
 | This File | `CLAUDE.md` | Claude-specific instructions |
 
 ### Naming Convention: INDEX.md vs README.md
@@ -37,6 +40,8 @@
 ONI/
 ├── README.md                           # Public entry point
 ├── CLAUDE.md                           # Claude AI instructions (this file)
+├── AGENTS.md                           # Ralph Loop learnings (read at session start)
+├── prd.json                            # Task tracker with exit conditions
 ├── TRANSPARENCY.md                     # Human-AI collaboration audit trail
 ├── ABOUT.md                            # Author bio
 ├── CONTRIBUTING.md                     # Contribution guidelines
@@ -78,12 +83,20 @@ ONI/
         │   ├── PUBLISHING_INSTRUCTIONS.md
         │   └── PROCESS_IMPROVEMENTS.md
         │
-        └── pipeline/                   # Research pipeline
-            ├── scripts/                # Automation scripts
-            │   ├── research_monitor.py
-            │   └── keywords.json
-            ├── incoming/               # New research discoveries
-            └── processed/              # Reviewed and integrated
+        ├── pipeline/                   # Research pipeline
+        │   ├── scripts/                # Automation scripts
+        │   │   ├── research_monitor.py
+        │   │   └── keywords.json
+        │   ├── incoming/               # New research discoveries
+        │   └── processed/              # Reviewed and integrated
+        │
+        └── editor/                     # Editor Agent (quality & sync)
+            ├── EDITOR_AGENT.md         # Main instructions
+            └── checks/                 # Validation sub-instructions
+                ├── layer_validation.md
+                ├── sync_rules.md
+                ├── naming_rules.md
+                └── format_rules.md
 ```
 
 ---
@@ -98,6 +111,7 @@ ONI/
 | `resources/templates/` | Formatting templates | APA template, Blog template |
 | `resources/processes/` | Workflow documentation | Publishing instructions, improvements |
 | `resources/pipeline/` | Research pipeline | Incoming papers, processed, scripts, keywords |
+| `resources/editor/` | **Editor Agent** | Quality validation, sync rules, auto-fix logic |
 
 **IMPORTANT:**
 - The `0-oni-framework/` folder inside `publications/` contains the base/foundational content and sorts first alphabetically.
@@ -128,6 +142,174 @@ ONI/
 - Examples:
   - Folder: `coherence-metric` → File: `Coherence_Metric`
   - Folder: `neural-firewall` → File: `Neural_Firewall`
+
+---
+
+## Editor Agent (REQUIRED)
+
+> **Run the Editor Agent before every commit and after content changes.**
+
+### What It Does
+
+The Editor Agent ensures consistency and accuracy across all documentation:
+
+| Action Type | Behavior | Examples |
+|-------------|----------|----------|
+| **AUTO-FIX** | Applied immediately | Dates, counts, broken links, formatting |
+| **APPROVAL** | Report and wait | Layer definitions, formulas, content changes |
+
+### When to Run
+
+1. **Before commits** — Validates changes before they're pushed
+2. **After content changes** — Propagates updates to related files
+3. **On request** — Manual validation with "Run editor validation"
+
+### How to Run
+
+```
+1. Read: MAIN/resources/editor/EDITOR_AGENT.md
+2. Read relevant checks from: MAIN/resources/editor/checks/
+3. Execute validation workflow
+4. Apply auto-fixes, report approval items
+```
+
+### Sub-Instruction Files
+
+| File | Purpose |
+|------|---------|
+| `checks/layer_validation.md` | 14-layer model accuracy (CRITICAL) |
+| `checks/sync_rules.md` | Cross-reference cascade rules |
+| `checks/naming_rules.md` | File/folder naming patterns |
+| `checks/format_rules.md` | Template compliance |
+
+### Authoritative Sources (Truth Hierarchy)
+
+When content conflicts, use this priority:
+
+1. `TechDoc-*.md` files (technical truth)
+2. `oni-framework/oni/*.py` (implementation)
+3. `INDEX.md` (navigation)
+4. Topic `README.md` (summaries)
+5. Root `README.md` (public overview)
+
+**Rule:** Lower priority files must match higher priority sources.
+
+### Critical Validations
+
+These MUST match the authoritative TechDoc:
+
+**14-Layer Model:**
+```
+L1-L7: Silicon (Physical Carrier → Application Interface)
+L8: Neural Gateway (Bridge)
+L9-L14: Biology (Ion Channel Encoding → Identity & Ethics)
+```
+
+**Coherence Formula:** Cₛ = Σᵢ wᵢ × Φᵢ(Δtᵢ) × Θᵢ(fᵢ, Aᵢ)
+
+**Scale-Frequency:** f × S ≈ k
+
+---
+
+## Ralph Loop (Continuous Iteration)
+
+> **Purpose:** Knowledge compounding through persistent learnings. Each iteration starts fresh but benefits from discoveries documented in `AGENTS.md`.
+
+### Session Start Protocol
+
+```
+1. Read CLAUDE.md (this file) — conventions and workflows
+2. Read AGENTS.md — learnings from previous iterations
+3. Read prd.json — current task status and exit conditions
+4. Execute tasks until exit condition met
+5. Update AGENTS.md with new learnings
+6. Update prd.json with progress
+7. Commit changes (memory persists via git)
+```
+
+### Key Files
+
+| File | Purpose | When to Update |
+|------|---------|----------------|
+| `AGENTS.md` | Learnings, patterns, gotchas | After every significant discovery |
+| `prd.json` | Task tracking, exit conditions | After completing or adding tasks |
+| `CLAUDE.md` | Conventions, workflows | When processes change |
+
+### Ralph Loop Workflow
+
+```
+┌─────────────────────────────────────────┐
+│  1. Define Exit Condition               │
+│     (What does "done" look like?)       │
+└─────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────┐
+│  2. Fresh Context                       │
+│     Read: CLAUDE.md, AGENTS.md, prd.json│
+└─────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────┐
+│  3. Execute                             │
+│     Run Editor Agent, complete tasks    │
+└─────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────┐
+│  4. Persist Learnings                   │
+│     Update AGENTS.md with discoveries   │
+│     Update prd.json with progress       │
+│     Commit to git                       │
+└─────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────┐
+│  5. Check Exit Condition                │
+│     Done? → End                         │
+│     Not done? → Loop to step 2          │
+└─────────────────────────────────────────┘
+```
+
+### AGENTS.md Structure
+
+```markdown
+## [Agent Name] Learnings
+
+### Critical Discoveries
+| Date | Learning | Impact |
+
+### Patterns Established
+- Pattern 1
+- Pattern 2
+
+### Gotchas Avoided
+- Gotcha 1
+- Gotcha 2
+```
+
+### prd.json Structure
+
+```json
+{
+  "tasks": [
+    {
+      "id": "task-id",
+      "description": "What needs to be done",
+      "status": "pending|complete",
+      "exit_condition": "Machine-verifiable condition",
+      "learnings": "What was discovered (after completion)"
+    }
+  ]
+}
+```
+
+### Exit Condition Best Practices
+
+| Good Exit Condition | Bad Exit Condition |
+|---------------------|-------------------|
+| "grep finds 0 layer mismatches" | "Layers look correct" |
+| "All tests pass" | "Code seems to work" |
+| "EDITOR_AGENT.md exists" | "Editor is implemented" |
+| "Date matches git commit date" | "Dates are updated" |
+
+**Rule:** Exit conditions must be machine-verifiable, not subjective.
 
 ---
 
@@ -474,6 +656,6 @@ mkdir MAIN/publications/[topic-name]/
 
 ---
 
-*Version: 5.0*
+*Version: 7.0*
 *Last Updated: 2026-01-22*
 *For: Claude AI Assistant*

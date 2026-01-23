@@ -111,6 +111,8 @@ ONI/
 ├── README.md                    # Public overview (you are here)
 ├── TRANSPARENCY.md              # Human-AI collaboration audit trail
 ├── CLAUDE.md                    # Claude AI instructions
+├── AGENTS.md                    # Ralph Loop learnings (knowledge compounding)
+├── prd.json                     # Task tracker with exit conditions
 ├── ABOUT.md                     # Author bio
 ├── CONTRIBUTING.md              # Contribution guidelines
 ├── LICENSE                      # Apache 2.0
@@ -138,7 +140,8 @@ ONI/
     └── resources/               # Infrastructure
         ├── templates/           # Formatting templates
         ├── processes/           # Workflow documentation
-        └── pipeline/            # Research pipeline
+        ├── pipeline/            # Research pipeline
+        └── editor/              # Editor Agent (quality & sync)
 ```
 
 ---

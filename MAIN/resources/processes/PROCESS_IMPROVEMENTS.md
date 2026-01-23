@@ -14,22 +14,55 @@
 9. **APA formatting** - Technical documents follow APA 7th edition with proper citations and acknowledgments
 
 ### Gaps Identified
-1. ~~No automated validation of file naming~~ → Checklist documented, automation pending
-2. ~~README.md updates are manual and error-prone~~ → Process documented in CLAUDE.md
+1. ~~No automated validation of file naming~~ → **RESOLVED: Editor Agent with naming_rules.md**
+2. ~~README.md updates are manual and error-prone~~ → **RESOLVED: Editor Agent auto-syncs**
 3. ~~No version tracking for individual documents~~ → Partial (front-matter on publications)
-4. ~~Cross-references between papers not systematically maintained~~ → **RESOLVED: MAIN/INDEX.md**
+4. ~~Cross-references between papers not systematically maintained~~ → **RESOLVED: MAIN/INDEX.md + Editor sync_rules.md**
 5. ~~INDEX.md only deployed to 1 of 5 topic folders~~ → **RESOLVED: All 8 folders have INDEX.md**
-6. No content calendar or publishing schedule tracking
-7. No CHANGELOG.md at repository root
-8. No automated docx generation workflow (currently manual pandoc commands)
+6. ~~No consistency checking between documents~~ → **RESOLVED: Editor Agent layer_validation.md**
+7. No content calendar or publishing schedule tracking
+8. No CHANGELOG.md at repository root
+9. No automated docx generation workflow (currently manual pandoc commands)
 
 ---
 
 ## Recommended Improvements
 
-### 1. Pre-Commit Checklist Automation
+### 1. Editor Agent — IMPLEMENTED
 
-Create a checklist that Claude runs through before every commit:
+**Status:** Complete (v1.0, 2026-01-22)
+
+The Editor Agent provides automated quality assurance with a hybrid approach:
+
+| Action Type | Behavior | Examples |
+|-------------|----------|----------|
+| **AUTO-FIX** | Applied immediately | Dates, counts, broken links, formatting |
+| **APPROVAL** | Report and wait | Layer definitions, formulas, content changes |
+
+**Files Created:**
+```
+MAIN/resources/editor/
+├── EDITOR_AGENT.md           # Main orchestrator instructions
+└── checks/
+    ├── layer_validation.md   # 14-layer model accuracy (CRITICAL)
+    ├── sync_rules.md         # Cross-reference cascade rules
+    ├── naming_rules.md       # File/folder naming patterns
+    └── format_rules.md       # Template compliance
+```
+
+**Key Features:**
+- **Truth Hierarchy:** TechDoc > Python code > INDEX.md > README.md
+- **Cascade Sync:** Changes to authoritative files trigger updates to dependent files
+- **Critical Validations:** 14-layer model, Cₛ formula, f×S≈k invariant
+- **Integrated in CLAUDE.md v6.0:** Runs before every commit
+
+**Resolves Gaps:** #1 (file naming), #2 (README updates), #4 (cross-references), #6 (consistency)
+
+---
+
+### 2. Pre-Commit Checklist Automation
+
+Now handled by Editor Agent. Legacy checklist for reference:
 
 ```markdown
 ## Pre-Commit Verification
@@ -255,12 +288,19 @@ ONI/
     │   ├── processes/
     │   │   ├── PUBLISHING_INSTRUCTIONS.md
     │   │   └── PROCESS_IMPROVEMENTS.md   # This file
-    │   └── pipeline/
-    │       ├── scripts/
-    │       │   ├── keywords.json
-    │       │   └── research_monitor.py
-    │       ├── incoming/
-    │       └── processed/
+    │   ├── pipeline/
+    │   │   ├── scripts/
+    │   │   │   ├── keywords.json
+    │   │   │   └── research_monitor.py
+    │   │   ├── incoming/
+    │   │   └── processed/
+    │   └── editor/                        # NEW: Editor Agent (v1.0)
+    │       ├── EDITOR_AGENT.md            # Main instructions
+    │       └── checks/
+    │           ├── layer_validation.md    # 14-layer accuracy
+    │           ├── sync_rules.md          # Cross-reference cascade
+    │           ├── naming_rules.md        # File/folder naming
+    │           └── format_rules.md        # Template compliance
     │
     ├── publications/
     │   ├── 0-oni-framework/
@@ -318,15 +358,19 @@ ONI/
 - [ ] Create Research Note template file
 - [ ] Add docx generation to standard workflow documentation
 - [ ] Verify all topic INDEX.md files have consistent formatting
+- [x] **Editor Agent implementation** → **COMPLETE v1.0**
 
 ### Phase 3 (Future)
 - [x] Build cross-reference registry → **MAIN/INDEX.md**
 - [x] Document pre-commit checklist → **In CLAUDE.md**
-- [ ] Automate pre-commit checklist as `.git/hooks/pre-commit`
-- [x] Add document metadata to publications → **YAML front-matter on all 13 publications**
+- [x] Automate pre-commit validation → **Editor Agent (CLAUDE.md v6.0)**
+- [x] Add document metadata to publications → **YAML front-matter on all 14 publications**
+- [x] Cross-document consistency checking → **Editor Agent layer_validation.md**
+- [x] Auto-sync dependent files → **Editor Agent sync_rules.md**
 - [ ] Add consistent metadata to infrastructure files (templates, processes)
 - [ ] Implement content calendar for publishing schedule tracking
 - [ ] Create automated docx generation script
+- [ ] Git hooks integration (`.git/hooks/pre-commit` calling Editor Agent)
 
 ---
 
@@ -334,13 +378,14 @@ ONI/
 
 | Metric | Count | Last Updated |
 |--------|-------|--------------|
-| Total Topics | 6 | 2026-01-22 |
+| Total Topics | 8 | 2026-01-22 |
 | Published Documents | 14 | 2026-01-22 |
 | Blog Posts | 8 | 2026-01-22 |
 | Technical Documents | 6 | 2026-01-22 |
-| Topic INDEX.md Files | 6 | 2026-01-22 |
+| Topic README.md Files | 8 | 2026-01-22 |
 | Prototypes | 1 | 2026-01-21 |
 | Templates | 3 | 2026-01-21 |
+| **Editor Agent Checks** | 4 | 2026-01-22 |
 | Planned Topics | 5 | 2026-01-21 |
 
 ---
@@ -350,20 +395,92 @@ ONI/
 ### Immediate Priority
 1. **Create CHANGELOG.md** at repository root with semantic versioning history
 2. **Verify docx files** exist for all publications (currently only tunneling-traversal-time has them)
+3. ~~**Implement Editor Agent**~~ → **COMPLETE v1.0**
 
 ### Short-Term
-3. **Create Research Note template** as `MAIN/resources/templates/RESEARCH_NOTE_TEMPLATE.md`
-4. **Add YAML metadata** to all infrastructure files in `resources/`
-5. **Generate docx files** for all publications using pandoc
+4. **Create Research Note template** as `MAIN/resources/templates/RESEARCH_NOTE_TEMPLATE.md`
+5. **Add YAML metadata** to all infrastructure files in `resources/`
+6. **Generate docx files** for all publications using pandoc
+7. **Extend Editor Agent** with additional checks:
+   - Formula validation (Cₛ, f×S≈k regex patterns)
+   - Bibliography/reference consistency
+   - Image/asset link validation
 
 ### Medium-Term
-6. **Create pre-commit hook** (`.git/hooks/pre-commit`) to automate validation
-7. **Implement content calendar** for publishing schedule tracking
-8. **Create docx generation script** to automate Word document creation
+8. **Create pre-commit hook** (`.git/hooks/pre-commit`) that invokes Editor Agent
+9. **Implement content calendar** for publishing schedule tracking
+10. **Create docx generation script** to automate Word document creation
+11. **Editor Agent enhancements:**
+    - Automated keyword extraction to keywords.json
+    - Document count auto-update in footers
+    - Dead link detection and reporting
+
+### Long-Term (Scaling)
+12. **Editor Agent as standalone script** — Python script that can run independently
+13. **CI/CD integration** — GitHub Actions workflow running Editor validation
+14. **Multi-repository sync** — Ensure ONI-wiki and .github_staging stay synchronized
+15. **Version diff reports** — Track what changed between Editor runs
 
 ---
 
 ## Recent Additions Log
+
+### 2026-01-22 (Ralph Loop Integration)
+
+**Ralph Loop Knowledge Compounding Implemented:**
+- Created `AGENTS.md` — Persistent learnings that AI agents read at session start
+  - Critical discoveries, patterns established, gotchas avoided
+  - Technical specs (14-layer model, formulas) for quick reference
+  - Loop metadata tracking iterations and learnings count
+- Created `prd.json` — Task tracker with machine-verifiable exit conditions
+  - 10 tasks tracked (5 complete, 5 pending)
+  - Clear exit conditions for each task
+  - Learnings captured after task completion
+- Updated `CLAUDE.md` to v7.0 with Ralph Loop workflow:
+  - Session Start Protocol (7 steps)
+  - Key files table
+  - Visual workflow diagram
+  - Exit condition best practices
+- Updated `README.md` and `INDEX.md` file trees
+
+**Why Ralph Loop Matters:**
+- Fresh context per iteration prevents context accumulation
+- Memory persists via git history and structured files
+- Knowledge compounds — future iterations benefit from past discoveries
+- Machine-verifiable exit conditions prevent infinite loops
+
+---
+
+### 2026-01-22 (Editor Agent & Content Fix)
+
+**Editor Agent v1.0 Implemented:**
+- Created `MAIN/resources/editor/EDITOR_AGENT.md` — Main orchestrator with hybrid auto-fix/approval model
+- Created 4 sub-instruction check files:
+  - `checks/layer_validation.md` — 14-layer model accuracy (CRITICAL)
+  - `checks/sync_rules.md` — Cross-reference cascade rules
+  - `checks/naming_rules.md` — File/folder naming patterns
+  - `checks/format_rules.md` — Template compliance
+- Updated `CLAUDE.md` to v6.0 with Editor Agent integration
+- Updated `MAIN/INDEX.md` with Editor Agent resources section
+- Updated `README.md` file tree with editor folder
+
+**Critical Content Fix:**
+- Fixed 14-layer table in `publications/0-oni-framework/README.md`
+- **Issue:** Layer names were completely inverted (Biology/Silicon domains swapped)
+- **Root Cause:** README had old/incorrect layer names not matching TechDoc
+- **Resolution:** Cross-referenced with authoritative `TechDoc-ONI_Framework.md` and corrected
+- **Correct Model:**
+  - L1-L7: Silicon (Physical Carrier → Application Interface)
+  - L8: Neural Gateway (Bridge)
+  - L9-L14: Biology (Ion Channel Encoding → Identity & Ethics)
+- This error demonstrates why the Editor Agent's `layer_validation.md` check is CRITICAL
+
+**Documentation Updates:**
+- Both `.github_staging` and `ONI-wiki` repositories synchronized
+- CLAUDE.md now includes truth hierarchy and critical validations
+- PROCESS_IMPROVEMENTS.md updated with Editor Agent details
+
+---
 
 ### 2026-01-22 (oni-framework release)
 - **oni-framework Python package v0.1.0** released:
@@ -508,6 +625,50 @@ oni/
 
 ---
 
-*Strategy Version: 3.3*
-*Last Updated: January 22, 2026*
+*Strategy Version: 4.1*
+*Last Updated: 2026-01-22*
 *Author: Kevin L. Qi with Claude (Anthropic)*
+
+---
+
+## Appendix: Editor Agent Architecture
+
+### Truth Hierarchy (Conflict Resolution)
+
+```
+Priority 1: TechDoc-*.md files (technical definitions)
+     ↓
+Priority 2: oni-framework/oni/*.py (implementation)
+     ↓
+Priority 3: INDEX.md (navigation & dependencies)
+     ↓
+Priority 4: Topic README.md (summaries)
+     ↓
+Priority 5: Root README.md (public overview)
+```
+
+**Rule:** Lower priority files must match higher priority sources.
+
+### Cascade Sync Map
+
+```
+TechDoc-ONI_Framework.md changes
+    → publications/0-oni-framework/README.md [layers table]
+    → MAIN/INDEX.md [layer references]
+    → oni-framework/oni/layers.py [verify code]
+
+Any TechDoc-*.md changes
+    → Same-folder README.md [summary, concepts]
+    → INDEX.md [topic entry]
+    → keywords.json [keywords]
+    → Root README.md [document list]
+```
+
+### Check File Purposes
+
+| File | Auto-Fix | Approval | Critical |
+|------|----------|----------|----------|
+| layer_validation.md | — | Layer names, domains | Yes |
+| sync_rules.md | Dates, counts | Content changes | — |
+| naming_rules.md | — | File renames | — |
+| format_rules.md | Whitespace, alignment | Structure changes | — |
