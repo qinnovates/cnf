@@ -152,7 +152,7 @@ ONI/
     │   ├── core/                # ONI security primitives
     │   ├── simulation/          # Neural network simulation
     │   ├── attacks/             # Attack testing & scenarios
-    │   ├── siem/                # Neural Signal Assurance Monitoring (NSAM)
+    │   ├── nsam/                # Neural Signal Assurance Monitoring (NSAM)
     │   ├── visualization/       # Real-time dashboards
     │   └── ui/                  # Streamlit web interface
     │
@@ -194,6 +194,10 @@ Brain-computer interfaces are being implanted in humans today, yet we lack stand
 ## Key Components
 
 ### The 14-Layer ONI Model
+
+<p align="center">
+  <img src="MAIN/resources/images/oni-14-layer-hourglass.png" alt="ONI Framework 14-Layer Model" width="700">
+</p>
 
 Extends the classical OSI networking model with 7 additional layers for neural and cognitive systems:
 
