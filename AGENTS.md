@@ -20,6 +20,7 @@
 | 2026-01-23 | Kohno (2009) threat taxonomy maps perfectly to ONI layers: Alteration→L8-9, Blocking→L8-9, Eavesdropping→L13-14 | Implemented in oni.neurosecurity module with 12 detection rules |
 | 2026-01-23 | PyPI trusted publishing via GitHub Actions is more secure than storing tokens | No secrets in config, OIDC-based authentication |
 | 2026-01-23 | INDEX.md must be updated when packages/structure change | Created INDEX.md Update Protocol in CLAUDE.md — check versions, folder structure, metrics |
+| 2026-01-23 | Repository reorganized: governance/, project/, visualizations/ | prd.json→project/, ethics→governance/, oni-visualizations→visualizations/, processes→project/ |
 
 ### Patterns Established
 
@@ -222,8 +223,8 @@ L14: Identity & Ethics         (Biology)
 
 | Metric | Value |
 |--------|-------|
-| Total Iterations | 3 |
-| Learnings Captured | 22 |
+| Total Iterations | 4 |
+| Learnings Captured | 23 |
 | Gotchas Documented | 7 |
 | Patterns Established | 12 |
 
