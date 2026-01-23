@@ -104,14 +104,51 @@ Developed by researchers at UW, the BCI Anonymizer addresses neural data privacy
 
 ### 6-Layer BCI Threat Model
 
-Several researchers have proposed layered threat models for BCIs:
+The 6-Layer BCI Threat Model provides a systematic approach to analyzing attack surfaces across the BCI data pipeline. This model has been developed and refined through multiple research efforts:
 
 > Landau, O., Puzis, R., & Nissim, N. (2020). Mind your privacy: Privacy leakage through BCI applications using machine learning. *Knowledge-Based Systems*, 198, 105932.
 
-**Key Contributions:**
-- Categorization of BCI attack surfaces
-- Machine learning-based privacy attacks
-- Demonstration of information leakage through legitimate BCI use
+> Bernal, S. L., et al. (2021). Security in Brain-Computer Interfaces: State-of-the-Art, Opportunities, and Future Challenges. *ACM Computing Surveys*, 54(1), 1-35.
+
+**The 6 Layers:**
+
+| Layer | Function | Attack Surface | Example Threats |
+|-------|----------|----------------|-----------------|
+| **1. Sensor** | Physical electrode/signal acquisition | Hardware tampering, EMI injection | Malicious electrode placement, signal jamming |
+| **2. Acquisition** | ADC, amplification, initial filtering | Signal injection, spoofing | Replay attacks, fake biosignals |
+| **3. Signal Processing** | Filtering, artifact removal, feature extraction | Algorithm manipulation | Adversarial signal crafting |
+| **4. Transmission** | Data transfer (wireless/wired) | MitM, eavesdropping | Bluetooth exploits, packet injection |
+| **5. Application** | BCI software, ML classifiers, user interface | Malware, classifier poisoning | Trojan models, UI spoofing |
+| **6. Feedback/Stimulation** | Closed-loop neural stimulation | Command injection | Unauthorized stimulation, amplitude attacks |
+
+**Key Research Contributions:**
+- Systematic categorization of BCI attack surfaces across the full data pipeline
+- Demonstration that ML classifiers can extract private information (personality traits, cognitive abilities) from resting-state EEG with ~73% accuracy
+- Identification of replay and spoofing attacks that could cause misdiagnosis in clinical BCIs
+- Evidence that legitimate BCI applications leak private information through normal operation
+
+### ONI Framework Relationship
+
+The ONI 14-layer model extends and refines the 6-Layer BCI Threat Model:
+
+| 6-Layer Model | ONI Layers | ONI Enhancement |
+|---------------|------------|-----------------|
+| 1. Sensor | L9 (Signal Processing) | Adds biological context (L1-L7 neural layers) |
+| 2. Acquisition | L9 (Signal Processing) | Coherence Metric (Cₛ) validates signal authenticity |
+| 3. Signal Processing | L9-L10 (Signal Processing, Neural Protocol) | Scale-frequency invariant detects biological implausibility |
+| 4. Transmission | L1-L7 (OSI stack) | Standard network security + neural-specific validation |
+| 5. Application | L13-L14 (Semantic, Identity) | Privacy filtering via BCI Anonymizer concepts |
+| 6. Feedback/Stimulation | L8 (Neural Gateway) | **Primary firewall location** — zero-trust validation |
+
+**Why ONI Extends Beyond 6 Layers:**
+
+1. **Biological grounding**: The 6-layer model treats the brain as a black box. ONI's L1-L7 (neural side) explicitly model biological processing levels where attacks can manifest differently.
+
+2. **Explicit security boundary**: The 6-layer model distributes security across layers. ONI designates L8 (Neural Gateway) as THE critical trust boundary — all signals must pass validation here before reaching neural tissue.
+
+3. **Cognitive/semantic layers**: The 6-layer model stops at "Application." ONI adds L11-L14 to address cognitive-level threats: session hijacking, context corruption, semantic attacks, and identity manipulation.
+
+4. **Bidirectional threat modeling**: ONI explicitly models both read (efferent) and write (afferent) pathways with distinct threat profiles at each layer.
 
 ### STRIDE for Medical Devices
 
