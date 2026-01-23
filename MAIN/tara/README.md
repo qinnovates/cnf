@@ -28,16 +28,16 @@ TARA provides:
 
 ```bash
 # Basic installation
-pip install tara-neural
+pip install oni-tara
 
 # With web UI support
-pip install tara-neural[ui]
+pip install oni-tara[ui]
 
 # With simulation features
-pip install tara-neural[simulation]
+pip install oni-tara[simulation]
 
 # Full installation
-pip install tara-neural[full]
+pip install oni-tara[full]
 
 # Development installation (from source)
 cd MAIN/tara
