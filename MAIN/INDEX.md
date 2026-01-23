@@ -2,7 +2,7 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 1.3
+**Version:** 1.4
 **Last Updated:** 2026-01-23
 **Status:** Active Development
 
@@ -71,7 +71,7 @@ pip install oni-tara
 
 **Documentation:** [tara/README.md](tara/README.md) | **CLI:** `tara --help`
 
-**Neurosecurity Implementation:** [NEUROSECURITY_IMPLEMENTATION.md](NEUROSECURITY_IMPLEMENTATION.md) — Integrates Kohno (2009) and BCI Anonymizer patent
+**Neurosecurity Implementation:** [NEUROSECURITY_IMPLEMENTATION.md](oni-framework/NEUROSECURITY_IMPLEMENTATION.md) — Integrates Kohno (2009) and BCI Anonymizer patent
 
 ---
 
@@ -199,18 +199,18 @@ The ONI Framework extends the classical OSI model with 7 additional layers for n
 
 | Project | Description |
 |---------|-------------|
-| [ONI Visualizations](oni-visualizations/README.md) | Interactive web apps for ONI concepts |
+| [Visualizations](visualizations/README.md) | Interactive web apps for ONI concepts |
 
 ---
 
-## Transparency & Ethics
+## Governance & Ethics
 
 The ONI Framework maintains Responsible AI standards and documents alignment with neuroethics principles.
 
 | Document | Purpose |
 |----------|---------|
-| [TRANSPARENCY.md](TRANSPARENCY.md) | Human-AI collaboration audit trail — cognitive boundary documentation, HITL methodology |
-| [NEUROETHICS_ALIGNMENT.md](NEUROETHICS_ALIGNMENT.md) | Maps framework components to cognitive liberty, mental privacy, mental integrity principles |
+| [TRANSPARENCY.md](governance/TRANSPARENCY.md) | Human-AI collaboration audit trail — cognitive boundary documentation, HITL methodology |
+| [NEUROETHICS_ALIGNMENT.md](governance/NEUROETHICS_ALIGNMENT.md) | Maps framework components to cognitive liberty, mental privacy, mental integrity principles |
 | [RELATED_WORK.md](RELATED_WORK.md) | Prior BCI security research — acknowledges foundational work, positions ONI's contribution |
 
 ---
@@ -225,12 +225,13 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 | [TECHDOC_TEMPLATE_APA.md](resources/templates/TECHDOC_TEMPLATE_APA.md) | Technical document (APA format) |
 | [README_TEMPLATE.md](resources/templates/README_TEMPLATE.md) | Topic README template (for folder overviews) |
 
-### Processes
+### Project Management
 
 | Document | Purpose |
 |----------|---------|
-| [PUBLISHING_INSTRUCTIONS.md](resources/processes/PUBLISHING_INSTRUCTIONS.md) | Step-by-step publishing workflow |
-| [PROCESS_IMPROVEMENTS.md](resources/processes/PROCESS_IMPROVEMENTS.md) | Workflow enhancement tracking |
+| [prd.json](project/prd.json) | **Task tracker with exit conditions** |
+| [PUBLISHING_INSTRUCTIONS.md](project/processes/PUBLISHING_INSTRUCTIONS.md) | Step-by-step publishing workflow |
+| [PROCESS_IMPROVEMENTS.md](project/processes/PROCESS_IMPROVEMENTS.md) | Workflow enhancement tracking |
 
 ### Research Pipeline
 
@@ -247,7 +248,6 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 |----------|---------|
 | [EDITOR_AGENT.md](resources/editor/EDITOR_AGENT.md) | **Main instructions — run before commits** |
 | [AGENTS.md](../AGENTS.md) | **Ralph Loop learnings — read at session start** |
-| [prd.json](../prd.json) | **Task tracker with exit conditions** |
 | [layer_validation.md](resources/editor/checks/layer_validation.md) | 14-layer model accuracy checks |
 | [sync_rules.md](resources/editor/checks/sync_rules.md) | Cross-reference cascade rules |
 | [naming_rules.md](resources/editor/checks/naming_rules.md) | File/folder naming validation |
@@ -308,12 +308,20 @@ Planned research areas for framework expansion:
 ```
 MAIN/
 ├── INDEX.md                    # This file (central hub)
-├── TRANSPARENCY.md             # Human-AI collaboration audit trail
-├── NEUROETHICS_ALIGNMENT.md    # Framework-to-ethics principle mapping
+├── CONTRIBUTING.md             # Contribution guidelines
 ├── RELATED_WORK.md             # Prior BCI security research
+│
+├── governance/                 # Ethics & transparency
+│   ├── TRANSPARENCY.md         # Human-AI collaboration audit trail
+│   └── NEUROETHICS_ALIGNMENT.md # Framework-to-ethics principle mapping
+│
+├── project/                    # Project management
+│   ├── prd.json                # Task tracker with exit conditions
+│   └── processes/              # Workflow documentation
 │
 ├── oni-framework/              # Python library (pip install oni-framework)
 │   ├── ONI_LAYERS.md           # **Authoritative 14-layer reference**
+│   ├── NEUROSECURITY_IMPLEMENTATION.md  # Kohno/BCI integration guide
 │   ├── oni/                    # Source modules
 │   │   ├── coherence.py        # Cₛ calculation
 │   │   ├── layers.py           # 14-layer model
@@ -335,7 +343,7 @@ MAIN/
 │   ├── tests/                  # Unit tests (31 tests)
 │   └── pyproject.toml          # Package config (v0.4.0)
 │
-├── oni-visualizations/         # Interactive web visualizations
+├── visualizations/             # Interactive web visualizations
 │
 ├── publications/               # Research content
 │   ├── 0-oni-framework/
@@ -345,12 +353,11 @@ MAIN/
 │   ├── quantum-encryption/
 │   └── scale-frequency/
 │
-└── resources/                  # Templates, processes, tools
+└── resources/                  # Templates, pipeline, editor
     ├── agents/                 # PM Agent instructions
     ├── editor/                 # Editor Agent checks
     ├── images/                 # ONI diagrams and visualizations
     ├── templates/
-    ├── processes/
     └── pipeline/               # Research monitoring
 ```
 
@@ -372,7 +379,7 @@ MAIN/
 
 ## Contributing
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md) for collaboration guidelines. The ONI Framework welcomes contributions from neuroscience, security, hardware, and ethics disciplines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for collaboration guidelines. The ONI Framework welcomes contributions from neuroscience, security, hardware, and ethics disciplines.
 
 ---
 

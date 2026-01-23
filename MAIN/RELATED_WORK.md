@@ -172,7 +172,7 @@ Founded by **Kevin Fu** at Northeastern University (formerly University of Michi
 - **IEEE Brain Initiative Neuroethics Working Group**
 - **OECD Neurotechnology Governance Initiative**
 
-**ONI Framework Relationship:** See [NEUROETHICS_ALIGNMENT.md](NEUROETHICS_ALIGNMENT.md) for how ONI maps to established neuroethics principles.
+**ONI Framework Relationship:** See [NEUROETHICS_ALIGNMENT.md](governance/NEUROETHICS_ALIGNMENT.md) for how ONI maps to established neuroethics principles.
 
 ---
 
@@ -313,7 +313,7 @@ result = anonymizer.anonymize(signal_data)
 
 For complete implementation details, attack scenarios, and integration strategy, see:
 
-**[NEUROSECURITY_IMPLEMENTATION.md](NEUROSECURITY_IMPLEMENTATION.md)**
+**[NEUROSECURITY_IMPLEMENTATION.md](oni-framework/NEUROSECURITY_IMPLEMENTATION.md)**
 
 ---
 

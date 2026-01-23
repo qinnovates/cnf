@@ -11,7 +11,7 @@ An extensible framework for monitoring and securing neural communications, desig
 
 **ONI is NOT a surveillance framework.** It exists to **protect** neural privacy, not compromise it. Signal integrity can be validated without reading thoughts. Attacks can be detected without decoding intent.
 
-**Full statement:** [NEUROETHICS_ALIGNMENT.md](MAIN/NEUROETHICS_ALIGNMENT.md)
+**Full statement:** [NEUROETHICS_ALIGNMENT.md](MAIN/governance/NEUROETHICS_ALIGNMENT.md)
 
 ---
 
@@ -51,12 +51,12 @@ An extensible framework for monitoring and securing neural communications, desig
 | **[INDEX.md](MAIN/INDEX.md)** | **Main Wiki** — central hub for navigation, dependencies, cross-references, roadmap |
 | **This README** | Public overview — key concepts, quick reference |
 
-### Transparency & Ethics
+### Governance & Ethics
 
 | Document | Purpose |
 |----------|---------|
-| **[TRANSPARENCY.md](MAIN/TRANSPARENCY.md)** | Human-AI collaboration audit trail — documents cognitive boundary, HITL methodology |
-| **[NEUROETHICS_ALIGNMENT.md](MAIN/NEUROETHICS_ALIGNMENT.md)** | Maps framework components to neuroethics principles |
+| **[TRANSPARENCY.md](MAIN/governance/TRANSPARENCY.md)** | Human-AI collaboration audit trail — documents cognitive boundary, HITL methodology |
+| **[NEUROETHICS_ALIGNMENT.md](MAIN/governance/NEUROETHICS_ALIGNMENT.md)** | Maps framework components to neuroethics principles |
 | **[RELATED_WORK.md](MAIN/RELATED_WORK.md)** | Prior BCI security research — acknowledges foundational work, positions ONI contribution |
 
 ### Naming Convention
@@ -123,7 +123,7 @@ anonymizer = BCIAnonymizer()
 
 **Full documentation:** [MAIN/oni-framework/README.md](MAIN/oni-framework/README.md)
 
-**Neurosecurity Integration:** Based on [Kohno et al. (2009)](https://doi.org/10.3171/2009.4.FOCUS0985) and [BCI Anonymizer patent](https://patents.google.com/patent/US20140228701A1). See [NEUROSECURITY_IMPLEMENTATION.md](MAIN/NEUROSECURITY_IMPLEMENTATION.md).
+**Neurosecurity Integration:** Based on [Kohno et al. (2009)](https://doi.org/10.3171/2009.4.FOCUS0985) and [BCI Anonymizer patent](https://patents.google.com/patent/US20140228701A1). See [NEUROSECURITY_IMPLEMENTATION.md](MAIN/oni-framework/NEUROSECURITY_IMPLEMENTATION.md).
 
 ### TARA - Neural Security Platform
 
@@ -156,23 +156,30 @@ ONI/
 ├── README.md                    # Public overview (you are here)
 ├── CLAUDE.md                    # Claude AI instructions
 ├── AGENTS.md                    # Ralph Loop learnings (knowledge compounding)
-├── prd.json                     # Task tracker with exit conditions
 ├── ABOUT.md                     # Author bio
-├── CONTRIBUTING.md              # Contribution guidelines
 ├── LICENSE                      # Apache 2.0
 │
 ├── .github/
+│   ├── .gitignore               # Git ignore rules
 │   ├── workflows/               # CI/CD pipelines
 │   └── security-audit/          # Security scanning tools
 │
 └── MAIN/
     ├── INDEX.md                 # Central hub — navigation, dependencies, cross-references
-    ├── TRANSPARENCY.md          # Human-AI collaboration audit trail
-    ├── NEUROETHICS_ALIGNMENT.md # Framework-to-ethics principle mapping
+    ├── CONTRIBUTING.md          # Contribution guidelines
     ├── RELATED_WORK.md          # Prior BCI security research
+    │
+    ├── governance/              # Ethics & transparency
+    │   ├── TRANSPARENCY.md      # Human-AI collaboration audit trail
+    │   └── NEUROETHICS_ALIGNMENT.md # Framework-to-ethics principle mapping
+    │
+    ├── project/                 # Project management
+    │   ├── prd.json             # Task tracker with exit conditions
+    │   └── processes/           # Workflow documentation
     │
     ├── oni-framework/           # Python library (pip install oni-framework)
     │   ├── ONI_LAYERS.md        # **Authoritative 14-layer reference**
+    │   ├── NEUROSECURITY_IMPLEMENTATION.md  # Kohno/BCI integration guide
     │   ├── oni/                 # Source code
     │   │   ├── coherence.py     # Cₛ calculation
     │   │   ├── layers.py        # 14-layer model
@@ -182,13 +189,17 @@ ONI/
     │   └── tests/               # Unit tests
     │
     ├── tara/                    # Neural Security Platform (pip install oni-tara)
-    │   ├── core/                # ONI security primitives
-    │   ├── simulation/          # Neural network simulation
-    │   ├── attacks/             # Attack testing & scenarios
-    │   ├── nsam/                # Neural Signal Assurance Monitoring
-    │   ├── neurosecurity/       # Kohno rules integration
-    │   ├── visualization/       # Real-time dashboards
-    │   └── ui/                  # Streamlit web interface
+    │   ├── tara/                # Source modules (nested package)
+    │   │   ├── core/            # ONI security primitives
+    │   │   ├── simulation/      # Neural network simulation
+    │   │   ├── attacks/         # Attack testing & scenarios
+    │   │   ├── nsam/            # Neural Signal Assurance Monitoring
+    │   │   ├── neurosecurity/   # Kohno rules integration
+    │   │   ├── visualization/   # Real-time dashboards
+    │   │   └── ui/              # Streamlit web interface
+    │   └── tests/               # Unit tests
+    │
+    ├── visualizations/          # Interactive web visualizations
     │
     ├── publications/            # Research content
     │   ├── 0-oni-framework/     # Base/foundational content
@@ -203,7 +214,6 @@ ONI/
         ├── editor/              # Editor Agent (quality & sync)
         ├── images/              # ONI diagrams and visualizations
         ├── templates/           # Formatting templates
-        ├── processes/           # Workflow documentation
         └── pipeline/            # Research pipeline
 ```
 
@@ -378,7 +388,7 @@ See [ABOUT.md](ABOUT.md) to learn more about the researcher behind this project.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md](MAIN/CONTRIBUTING.md) for guidelines.
 
 **Seeking input from:**
 - **Neuroscientists** — Validate biological assumptions

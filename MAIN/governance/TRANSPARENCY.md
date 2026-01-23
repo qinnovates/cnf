@@ -87,7 +87,7 @@ The 40% modification/rejection rate demonstrates active critical engagement, not
 ### Scientific Claims
 - All neuroscience claims verified against peer-reviewed sources
 - Quantum physics claims cross-referenced with recent experimental literature
-- Biological assumptions explicitly flagged for expert review (see CONTRIBUTING.md)
+- Biological assumptions explicitly flagged for expert review (see ../CONTRIBUTING.md)
 
 ### Code Quality
 - 77 unit tests covering all core modules

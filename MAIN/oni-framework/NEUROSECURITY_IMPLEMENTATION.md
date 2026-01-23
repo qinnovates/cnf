@@ -1124,4 +1124,4 @@ The ONI Framework extends these concepts with:
 
 *Last Updated: 2026-01-23*
 *Part of the [ONI Framework](../README.md)*
-*See also: [RELATED_WORK.md](RELATED_WORK.md) | [ONI_LAYERS.md](oni-framework/ONI_LAYERS.md)*
+*See also: [RELATED_WORK.md](../RELATED_WORK.md) | [ONI_LAYERS.md](ONI_LAYERS.md)*

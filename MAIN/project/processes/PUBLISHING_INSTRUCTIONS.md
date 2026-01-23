@@ -16,14 +16,32 @@ This document provides standardized instructions for Claude to follow when extra
 ONI/
 ├── README.md                           # Main documentation
 ├── CLAUDE.md                           # Claude AI instructions
-├── TRANSPARENCY.md                     # Human-AI collaboration audit trail
+├── AGENTS.md                           # Ralph Loop learnings
 ├── ABOUT.md                            # Author bio
-├── CONTRIBUTING.md                     # Contribution guidelines
 ├── LICENSE                             # Apache 2.0
+│
+├── .github/
+│   ├── .gitignore                      # Git ignore rules
+│   ├── workflows/                      # CI/CD pipelines
+│   └── security-audit/                 # Security scanning
 │
 └── MAIN/
     ├── INDEX.md                        # Central hub
-    ├── NEUROETHICS_ALIGNMENT.md        # Framework-to-ethics mapping
+    ├── CONTRIBUTING.md                 # Contribution guidelines
+    ├── RELATED_WORK.md                 # Prior BCI security research
+    │
+    ├── governance/                     # Ethics & transparency
+    │   ├── TRANSPARENCY.md
+    │   └── NEUROETHICS_ALIGNMENT.md
+    │
+    ├── project/                        # Project management
+    │   ├── prd.json                    # Task tracker
+    │   └── processes/                  # This folder
+    │       ├── PUBLISHING_INSTRUCTIONS.md
+    │       └── PROCESS_IMPROVEMENTS.md
+    │
+    ├── visualizations/                 # Interactive demos
+    │
     ├── publications/                   # CONTENT ONLY
     │   ├── 0-oni-framework/
     │   ├── coherence-metric/
@@ -32,24 +50,11 @@ ONI/
     │   ├── quantum-encryption/
     │   └── scale-frequency/
     │
-    ├── oni-visualizations/             # Interactive demos
-    │
     └── resources/                      # NON-CONTENT (infrastructure)
         ├── templates/                  # Formatting templates
-        │   ├── TECHDOC_TEMPLATE_APA.md
-        │   ├── BLOG_TEMPLATE.md
-        │   └── INDEX_TEMPLATE.md
-        │
-        ├── processes/                  # Workflow documentation
-        │   ├── PUBLISHING_INSTRUCTIONS.md  # This file
-        │   └── PROCESS_IMPROVEMENTS.md
-        │
+        ├── editor/                     # Editor Agent
+        ├── agents/                     # PM Agent
         └── pipeline/                   # Research pipeline
-            ├── scripts/
-            │   ├── research_monitor.py
-            │   └── keywords.json
-            ├── incoming/               # New research discoveries
-            └── processed/              # Reviewed and integrated
 ```
 
 ---
@@ -58,11 +63,11 @@ ONI/
 
 | Folder | Purpose | What Goes Here |
 |--------|---------|----------------|
-| `publications/0-oni-framework/` | **Base content** | Foundational ONI Framework publications |
+| `governance/` | **Ethics & transparency** | TRANSPARENCY.md, NEUROETHICS_ALIGNMENT.md |
+| `project/` | **Project management** | prd.json, processes/ |
 | `publications/` | **Content only** | Blog posts, technical documents |
-| `oni-visualizations/` | **Interactive demos** | Web apps, visualizations |
-| `resources/templates/` | Formatting templates | APA template, Blog template, INDEX template |
-| `resources/processes/` | Workflow documentation | Publishing instructions, improvements |
+| `visualizations/` | **Interactive demos** | Web apps, visualizations |
+| `resources/templates/` | Formatting templates | APA template, Blog template |
 | `resources/pipeline/` | Research pipeline | Scripts, incoming papers, processed research |
 
 ---

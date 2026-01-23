@@ -10,17 +10,17 @@
 |----------|----------|---------|
 | **Main Wiki (INDEX)** | `MAIN/INDEX.md` | **Central hub - navigation, dependencies, cross-references** |
 | **Python Package** | `MAIN/oni-framework/` | **pip install oni-framework** |
-| **Transparency Statement** | `MAIN/TRANSPARENCY.md` | **Human-AI collaboration audit trail** |
-| **Neuroethics Alignment** | `MAIN/NEUROETHICS_ALIGNMENT.md` | **Framework-to-ethics principle mapping** |
+| **Transparency Statement** | `MAIN/governance/TRANSPARENCY.md` | **Human-AI collaboration audit trail** |
+| **Neuroethics Alignment** | `MAIN/governance/NEUROETHICS_ALIGNMENT.md` | **Framework-to-ethics principle mapping** |
 | Topic README Template | `MAIN/resources/templates/README_TEMPLATE.md` | Template for topic-level overviews |
 | APA Template | `MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md` | Formatting for technical documents |
 | Blog Template | `MAIN/resources/templates/BLOG_TEMPLATE.md` | Formatting for blog posts |
-| Publishing Instructions | `MAIN/resources/processes/PUBLISHING_INSTRUCTIONS.md` | Step-by-step publishing workflow |
+| Publishing Instructions | `MAIN/project/processes/PUBLISHING_INSTRUCTIONS.md` | Step-by-step publishing workflow |
 | Research Monitor | `MAIN/resources/pipeline/scripts/research_monitor.py` | Fetch new academic papers |
 | Keywords File | `MAIN/resources/pipeline/scripts/keywords.json` | Research search terms |
 | **Editor Agent** | `MAIN/resources/editor/EDITOR_AGENT.md` | **Automated quality & sync (run before commits)** |
 | **AGENTS.md** | `AGENTS.md` | **Ralph Loop learnings — read at session start** |
-| **prd.json** | `prd.json` | **Task tracker with exit conditions** |
+| **prd.json** | `MAIN/project/prd.json` | **Task tracker with exit conditions** |
 | This File | `CLAUDE.md` | Claude-specific instructions |
 
 ### Naming Convention: INDEX.md vs README.md
@@ -41,23 +41,30 @@ ONI/
 ├── README.md                           # Public entry point
 ├── CLAUDE.md                           # Claude AI instructions (this file)
 ├── AGENTS.md                           # Ralph Loop learnings (read at session start)
-├── prd.json                            # Task tracker with exit conditions
 ├── ABOUT.md                            # Author bio
-├── CONTRIBUTING.md                     # Contribution guidelines
 ├── LICENSE                             # Apache 2.0 License
 │
 ├── .github/
+│   ├── .gitignore                      # Git ignore rules
 │   ├── workflows/                      # CI/CD pipelines (tests, publish, security)
 │   └── security-audit/                 # Security scanning tools
 │
 └── MAIN/
     ├── INDEX.md                        # MAIN WIKI — navigation, dependencies, cross-references
-    ├── TRANSPARENCY.md                 # Human-AI collaboration audit trail
-    ├── NEUROETHICS_ALIGNMENT.md        # Framework-to-ethics principle mapping
+    ├── CONTRIBUTING.md                 # Contribution guidelines
     ├── RELATED_WORK.md                 # Prior BCI security research
     │
+    ├── governance/                     # Ethics & transparency
+    │   ├── TRANSPARENCY.md             # Human-AI collaboration audit trail
+    │   └── NEUROETHICS_ALIGNMENT.md    # Framework-to-ethics principle mapping
+    │
+    ├── project/                        # Project management
+    │   ├── prd.json                    # Task tracker with exit conditions
+    │   └── processes/                  # Workflow documentation
+    │
     ├── oni-framework/                  # Python library (pip install oni-framework)
-    │   ├── ONI_LAYERS.md              # Authoritative 14-layer reference
+    │   ├── ONI_LAYERS.md               # Authoritative 14-layer reference
+    │   ├── NEUROSECURITY_IMPLEMENTATION.md  # Kohno/BCI Anonymizer integration guide
     │   ├── oni/                        # Source code
     │   │   ├── coherence.py            # Cₛ calculation
     │   │   ├── layers.py               # 14-layer model
@@ -68,14 +75,18 @@ ONI/
     │   └── README.md                   # Library documentation
     │
     ├── tara/                           # Neural Security Platform (pip install oni-tara)
-    │   ├── core/                       # ONI security primitives
-    │   ├── simulation/                 # Neural network simulation
-    │   ├── attacks/                    # Attack testing & scenarios
-    │   ├── nsam/                       # Neural Signal Assurance Monitoring
-    │   ├── neurosecurity/              # Kohno rules integration
-    │   ├── visualization/              # Real-time dashboards
-    │   ├── ui/                         # Streamlit web interface
+    │   ├── tara/                       # Source modules (nested package)
+    │   │   ├── core/                   # ONI security primitives
+    │   │   ├── simulation/             # Neural network simulation
+    │   │   ├── attacks/                # Attack testing & scenarios
+    │   │   ├── nsam/                   # Neural Signal Assurance Monitoring
+    │   │   ├── neurosecurity/          # Kohno rules integration
+    │   │   ├── visualization/          # Real-time dashboards
+    │   │   └── ui/                     # Streamlit web interface
+    │   ├── tests/                      # Unit tests
     │   └── README.md                   # Platform documentation
+    │
+    ├── visualizations/                 # Interactive web visualizations
     │
     ├── publications/                   # CONTENT ONLY
     │   ├── 0-oni-framework/            # Base/foundational content
@@ -91,14 +102,11 @@ ONI/
         │   ├── EDITOR_AGENT.md
         │   └── checks/
         ├── templates/                  # Formatting templates
-        ├── processes/                  # Workflow documentation
         ├── pipeline/                   # Research pipeline
         │   ├── scripts/
         │   ├── incoming/
         │   └── processed/
         └── images/                     # ONI diagrams
-                ├── naming_rules.md
-                └── format_rules.md
 ```
 
 ---
@@ -107,18 +115,21 @@ ONI/
 
 | Folder | Purpose | What Goes Here |
 |--------|---------|----------------|
+| `governance/` | **Ethics & transparency** | TRANSPARENCY.md, NEUROETHICS_ALIGNMENT.md |
+| `project/` | **Project management** | prd.json, processes/ (workflows, improvements) |
 | `oni-framework/` | **Python library** | Source code, tests, package config (pip installable) |
-| `publications/0-oni-framework/` | **Base content** | Foundational ONI Framework publications |
+| `tara/` | **Security platform** | TARA SOC platform (pip install oni-tara) |
+| `visualizations/` | **Interactive demos** | Web apps, HTML visualizations |
 | `publications/` | **Content only** | Blog posts, technical documents |
 | `resources/templates/` | Formatting templates | APA template, Blog template |
-| `resources/processes/` | Workflow documentation | Publishing instructions, improvements |
 | `resources/pipeline/` | Research pipeline | Incoming papers, processed, scripts, keywords |
 | `resources/editor/` | **Editor Agent** | Quality validation, sync rules, auto-fix logic |
 
 **IMPORTANT:**
-- The `0-oni-framework/` folder inside `publications/` contains the base/foundational content and sorts first alphabetically.
+- The `governance/` folder contains ethics and transparency documentation.
+- The `project/` folder contains project management files (prd.json, processes).
 - The `publications/` folder is for **content only**. Never put templates, instructions, or scripts there.
-- The `resources/` folder contains ALL non-content files (templates, processes, scripts, Pipeline).
+- The `resources/` folder contains infrastructure files (templates, pipeline, editor).
 
 ---
 
@@ -222,10 +233,10 @@ L9-L14: Biology (Ion Channel Encoding → Identity & Ethics)
 ```
 1. Read CLAUDE.md (this file) — conventions and workflows
 2. Read AGENTS.md — learnings from previous iterations
-3. Read prd.json — current task status and exit conditions
+3. Read MAIN/project/prd.json — current task status and exit conditions
 4. Execute tasks until exit condition met
 5. Update AGENTS.md with new learnings
-6. Update prd.json with progress
+6. Update MAIN/project/prd.json with progress
 7. Commit changes (memory persists via git)
 ```
 
@@ -234,7 +245,7 @@ L9-L14: Biology (Ion Channel Encoding → Identity & Ethics)
 | File | Purpose | When to Update |
 |------|---------|----------------|
 | `AGENTS.md` | Learnings, patterns, gotchas | After every significant discovery |
-| `prd.json` | Task tracking, exit conditions | After completing or adding tasks |
+| `MAIN/project/prd.json` | Task tracking, exit conditions | After completing or adding tasks |
 | `CLAUDE.md` | Conventions, workflows | When processes change |
 
 ### Ralph Loop Workflow
@@ -247,7 +258,7 @@ L9-L14: Biology (Ion Channel Encoding → Identity & Ethics)
                     ↓
 ┌─────────────────────────────────────────┐
 │  2. Fresh Context                       │
-│     Read: CLAUDE.md, AGENTS.md, prd.json│
+│     Read: CLAUDE.md, AGENTS.md, prd.json  │
 └─────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────┐
@@ -258,7 +269,7 @@ L9-L14: Biology (Ion Channel Encoding → Identity & Ethics)
 ┌─────────────────────────────────────────┐
 │  4. Persist Learnings                   │
 │     Update AGENTS.md with discoveries   │
-│     Update prd.json with progress       │
+│     Update prd.json with progress         │
 │     Commit to git                       │
 └─────────────────────────────────────────┘
                     ↓
@@ -323,7 +334,7 @@ L9-L14: Biology (Ion Channel Encoding → Identity & Ethics)
    ```
    Read: MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md
    Read: MAIN/resources/templates/BLOG_TEMPLATE.md
-   Read: MAIN/resources/processes/PUBLISHING_INSTRUCTIONS.md
+   Read: MAIN/project/processes/PUBLISHING_INSTRUCTIONS.md
    ```
 
 2. **Create topic folder (if new topic):**
@@ -506,12 +517,12 @@ Use this text in all technical documents:
 
 | Document | Location | Purpose |
 |----------|----------|---------|
-| `TRANSPARENCY.md` | `MAIN/` | Audit trail of Human-AI cognitive boundary |
-| `NEUROETHICS_ALIGNMENT.md` | `MAIN/` | Maps framework components to ethical principles |
+| `TRANSPARENCY.md` | `MAIN/governance/` | Audit trail of Human-AI cognitive boundary |
+| `NEUROETHICS_ALIGNMENT.md` | `MAIN/governance/` | Maps framework components to ethical principles |
 
 ### When to Update TRANSPARENCY.md
 
-Update `TRANSPARENCY.md` whenever:
+Update `MAIN/governance/TRANSPARENCY.md` whenever:
 
 1. **New publications are added** — Add to contribution matrix if significant AI assistance used
 2. **Code changes with AI assistance** — Document any AI suggestions that were rejected/modified
@@ -522,9 +533,9 @@ Update `TRANSPARENCY.md` whenever:
 
 For each publishing session, verify:
 
-- [ ] Any AI corrections/overrides documented in TRANSPARENCY.md "Refinement Loop" section
+- [ ] Any AI corrections/overrides documented in governance/TRANSPARENCY.md "Refinement Loop" section
 - [ ] Contribution matrix updated if new content domains added
-- [ ] "Last Updated" date changed in TRANSPARENCY.md header
+- [ ] "Last Updated" date changed in governance/TRANSPARENCY.md header
 - [ ] Commit includes `Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>` tag
 
 ### Cognitive Boundary Documentation Format
@@ -541,7 +552,7 @@ When documenting significant AI interactions, use this format:
 
 ### NEUROETHICS_ALIGNMENT.md Updates
 
-Update `MAIN/NEUROETHICS_ALIGNMENT.md` when:
+Update `MAIN/governance/NEUROETHICS_ALIGNMENT.md` when:
 
 1. **New framework components added** — Map to ethical principles
 2. **Security features modified** — Update ethical reasoning
@@ -708,7 +719,7 @@ mkdir MAIN/publications/[topic-name]/
 9. **Stale footer:** Always update document/topic counts and date in README.md footer
 
 ### If Unsure
-1. Read `MAIN/resources/processes/PUBLISHING_INSTRUCTIONS.md`
+1. Read `MAIN/project/processes/PUBLISHING_INSTRUCTIONS.md`
 2. Check existing files for examples
 3. Ask user for clarification before proceeding
 

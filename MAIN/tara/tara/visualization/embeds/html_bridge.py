@@ -23,7 +23,7 @@ class ONIVisualizationEmbed:
     Embeds ONI HTML visualizations with bidirectional communication.
 
     Example:
-        >>> embed = ONIVisualizationEmbed("/path/to/oni-visualizations")
+        >>> embed = ONIVisualizationEmbed("/path/to/visualizations")
         >>> embed.render("coherence", height=600, initial_data={"cs": 0.85})
     """
 
@@ -61,15 +61,15 @@ class ONIVisualizationEmbed:
         Initialize the embed manager.
 
         Args:
-            base_path: Path to oni-visualizations directory.
+            base_path: Path to visualizations directory.
                        If None, attempts to find it relative to TARA.
         """
         if base_path:
             self.base_path = Path(base_path)
         else:
-            # Try to find oni-visualizations relative to tara
+            # Try to find visualizations relative to tara
             tara_root = Path(__file__).parent.parent.parent
-            self.base_path = tara_root.parent / "oni-visualizations"
+            self.base_path = tara_root.parent / "visualizations"
 
         self._validate_path()
 
@@ -248,7 +248,7 @@ def render_oni_visualization(
         key: Visualization key (coherence, layers, killchain, nsam, scale_freq)
         height: Display height in pixels
         data: Initial data to pass to visualization
-        base_path: Path to oni-visualizations directory
+        base_path: Path to visualizations directory
     """
     embed = ONIVisualizationEmbed(base_path)
     embed.render(key, height=height, initial_data=data)

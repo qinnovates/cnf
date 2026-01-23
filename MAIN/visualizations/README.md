@@ -31,7 +31,7 @@ This prototype suite demonstrates 5 interactive web applications designed to mak
 
 3. **Find the visualizations**
    - Open the unzipped folder
-   - Navigate to: `MAIN` → `oni-visualizations`
+   - Navigate to: `MAIN` → `visualizations`
 
 4. **Launch the app**
    - Double-click `index.html`
@@ -42,7 +42,7 @@ This prototype suite demonstrates 5 interactive web applications designed to mak
 
 ```bash
 git clone https://github.com/qikevinl/ONI.git
-cd ONI/MAIN/oni-visualizations
+cd ONI/MAIN/visualizations
 open index.html    # Mac
 start index.html   # Windows
 ```
@@ -52,7 +52,7 @@ No build step required - pure HTML/CSS/JS
 ## File Structure
 
 ```
-oni-visualizations/
+visualizations/
 ├── index.html                          # Master index & design system
 ├── README.md                           # This file
 ├── 01-coherence-metric-playground.html
@@ -157,7 +157,7 @@ Each app can be embedded via iframe:
 
 ```html
 <iframe
-  src="./oni-visualizations/01-coherence-metric-playground.html"
+  src="./visualizations/01-coherence-metric-playground.html"
   width="100%"
   height="600"
   frameborder="0">
@@ -167,7 +167,7 @@ Each app can be embedded via iframe:
 ### Web Component (Future)
 
 ```html
-<script src="oni-visualizations.js"></script>
+<script src="visualizations.js"></script>
 <oni-coherence-playground theme="dark"></oni-coherence-playground>
 ```
 

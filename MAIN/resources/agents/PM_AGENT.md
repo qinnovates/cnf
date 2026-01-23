@@ -9,9 +9,9 @@
 | Resource | Location | Purpose |
 |----------|----------|---------|
 | **This Agent** | `MAIN/resources/agents/PM_AGENT.md` | Project management workflows |
-| **prd.json** | `/prd.json` | Task tracking with exit conditions |
+| **prd.json** | `MAIN/project/prd.json` | Task tracking with exit conditions |
 | **AGENTS.md** | `/AGENTS.md` | Cross-session learnings |
-| **PROCESS_IMPROVEMENTS.md** | `MAIN/resources/processes/` | Process improvement log |
+| **PROCESS_IMPROVEMENTS.md** | `MAIN/project/processes/` | Process improvement log |
 | **Editor Agent** | `MAIN/resources/editor/EDITOR_AGENT.md` | Documentation consistency |
 
 ---
@@ -348,12 +348,10 @@ PM: release       - Run release checklist
 3. Consistent with existing `resources/editor/` structure
 4. `CLAUDE.md` must stay at root for auto-discovery
 
-**However:** `prd.json` and `AGENTS.md` should stay at root level because:
-- They're project-wide, not just for MAIN
-- `CLAUDE.md` references them at root
-- Quick access for session starts
-
-**.gitignore placement:** Can be at root (standard) or in `.github/` but root is conventional and expected. Placing in `.github/` may confuse tools that expect it at root.
+**File locations:**
+- `prd.json` → `MAIN/project/prd.json` (project management)
+- `AGENTS.md` → root (cross-session learnings, needs root for auto-discovery)
+- `.gitignore` → `.github/.gitignore` (keeps root clean)
 
 ---
 

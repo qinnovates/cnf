@@ -321,7 +321,7 @@ This library implements concepts from the ONI Framework research:
 
 ## Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](../../CONTRIBUTING.md) for guidelines.
+Contributions welcome! See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines.
 
 **Seeking input from:**
 - Neuroscientists — Validate biological assumptions

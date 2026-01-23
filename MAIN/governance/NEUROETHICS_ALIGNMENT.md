@@ -228,4 +228,4 @@ UNESCO. (2021). *Recommendation on the Ethics of Artificial Intelligence*.
 
 ---
 
-← Back to [INDEX.md](INDEX.md) | [TRANSPARENCY.md](TRANSPARENCY.md)
+← Back to [INDEX.md](../INDEX.md) | [TRANSPARENCY.md](TRANSPARENCY.md)
