@@ -386,6 +386,37 @@ See [ABOUT.md](ABOUT.md) to learn more about the researcher behind this project.
 
 ---
 
+## Partnerships & Future Directions
+
+The ONI Framework is actively seeking partnerships to move from research to real-world implementation.
+
+| Partnership Tier | Goal | Target |
+|------------------|------|--------|
+| **Open-Source Hardware** | Validate on real BCIs | OpenBCI, BrainFlow |
+| **Academic Research** | Peer review, validation | UW Kohno Lab, Rice SIMS |
+| **Industry Engagement** | Commercial adoption | BCI companies |
+| **Standards Integration** | Shape BCI security standards | IEEE, FDA, ISO |
+
+### Priority: OpenBCI Integration
+
+We're building `oni-openbci` — a hardware adapter to demonstrate ONI concepts on accessible, open-source EEG hardware. This includes:
+- Real-time Coherence Metric (Cₛ) on live EEG streams
+- TARA dashboard with OpenBCI hardware
+- Validation reports and tutorials
+
+**Full roadmap:** [PARTNERSHIPS.md](MAIN/PARTNERSHIPS.md)
+
+### Get Involved
+
+| Role | How to Help |
+|------|-------------|
+| **Researchers** | Use ONI, validate assumptions, co-author papers |
+| **Engineers** | Contribute code, build hardware adapters |
+| **Industry** | Pilot programs, integration, sponsorship |
+| **Standards Bodies** | Review, invite participation, reference |
+
+---
+
 ## Contributing
 
 See [CONTRIBUTING.md](MAIN/CONTRIBUTING.md) for guidelines.

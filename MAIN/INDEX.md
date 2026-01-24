@@ -212,6 +212,7 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 | [TRANSPARENCY.md](governance/TRANSPARENCY.md) | Human-AI collaboration audit trail — cognitive boundary documentation, HITL methodology |
 | [NEUROETHICS_ALIGNMENT.md](governance/NEUROETHICS_ALIGNMENT.md) | Maps framework components to cognitive liberty, mental privacy, mental integrity principles |
 | [RELATED_WORK.md](RELATED_WORK.md) | Prior BCI security research — acknowledges foundational work, positions ONI's contribution |
+| [PARTNERSHIPS.md](PARTNERSHIPS.md) | Partnership opportunities, implementation roadmap, how to get involved |
 
 ---
 
@@ -300,6 +301,54 @@ Planned research areas for framework expansion:
 | 3 | Cross-Device Protocol | Multi-BCI communication standards | ONI L10-L12 | Conceptual |
 | 4 | Neural Privacy Framework | Data minimization for neural signals | Coherence, Firewall | Conceptual |
 | 5 | Regulatory Mapping | FDA/EU compliance for ONI architecture | All topics | Conceptual |
+
+---
+
+## Roadmap: Partnership Pathways
+
+To move ONI from research to implementation, we're pursuing four parallel tracks:
+
+### Hardware Validation (Priority 1)
+
+| Target | Platform | Integration | Status |
+|--------|----------|-------------|--------|
+| **OpenBCI** | Cyton, Ganglion, Ultracortex | `oni-openbci` package | Planned |
+| **BrainFlow** | Multi-device abstraction | Native adapter | Planned |
+| **Emotiv** | Consumer EEG (EPOC, Insight) | SDK integration | Conceptual |
+
+**Why OpenBCI first:** Open-source hardware, Python-native SDK, active developer community, accessible price point for validation.
+
+### Academic Partnerships (Priority 2)
+
+| Institution | Lab/Group | Focus | Opportunity |
+|-------------|-----------|-------|-------------|
+| **University of Washington** | Kohno/Chizeck Labs | Neurosecurity founders | Validation, joint papers |
+| **Rice University** | SIMS Lab (Yang) | Low-power implantable security | Hardware constraints |
+| **Northeastern/Michigan** | Archimedes (Fu) | Medical device security | Threat modeling |
+
+**Goal:** Peer review, empirical validation, conference publications (IEEE S&P, USENIX, NDSS).
+
+### Industry Engagement (Priority 3)
+
+| Company | Device Type | Engagement Path |
+|---------|-------------|-----------------|
+| **Blackrock Neurotech** | Research arrays | Research partnership |
+| **Synchron** | Endovascular | FDA security pathway |
+| **Kernel** | Non-invasive | Consumer privacy |
+| **Paradromics** | High-bandwidth | Pre-production architecture |
+
+**Approach:** Security consulting, pilot programs, architecture reviews.
+
+### Standards Integration (Priority 4)
+
+| Body | Initiative | ONI Alignment |
+|------|------------|---------------|
+| **IEEE** | Brain Initiative Standards | Layer model proposal |
+| **FDA** | BCI Guidance Documents | Security checkpoint mapping |
+| **ISO/IEC** | Medical device security | Framework implementation |
+| **OECD** | Neurotechnology Governance | Ethics alignment |
+
+**Full details:** [PARTNERSHIPS.md](PARTNERSHIPS.md)
 
 ---
 
