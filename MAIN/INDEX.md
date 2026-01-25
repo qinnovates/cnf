@@ -255,6 +255,7 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 |----------|---------|
 | [TRANSPARENCY.md](governance/TRANSPARENCY.md) | Human-AI collaboration audit trail — cognitive boundary documentation, HITL methodology |
 | [NEUROETHICS_ALIGNMENT.md](governance/NEUROETHICS_ALIGNMENT.md) | Maps framework components to cognitive liberty, mental privacy, mental integrity principles |
+| [REGULATORY_COMPLIANCE.md](governance/REGULATORY_COMPLIANCE.md) | **US regulatory mapping** — FDA, FCC, HIPAA, FTC, NIST alignment for ONI-compliant BCIs |
 | [INFORMED_CONSENT_FRAMEWORK.md](governance/INFORMED_CONSENT_FRAMEWORK.md) | Consent requirements for neural devices (Lázaro-Muñoz framework) |
 | [POST_DEPLOYMENT_ETHICS.md](governance/POST_DEPLOYMENT_ETHICS.md) | Device lifecycle, maintenance obligations, abandonment prevention |
 | [PEDIATRIC_CONSIDERATIONS.md](governance/PEDIATRIC_CONSIDERATIONS.md) | Guidelines for minors and individuals with limited capacity |
