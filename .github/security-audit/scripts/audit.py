@@ -184,7 +184,8 @@ class SecurityAuditor:
             return True
 
         # Skip node_modules, .git, etc.
-        skip_dirs = {'node_modules', '.git', '__pycache__', '.venv', 'venv', 'dist', 'build'}
+        # Note: 'security-audit' excluded to prevent false positives from pattern definitions
+        skip_dirs = {'node_modules', '.git', '__pycache__', '.venv', 'venv', 'dist', 'build', 'security-audit'}
         parts = Path(file_path).parts
         if any(d in skip_dirs for d in parts):
             return True
