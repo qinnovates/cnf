@@ -78,14 +78,12 @@ ONI/
     │   ├── tests/                      # Unit tests
     │   └── README.md                   # Library documentation
     │
-    ├── tara-neural-security-platform/  # TARA package config (pip install oni-tara)
+    ├── tara-neural-security-platform/  # TARA package (pip install oni-tara)
     │   ├── pyproject.toml              # Package configuration
     │   ├── README.md                   # Platform documentation
     │   ├── CLAUDE.md                   # Claude instructions for TARA
-    │   └── LICENSE                     # Apache 2.0
-    │
-    ├── prototype-mvp/                  # Working prototypes and source code
-    │   ├── tara/                       # TARA source modules
+    │   ├── LICENSE                     # Apache 2.0
+    │   ├── tara/                       # Source modules
     │   │   ├── core/                   # ONI security primitives
     │   │   ├── simulation/             # Neural network simulation
     │   │   ├── attacks/                # Attack testing & scenarios
@@ -94,7 +92,7 @@ ONI/
     │   │   ├── visualization/          # Real-time dashboards
     │   │   └── ui/                     # Streamlit web interface
     │   ├── tests/                      # Unit tests
-    │   └── visualizations/             # Interactive HTML visualizations
+    │   └── visualizations/             # Interactive HTML visualizations (ONI Suite)
     │
     ├── publications/                   # CONTENT ONLY
     │   ├── 0-oni-framework/            # Base/foundational content
@@ -138,8 +136,7 @@ ONI/
 | `governance/` | **Ethics & transparency** | TRANSPARENCY.md, NEUROETHICS_ALIGNMENT.md |
 | `project/` | **Project management** | prd.json, processes/ (workflows, improvements) |
 | `oni-framework/` | **Python library** | Source code, tests, package config (pip installable) |
-| `tara-neural-security-platform/` | **TARA package config** | pyproject.toml, README, LICENSE |
-| `prototype-mvp/` | **Working prototypes** | TARA source, tests, HTML visualizations |
+| `tara-neural-security-platform/` | **TARA package** | Source, tests, visualizations, pyproject.toml |
 | `publications/` | **Content only** | Blog posts, technical documents |
 | `resources/templates/` | Formatting templates | APA template, Blog template |
 | `resources/pipeline/` | Research pipeline | Incoming papers, processed, scripts, keywords |

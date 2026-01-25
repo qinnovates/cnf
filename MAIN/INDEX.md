@@ -2,7 +2,7 @@
 
 > **The central navigation hub for all ONI Framework research, publications, and development.**
 
-**Version:** 1.7
+**Version:** 1.8
 **Last Updated:** 2026-01-24
 **Status:** Active Development
 
@@ -62,13 +62,13 @@ pip install oni-tara
 
 | Module | Purpose | Key Functions |
 |--------|---------|---------------|
-| [tara.core](prototype-mvp/tara/core/) | ONI security primitives | `CoherenceMetric`, `ONIStack`, `NeuralFirewall` |
-| [tara.simulation](prototype-mvp/tara/simulation/) | Neural network simulation | `LIFNeuron`, `IzhikevichNeuron`, networks |
-| [tara.attacks](prototype-mvp/tara/attacks/) | Attack testing & scenarios | `AttackSimulator`, `AttackScenario` |
-| [tara.nsam](prototype-mvp/tara/nsam/) | Neural Signal Assurance Monitoring | `NSAMMonitor`, `RuleEngine`, `AlertManager` |
-| [tara.neurosecurity](prototype-mvp/tara/neurosecurity/) | Kohno rules integration | `NeurosecurityMonitor` |
-| [tara.data](prototype-mvp/tara/data/) | Data models & external datasets | `MOABBAdapter`, `BrainRegion`, `BCINode` |
-| [tara.ui](prototype-mvp/tara/ui/) | Streamlit web interface | `tara ui` command |
+| [tara.core](tara-neural-security-platform/tara/core/) | ONI security primitives | `CoherenceMetric`, `ONIStack`, `NeuralFirewall` |
+| [tara.simulation](tara-neural-security-platform/tara/simulation/) | Neural network simulation | `LIFNeuron`, `IzhikevichNeuron`, networks |
+| [tara.attacks](tara-neural-security-platform/tara/attacks/) | Attack testing & scenarios | `AttackSimulator`, `AttackScenario` |
+| [tara.nsam](tara-neural-security-platform/tara/nsam/) | Neural Signal Assurance Monitoring | `NSAMMonitor`, `RuleEngine`, `AlertManager` |
+| [tara.neurosecurity](tara-neural-security-platform/tara/neurosecurity/) | Kohno rules integration | `NeurosecurityMonitor` |
+| [tara.data](tara-neural-security-platform/tara/data/) | Data models & external datasets | `MOABBAdapter`, `BrainRegion`, `BCINode` |
+| [tara.ui](tara-neural-security-platform/tara/ui/) | Streamlit web interface | `tara ui` command |
 
 **Documentation:** [tara-neural-security-platform/README.md](tara-neural-security-platform/README.md) | **CLI:** `tara --help`
 
@@ -251,7 +251,9 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 
 | Document | Purpose |
 |----------|---------|
-| [prd.json](project/prd.json) | **Task tracker with exit conditions** |
+| [PROJECT_MANAGEMENT.md](project/PROJECT_MANAGEMENT.md) | **Master PM doc — scope, risks, priorities, metrics** |
+| [KANBAN.md](project/KANBAN.md) | **Visual Kanban board — task status at a glance** |
+| [prd.json](project/prd.json) | Machine-readable task tracker with exit conditions |
 | [PUBLISHING_INSTRUCTIONS.md](project/processes/PUBLISHING_INSTRUCTIONS.md) | Step-by-step publishing workflow |
 | [PROCESS_IMPROVEMENTS.md](project/processes/PROCESS_IMPROVEMENTS.md) | Workflow enhancement tracking |
 
@@ -398,6 +400,8 @@ MAIN/
 │   └── PEDIATRIC_CONSIDERATIONS.md   # Minors and incapacity guidelines
 │
 ├── project/                    # Project management
+│   ├── PROJECT_MANAGEMENT.md   # Master PM doc (scope, risks, priorities)
+│   ├── KANBAN.md               # Visual Kanban board
 │   ├── prd.json                # Task tracker with exit conditions
 │   └── processes/              # Workflow documentation
 │

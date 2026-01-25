@@ -47,6 +47,7 @@ An extensible framework for monitoring and securing neural communications, desig
 
 | Start Here | Purpose |
 |------------|---------|
+| **[Live Demo](https://qikevinl.github.io/ONI/)** | **Interactive visualizations** — explore the framework in your browser |
 | **[MAIN/](MAIN/)** | All research content — publications, visualizations, resources |
 | **[INDEX.md](MAIN/INDEX.md)** | **Main Wiki** — central hub for navigation, dependencies, cross-references, roadmap |
 | **This README** | Public overview — key concepts, quick reference |

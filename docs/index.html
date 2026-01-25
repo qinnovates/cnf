@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONI Framework | Neural Interface Security</title>
+    <meta name="description" content="Open-source security framework for brain-computer interfaces. Extending OSI model with 7 neural layers (L8-L14) for comprehensive BCI protection.">
+    <meta name="keywords" content="BCI security, neural interface, brain-computer interface, neurosecurity, ONI framework">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ONI Framework | Neural Interface Security">
+    <meta property="og:description" content="Open-source security framework for brain-computer interfaces">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qikevinl.github.io/ONI/">
+
+    <style>
+        :root {
+            --oni-dark: #0a0e17;
+            --oni-darker: #060912;
+            --oni-blue: #00d4ff;
+            --oni-purple: #8b5cf6;
+            --oni-pink: #ec4899;
+            --oni-green: #10b981;
+            --oni-yellow: #f59e0b;
+            --oni-red: #ef4444;
+            --oni-gray: #1e293b;
+            --oni-light: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--oni-dark);
+            color: var(--oni-light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background:
+                radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                var(--oni-darker);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .logo {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--oni-blue), var(--oni-purple), var(--oni-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--oni-blue), var(--oni-purple));
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--oni-gray);
+            color: var(--oni-light);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: #2d3a4f;
+            border-color: var(--oni-blue);
+        }
+
+        /* Layer Diagram */
+        .layer-preview {
+            margin-top: 4rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .layer-chip {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .layer-silicon { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
+        .layer-bridge { background: rgba(245, 158, 11, 0.3); color: #fbbf24; }
+        .layer-biology { background: rgba(236, 72, 153, 0.3); color: #f472b6; }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Cards Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--oni-gray);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--oni-blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--oni-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Feature List */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--oni-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature p {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 3rem;
+            background: var(--oni-darker);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--oni-blue), var(--oni-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--oni-gray);
+            color: #64748b;
+        }
+
+        footer a {
+            color: var(--oni-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .logo {
+                font-size: 3rem;
+            }
+            .tagline {
+                font-size: 1.2rem;
+            }
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="logo">ONI</h1>
+            <p class="tagline">Organic Neurocomputing Interface Framework</p>
+            <p class="hero-desc">
+                Open-source security architecture for brain-computer interfaces.
+                Extending the OSI model with 7 neural layers (L8-L14) to protect
+                the most sensitive interface humanity will ever create.
+            </p>
+
+            <div class="cta-group">
+                <a href="visualizations/" class="btn btn-primary">
+                    <span>Explore Visualizations</span>
+                    <span>&rarr;</span>
+                </a>
+                <a href="https://github.com/qikevinl/ONI" class="btn btn-secondary">
+                    <span>View on GitHub</span>
+                </a>
+            </div>
+
+            <div class="layer-preview">
+                <span class="layer-chip layer-silicon">L1-L7 Silicon</span>
+                <span class="layer-chip layer-bridge">L8 Neural Gateway</span>
+                <span class="layer-chip layer-biology">L9-L14 Biology</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Interactive Tools</h2>
+            <p>Educational visualizations to explore neural security concepts</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon" style="background: linear-gradient(135deg, var(--oni-blue), var(--oni-purple));">
+                    <span>C</span>
+                </div>
+                <h3>Coherence Metric Playground</h3>
+                <p>Explore how phase, transport, and gain variance affect signal trustworthiness. See the math come alive.</p>
+                <a href="visualizations/01-coherence-metric-playground.html" class="card-link">
+                    Launch &rarr;
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon" style="background: linear-gradient(135deg, var(--oni-purple), var(--oni-pink));">
+                    <span>14</span>
+                </div>
+                <h3>ONI Layer Explorer</h3>
+                <p>Navigate all 14 layers from physical RF to cognitive identity. Understand attack surfaces and defenses.</p>
+                <a href="visualizations/02-oni-layer-explorer.html" class="card-link">
+                    Launch &rarr;
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon" style="background: linear-gradient(135deg, var(--oni-red), var(--oni-yellow));">
+                    <span>!</span>
+                </div>
+                <h3>Neural Kill Chain Visualizer</h3>
+                <p>Watch attacks propagate through the stack in real-time. See where defenses intercept threats.</p>
+                <a href="visualizations/03-neural-killchain-visualizer.html" class="card-link">
+                    Launch &rarr;
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon" style="background: linear-gradient(135deg, var(--oni-green), var(--oni-blue));">
+                    <span>N</span>
+                </div>
+                <h3>NSAM Checkpoint Simulator</h3>
+                <p>Become the Neural Signal Assurance Model. Analyze signals and decide what passes to the brain.</p>
+                <a href="visualizations/04-nsam-checkpoint-simulator.html" class="card-link">
+                    Launch &rarr;
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon" style="background: linear-gradient(135deg, var(--oni-pink), var(--oni-purple));">
+                    <span>S</span>
+                </div>
+                <h3>Scale-Frequency Navigator</h3>
+                <p>Zoom from milliseconds to lifetimes. Explore neural patterns across temporal scales.</p>
+                <a href="visualizations/05-scale-frequency-navigator.html" class="card-link">
+                    Launch &rarr;
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon" style="background: var(--oni-gray); border: 1px solid var(--oni-blue);">
+                    <span>+</span>
+                </div>
+                <h3>More Coming Soon</h3>
+                <p>Remotion-based video animations, 3D neural pathway visualizations, and interactive threat modeling.</p>
+                <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/resources/workflows/VISUALIZATION_AS_CODE_STRATEGY.md" class="card-link">
+                    View Roadmap &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Framework Overview</h2>
+            <p>A complete security architecture for brain-computer interfaces</p>
+        </div>
+
+        <div class="stats">
+            <div>
+                <div class="stat-value">14</div>
+                <div class="stat-label">Security Layers</div>
+            </div>
+            <div>
+                <div class="stat-value">2</div>
+                <div class="stat-label">Python Packages</div>
+            </div>
+            <div>
+                <div class="stat-value">5</div>
+                <div class="stat-label">Interactive Tools</div>
+            </div>
+            <div>
+                <div class="stat-value">15+</div>
+                <div class="stat-label">Research Partners</div>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature">
+                <div class="feature-icon">
+                    <span style="color: var(--oni-blue);">C</span>
+                </div>
+                <div>
+                    <h4>Coherence Metric</h4>
+                    <p>Mathematical formula for signal trust scoring based on variance</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <span style="color: var(--oni-yellow);">F</span>
+                </div>
+                <div>
+                    <h4>Neural Firewall</h4>
+                    <p>Zero-trust security at the L8 Neural Gateway boundary</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <span style="color: var(--oni-green);">N</span>
+                </div>
+                <div>
+                    <h4>NSAM Monitoring</h4>
+                    <p>Neural Signal Assurance Model for continuous validation</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <span style="color: var(--oni-purple);">T</span>
+                </div>
+                <div>
+                    <h4>TARA Platform</h4>
+                    <p>Threat Analysis & Risk Assessment for BCI security ops</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://github.com/qikevinl/ONI">GitHub Repository</a>
+            <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/INDEX.md">Documentation</a>
+            <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/ACADEMIC_LANDSCAPE.md">Research</a>
+            <a href="visualizations/">Visualizations</a>
+        </div>
+        <p>ONI Framework | Neural Interface Security Research</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+            Created by <a href="https://github.com/qikevinl">Kevin L. Qi</a> | Apache 2.0 License
+        </p>
+    </footer>
+</body>
+</html>
