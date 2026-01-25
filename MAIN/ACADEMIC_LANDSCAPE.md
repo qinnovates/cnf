@@ -65,7 +65,7 @@ These researchers' work is directly implemented in ONI's codebase.
 | Researcher | Role | Key Contributions | ONI Integration |
 |------------|------|-------------------|-----------------|
 | **[Tadayoshi Kohno](https://homes.cs.washington.edu/~yoshi/)** | Professor, Allen School | Coined "neurosecurity" (2009), IEEE Fellow for cybersecurity contributions | `NeurosecurityFirewall` — CIA threat model |
-| **[Tamara Bonaci](https://www.researchgate.net/profile/Tamara-Bonaci)** | PhD, Security Researcher | BCI Anonymizer patent, "brain spyware" demonstration, neural PII classification | `BCIAnonymizer` — privacy-preserving filtering |
+| **[Tamara Bonaci](https://www.researchgate.net/profile/Tamara-Bonaci)** | PhD, Security Researcher | BCI Anonymizer patent (abandoned), "brain spyware" demonstration, neural PII classification | `BCIAnonymizer` — privacy-preserving filtering |
 | **[Howard Chizeck](https://people.ece.uw.edu/chizeck/)** | Professor Emeritus, BioRobotics | Deep brain stimulator security, closed-loop neural device safety | Attack surface analysis, L8 firewall design |
 
 **Key Publications:**
