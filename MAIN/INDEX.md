@@ -243,7 +243,7 @@ The ONI Framework extends the classical OSI model with 7 additional layers for n
 
 | Project | Description |
 |---------|-------------|
-| [Visualizations](interactive-oni-visualizations/README.md) | Interactive web apps for ONI concepts (5 demos) |
+| [Visualizations](interactive-oni-visualizations/README.md) | Interactive web apps for ONI concepts (6 demos) |
 
 ---
 
@@ -456,7 +456,7 @@ MAIN/
 │   │   ├── visualization/      # Real-time dashboards
 │   │   └── ui/                 # Streamlit web interface
 │   ├── tests/                  # Unit tests (31 tests)
-│   └── visualizations/         # Interactive HTML demos (5 apps)
+│   └── visualizations/         # Interactive HTML demos (6 apps)
 │
 ├── publications/               # Research content
 │   ├── 0-oni-framework/

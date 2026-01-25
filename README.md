@@ -251,7 +251,7 @@ ONI/
     │   │   ├── visualization/   # Real-time dashboards
     │   │   └── ui/              # Streamlit web interface
     │   ├── tests/               # Unit tests
-    │   └── visualizations/      # Interactive HTML demos (5 apps)
+    │   └── visualizations/      # Interactive HTML demos (6 apps)
     │
     ├── publications/            # Research content
     │   ├── 0-oni-framework/     # Base/foundational content
