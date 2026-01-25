@@ -212,6 +212,29 @@ ls -la .git/hooks/pre-commit
 2. Add to allowlist in `patterns/secrets.json`
 3. For file-level exclusions, add to `allowlist.files`
 
+#### Historical False Positives (Resolved)
+
+**2026-01-24: Pattern definitions self-detection**
+
+The scanner was flagging its own pattern definition file (`.github/security-audit/patterns/secrets.json`) as containing secrets because it includes pattern strings like `"-----BEGIN RSA PRIVATE KEY-----"`.
+
+| Finding | File | Reason | Status |
+|---------|------|--------|--------|
+| RSA Private Key | `patterns/secrets.json:62` | Pattern definition string | **FALSE POSITIVE** |
+| OpenSSH Private Key | `patterns/secrets.json:67` | Pattern definition string | **FALSE POSITIVE** |
+| PGP Private Key | `patterns/secrets.json:72` | Pattern definition string | **FALSE POSITIVE** |
+| EC Private Key | `patterns/secrets.json:77` | Pattern definition string | **FALSE POSITIVE** |
+| DSA Private Key | `patterns/secrets.json:82` | Pattern definition string | **FALSE POSITIVE** |
+| Bearer Token | `patterns/secrets.json:130` | Pattern definition string | **FALSE POSITIVE** |
+
+**Resolution:** Added `'security-audit'` to `skip_dirs` in `scripts/audit.py` to prevent the scanner from scanning its own pattern definitions.
+
+**Verification:** No actual secrets, API keys, or credentials exist in the repository. Manual audit confirmed:
+- No `.env` files
+- No `*.pem` or `*.key` files
+- No hardcoded API keys (OpenAI, Anthropic, AWS, etc.)
+- No credential files
+
 ### Python not found
 
 ```bash
