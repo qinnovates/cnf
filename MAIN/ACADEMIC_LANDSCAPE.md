@@ -7,6 +7,34 @@
 
 ---
 
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [Tier 1: Core Foundational Research](#tier-1-core-foundational-research-directly-integrated)
+- [Tier 2: Neuroethics & Policy Research](#tier-2-neuroethics--policy-research)
+  - [University of Washington — Neuroethics Research Group](#university-of-washington--neuroethics-research-group)
+  - [Harvard Medical School — Center for Bioethics](#harvard-medical-school--center-for-bioethics)
+  - [Columbia University — NeuroRights Foundation](#columbia-university--neurorights-foundation)
+  - [ETH Zurich / TU Munich — Neurorights Theory](#eth-zurich--tu-munich--neurorights-theory)
+  - [Oxford University — Uehiro Centre](#oxford-university--uehiro-centre-for-practical-ethics)
+  - [University of British Columbia — Neuroethics Canada](#university-of-british-columbia--neuroethics-canada)
+  - [University of Pennsylvania — Center for Neuroscience & Society](#university-of-pennsylvania--center-for-neuroscience--society)
+- [Tier 3: Neural Engineering & BCI Development](#tier-3-neural-engineering--bci-development)
+  - [Stanford University — Neural Prosthetics Systems Lab](#stanford-university--neural-prosthetics-systems-lab)
+  - [Brown University — BrainGate Consortium](#brown-university--braingate-consortium)
+  - [Carnegie Mellon University — Biomedical Engineering](#carnegie-mellon-university--biomedical-engineering)
+  - [Caltech — Andersen Lab / Chen BMI Center](#caltech--andersen-lab--chen-bmi-center)
+  - [Johns Hopkins University](#johns-hopkins-university--apl--physical-medicine)
+  - [Duke University — Nicolelis Lab](#duke-university--nicolelis-lab)
+  - [Rice University — Neural Interface Lab](#rice-university--neural-interface-lab)
+- [Research Gaps ONI Addresses](#research-gaps-oni-addresses)
+- [Collaboration Opportunities](#collaboration-opportunities)
+- [Citation Practices](#citation-practices)
+- [Integrated Research Log](#integrated-research-log)
+- [Quick Reference: Key Researchers by Domain](#quick-reference-key-researchers-by-domain)
+
+---
+
 ## Executive Summary
 
 The ONI Framework sits at the intersection of three academic domains:

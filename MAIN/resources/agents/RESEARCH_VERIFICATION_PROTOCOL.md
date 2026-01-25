@@ -7,6 +7,35 @@
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [The 4-Layer Architecture](#the-4-layer-architecture)
+- [Layer 1: Truth Layer (Source Management)](#layer-1-truth-layer-source-management)
+  - [Folder Structure](#folder-structure)
+  - [Source Documentation Format](#source-documentation-format)
+  - [ONI-Specific Source Categories](#oni-specific-source-categories)
+- [Layer 2: Grounding Engine](#layer-2-grounding-engine)
+  - [Research Tools](#research-tools)
+  - [Grounding Workflow](#grounding-workflow)
+  - [Citation Requirements](#citation-requirements)
+- [Layer 3: Verification Firewall](#layer-3-verification-firewall)
+  - [Uncertainty Tagging System](#uncertainty-tagging-system)
+  - [Domain-Specific Verification](#domain-specific-verification)
+  - [Verification Checklist](#verification-checklist)
+  - [Red Flags](#red-flags-trigger-deeper-verification)
+- [Layer 4: Publication Rules](#layer-4-publication-rules)
+  - [For Claude/AI Assistants](#for-claudeai-assistants)
+  - [Publication Verification Levels](#publication-verification-levels)
+  - [Execution Blockers](#execution-blockers)
+- [Integration with Existing ONI Systems](#integration-with-existing-oni-systems)
+- [Verified Claims Template](#verified-claims-template)
+- [Quick Reference](#quick-reference)
+- [Examples from ONI Development](#examples-from-oni-development)
+- [Metrics & Improvement](#metrics--improvement)
+
+---
+
 ## Overview
 
 The ONI Framework makes claims about neuroscience, physics, quantum mechanics, and cybersecurity. Each domain requires different verification standards. This protocol ensures all research claims are grounded in peer-reviewed sources before inclusion in publications.

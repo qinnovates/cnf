@@ -8,6 +8,32 @@
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Phase 1: Discovery](#phase-1-discovery)
+  - [Researcher Monitoring](#11-researcher-monitoring)
+  - [Publication Sources to Monitor](#12-publication-sources-to-monitor)
+  - [Lab/Institution Feeds](#13-labinstitution-feeds)
+- [Phase 2: Evaluation](#phase-2-evaluation)
+  - [Relevance Assessment Matrix](#21-relevance-assessment-matrix)
+  - [Integration Type Classification](#22-integration-type-classification)
+  - [Evaluation Template](#23-evaluation-template)
+- [Phase 3: Integration](#phase-3-integration)
+  - [Integration Pathways by Type](#31-integration-pathways-by-type)
+  - [Integration Checklist](#32-integration-checklist)
+  - [Integration Tracking Table](#33-integration-tracking-table)
+- [Phase 4: Collaboration Outreach](#phase-4-collaboration-outreach)
+  - [When to Reach Out](#41-when-to-reach-out)
+  - [Outreach Template](#42-outreach-template)
+  - [Collaboration Tracking](#43-collaboration-tracking)
+- [Research Integration Queue](#research-integration-queue)
+- [Automation Opportunities](#automation-opportunities)
+- [Metrics & Success Criteria](#metrics--success-criteria)
+- [Quick Reference: Integration Decision Tree](#quick-reference-integration-decision-tree)
+
+---
+
 ## Overview
 
 This workflow connects the **ACADEMIC_LANDSCAPE.md** (who to follow) with the **research pipeline** (how to find their work) and defines how findings become ONI code, documentation, or theoretical foundations.

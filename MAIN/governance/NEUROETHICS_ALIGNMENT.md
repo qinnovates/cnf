@@ -7,6 +7,27 @@
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Privacy & Ethics Statement](#privacy--ethics-statement)
+- [Core Neuroethics Principles](#core-neuroethics-principles)
+- [Framework-to-Ethics Mapping](#framework-to-ethics-mapping)
+  - [Coherence Metric (Cₛ) → Cognitive Authenticity](#1-coherence-metric-cₛ--cognitive-authenticity)
+  - [Neural Firewall (L8) → Cognitive Liberty & Mental Integrity](#2-neural-firewall-l8--cognitive-liberty--mental-integrity)
+  - [14-Layer Model → Comprehensive Threat Mapping](#3-14-layer-model--comprehensive-threat-mapping)
+  - [Scale-Frequency Invariant → Anomaly Detection](#4-scale-frequency-invariant--anomaly-detection-for-mental-integrity)
+  - [Transport Variance → Mental Privacy Protection](#5-transport-variance--mental-privacy-protection)
+  - [Signal Rejection → Cognitive Sovereignty](#6-signal-rejection--cognitive-sovereignty)
+- [Ethical Design Decisions Summary](#ethical-design-decisions-summary)
+- [Stakeholder Perspectives (Lázaro-Muñoz Framework)](#stakeholder-perspectives-lázaro-muñoz-framework)
+- [Gaps and Future Work](#gaps-and-future-work)
+- [Alignment with Regulatory Frameworks](#alignment-with-regulatory-frameworks)
+- [For Academic Review](#for-academic-review)
+- [References](#references)
+
+---
+
 ## Overview
 
 The ONI Framework was designed with neuroethical principles as foundational constraints, not afterthoughts. This document maps each framework component to the ethical principles it protects and explains the design decisions through a neuroethics lens.

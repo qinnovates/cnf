@@ -8,6 +8,29 @@
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Scope of Application](#scope-of-application)
+- [Key Ethical Concerns](#key-ethical-concerns)
+  - [Clinician-Identified Concerns](#clinician-identified-concerns-lázaro-muñoz-et-al-2023)
+  - [Adolescent-Specific Concerns](#adolescent-specific-concerns)
+- [Consent and Assent Framework](#consent-and-assent-framework)
+  - [Tri-Level Authorization Model](#tri-level-authorization-model)
+  - [Age-Appropriate Assent](#age-appropriate-assent)
+  - [Dissent Handling](#dissent-handling)
+- [Developmental Considerations](#developmental-considerations)
+  - [The Developing Brain](#the-developing-brain)
+  - [Transition to Adult Care](#transition-to-adult-care)
+- [Incapacity Considerations](#incapacity-considerations)
+  - [Variable Capacity](#variable-capacity)
+  - [Advance Directives for Neural Devices](#advance-directives-for-neural-devices)
+- [Special Protections](#special-protections)
+- [Integration with ONI Framework](#integration-with-oni-framework)
+- [References](#references)
+
+---
+
 ## Overview
 
 This document addresses the unique ethical challenges of deploying neural devices in pediatric populations and individuals who cannot provide full autonomous consent. It is informed by extensive research from [Gabriel Lázaro-Muñoz and colleagues](https://pmc.ncbi.nlm.nih.gov/articles/PMC10586720/) whose NIH-funded studies (R01MH121371) have examined pediatric deep brain stimulation ethics.

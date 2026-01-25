@@ -8,6 +8,28 @@
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Core Consent Requirements](#core-consent-requirements)
+  - [Pre-Deployment Consent](#1-pre-deployment-consent)
+  - [Continuous Consent Model](#2-continuous-consent-model)
+  - [Understanding Requirements](#3-understanding-requirements)
+- [Consent Validation in ONI Framework](#consent-validation-in-oni-framework)
+  - [Integration with Neural Firewall (L8)](#integration-with-neural-firewall-l8)
+  - [Consent as Authentication Requirement](#consent-as-authentication-requirement)
+  - [Consent Revocation Rights](#consent-revocation-rights)
+- [Stakeholder Perspectives](#stakeholder-perspectives)
+- [Special Consent Considerations](#special-consent-considerations)
+  - [Automaticity and Control](#automaticity-and-control)
+  - [Enhancement vs. Treatment](#enhancement-vs-treatment)
+- [Consent Documentation Requirements](#consent-documentation-requirements)
+- [Integration with ONI Modules](#integration-with-oni-modules)
+- [Gaps and Future Work](#gaps-and-future-work)
+- [References](#references)
+
+---
+
 ## Overview
 
 This document establishes informed consent requirements for ONI-compliant neural devices. It draws on empirical neuroethics research, particularly the work of [Gabriel Lázaro-Muñoz and colleagues](https://bioethics.hms.harvard.edu/faculty-staff/gabriel-lazaro-munoz) at Harvard Medical School and Massachusetts General Hospital, who have conducted extensive research on consent challenges in adaptive deep brain stimulation (aDBS) and brain-computer interfaces.

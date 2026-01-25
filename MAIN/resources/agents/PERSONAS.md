@@ -7,6 +7,30 @@
 
 ---
 
+## Table of Contents
+
+- [Why Personas Matter for ONI](#why-personas-matter-for-oni)
+  - [The Research Echo Chamber Problem](#the-research-echo-chamber-problem)
+  - [The Solution: Cognitive Diversity by Domain](#the-solution-cognitive-diversity-by-domain)
+  - [The DaVinci Principle Applied to Research](#the-davinci-principle-applied-to-research)
+- [System Overview: The ONI Persona Map](#system-overview-the-oni-persona-map)
+- [Quick Reference Chart](#quick-reference-chart)
+- [The Persona System](#the-persona-system)
+  - [Primary Reasoning Agent (AURORA)](#primary-reasoning-agent)
+  - [Verification Agents (SOCRATES, GÖDEL, FARADAY)](#verification-agents-research-firewall)
+  - [Documentation & Execution Agents (HYPATIA, ARCHIMEDES, EDITOR)](#documentation--execution-agents)
+- [How Personas Work Together](#how-personas-work-together)
+- [Workflow Templates](#workflow-templates)
+  - [Research Deep Dive](#research-deep-dive)
+  - [Publication Verification](#publication-verification)
+  - [Novel Hypothesis Development](#novel-hypothesis-development)
+- [Personas NOT Needed for ONI](#personas-not-needed-for-oni)
+- [Integration Points](#integration-points)
+- [Quick Reference](#quick-reference)
+- [Creating Domain-Specific Personas](#creating-domain-specific-personas)
+
+---
+
 ## Why Personas Matter for ONI
 
 ### The Research Echo Chamber Problem

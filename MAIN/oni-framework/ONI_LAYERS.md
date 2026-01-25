@@ -4,6 +4,28 @@
 
 ---
 
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [Privacy & Ethics Statement](#privacy--ethics-statement)
+- [Complete 14-Layer Model](#complete-14-layer-model)
+  - [OSI Stack — Classical Networking (L1-L7)](#osi-stack--classical-networking-l1-l7)
+  - [ONI Extension Stack — Neural & Cognitive Systems (L8-L14)](#oni-extension-stack--neural--cognitive-systems-l8-l14)
+- [Visual Summary](#visual-summary)
+- [Why This Architecture Works](#why-this-architecture-works)
+- [Threat Landscape by Layer](#threat-landscape-by-layer)
+- [External Physical Threats](#external-physical-threats)
+- [Coherence Score (Cₛ) Across Layers](#coherence-score-cₛ-across-layers)
+- [Scale-Frequency Invariant](#scale-frequency-invariant)
+- [Implementation Guide](#implementation-guide)
+  - [For BCI Developers](#for-bci-developers)
+  - [For Security Researchers](#for-security-researchers)
+  - [For Neuroethicists](#for-neuroethicists)
+- [References](#references)
+- [Changelog](#changelog)
+
+---
+
 ## Executive Summary
 
 The ONI Framework extends the classical OSI 7-layer networking model with 7 additional layers (L8-L14) specifically designed for neural and cognitive systems. This creates a complete security model for brain-computer interfaces.

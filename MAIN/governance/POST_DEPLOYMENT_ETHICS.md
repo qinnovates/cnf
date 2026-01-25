@@ -8,6 +8,29 @@
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [The Post-Deployment Gap](#the-post-deployment-gap)
+  - [Current Reality](#current-reality)
+  - [Ethical Problem Statement](#ethical-problem-statement)
+- [ONI Framework Obligations](#oni-framework-obligations)
+  - [Lifecycle Planning Requirement](#1-lifecycle-planning-requirement)
+  - [Maintenance Obligation Categories](#2-maintenance-obligation-categories)
+  - [Abandonment Prevention](#3-abandonment-prevention)
+- [Transition Planning](#transition-planning)
+  - [Pre-Deployment Disclosure Requirements](#pre-deployment-disclosure-requirements)
+  - [Transition Decision Framework](#transition-decision-framework)
+  - [Ethical Decision Criteria](#ethical-decision-criteria)
+- [Cost and Access Barriers](#cost-and-access-barriers)
+- [Device Removal Ethics](#device-removal-ethics)
+- [Stakeholder Responsibilities](#stakeholder-responsibilities)
+- [Integration with ONI Modules](#integration-with-oni-modules)
+- [Future Work](#future-work)
+- [References](#references)
+
+---
+
 ## Overview
 
 This document addresses the ethical obligations that extend beyond initial device deployment. It is informed by groundbreaking research from [Gabriel Lázaro-Muñoz et al.](https://pubmed.ncbi.nlm.nih.gov/35926784/) at Harvard Medical School and Massachusetts General Hospital, whose 2022 *Brain Stimulation* paper represents the first in-depth examination of post-trial access challenges for implanted neural devices.
