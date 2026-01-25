@@ -3,7 +3,7 @@
 > **Purpose:** Persistent learnings from Ralph Loop iterations. AI agents read this file at the start of each session to benefit from discovered patterns, gotchas, and conventions.
 
 **Last Updated:** 2026-01-24
-**Loop Iterations:** 5
+**Loop Iterations:** 7
 
 ---
 
@@ -25,6 +25,7 @@
 | 2026-01-24 | Persona system implemented for research verification | 7 personas: AURORA, SOCRATES, GÖDEL, FARADAY, HYPATIA, ARCHIMEDES, EDITOR |
 | 2026-01-24 | Uncertainty tagging system: ✅ ⚠️ 🔍 ❌ 🔬 | All claims must be tagged before publication |
 | 2026-01-24 | **L9-L14 domain error found in 6+ files** — labeled as "Silicon" but should be "Biology" | Fixed ONI_LAYERS.md, README.md, NEUROETHICS_ALIGNMENT.md, layer_validation.md, prototype-mvp files |
+| 2026-01-24 | **Comprehensive PM system implemented** — KANBAN.md + PROJECT_MANAGEMENT.md | Risk Impact Assessment (L×I matrix), Priority Framework (P0-P3), Scope Change Requests, Milestone roadmap |
 
 ### Patterns Established
 
@@ -274,6 +275,53 @@ L14: Identity & Ethics         (Biology)
 
 ---
 
+## Project Management Learnings
+
+### PM System Architecture
+
+| Component | File | Purpose |
+|-----------|------|---------|
+| **PROJECT_MANAGEMENT.md** | `MAIN/project/` | Master doc: scope, risks, priorities, milestones, metrics |
+| **KANBAN.md** | `MAIN/project/` | Visual board: Backlog → To Do → In Progress → In Review → Done |
+| **prd.json** | `MAIN/project/` | Machine-readable task data with exit conditions |
+
+### Risk Impact Assessment (RIA)
+
+**Formula:** `Risk Score = Likelihood (1-5) × Impact (1-5)`
+
+| Score Range | Level | Action |
+|-------------|-------|--------|
+| 1-4 | Low | Accept/monitor |
+| 5-9 | Medium | Mitigate |
+| 10-14 | High | Mitigate actively |
+| 15-25 | Critical | Avoid or escalate |
+
+### Priority Framework
+
+| Level | Meaning | SLA |
+|-------|---------|-----|
+| **P0** | Blocks all work, security/data issue | Immediate |
+| **P1** | Important for current milestone | Same sprint |
+| **P2** | Nice to have, incremental improvement | Next sprint |
+| **P3** | Future enhancement, exploration | Backlog |
+
+### Key Patterns
+
+- **WIP Limits:** 3 in progress, 2 in review — prevents overcommitment
+- **Exit Conditions:** Every task must have machine-verifiable completion criteria
+- **Scope Change Requests:** Document impact before approving new features
+- **Milestone-Driven:** Q1-Q4 2026 roadmap with clear deliverables
+
+### Critical Risks Identified
+
+| Risk | Score | Status |
+|------|-------|--------|
+| No empirical Cₛ validation | 16 (Critical) | Open — MOABB benchmarks planned |
+| Single contributor (bus factor=1) | 20 (Critical) | Monitoring — documentation helps |
+| Code-documentation drift | 9 (Medium) | Mitigated — Editor Agent |
+
+---
+
 ## Future Iteration Notes
 
 ### Pending Investigations
@@ -294,11 +342,12 @@ L14: Identity & Ethics         (Biology)
 
 | Metric | Value |
 |--------|-------|
-| Total Iterations | 6 |
-| Learnings Captured | 27 |
+| Total Iterations | 7 |
+| Learnings Captured | 28 |
 | Gotchas Documented | 8 |
-| Patterns Established | 16 |
+| Patterns Established | 20 |
 | Personas Defined | 7 |
+| PM Documents | 3 |
 
 ---
 

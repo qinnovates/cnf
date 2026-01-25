@@ -69,8 +69,23 @@ pip install oni-tara
 | [tara.neurosecurity](tara-neural-security-platform/tara/neurosecurity/) | Kohno rules integration | `NeurosecurityMonitor` |
 | [tara.data](tara-neural-security-platform/tara/data/) | Data models & external datasets | `MOABBAdapter`, `BrainRegion`, `BCINode` |
 | [tara.ui](tara-neural-security-platform/tara/ui/) | Streamlit web interface | `tara ui` command |
+| [visualizations/](tara-neural-security-platform/visualizations/) | Interactive HTML apps | ONI Visualization Suite |
 
 **Documentation:** [tara-neural-security-platform/README.md](tara-neural-security-platform/README.md) | **CLI:** `tara --help`
+
+#### ONI Visualization Suite
+
+Five interactive HTML applications for education and demonstration:
+
+| App | Purpose | Research Alignment |
+|-----|---------|-------------------|
+| [Coherence Playground](tara-neural-security-platform/visualizations/01-coherence-metric-playground.html) | Real-time Cₛ calculation | Signal integrity (Kohno 2009) |
+| [Layer Explorer](tara-neural-security-platform/visualizations/02-oni-layer-explorer.html) | Interactive 14-layer navigation | ONI Framework model |
+| [Kill Chain Visualizer](tara-neural-security-platform/visualizations/03-neural-killchain-visualizer.html) | Attack propagation animation | Attack patterns (Bonaci 2015) |
+| [NSAM Checkpoint Sim](tara-neural-security-platform/visualizations/04-nsam-checkpoint-simulator.html) | Gamified signal validation | NSAM pipeline |
+| [Scale-Frequency Nav](tara-neural-security-platform/visualizations/05-scale-frequency-navigator.html) | Temporal scale exploration | f × S ≈ k invariant |
+
+**Quick Start:** Open `tara-neural-security-platform/visualizations/index.html` in a browser.
 
 #### MOABB Integration (External Datasets)
 
