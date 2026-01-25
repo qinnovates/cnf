@@ -223,22 +223,21 @@ ONI/
     │   │   └── neurosecurity/   # Kohno threat model + BCI Anonymizer
     │   └── tests/               # Unit tests
     │
-    ├── tara-neural-security-platform/  # TARA package config (pip install oni-tara)
+    ├── tara-neural-security-platform/  # TARA package (pip install oni-tara)
     │   ├── pyproject.toml       # Package configuration
     │   ├── README.md            # Platform documentation
-    │   └── LICENSE              # Apache 2.0
-    │
-    ├── prototype-mvp/           # Working prototypes and source code
-    │   ├── tara/                # TARA source modules
+    │   ├── LICENSE              # Apache 2.0
+    │   ├── tara/                # Source modules
     │   │   ├── core/            # ONI security primitives
     │   │   ├── simulation/      # Neural network simulation
     │   │   ├── attacks/         # Attack testing & scenarios
     │   │   ├── nsam/            # Neural Signal Assurance Monitoring
     │   │   ├── neurosecurity/   # Kohno rules integration
+    │   │   ├── data/            # Data models & adapters
     │   │   ├── visualization/   # Real-time dashboards
     │   │   └── ui/              # Streamlit web interface
     │   ├── tests/               # Unit tests
-    │   └── visualizations/      # Interactive HTML visualizations
+    │   └── visualizations/      # Interactive HTML demos (5 apps)
     │
     ├── publications/            # Research content
     │   ├── 0-oni-framework/     # Base/foundational content
