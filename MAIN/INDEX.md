@@ -69,7 +69,7 @@ pip install oni-tara
 | [tara.neurosecurity](tara-neural-security-platform/tara_mvp/neurosecurity/) | Kohno rules integration | `NeurosecurityMonitor` |
 | [tara.data](tara-neural-security-platform/tara_mvp/data/) | Data models & external datasets | `MOABBAdapter`, `BrainRegion`, `BCINode` |
 | [tara.ui](tara-neural-security-platform/tara_mvp/ui/) | Streamlit web interface | `tara ui` command |
-| [visualizations/](interactive-concept-demo/) | Interactive HTML apps | ONI Visualization Suite |
+| [visualizations/](interactive-oni-visualizations/) | Interactive HTML apps | ONI Visualization Suite |
 
 **Documentation:** [tara-neural-security-platform/README.md](tara-neural-security-platform/README.md) | **CLI:** `tara --help`
 
@@ -79,13 +79,13 @@ Five interactive HTML applications for education and demonstration:
 
 | App | Purpose | Research Alignment |
 |-----|---------|-------------------|
-| [Coherence Playground](interactive-concept-demo/01-coherence-metric-playground.html) | Real-time Cₛ calculation | Signal integrity (Kohno 2009) |
-| [Layer Explorer](interactive-concept-demo/02-oni-layer-explorer.html) | Interactive 14-layer navigation | ONI Framework model |
-| [Kill Chain Visualizer](interactive-concept-demo/03-neural-killchain-visualizer.html) | Attack propagation animation | Attack patterns (Bonaci 2015) |
-| [NSAM Checkpoint Sim](interactive-concept-demo/04-nsam-checkpoint-simulator.html) | Gamified signal validation | NSAM pipeline |
-| [Scale-Frequency Nav](interactive-concept-demo/05-scale-frequency-navigator.html) | Temporal scale exploration | f × S ≈ k invariant |
+| [Coherence Playground](interactive-oni-visualizations/01-coherence-metric-playground.html) | Real-time Cₛ calculation | Signal integrity (Kohno 2009) |
+| [Layer Explorer](interactive-oni-visualizations/02-oni-layer-explorer.html) | Interactive 14-layer navigation | ONI Framework model |
+| [Kill Chain Visualizer](interactive-oni-visualizations/03-neural-killchain-visualizer.html) | Attack propagation animation | Attack patterns (Bonaci 2015) |
+| [NSAM Checkpoint Sim](interactive-oni-visualizations/04-nsam-checkpoint-simulator.html) | Gamified signal validation | NSAM pipeline |
+| [Scale-Frequency Nav](interactive-oni-visualizations/05-scale-frequency-navigator.html) | Temporal scale exploration | f × S ≈ k invariant |
 
-**Quick Start:** Open `interactive-concept-demo/index.html` in a browser.
+**Quick Start:** Open `interactive-oni-visualizations/index.html` in a browser.
 
 #### GitHub Pages Live Demo
 
@@ -242,7 +242,7 @@ The ONI Framework extends the classical OSI model with 7 additional layers for n
 
 | Project | Description |
 |---------|-------------|
-| [Visualizations](interactive-concept-demo/README.md) | Interactive web apps for ONI concepts (5 demos) |
+| [Visualizations](interactive-oni-visualizations/README.md) | Interactive web apps for ONI concepts (5 demos) |
 
 ---
 

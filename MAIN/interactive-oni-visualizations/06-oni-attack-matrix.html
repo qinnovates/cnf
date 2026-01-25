@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONI Threat Matrix | Neural Security Framework</title>
+    <meta name="description" content="Threat matrix for brain-computer interface security inspired by the MITRE ATT&CK framework. 7 tactics, 21 techniques mapped to ONI layers.">
+    <style>
+        :root {
+            --oni-dark: #0a0e17;
+            --oni-darker: #060912;
+            --oni-blue: #00d4ff;
+            --oni-purple: #8b5cf6;
+            --oni-pink: #ec4899;
+            --oni-green: #10b981;
+            --oni-yellow: #f59e0b;
+            --oni-red: #ef4444;
+            --oni-orange: #f97316;
+            --oni-indigo: #6366f1;
+            --oni-gray: #1e293b;
+            --oni-gray-light: #334155;
+            --oni-light: #e2e8f0;
+
+            /* Tactic Colors (Incremental gradient: cool → warm) */
+            --tactic-recon: #3b82f6;      /* Blue - passive gathering */
+            --tactic-access: #6366f1;     /* Indigo - entry */
+            --tactic-exec: #8b5cf6;       /* Purple - active */
+            --tactic-persist: #a855f7;    /* Violet - establishing */
+            --tactic-evade: #d946ef;      /* Fuchsia - hiding */
+            --tactic-collect: #ec4899;    /* Pink - extracting */
+            --tactic-impact: #ef4444;     /* Red - harm */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--oni-dark);
+            color: var(--oni-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            padding: 1.25rem 2rem;
+            background: var(--oni-darker);
+            border-bottom: 1px solid var(--oni-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-link {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--oni-blue); }
+
+        .header h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--oni-red), var(--oni-orange), var(--oni-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-subtitle {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 0.125rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mitre-credit {
+            font-size: 0.75rem;
+            color: #64748b;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            border: 1px solid var(--oni-gray);
+        }
+
+        .mitre-credit a {
+            color: var(--oni-blue);
+            text-decoration: none;
+        }
+
+        .mitre-credit a:hover { text-decoration: underline; }
+
+        /* Filter Bar */
+        .filter-bar {
+            padding: 1rem 2rem;
+            background: var(--oni-darker);
+            border-bottom: 1px solid var(--oni-gray);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 0.4rem 0.875rem;
+            background: var(--oni-gray);
+            border: 1px solid transparent;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-chip:hover {
+            background: var(--oni-gray-light);
+            color: var(--oni-light);
+        }
+
+        .filter-chip.active {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: var(--oni-blue);
+            color: var(--oni-blue);
+        }
+
+        .filter-chip .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            gap: 2rem;
+            margin-left: auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--oni-blue);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 140px);
+        }
+
+        /* Matrix Container */
+        .matrix-container {
+            flex: 1;
+            overflow: auto;
+            padding: 1.5rem;
+        }
+
+        /* ATT&CK Matrix Grid */
+        .attack-matrix {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(180px, 1fr));
+            gap: 0.75rem;
+            min-width: 1300px;
+        }
+
+        /* Tactic Column */
+        .tactic-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .tactic-header {
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .tactic-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .tactic-id {
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+
+        .tactic-count {
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Technique Card */
+        .technique-card {
+            background: var(--oni-gray);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .technique-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .technique-card.active {
+            border-color: var(--oni-blue);
+            box-shadow: 0 0 0 1px var(--oni-blue), 0 8px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .technique-card.filtered-out {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .technique-id {
+            font-size: 0.65rem;
+            color: #64748b;
+            margin-bottom: 0.375rem;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+
+        .technique-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .technique-layers {
+            display: flex;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+        }
+
+        .layer-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .layer-badge.l7 { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .layer-badge.l8 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .layer-badge.l9 { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+        .layer-badge.l10 { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+        .layer-badge.l11 { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .layer-badge.l12 { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
+        .layer-badge.l13 { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+        .layer-badge.l14 { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+
+        /* Severity indicator */
+        .severity-dot {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .severity-critical { background: var(--oni-red); }
+        .severity-high { background: var(--oni-orange); }
+        .severity-medium { background: var(--oni-yellow); }
+
+        /* Detail Panel */
+        .detail-panel {
+            width: 420px;
+            background: var(--oni-darker);
+            border-left: 1px solid var(--oni-gray);
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .detail-panel.hidden {
+            transform: translateX(100%);
+            width: 0;
+            border: none;
+        }
+
+        .detail-content {
+            padding: 1.5rem;
+        }
+
+        .detail-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--oni-gray);
+        }
+
+        .detail-tactic {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+        }
+
+        .detail-title {
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-id {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+
+        /* Info Sections */
+        .info-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-section-title svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .info-text {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+
+        /* Target Layers */
+        .target-layers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .target-layer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.875rem;
+            background: var(--oni-gray);
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .target-layer .layer-num {
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .target-layer .layer-name {
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        /* Mitigations */
+        .mitigation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.625rem;
+        }
+
+        .mitigation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .mitigation-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--oni-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.7rem;
+        }
+
+        /* Detection */
+        .detection-item {
+            padding: 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detection-source {
+            font-weight: 600;
+            color: var(--oni-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        /* CIA Impact */
+        .cia-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .cia-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--oni-gray);
+            border-radius: 8px;
+        }
+
+        .cia-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .cia-value {
+            font-size: 1.5rem;
+        }
+
+        .cia-value.high { color: var(--oni-red); }
+        .cia-value.medium { color: var(--oni-yellow); }
+        .cia-value.low { color: var(--oni-green); }
+
+        /* Close button */
+        .close-panel {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--oni-gray);
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .close-panel:hover {
+            background: var(--oni-gray-light);
+            color: var(--oni-light);
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #64748b;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .detail-panel { width: 360px; }
+        }
+
+        @media (max-width: 900px) {
+            .main-container { flex-direction: column; }
+            .detail-panel {
+                width: 100%;
+                height: 50vh;
+                border-left: none;
+                border-top: 1px solid var(--oni-gray);
+            }
+            .detail-panel.hidden { transform: translateY(100%); height: 0; }
+            .matrix-container { height: auto; }
+            .header { flex-direction: column; gap: 1rem; text-align: center; }
+            .header-right { justify-content: center; }
+            .filter-bar { justify-content: center; }
+            .stats-bar { margin-left: 0; }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .technique-card.highlight {
+            animation: pulse 1s ease-in-out 3;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back
+            </a>
+            <div>
+                <h1>ONI Threat Matrix</h1>
+                <p class="header-subtitle">Neural Security Framework for BCIs</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="mitre-credit">
+                Methodology inspired by <a href="https://attack.mitre.org/" target="_blank" rel="noopener">MITRE ATT&CK</a>&reg;
+            </div>
+        </div>
+    </header>
+
+    <div class="filter-bar">
+        <span class="filter-label">Filter by ONI Layer:</span>
+        <div class="filter-chips">
+            <button class="filter-chip active" data-layer="all">
+                All Layers
+            </button>
+            <button class="filter-chip" data-layer="L7-L8">
+                <span class="dot" style="background: linear-gradient(135deg, #3b82f6, #f59e0b);"></span>
+                L7-L8 Gateway
+            </button>
+            <button class="filter-chip" data-layer="L9-L10">
+                <span class="dot" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);"></span>
+                L9-L10 Signal
+            </button>
+            <button class="filter-chip" data-layer="L11-L12">
+                <span class="dot" style="background: linear-gradient(135deg, #10b981, #06b6d4);"></span>
+                L11-L12 Cognitive
+            </button>
+            <button class="filter-chip" data-layer="L13-L14">
+                <span class="dot" style="background: linear-gradient(135deg, #f97316, #ef4444);"></span>
+                L13-L14 Identity
+            </button>
+        </div>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Tactics</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">21</div>
+                <div class="stat-label">Techniques</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">8</div>
+                <div class="stat-label">ONI Layers</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="matrix-container">
+            <div class="attack-matrix" id="attackMatrix">
+                <!-- Matrix will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <aside class="detail-panel hidden" id="detailPanel">
+            <div class="detail-content" id="detailContent">
+                <div class="empty-state">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <h3>Select a Technique</h3>
+                    <p>Click on any technique card to view detailed information, mitigations, and detection methods.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // ONI ATT&CK Matrix Data
+        const ATTACK_MATRIX = {
+            "Reconnaissance": {
+                id: "TA0001",
+                color: "#3b82f6",
+                description: "Gathering information about the target BCI system",
+                techniques: [
+                    {
+                        id: "ONI-T001",
+                        name: "Signal Profiling",
+                        description: "Passive monitoring and analysis of neural signal patterns to understand communication protocols, timing characteristics, and signal baselines. Attackers collect data without active interference to avoid detection.",
+                        layers: ["L7", "L8"],
+                        severity: "medium",
+                        cia: { c: "high", i: "low", a: "low" },
+                        mitigations: [
+                            "Implement signal encryption at L7",
+                            "Use frequency hopping protocols",
+                            "Deploy RF shielding for wireless BCIs"
+                        ],
+                        detection: [
+                            { source: "RF Monitoring", method: "Detect unauthorized receivers in proximity" },
+                            { source: "Signal Analysis", method: "Identify unusual monitoring patterns" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T002",
+                        name: "Side-Channel Analysis",
+                        description: "Extracting sensitive information through timing variations, power consumption patterns, or electromagnetic emissions from BCI hardware components.",
+                        layers: ["L7", "L8", "L9"],
+                        severity: "high",
+                        cia: { c: "high", i: "low", a: "low" },
+                        mitigations: [
+                            "Implement constant-time algorithms",
+                            "Add power consumption noise",
+                            "Use EM shielding on sensitive components"
+                        ],
+                        detection: [
+                            { source: "Power Monitoring", method: "Detect unusual power consumption probes" },
+                            { source: "EM Scanning", method: "Identify unauthorized EM measurement devices" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T003",
+                        name: "Network Mapping",
+                        description: "Discovering the topology of BCI node networks, identifying communication pathways between electrodes, processing units, and external interfaces.",
+                        layers: ["L7", "L8"],
+                        severity: "medium",
+                        cia: { c: "medium", i: "low", a: "low" },
+                        mitigations: [
+                            "Implement network segmentation",
+                            "Use dynamic addressing",
+                            "Deploy honeypot nodes"
+                        ],
+                        detection: [
+                            { source: "Network Monitor", method: "Detect scanning patterns" },
+                            { source: "L8 Firewall", method: "Log enumeration attempts" }
+                        ]
+                    }
+                ]
+            },
+            "Initial Access": {
+                id: "TA0002",
+                color: "#6366f1",
+                description: "Techniques to gain initial foothold in the BCI system",
+                techniques: [
+                    {
+                        id: "ONI-T004",
+                        name: "Electrode Compromise",
+                        description: "Physical manipulation or replacement of neural electrodes to inject malicious signals or intercept legitimate neural data at the hardware level.",
+                        layers: ["L8", "L9"],
+                        severity: "critical",
+                        cia: { c: "high", i: "high", a: "high" },
+                        mitigations: [
+                            "Implement electrode authentication",
+                            "Use tamper-evident seals",
+                            "Deploy impedance monitoring for changes"
+                        ],
+                        detection: [
+                            { source: "Impedance Check", method: "Detect electrode tampering via impedance changes" },
+                            { source: "Physical Security", method: "Monitor for unauthorized access" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T005",
+                        name: "RF Protocol Exploitation",
+                        description: "Exploiting vulnerabilities in wireless BCI communication protocols to gain unauthorized access to the neural interface system.",
+                        layers: ["L7", "L8"],
+                        severity: "critical",
+                        cia: { c: "high", i: "high", a: "medium" },
+                        mitigations: [
+                            "Use authenticated encryption",
+                            "Implement protocol hardening",
+                            "Deploy intrusion detection at L8"
+                        ],
+                        detection: [
+                            { source: "RF Monitor", method: "Detect protocol anomalies" },
+                            { source: "L8 Firewall", method: "Block unauthorized protocol messages" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T006",
+                        name: "Firmware Backdoor",
+                        description: "Compromising BCI firmware through supply chain attacks or update mechanisms to establish persistent unauthorized access.",
+                        layers: ["L7", "L8", "L9"],
+                        severity: "critical",
+                        cia: { c: "high", i: "high", a: "high" },
+                        mitigations: [
+                            "Implement secure boot",
+                            "Use signed firmware updates",
+                            "Verify supply chain integrity"
+                        ],
+                        detection: [
+                            { source: "Firmware Audit", method: "Compare against known-good hashes" },
+                            { source: "Behavioral Analysis", method: "Detect unexpected firmware behavior" }
+                        ]
+                    }
+                ]
+            },
+            "Execution": {
+                id: "TA0003",
+                color: "#8b5cf6",
+                description: "Running malicious signals or commands in the BCI",
+                techniques: [
+                    {
+                        id: "ONI-T007",
+                        name: "Signal Injection",
+                        description: "Injecting crafted neural signals that mimic legitimate brain activity to trigger unauthorized actions or corrupt neural processing.",
+                        layers: ["L9", "L10", "L11"],
+                        severity: "critical",
+                        cia: { c: "medium", i: "high", a: "high" },
+                        mitigations: [
+                            "Implement coherence validation at L8",
+                            "Use signal authentication",
+                            "Deploy anomaly detection on signal patterns"
+                        ],
+                        detection: [
+                            { source: "Coherence Metric", method: "Detect signals with abnormal Cs scores" },
+                            { source: "Pattern Analysis", method: "Identify non-biological signal characteristics" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T008",
+                        name: "Protocol Manipulation",
+                        description: "Exploiting weaknesses in neural data protocols to inject commands or alter data formatting in ways that bypass security controls.",
+                        layers: ["L10", "L11"],
+                        severity: "high",
+                        cia: { c: "medium", i: "high", a: "medium" },
+                        mitigations: [
+                            "Implement protocol integrity checks",
+                            "Use message authentication codes",
+                            "Validate all protocol fields"
+                        ],
+                        detection: [
+                            { source: "Protocol Monitor", method: "Detect malformed protocol messages" },
+                            { source: "L10 Validation", method: "Flag protocol violations" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T009",
+                        name: "Command Hijacking",
+                        description: "Intercepting and modifying motor commands or cognitive instructions as they transit through the BCI system.",
+                        layers: ["L11", "L12", "L13"],
+                        severity: "critical",
+                        cia: { c: "medium", i: "high", a: "high" },
+                        mitigations: [
+                            "Implement end-to-end encryption",
+                            "Use command authentication",
+                            "Deploy integrity verification at L12"
+                        ],
+                        detection: [
+                            { source: "Command Audit", method: "Verify command source and integrity" },
+                            { source: "Behavioral Check", method: "Detect commands inconsistent with user intent" }
+                        ]
+                    }
+                ]
+            },
+            "Persistence": {
+                id: "TA0004",
+                color: "#a855f7",
+                description: "Maintaining access to the compromised BCI system",
+                techniques: [
+                    {
+                        id: "ONI-T010",
+                        name: "Pattern Lock",
+                        description: "Embedding recurring attack patterns that survive system resets by exploiting learned neural pathways or stored calibration data.",
+                        layers: ["L10", "L11"],
+                        severity: "high",
+                        cia: { c: "medium", i: "high", a: "medium" },
+                        mitigations: [
+                            "Implement pattern integrity verification",
+                            "Regular calibration audits",
+                            "Secure storage for learned patterns"
+                        ],
+                        detection: [
+                            { source: "Pattern Analysis", method: "Detect unauthorized pattern modifications" },
+                            { source: "Calibration Check", method: "Verify calibration data integrity" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T011",
+                        name: "Memory Implant",
+                        description: "Persistent modification of neural pathway configurations or cognitive associations that survive across sessions.",
+                        layers: ["L11", "L12"],
+                        severity: "critical",
+                        cia: { c: "medium", i: "high", a: "medium" },
+                        mitigations: [
+                            "Implement memory integrity checks",
+                            "Use session isolation",
+                            "Deploy cognitive state verification"
+                        ],
+                        detection: [
+                            { source: "State Comparison", method: "Detect unexpected cognitive state changes" },
+                            { source: "Session Analysis", method: "Identify cross-session anomalies" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T012",
+                        name: "Calibration Poisoning",
+                        description: "Subtly corrupting BCI calibration data to maintain influence over signal interpretation across device resets.",
+                        layers: ["L9", "L10"],
+                        severity: "high",
+                        cia: { c: "low", i: "high", a: "medium" },
+                        mitigations: [
+                            "Cryptographically sign calibration data",
+                            "Implement calibration verification",
+                            "Regular recalibration audits"
+                        ],
+                        detection: [
+                            { source: "Calibration Audit", method: "Compare against baseline calibration" },
+                            { source: "Performance Monitor", method: "Detect calibration drift" }
+                        ]
+                    }
+                ]
+            },
+            "Defense Evasion": {
+                id: "TA0005",
+                color: "#d946ef",
+                description: "Avoiding detection by BCI security systems",
+                techniques: [
+                    {
+                        id: "ONI-T013",
+                        name: "Coherence Mimicry",
+                        description: "Crafting malicious signals that maintain legitimate coherence scores to bypass the Neural Firewall's signal validation.",
+                        layers: ["L8", "L9"],
+                        severity: "high",
+                        cia: { c: "medium", i: "high", a: "low" },
+                        mitigations: [
+                            "Implement multi-factor signal validation",
+                            "Use behavioral analysis beyond coherence",
+                            "Deploy ensemble detection methods"
+                        ],
+                        detection: [
+                            { source: "Behavioral Analysis", method: "Detect signals with unusual context" },
+                            { source: "Ensemble Detection", method: "Use multiple validation metrics" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T014",
+                        name: "Gradual Drift",
+                        description: "Slowly modifying neural parameters below detection thresholds to accumulate significant changes over time.",
+                        layers: ["L9", "L10"],
+                        severity: "medium",
+                        cia: { c: "low", i: "high", a: "low" },
+                        mitigations: [
+                            "Implement long-term baseline tracking",
+                            "Use cumulative change detection",
+                            "Regular security audits"
+                        ],
+                        detection: [
+                            { source: "Trend Analysis", method: "Detect slow parameter drift" },
+                            { source: "Baseline Comparison", method: "Compare against historical baselines" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T015",
+                        name: "Noise Injection",
+                        description: "Adding carefully calibrated noise to mask malicious signal components from detection algorithms.",
+                        layers: ["L8", "L9"],
+                        severity: "medium",
+                        cia: { c: "low", i: "medium", a: "low" },
+                        mitigations: [
+                            "Implement noise-resilient detection",
+                            "Use signal denoising preprocessing",
+                            "Deploy multiple detection channels"
+                        ],
+                        detection: [
+                            { source: "Noise Analysis", method: "Detect unusual noise patterns" },
+                            { source: "Multi-Channel", method: "Cross-validate across channels" }
+                        ]
+                    }
+                ]
+            },
+            "Collection": {
+                id: "TA0006",
+                color: "#ec4899",
+                description: "Gathering sensitive neural data from the BCI",
+                techniques: [
+                    {
+                        id: "ONI-T016",
+                        name: "ERP Harvesting",
+                        description: "Extracting event-related potentials (P300, N170, N400) that reveal cognitive states, recognition, and decision-making processes.",
+                        layers: ["L12", "L13", "L14"],
+                        severity: "critical",
+                        cia: { c: "high", i: "low", a: "low" },
+                        mitigations: [
+                            "Implement BCI Anonymizer filtering",
+                            "Use ERP obfuscation",
+                            "Deploy privacy-preserving signal processing"
+                        ],
+                        detection: [
+                            { source: "ERP Monitor", method: "Detect unusual ERP extraction patterns" },
+                            { source: "Data Flow Analysis", method: "Track ERP data destinations" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T017",
+                        name: "Cognitive State Capture",
+                        description: "Recording patterns that reveal attention, emotion, fatigue, or other cognitive states without user awareness.",
+                        layers: ["L12", "L13"],
+                        severity: "high",
+                        cia: { c: "high", i: "low", a: "low" },
+                        mitigations: [
+                            "Implement cognitive privacy filters",
+                            "Use state obfuscation",
+                            "Deploy minimal data collection policies"
+                        ],
+                        detection: [
+                            { source: "Privacy Monitor", method: "Detect unauthorized state inference" },
+                            { source: "Data Audit", method: "Review cognitive data collection" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T018",
+                        name: "Memory Extraction",
+                        description: "Attempting to extract memory-related neural patterns that could reveal personal experiences, knowledge, or intentions.",
+                        layers: ["L13", "L14"],
+                        severity: "critical",
+                        cia: { c: "high", i: "low", a: "low" },
+                        mitigations: [
+                            "Implement memory signal filtering",
+                            "Use hippocampal activity obfuscation",
+                            "Deploy strict data access controls"
+                        ],
+                        detection: [
+                            { source: "Memory Monitor", method: "Detect hippocampal signal extraction" },
+                            { source: "Access Audit", method: "Log all memory-related data access" }
+                        ]
+                    }
+                ]
+            },
+            "Impact": {
+                id: "TA0007",
+                color: "#ef4444",
+                description: "Causing harm through the compromised BCI",
+                techniques: [
+                    {
+                        id: "ONI-T019",
+                        name: "Neural DoS",
+                        description: "Overwhelming neural pathways with excessive stimulation or signal flooding to cause temporary dysfunction or distress.",
+                        layers: ["L11", "L12", "L13"],
+                        severity: "critical",
+                        cia: { c: "low", i: "medium", a: "high" },
+                        mitigations: [
+                            "Implement rate limiting at L8",
+                            "Use circuit breakers for stimulation",
+                            "Deploy emergency shutdown mechanisms"
+                        ],
+                        detection: [
+                            { source: "Rate Monitor", method: "Detect signal flooding" },
+                            { source: "L8 Firewall", method: "Block excessive traffic" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T020",
+                        name: "Motor Hijacking",
+                        description: "Forcing involuntary motor actions by injecting false motor commands through compromised BCI motor interfaces.",
+                        layers: ["L12", "L13"],
+                        severity: "critical",
+                        cia: { c: "low", i: "high", a: "high" },
+                        mitigations: [
+                            "Implement motor command authentication",
+                            "Use intent verification",
+                            "Deploy physical safety interlocks"
+                        ],
+                        detection: [
+                            { source: "Intent Verification", method: "Compare commands to detected intent" },
+                            { source: "Motor Monitor", method: "Detect unauthorized motor signals" }
+                        ]
+                    },
+                    {
+                        id: "ONI-T021",
+                        name: "Identity Erosion",
+                        description: "Long-term subtle manipulation of cognitive patterns leading to gradual personality changes or identity confusion.",
+                        layers: ["L13", "L14"],
+                        severity: "critical",
+                        cia: { c: "medium", i: "high", a: "medium" },
+                        mitigations: [
+                            "Implement identity baseline tracking",
+                            "Use long-term cognitive monitoring",
+                            "Deploy personality integrity checks"
+                        ],
+                        detection: [
+                            { source: "Identity Monitor", method: "Track identity markers over time" },
+                            { source: "Behavioral Analysis", method: "Detect personality drift" }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Layer information
+        const LAYER_INFO = {
+            "L7": { name: "Application Interface", domain: "Silicon" },
+            "L8": { name: "Neural Gateway", domain: "Bridge" },
+            "L9": { name: "Signal Processing", domain: "Biology" },
+            "L10": { name: "Neural Protocol", domain: "Biology" },
+            "L11": { name: "Cognitive Transport", domain: "Biology" },
+            "L12": { name: "Cognitive Session", domain: "Biology" },
+            "L13": { name: "Semantic", domain: "Cognitive" },
+            "L14": { name: "Identity & Ethics", domain: "Cognitive" }
+        };
+
+        // State
+        let selectedTechnique = null;
+        let activeFilter = 'all';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMatrix();
+            setupFilterHandlers();
+        });
+
+        function renderMatrix() {
+            const matrixEl = document.getElementById('attackMatrix');
+            matrixEl.innerHTML = '';
+
+            Object.entries(ATTACK_MATRIX).forEach(([tacticName, tactic]) => {
+                const column = document.createElement('div');
+                column.className = 'tactic-column';
+
+                // Tactic header
+                const header = document.createElement('div');
+                header.className = 'tactic-header';
+                header.style.background = `linear-gradient(135deg, ${tactic.color}20, ${tactic.color}10)`;
+                header.style.border = `1px solid ${tactic.color}40`;
+                header.innerHTML = `
+                    <div class="tactic-name" style="color: ${tactic.color}">${tacticName}</div>
+                    <div class="tactic-id">${tactic.id}</div>
+                    <div class="tactic-count">${tactic.techniques.length} techniques</div>
+                `;
+                column.appendChild(header);
+
+                // Techniques
+                tactic.techniques.forEach(technique => {
+                    const card = createTechniqueCard(technique, tactic.color, tacticName);
+                    column.appendChild(card);
+                });
+
+                matrixEl.appendChild(column);
+            });
+        }
+
+        function createTechniqueCard(technique, color, tacticName) {
+            const card = document.createElement('div');
+            card.className = 'technique-card';
+            card.dataset.id = technique.id;
+            card.dataset.layers = technique.layers.join(',');
+            card.style.borderTop = `3px solid ${color}`;
+
+            const layerBadges = technique.layers.map(layer =>
+                `<span class="layer-badge ${layer.toLowerCase()}">${layer}</span>`
+            ).join('');
+
+            card.innerHTML = `
+                <div class="severity-dot severity-${technique.severity}"></div>
+                <div class="technique-id">${technique.id}</div>
+                <div class="technique-name">${technique.name}</div>
+                <div class="technique-layers">${layerBadges}</div>
+            `;
+
+            card.addEventListener('click', () => {
+                selectTechnique(technique, tacticName, color);
+            });
+
+            return card;
+        }
+
+        function selectTechnique(technique, tacticName, color) {
+            // Update active state
+            document.querySelectorAll('.technique-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`[data-id="${technique.id}"]`).classList.add('active');
+
+            selectedTechnique = technique;
+
+            // Show detail panel
+            const panel = document.getElementById('detailPanel');
+            panel.classList.remove('hidden');
+
+            // Render details
+            renderTechniqueDetails(technique, tacticName, color);
+        }
+
+        function renderTechniqueDetails(technique, tacticName, color) {
+            const content = document.getElementById('detailContent');
+
+            const layerCards = technique.layers.map(layer => `
+                <div class="target-layer">
+                    <span class="layer-num" style="color: ${getLayerColor(layer)}">${layer}</span>
+                    <span class="layer-name">${LAYER_INFO[layer]?.name || layer}</span>
+                </div>
+            `).join('');
+
+            const mitigations = technique.mitigations.map(m => `
+                <div class="mitigation-item">
+                    <span class="mitigation-icon">&#10003;</span>
+                    <span>${m}</span>
+                </div>
+            `).join('');
+
+            const detections = technique.detection.map(d => `
+                <div class="detection-item">
+                    <div class="detection-source">${d.source}</div>
+                    <div>${d.method}</div>
+                </div>
+            `).join('');
+
+            content.innerHTML = `
+                <button class="close-panel" onclick="closePanel()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+
+                <div class="detail-header">
+                    <span class="detail-tactic" style="background: ${color}30; color: ${color}">${tacticName}</span>
+                    <h2 class="detail-title">${technique.name}</h2>
+                    <span class="detail-id">${technique.id}</span>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/>
+                            <path d="M13 2v7h7"/>
+                        </svg>
+                        Description
+                    </div>
+                    <p class="info-text">${technique.description}</p>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="9" y1="21" x2="9" y2="9"/>
+                        </svg>
+                        Target ONI Layers
+                    </div>
+                    <div class="target-layers">${layerCards}</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        CIA Impact
+                    </div>
+                    <div class="cia-grid">
+                        <div class="cia-item">
+                            <div class="cia-label">Confidentiality</div>
+                            <div class="cia-value ${technique.cia.c}">${technique.cia.c.toUpperCase()}</div>
+                        </div>
+                        <div class="cia-item">
+                            <div class="cia-label">Integrity</div>
+                            <div class="cia-value ${technique.cia.i}">${technique.cia.i.toUpperCase()}</div>
+                        </div>
+                        <div class="cia-item">
+                            <div class="cia-label">Availability</div>
+                            <div class="cia-value ${technique.cia.a}">${technique.cia.a.toUpperCase()}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title" style="color: var(--oni-green)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        Mitigations
+                    </div>
+                    <div class="mitigation-list">${mitigations}</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-section-title" style="color: var(--oni-blue)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        Detection Methods
+                    </div>
+                    ${detections}
+                </div>
+            `;
+        }
+
+        function closePanel() {
+            document.getElementById('detailPanel').classList.add('hidden');
+            document.querySelectorAll('.technique-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            selectedTechnique = null;
+        }
+
+        function getLayerColor(layer) {
+            const colors = {
+                'L7': '#60a5fa',
+                'L8': '#fbbf24',
+                'L9': '#a78bfa',
+                'L10': '#f472b6',
+                'L11': '#34d399',
+                'L12': '#22d3ee',
+                'L13': '#fb923c',
+                'L14': '#f87171'
+            };
+            return colors[layer] || '#94a3b8';
+        }
+
+        function setupFilterHandlers() {
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    // Update active state
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+
+                    activeFilter = chip.dataset.layer;
+                    applyFilter();
+                });
+            });
+        }
+
+        function applyFilter() {
+            const filterLayers = {
+                'all': null,
+                'L7-L8': ['L7', 'L8'],
+                'L9-L10': ['L9', 'L10'],
+                'L11-L12': ['L11', 'L12'],
+                'L13-L14': ['L13', 'L14']
+            };
+
+            const allowedLayers = filterLayers[activeFilter];
+
+            document.querySelectorAll('.technique-card').forEach(card => {
+                const cardLayers = card.dataset.layers.split(',');
+
+                if (!allowedLayers) {
+                    card.classList.remove('filtered-out');
+                } else {
+                    const hasMatch = cardLayers.some(l => allowedLayers.includes(l));
+                    card.classList.toggle('filtered-out', !hasMatch);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

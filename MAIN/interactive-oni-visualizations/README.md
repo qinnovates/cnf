@@ -2,9 +2,17 @@
 
 > Interactive educational web applications for the ONI Framework
 
+## Live Demo
+
+**Access the visualizations online:** [https://qikevinl.github.io/ONI/visualizations/](https://qikevinl.github.io/ONI/visualizations/)
+
+No download required - explore all interactive tools directly in your browser.
+
+---
+
 ## Overview
 
-This prototype suite demonstrates 5 interactive web applications designed to make neural interface security concepts accessible to general audiences. Each application transforms complex ONI Framework concepts into engaging, hands-on learning experiences.
+This prototype suite demonstrates 6 interactive web applications designed to make neural interface security concepts accessible to general audiences. Each application transforms complex ONI Framework concepts into engaging, hands-on learning experiences.
 
 ## Applications
 
@@ -15,6 +23,7 @@ This prototype suite demonstrates 5 interactive web applications designed to mak
 | 03 | **Neural Kill Chain Visualizer** | Watch attacks propagate | 5 attack types, animated timeline, defense highlights |
 | 04 | **NSAM Checkpoint Simulator** | Gamified signal analysis | 5 checkpoints, score tracking, multiple scenarios |
 | 05 | **Scale-Frequency Navigator** | Explore temporal scales | 6 time scales, frequency bands, security context |
+| 06 | **ONI ATT&CK Matrix** | MITRE-inspired threat framework | 7 tactics, 21 techniques, ONI layer mapping, mitigations |
 
 ## Quick Start
 
@@ -31,7 +40,7 @@ This prototype suite demonstrates 5 interactive web applications designed to mak
 
 3. **Find the visualizations**
    - Open the unzipped folder
-   - Navigate to: `MAIN` → `interactive-concept-demo`
+   - Navigate to: `MAIN` → `interactive-oni-visualizations`
 
 4. **Launch the app**
    - Double-click `index.html`
@@ -42,7 +51,7 @@ This prototype suite demonstrates 5 interactive web applications designed to mak
 
 ```bash
 git clone https://github.com/qikevinl/ONI.git
-cd ONI/MAIN/interactive-concept-demo
+cd ONI/MAIN/interactive-oni-visualizations
 open index.html    # Mac
 start index.html   # Windows
 ```
@@ -60,14 +69,15 @@ No build step required - pure HTML/CSS/JS
 ## File Structure
 
 ```
-interactive-concept-demo/
+interactive-oni-visualizations/
 ├── index.html                          # Master index & design system
 ├── README.md                           # This file
 ├── 01-coherence-metric-playground.html
 ├── 02-oni-layer-explorer.html
 ├── 03-neural-killchain-visualizer.html
 ├── 04-nsam-checkpoint-simulator.html
-└── 05-scale-frequency-navigator.html
+├── 05-scale-frequency-navigator.html
+└── 06-oni-attack-matrix.html
 ```
 
 ## Design System

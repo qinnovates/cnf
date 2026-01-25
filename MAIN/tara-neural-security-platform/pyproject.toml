@@ -101,7 +101,7 @@ tara = "tara_mvp.cli:main"
 
 # Source code is now in ./tara_mvp/ (renamed from tara)
 # Tests are in ./tara_mvp/tests/
-# Visualizations moved to ../interactive-concept-demo/
+# Visualizations moved to ../interactive-oni-visualizations/
 # For development: pip install -e .
 [tool.hatch.build.targets.wheel]
 packages = ["tara_mvp"]

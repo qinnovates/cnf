@@ -95,7 +95,7 @@ tara-neural-security-platform/   # Complete package
 │   ├── test_nsam.py
 │   └── test_scale_freq.py
 │
-└── ../interactive-concept-demo/              # Interactive HTML visualizations (ONI Suite)
+└── ../interactive-oni-visualizations/              # Interactive HTML visualizations (ONI Suite)
     ├── index.html               # Master launcher
     ├── README.md                # Visualization documentation
     ├── 01-coherence-metric-playground.html
