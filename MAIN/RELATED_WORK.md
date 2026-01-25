@@ -43,7 +43,7 @@ The term "neurosecurity" was coined by **Tadayoshi Kohno** and colleagues at the
 
 ---
 
-## Inspirational Works
+## Inspirational Muse
 
 These works provided conceptual inspiration for the ONI Framework's architecture and vision.
 
