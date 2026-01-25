@@ -23,6 +23,8 @@
 | Verified Claims | `MAIN/resources/pipeline/verified/` | Verified research claims with citations |
 | **Editor Agent** | `MAIN/resources/editor/EDITOR_AGENT.md` | **Automated quality & sync (run before commits)** |
 | **AGENTS.md** | `AGENTS.md` | **Ralph Loop learnings — read at session start** |
+| **Project Management** | `MAIN/project/PROJECT_MANAGEMENT.md` | **Master PM doc — scope, risks, priorities, metrics** |
+| **Kanban Board** | `MAIN/project/KANBAN.md` | **Visual task board — status at a glance** |
 | **prd.json** | `MAIN/project/prd.json` | **Task tracker with exit conditions** |
 | This File | `CLAUDE.md` | Claude-specific instructions |
 
@@ -63,6 +65,8 @@ ONI/
     │   └── NEUROETHICS_ALIGNMENT.md    # Framework-to-ethics principle mapping
     │
     ├── project/                        # Project management
+    │   ├── PROJECT_MANAGEMENT.md       # Master PM doc (scope, risks, priorities)
+    │   ├── KANBAN.md                   # Visual Kanban board
     │   ├── prd.json                    # Task tracker with exit conditions
     │   └── processes/                  # Workflow documentation
     │
@@ -583,9 +587,9 @@ Update the metrics table:
 
 **Common Mistakes to Avoid:**
 - Forgetting to update `siem/` to `nsam/` (the actual folder name)
-- Missing package structure (source in `prototype-mvp/tara/`, config in `tara-neural-security-platform/`)
 - Outdated version numbers in metrics
 - Stale test counts
+- Referencing old paths (source is now in `tara-neural-security-platform/tara/`, not `prototype-mvp/`)
 
 ---
 
@@ -813,6 +817,6 @@ mkdir MAIN/publications/[topic-name]/
 
 ---
 
-*Version: 8.0*
+*Version: 8.1*
 *Last Updated: 2026-01-24*
 *For: Claude AI Assistant*
