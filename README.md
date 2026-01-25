@@ -160,6 +160,19 @@ ONI builds directly on pioneering research from leading institutions in BCI secu
 **Full academic landscape:** [ACADEMIC_LANDSCAPE.md](MAIN/ACADEMIC_LANDSCAPE.md)
 **Implementation details:** [NEUROSECURITY_IMPLEMENTATION.md](MAIN/oni-framework/NEUROSECURITY_IMPLEMENTATION.md)
 
+#### Research Gaps ONI Addresses
+
+| Gap in Current Research | ONI's Contribution |
+|-------------------------|-------------------|
+| No unified security model across BCI types | 14-layer model applicable to invasive, non-invasive, and hybrid BCIs |
+| Privacy concepts remain theoretical | `BCIAnonymizer` provides executable implementation |
+| No standard threat taxonomy | Kohno CIA model + attack pattern library in TARA |
+| Layer-by-layer attack surface undefined | ONI explicitly maps attacks to layers L1-L14 |
+| Coherence/integrity unmeasured | Cₛ metric provides quantifiable signal trust |
+| Neurorights lack technical enforcement | Framework translates rights to technical controls |
+
+🎯 **[Explore Interactive Gap Analysis →](https://qikevinl.github.io/ONI/visualizations/03-academic-alignment.html)**
+
 ### TARA - Neural Security Platform
 
 [![PyPI version](https://badge.fury.io/py/oni-tara.svg)](https://badge.fury.io/py/oni-tara)
