@@ -47,6 +47,27 @@ def update_readme(brand: dict) -> bool:
             flags=re.MULTILINE
         )
 
+    # Update slogan if present
+    # Pattern: Bold text on its own line, starting with capital, ending with punctuation
+    # This matches the slogan line after the tagline (line 5 in README)
+    if oni.get("slogan"):
+        content = re.sub(
+            r'^(\*\*)[A-Z][^*]+[.!?](\*\*)$',
+            f'**{oni["slogan"]}**',
+            content,
+            flags=re.MULTILINE
+        )
+
+    # Update TARA full name in parentheses
+    # Pattern: **TARA** (Something) is
+    tara = brand.get("tara", {})
+    if tara.get("full_name"):
+        content = re.sub(
+            r'\*\*TARA\*\* \([^)]+\) is',
+            f'**TARA** ({tara["full_name"]}) is',
+            content
+        )
+
     if content != original:
         readme_path.write_text(content)
         return True
@@ -83,9 +104,14 @@ def main():
     print("Loading brand.json...")
     brand = load_brand()
 
-    print(f"ONI: {brand['oni']['full_name']}")
-    print(f"TARA: {brand['tara']['full_name']}")
-    print(f"Mission: {brand['oni']['mission'][:50]}...")
+    oni = brand["oni"]
+    tara = brand["tara"]
+
+    print(f"ONI: {oni['full_name']}")
+    print(f"  Tagline: {oni.get('tagline', 'N/A')}")
+    print(f"  Slogan: {oni.get('slogan', 'N/A')}")
+    print(f"  Mission: {oni['mission'][:50]}...")
+    print(f"TARA: {tara['full_name']}")
     print()
 
     print("Updating README.md...")
