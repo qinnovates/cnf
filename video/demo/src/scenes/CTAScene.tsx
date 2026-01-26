@@ -286,7 +286,7 @@ export const CTAScene: React.FC = () => {
             letterSpacing: '0.02em',
           }}
         >
-          github.com/qikevinl/oni
+          qinnovate.com
         </div>
 
         {/* Neural flow at bottom */}
