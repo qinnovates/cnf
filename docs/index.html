@@ -1113,11 +1113,11 @@
 
         <div class="stats-row" data-aos="fade-up">
             <a href="https://github.com/qikevinl/ONI/commits/main/" class="stat" data-aos="zoom-in" data-aos-delay="100">
-                <div class="stat-value" id="stat-commits" data-count="150">150+</div>
+                <div class="stat-value" id="stat-commits" data-count="150" data-suffix="+">150+</div>
                 <div class="stat-label">Commits</div>
             </a>
             <a href="visualizations/06-oni-threat-matrix.html" class="stat" data-aos="zoom-in" data-aos-delay="200">
-                <div class="stat-value" id="stat-threats" data-count="25">25+</div>
+                <div class="stat-value" id="stat-threats" data-count="25" data-suffix="+">25+</div>
                 <div class="stat-label">Threat Signatures</div>
             </a>
             <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/ONI_LAYERS.md" class="stat" data-aos="zoom-in" data-aos-delay="300">
@@ -1150,7 +1150,7 @@
                     <span>T</span>
                 </div>
                 <h3>TARA Platform <span style="font-size: 0.6rem; padding: 0.2rem 0.5rem; background: rgba(139, 92, 246, 0.2); color: #a78bfa; border-radius: 4px; vertical-align: middle; margin-left: 0.5rem;">MVP</span></h3>
-                <p>Telemetry Analysis & Response Automation platform with real-time monitoring.</p>
+                <p style="padding-left: 0.5rem;">Telemetry Analysis & Response Automation platform with real-time monitoring.</p>
                 <div class="code-block">pip install oni-tara</div>
                 <span style="color: var(--accent-purple); font-weight: 500; font-size: 0.9rem;">View on PyPI &rarr;</span>
             </a>
@@ -1160,7 +1160,7 @@
                     <span>A</span>
                 </div>
                 <h3>ONI Academy <span style="font-size: 0.6rem; padding: 0.2rem 0.5rem; background: rgba(16, 185, 129, 0.2); color: #34d399; border-radius: 4px; vertical-align: middle; margin-left: 0.5rem;">EDU</span></h3>
-                <p>Learning portal lowering the barrier to entry for aspiring neurosecurity professionals.</p>
+                <p style="padding-left: 0.5rem;">Learning portal lowering the barrier to entry for aspiring neurosecurity professionals.</p>
                 <div class="code-block">pip install oni-academy</div>
                 <span style="color: var(--accent-emerald); font-weight: 500; font-size: 0.9rem;">View on PyPI &rarr;</span>
             </a>
@@ -1669,6 +1669,7 @@
             const counters = document.querySelectorAll('[data-count]');
             counters.forEach(counter => {
                 const target = parseInt(counter.getAttribute('data-count'));
+                const suffix = counter.getAttribute('data-suffix') || '';
                 const duration = 2000;
                 const step = target / (duration / 16);
                 let current = 0;
@@ -1676,10 +1677,10 @@
                 const updateCounter = () => {
                     current += step;
                     if (current < target) {
-                        counter.textContent = Math.floor(current);
+                        counter.textContent = Math.floor(current) + suffix;
                         requestAnimationFrame(updateCounter);
                     } else {
-                        counter.textContent = target;
+                        counter.textContent = target + suffix;
                     }
                 };
 
