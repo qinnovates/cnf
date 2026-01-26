@@ -49,7 +49,7 @@ class TestPrintSummary:
 
         assert "ONI Framework" in captured.out
         assert oni.__version__ in captured.out
-        assert "SIGNAL TRUST" in captured.out
+        assert "SIGNAL VALIDATION" in captured.out
         assert "ARCHITECTURE" in captured.out
         assert "THREAT DETECTION" in captured.out
 

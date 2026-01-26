@@ -24,7 +24,7 @@ class TestCLIMain:
         assert result == 0
         captured = capsys.readouterr()
         assert "ONI Framework" in captured.out
-        assert "SIGNAL TRUST" in captured.out
+        assert "SIGNAL VALIDATION" in captured.out
         assert "CoherenceMetric" in captured.out
 
     def test_version_command(self, capsys):
@@ -33,7 +33,7 @@ class TestCLIMain:
         assert result == 0
         captured = capsys.readouterr()
         assert "oni-framework" in captured.out
-        assert "0.2.0" in captured.out
+        assert "0.2.2" in captured.out
 
     def test_demo_command(self, capsys):
         """The demo command should run without errors."""

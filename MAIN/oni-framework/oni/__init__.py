@@ -1,44 +1,47 @@
 """
-ONI Framework - Neural Security Library for Brain-Computer Interfaces
+ONI Framework - Neuroscience API for Brain-Computer Interface Security
 ======================================================================
 
-A Python library providing security primitives for BCI development and research.
+A Python library providing neuroscience mappings and security primitives for
+BCI development and research.
 
 WHAT YOU GET:
-    Signal Trust      - Calculate coherence scores to validate neural signals
-    Neural Firewall   - Accept/reject signals based on trust and authentication
-    Privacy Tools     - Anonymize neural data, calculate privacy risk scores
-    Threat Detection  - Classify threats using Kohno's CIA model
-    Reference Model   - Navigate the 14-layer ONI architecture
-    Consent Tracking  - Manage patient consent (including pediatric)
+    Neuroscience Atlas - Brain regions, neurotransmitters, cognitive functions
+    14-Layer Model     - ONI architecture with attack surfaces and defenses
+    Coherence Metric   - Signal trust scoring (Cₛ)
+    Scale-Frequency    - Biological plausibility validation (f × S ≈ k)
+    Privacy Tools      - BCI Anonymizer, privacy risk scoring
+    Threat Detection   - Kohno's CIA threat model
 
 QUICK START:
-    >>> from oni import CoherenceMetric, NeuralFirewall
+    >>> from oni import ONIStack, get_atlas
     >>>
-    >>> # Calculate signal trust score (0-1)
+    >>> # Explore the 14-layer model
+    >>> stack = ONIStack()
+    >>> print(stack.ascii_diagram())
+    >>>
+    >>> # Get neuroscience mappings for a layer
+    >>> regions = stack.brain_regions_for_layer(13)  # Semantic Layer
+    >>> print(regions)  # ['VTA', 'NAc', 'PFC', ...]
+    >>>
+    >>> # Look up neurotransmitter cofactors
+    >>> atlas = get_atlas()
+    >>> da = atlas.neurotransmitter("dopamine")
+    >>> print(da.required_cofactors)  # ['Fe²⁺', 'BH4', 'O₂']
+    >>>
+    >>> # Calculate coherence score
+    >>> from oni import CoherenceMetric
     >>> metric = CoherenceMetric(reference_freq=40.0)
     >>> cs = metric.calculate([0.0, 0.025, 0.050], [100, 98, 102])
-    >>> print(f"Trust score: {cs:.2f}")
-    >>>
-    >>> # Filter signals through firewall
-    >>> from oni.firewall import Signal
-    >>> firewall = NeuralFirewall(threshold_high=0.6)
-    >>> result = firewall.filter(Signal([0.0, 0.025], [100, 98]))
-    >>> print(f"Decision: {result.decision.name}")  # ACCEPT, REJECT, or ACCEPT_FLAG
 
 INSTALLATION:
-    pip install oni-framework          # Core (zero dependencies)
-    pip install oni-framework[ui]      # With interactive UI
-    pip install oni-framework[all]     # Everything
-
-LAUNCH UI:
-    oni ui                             # Interactive learning interface
+    pip install oni-framework
 
 Built on research from:
+    - Björklund & Dunnett (2007): Dopamine pathways
+    - Lazarus et al. (2011): Adenosine/caffeine mechanisms
     - Kohno et al. (2009): Neurosecurity threat model
-    - Chizeck & Bonaci (2014): BCI Anonymizer architecture
-    - Yuste et al. (2017): Neurorights framework
-    - Ienca & Andorno (2017): Cognitive liberty principles
+    - Bonaci et al. (2014): BCI Anonymizer architecture
 
 License: Apache 2.0
 Author: Kevin L. Qi
@@ -56,8 +59,8 @@ from .brand import ONI, TARA, ONI_VERSION, TARA_VERSION, get_brand
 # CORE: Signal Trust & Validation
 # =============================================================================
 from .coherence import CoherenceMetric, calculate_cs, VarianceComponents
-from .firewall import NeuralFirewall
 from .scale_freq import ScaleFrequencyInvariant
+from .firewall import NeuralFirewall
 
 # =============================================================================
 # ARCHITECTURE: 14-Layer Reference Model
@@ -135,8 +138,8 @@ __all__ = [
     "CoherenceMetric",
     "calculate_cs",
     "VarianceComponents",
-    "NeuralFirewall",
     "ScaleFrequencyInvariant",
+    "NeuralFirewall",
 
     # Architecture
     "ONIStack",
@@ -197,23 +200,24 @@ def print_summary():
 {'=' * 50}
 {ONI.slogan}
 
-SIGNAL TRUST
-  CoherenceMetric      Calculate Cₛ trust scores (0-1)
-  NeuralFirewall       Accept/reject signals
-  ScaleFrequencyInvariant   Validate f × S ≈ k
-
-ARCHITECTURE
-  ONIStack             Navigate 14-layer model
-  Layer                Individual layer details
-  get_stack            Get pre-configured stack
-  layer_info           Get comprehensive layer info
-
-NEUROSCIENCE MAPPINGS
+NEUROSCIENCE MAPPINGS (NEW)
   NeuroscienceAtlas    Brain regions, NTs, functions
   BrainRegionAtlas     15+ brain regions with citations
   NeurotransmitterAtlas 8 NT systems with cofactors
   CognitiveFunctionAtlas 10 functions mapped to layers
   TimeScaleHierarchy   Femtoseconds to lifetime
+  References           20+ peer-reviewed citations
+
+ARCHITECTURE
+  ONIStack             Navigate 14-layer model
+  Layer                Individual layer details
+  get_stack            Get pre-configured stack
+  layer_info           Comprehensive layer info with neuroscience
+
+SIGNAL VALIDATION
+  CoherenceMetric      Calculate Cₛ trust scores (0-1)
+  ScaleFrequencyInvariant   Validate f × S ≈ k
+  NeuralFirewall       Accept/reject/flag decisions
 
 THREAT DETECTION
   KohnoThreatModel     CIA threat classification
@@ -223,18 +227,13 @@ PRIVACY
   BCIAnonymizer        Strip sensitive ERPs (P300, N170)
   PrivacyScoreCalculator   Quantify info leakage risk
 
-CONSENT
-  ConsentManager       Track patient consent
-  PediatricConsentState    Pediatric-aware consent
-
 QUICK START
-  >>> from oni import CoherenceMetric
-  >>> metric = CoherenceMetric(reference_freq=40.0)
-  >>> cs = metric.calculate([0.0, 0.025, 0.050], [100, 98, 102])
-
-INTERACTIVE UI
-  $ pip install oni-framework[ui]
-  $ oni ui
+  >>> from oni import ONIStack, get_atlas
+  >>> stack = ONIStack()
+  >>> regions = stack.brain_regions_for_layer(13)
+  >>> atlas = get_atlas()
+  >>> da = atlas.neurotransmitter("dopamine")
+  >>> print(da.required_cofactors)  # ['Fe²⁺', 'BH4', 'O₂']
 
 DOCUMENTATION
   https://github.com/qikevinl/ONI

@@ -50,19 +50,20 @@ f × S ≈ k (constant)
 Build detection signatures for neural signal anomalies:
 
 ```python
-from oni import CoherenceMetric, NeuralFirewall, ScaleFrequencyInvariant
+from oni import CoherenceMetric, ScaleFrequencyInvariant, ONIStack, get_atlas
 
 # 1. Calculate trust score from signal data
 metric = CoherenceMetric(reference_freq=40.0)
 cs = metric.calculate(arrival_times, amplitudes)  # → 0.0 to 1.0
 
-# 2. Make accept/reject decisions
-firewall = NeuralFirewall(threshold_low=0.3, threshold_high=0.6)
-result = firewall.filter(signal)  # → ACCEPT, REJECT, or FLAG
-
-# 3. Validate biological plausibility
+# 2. Validate biological plausibility
 sfi = ScaleFrequencyInvariant()
 valid = sfi.validate(frequency=40, spatial_scale=1e-4)  # → True/False
+
+# 3. Access neuroscience mappings
+atlas = get_atlas()
+da = atlas.neurotransmitter("dopamine")
+print(da.required_cofactors)  # ['Fe²⁺', 'BH4', 'O₂']
 ```
 
 **This is an API, not a measurement tool.** It provides mathematical primitives — you supply the signal data from your BCI hardware.
@@ -77,6 +78,7 @@ valid = sfi.validate(frequency=40, spatial_scale=1e-4)  # → True/False
 | `NeuralFirewall.filter()` | Signal object | ACCEPT/REJECT/FLAG | Access control |
 | `ScaleFrequencyInvariant.validate()` | frequency, scale | True/False | Plausibility check |
 | `ONIStack.layer(n)` | layer number | Layer object | Architecture reference |
+| `get_atlas().neurotransmitter()` | name | NeurotransmitterSystem | Neuroscience data |
 
 ---
 
@@ -89,9 +91,10 @@ oni-framework (pip install oni-framework)
 │
 └── Core Library (oni/)
     ├── coherence.py      # Cₛ signal trust scoring
-    ├── firewall.py       # Zero-trust signal filtering
+    ├── firewall.py       # Neural signal filtering (accept/reject/flag)
     ├── layers.py         # 14-layer ONI model
     ├── scale_freq.py     # f × S ≈ k invariant
+    ├── neuromapping.py   # Brain regions, neurotransmitters, functions
     └── neurosecurity/    # Kohno threat model, BCI Anonymizer
 ```
 
@@ -105,6 +108,7 @@ oni-framework (pip install oni-framework)
 - Security primitives for your BCI application
 - Coherence scoring in your signal processing pipeline
 - Firewall logic for neural data validation
+- Neuroscience mappings with peer-reviewed citations
 - Programmatic access to the 14-layer model
 
 ---
