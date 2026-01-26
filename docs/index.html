@@ -21,8 +21,8 @@
     <style>
         :root {
             --bg-primary: #0a0f1a;
-            --bg-secondary: #111827;
-            --bg-card: #1a2332;
+            --bg-secondary: rgba(17, 24, 39, 0.85);
+            --bg-card: rgba(26, 35, 50, 0.9);
             --accent-blue: #3b82f6;
             --accent-purple: #8b5cf6;
             --accent-cyan: #06b6d4;
@@ -37,14 +37,45 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+            background: var(--bg-primary);
+        }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
+            background: transparent;
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Hyperspeed Canvas Background */
+        #hyperspeed-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Content layers above canvas */
+        nav { z-index: 100; }
+        .hero, .section, section, footer { position: relative; z-index: 1; }
+
+        /* Layers reveal animation */
+        #layers-image {
+            transition: clip-path 0.1s ease-out;
+        }
+
+        #layer-indicator {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
 
         /* Navigation */
@@ -366,7 +397,7 @@
         /* Stats Row */
         .stats-row {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 1.5rem;
             padding: 3rem;
             background: var(--bg-secondary);
@@ -503,7 +534,7 @@
             .hero-image { order: -1; margin-bottom: 2rem; }
             .hero-image img { max-height: 350px; }
             .quick-grid { grid-template-columns: 1fr; }
-            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .stats-row { grid-template-columns: repeat(3, 1fr); }
             .resources-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
         }
@@ -850,6 +881,8 @@
     </style>
 </head>
 <body>
+    <!-- Hyperspeed Starfield Background -->
+    <canvas id="hyperspeed-canvas"></canvas>
     <nav>
         <div class="nav-inner">
             <a href="#" class="nav-logo">ONI Neural Security</a>
@@ -913,10 +946,14 @@
         </div>
     </section>
 
-    <section class="section" id="install">
-        <!-- ONI Layers Diagram -->
-        <div style="text-align: center; margin-bottom: 4rem;">
-            <img src="images/oni-14-layer-hourglass.png" alt="ONI 14-Layer Model - Extending OSI into the biological domain" style="max-width: 780px; width: 100%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+    <section class="section" id="install" style="padding-top: 2rem;">
+        <!-- ONI Layers Diagram - Scroll Reveal -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div id="layers-reveal-container" style="display: inline-block; position: relative; max-width: 780px; width: 100%;">
+                <!-- Layer labels that appear as image reveals -->
+                <div id="layer-indicator" style="position: absolute; left: -80px; top: 50%; transform: translateY(-50%); font-family: monospace; font-size: 0.9rem; color: var(--accent-cyan); opacity: 0; transition: opacity 0.3s;">L1</div>
+                <img id="layers-image" src="images/oni-14-layer-hourglass.png" alt="ONI 14-Layer Model - Extending OSI into the biological domain" style="width: 100%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); clip-path: inset(100% 0 0 0);">
+            </div>
         </div>
 
         <div class="stats-row" data-aos="fade-up">
@@ -939,6 +976,10 @@
             <a href="visualizations/" class="stat" data-aos="zoom-in" data-aos-delay="500">
                 <div class="stat-value" data-count="6">6</div>
                 <div class="stat-label">Interactive Tools</div>
+            </a>
+            <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/oni-academy/README.md" class="stat" data-aos="zoom-in" data-aos-delay="600">
+                <div class="stat-value" data-count="1">1</div>
+                <div class="stat-label">Learning Portal</div>
             </a>
         </div>
 
@@ -1392,6 +1433,66 @@
             offset: 50
         });
 
+        // Flowing Wave Lines Animation
+        function initHyperspeed() {
+            const canvas = document.getElementById('hyperspeed-canvas');
+            const ctx = canvas.getContext('2d');
+
+            let width, height;
+            let time = 0;
+
+            // Config
+            const lineCount = 12;
+            const color = '59, 130, 246'; // accent-blue RGB
+            const speed = 0.008;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+
+            function drawWave(yOffset, amplitude, frequency, phase, opacity) {
+                ctx.beginPath();
+                ctx.moveTo(0, height / 2 + yOffset);
+
+                for (let x = 0; x <= width; x += 3) {
+                    const y = height / 2 + yOffset +
+                        Math.sin(x * frequency + phase) * amplitude +
+                        Math.sin(x * frequency * 0.5 + phase * 1.3) * (amplitude * 0.5);
+                    ctx.lineTo(x, y);
+                }
+
+                ctx.strokeStyle = `rgba(${color}, ${opacity})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            function animate() {
+                // Clear with dark background
+                ctx.fillStyle = '#0a0f1a';
+                ctx.fillRect(0, 0, width, height);
+
+                // Draw multiple wave lines
+                for (let i = 0; i < lineCount; i++) {
+                    const yOffset = (i - lineCount / 2) * 60;
+                    const amplitude = 20 + Math.sin(time + i * 0.5) * 10;
+                    const frequency = 0.003 + i * 0.0002;
+                    const phase = time * (1 + i * 0.1);
+                    const opacity = 0.15 + (1 - Math.abs(i - lineCount / 2) / (lineCount / 2)) * 0.2;
+
+                    drawWave(yOffset, amplitude, frequency, phase, opacity);
+                }
+
+                time += speed;
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('resize', resize);
+
+            resize();
+            animate();
+        }
+
         // Create neural network background dots
         function createNeuralBackground() {
             const container = document.getElementById('neuralBg');
@@ -1439,6 +1540,71 @@
             });
         }
 
+        // ONI Layers scroll reveal animation
+        function initLayersReveal() {
+            const container = document.getElementById('layers-reveal-container');
+            const image = document.getElementById('layers-image');
+            const indicator = document.getElementById('layer-indicator');
+
+            if (!container || !image) return;
+
+            // Layer positions (approximate % from bottom of image)
+            const layers = [
+                { name: 'L1', pos: 0 },
+                { name: 'L2', pos: 7 },
+                { name: 'L3', pos: 14 },
+                { name: 'L4', pos: 21 },
+                { name: 'L5', pos: 28 },
+                { name: 'L6', pos: 35 },
+                { name: 'L7', pos: 42 },
+                { name: 'L8', pos: 50 },  // Firewall - center
+                { name: 'L9', pos: 58 },
+                { name: 'L10', pos: 65 },
+                { name: 'L11', pos: 72 },
+                { name: 'L12', pos: 79 },
+                { name: 'L13', pos: 86 },
+                { name: 'L14', pos: 93 },
+            ];
+
+            function updateReveal() {
+                const rect = container.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Calculate how much of the container is visible
+                // Start revealing when container enters viewport, complete when it's centered
+                const startPoint = windowHeight;
+                const endPoint = windowHeight * 0.3;
+
+                // Progress from 0 (just entering) to 1 (fully revealed)
+                let progress = (startPoint - rect.top) / (startPoint - endPoint);
+                progress = Math.max(0, Math.min(1, progress));
+
+                // Apply clip-path: inset(top right bottom left)
+                // We reveal from bottom, so we animate the TOP inset from 100% to 0%
+                const clipTop = 100 - (progress * 100);
+                image.style.clipPath = `inset(${clipTop}% 0 0 0)`;
+
+                // Update layer indicator
+                if (progress > 0 && progress < 1) {
+                    const layerIndex = Math.min(13, Math.floor(progress * 14));
+                    indicator.textContent = layers[layerIndex].name;
+                    indicator.style.opacity = '1';
+
+                    // Position indicator based on current layer
+                    const indicatorY = 100 - (progress * 100);
+                    indicator.style.top = `${indicatorY}%`;
+                } else {
+                    indicator.style.opacity = '0';
+                }
+            }
+
+            // Listen to scroll
+            window.addEventListener('scroll', updateReveal, { passive: true });
+
+            // Initial call
+            updateReveal();
+        }
+
         // Load brand constants from brand.json
         async function loadBrandConstants() {
             try {
@@ -1462,9 +1628,11 @@
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', function() {
+            initHyperspeed();
             createNeuralBackground();
             animateCounters();
             loadBrandConstants();
+            initLayersReveal();
         });
     </script>
 </body>
