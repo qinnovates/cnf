@@ -3,7 +3,7 @@
 > **Purpose:** Persistent learnings from Ralph Loop iterations. AI agents read this file at the start of each session to benefit from discovered patterns, gotchas, and conventions.
 
 **Last Updated:** 2026-01-26
-**Loop Iterations:** 14
+**Loop Iterations:** 15
 
 ---
 
@@ -48,6 +48,8 @@
 | 2026-01-26 | **Packages released: oni-framework 0.2.4, oni-academy 0.1.4** | Link fixes, security annotations. oni-academy first public release. |
 | 2026-01-26 | **Packages released: oni-framework 0.2.5, oni-academy 0.1.5** | Final link fixes, SRI hash corrections, security nosec annotations. |
 | 2026-01-26 | **Centralized PM hub created** | `project/README.md` dashboard with progress bars, metrics, quick links. Single entry point for all PM docs. |
+| 2026-01-26 | **TARA renamed: Platform → Stack** | "TARA Stack" aligns with monitoring/telemetry naming conventions (ELK Stack, TICK Stack). Updated brand.json + 14 files. QA pipeline now detects stale brand references. |
+| 2026-01-26 | **QA pipeline created** | `qa.yml` workflow validates: brand consistency, Python imports, formula notation, documentation links, HTML security (CSP/SRI). Runs on PRs, pushes, and weekly. |
 
 ### Patterns Established
 
@@ -69,6 +71,7 @@
 - **⚠️ CRITICAL: L9-L14 are BIOLOGY, not Silicon** — Even though L9-L10 involve signal processing/protocols, they operate on the BRAIN SIDE of the L8 bridge. This error appeared in 6+ files on 2026-01-24 and was systematically corrected. Memory aid: Below bridge (L1-L7) = computers. Above bridge (L9-L14) = brains.
 - **⚠️ SRI hashes must be verified when adding CDN libraries** — Calculate hash with `curl -s URL | openssl dgst -sha384 -binary | openssl base64 -A`. Wrong hash = browser blocks script = black screen. Symptom: page loads but content invisible, animations don't work.
 - **Relative links in README.md break on PyPI** — PyPI renders README standalone; use absolute GitHub URLs for cross-file links.
+- **Brand renames require updating 14+ files** — brand.json is source of truth, but Python fallbacks (_brand.py), docs, video scripts, and visualizations all have hardcoded references. QA pipeline now catches stale references.
 
 ---
 

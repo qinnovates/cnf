@@ -68,7 +68,7 @@ TARA monitors neural security without accessing neural content:
 |--------|--------------|---------|
 | **User** | Full | Complete access to all local data |
 | **Device** | Full | Local processing and protection |
-| **TARA Platform** | Scores only | Security monitoring, anomaly detection |
+| **TARA Stack** | Scores only | Security monitoring, anomaly detection |
 | **AI Models** | Encrypted gradients only | Collective learning (federated) |
 | **ONI Team** | Aggregate statistics only | Framework improvement |
 | **Third Parties** | ❌ None | Never sold, shared, or accessed |
