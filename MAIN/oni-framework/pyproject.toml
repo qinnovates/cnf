@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "oni-framework"
-version = "0.2.3"
+version = "0.2.4"
 description = "Cₛ Core - Mathematical API for detection signatures and anomaly validation in brain-computer interfaces. Build security rules using coherence scoring (Cₛ) and scale-frequency invariant (f×S≈k) equations."
 readme = "README.md"
 license = {text = "Apache-2.0"}

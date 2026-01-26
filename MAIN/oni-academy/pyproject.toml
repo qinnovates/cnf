@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "oni-academy"
-version = "0.1.3"
+version = "0.1.4"
 description = "ONI Academy - Educational platform for neurosecurity and brain-computer interface security concepts"
 readme = "README.md"
 license = {text = "Apache-2.0"}
