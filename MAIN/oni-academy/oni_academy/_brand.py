@@ -78,7 +78,7 @@ else:
     TARA = ProjectBrand(
         acronym="TARA",
         full_name="Telemetry Analysis & Automated Response",
-        name="TARA Platform",
+        name="TARA Stack",
         tagline="Protection for the neural frontier",
         slogan="Named after the Buddhist goddess of protection.",
         mission="Real-time neural security monitoring aligned with ONI.",

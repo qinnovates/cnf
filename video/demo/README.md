@@ -59,7 +59,7 @@ oni-demo-video/
 | Problem | 0:15-0:40 | 25s | "BCIs exist, no standards" |
 | 14-Layer Model | 0:40-1:20 | 40s | Hourglass + layer stack |
 | Coherence Metric | 1:20-1:50 | 30s | Formula + gauge |
-| TARA Platform | 1:50-2:25 | 35s | Dashboard features |
+| TARA Stack | 1:50-2:25 | 35s | Dashboard features |
 | Academic | 2:25-2:50 | 25s | Citations |
 | Call to Action | 2:50-3:15 | 25s | pip install, GitHub |
 | Credits | 3:15-3:30 | 15s | Author, license |

@@ -144,7 +144,7 @@ BCIs are FDA Class III medical devices requiring extensive testing—but what ar
 - **GitHub Repository:** https://github.com/qikevinl/ONI
 - **Live Demo:** https://qikevinl.github.io/ONI/
 - **Python Package:** `pip install oni-framework`
-- **TARA Platform:** `pip install oni-tara[full]`
+- **TARA Stack:** `pip install oni-tara[full]`
 
 ---
 

@@ -51,7 +51,7 @@ export const ONIDemoVideo: React.FC = () => {
         <CoherenceScene />
       </Sequence>
 
-      {/* Scene 5: TARA Platform (1:50-2:25) */}
+      {/* Scene 5: TARA Stack (1:50-2:25) */}
       <Sequence from={tara.start} durationInFrames={tara.end - tara.start}>
         <TARAScene />
       </Sequence>

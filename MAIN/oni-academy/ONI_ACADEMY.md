@@ -133,7 +133,7 @@ tara ui                   # Opens at http://localhost:8501
 **Web-based (no installation required):**
 Visit [qikevinl.github.io/ONI/visualizations](https://qikevinl.github.io/ONI/visualizations/)
 
-**TARA Platform pages:**
+**TARA Stack pages:**
 
 | Page | What to Explore |
 |------|-----------------|
@@ -226,7 +226,7 @@ decision = firewall.evaluate(signal_data)
 print(f"Action: {decision.action}")  # ALLOW, BLOCK, QUARANTINE
 ```
 
-#### TARA Platform (`oni-tara`)
+#### TARA Stack (`oni-tara`)
 
 The security monitoring and simulation platform:
 
@@ -330,7 +330,7 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for details on:
 | Resource | Purpose |
 |----------|---------|
 | [ONI Framework README](../oni-framework/README.md) | Core library documentation |
-| [TARA Platform README](../tara-nsec-platform/README.md) | Security platform documentation |
+| [TARA Stack README](../tara-nsec-platform/README.md) | Security stack documentation |
 | [ONI Layers Reference](../oni-framework/ONI_LAYERS.md) | Complete 14-layer specification |
 | [Academic Landscape](../ACADEMIC_LANDSCAPE.md) | Universities and researchers |
 | [Related Work](../RELATED_WORK.md) | Foundational BCI security research |

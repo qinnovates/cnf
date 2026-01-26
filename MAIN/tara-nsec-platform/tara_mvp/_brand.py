@@ -6,7 +6,7 @@ This allows TARA to access brand constants without requiring oni-framework.
 
 Usage:
     from tara_mvp._brand import TARA, ONI
-    print(TARA.name)  # "TARA Platform"
+    print(TARA.name)  # "TARA Stack"
 """
 
 import json
@@ -79,7 +79,7 @@ else:
     TARA = ProjectBrand(
         acronym="TARA",
         full_name="Telemetry Analysis & Response Automation",
-        name="TARA Platform",
+        name="TARA Stack",
         tagline="Protection for the neural frontier",
         slogan="Named after the Buddhist goddess of protection.",
         mission="Real-time neural security monitoring aligned with ONI.",

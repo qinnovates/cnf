@@ -170,4 +170,4 @@ oni-openbci/              # 🔲 Planned package
 ---
 
 *Reviewed by: Claude Opus 4.5*
-*For: ONI Framework / TARA Platform*
+*For: ONI Framework / TARA Stack*

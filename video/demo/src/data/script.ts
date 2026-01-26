@@ -156,10 +156,10 @@ export const script: ScriptLine[] = [
     endFrame: 3840,
   },
 
-  // Scene 5: TARA Platform (2:06-2:46)
+  // Scene 5: TARA Stack (2:06-2:46)
   {
     scene: 'tara',
-    text: "For security professionals, there's TARA—the Telemetry Analysis and Response Automation platform.",
+    text: "For security professionals, there's TARA—the Telemetry Analysis and Response Automation stack.",
     startFrame: 3840,
     endFrame: 4080,
   },

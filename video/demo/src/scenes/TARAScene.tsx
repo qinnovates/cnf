@@ -1,5 +1,5 @@
 /**
- * TARA Platform Scene - 3D brain visualization
+ * TARA Stack Scene - 3D brain visualization
  * Features: React Three Fiber brain, particle effects, glassmorphism cards
  */
 
@@ -11,7 +11,7 @@ import { FloatingParticles } from '../components/Particles';
 import { LettersPullUp, BlurInText } from '../components/TextAnimations';
 import { colors } from '../data/oni-theme';
 
-// Feature cards for TARA platform - professional icons for academic audience
+// Feature cards for TARA stack - professional icons for academic audience
 const features = [
   {
     title: 'Brain Topology',

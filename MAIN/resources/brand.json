@@ -13,11 +13,11 @@
   "tara": {
     "acronym": "TARA",
     "full_name": "Telemetry Analysis & Response Automation",
-    "name": "TARA Platform",
+    "name": "TARA Stack",
     "tagline": "Protection for the neural frontier",
     "slogan": "Named after the Buddhist goddess of protection.",
     "mission": "Provide real-time neural security monitoring, attack simulation, and response automation aligned with the ONI 14-layer model.",
-    "description": "A neural security platform for BCI security monitoring, simulation, and attack testing. Real-time security analysis for brain-computer interfaces.",
+    "description": "A neural security stack for BCI security monitoring, simulation, and attack testing. Real-time security analysis for brain-computer interfaces.",
     "version": "0.8.1"
   },
   "stats": {

@@ -41,7 +41,7 @@ All colors tested against primary background `#0f0f1a`:
 | Warning | `#fbbf24` | 8.5:1 | ✅ Pass |
 | Error | `#f87171` | 5.1:1 | ✅ Pass |
 
-### TARA Platform
+### TARA Stack
 
 All colors tested against primary background `#0a0a0f`:
 
