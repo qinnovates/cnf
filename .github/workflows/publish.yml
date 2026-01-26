@@ -66,19 +66,19 @@ jobs:
 
       - name: Build oni-tara
         run: |
-          cd MAIN/tara-neural-security-platform
+          cd MAIN/tara-nsec-platform
           python -m build
 
       - name: Check package
         run: |
-          cd MAIN/tara-neural-security-platform
+          cd MAIN/tara-nsec-platform
           twine check dist/*
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist-oni-tara
-          path: MAIN/tara-neural-security-platform/dist/
+          path: MAIN/tara-nsec-platform/dist/
 
   publish-oni-framework:
     needs: build-oni-framework
