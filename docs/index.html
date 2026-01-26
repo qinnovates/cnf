@@ -489,6 +489,17 @@
             .section { padding: 4rem 1.5rem; }
         }
 
+        @media (max-width: 900px) {
+            #problem > div > div:last-of-type { grid-template-columns: 1fr !important; }
+            #audience > div:last-of-type { grid-template-columns: repeat(2, 1fr) !important; }
+            #vision > div > div:last-of-type { grid-template-columns: 1fr !important; }
+            #contribute > div:first-of-type { grid-template-columns: 1fr !important; }
+        }
+
+        @media (max-width: 600px) {
+            #audience > div:last-of-type { grid-template-columns: 1fr !important; }
+        }
+
         /* Video Player Styles */
         .video-container {
             position: relative;
@@ -649,9 +660,10 @@
         <div class="nav-inner">
             <a href="#" class="nav-logo">ONI</a>
             <ul class="nav-links">
+                <li><a href="#problem">The Problem</a></li>
                 <li><a href="#explore">Explore</a></li>
-                <li><a href="https://pypi.org/project/oni-tara/">TARA Platform</a></li>
-                <li><a href="#resources">Resources</a></li>
+                <li><a href="#vision">Roadmap</a></li>
+                <li><a href="#contribute">Contribute</a></li>
                 <li><a href="https://github.com/qikevinl/ONI">GitHub</a></li>
             </ul>
         </div>
@@ -661,11 +673,22 @@
         <div class="hero-inner">
             <div class="hero-content">
                 <p style="font-size: 0.9rem; color: var(--accent-cyan); font-weight: 600; letter-spacing: 0.1em; margin-bottom: 0.5rem;">NEURAL SECURITY STANDARD</p>
-                <h1><span>ONI</span> Model</h1>
+                <h1><span>ONI</span> Framework</h1>
                 <p class="hero-tagline">The OSI of Mind</p>
+
+                <!-- Mission Statement -->
+                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border-left: 3px solid var(--accent-blue); padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;">
+                    <p style="font-size: 1.1rem; color: var(--text-primary); font-weight: 500; line-height: 1.5; margin: 0;">
+                        <strong>Our Mission:</strong> Build the security standard for brain-computer interfaces
+                        <em>before</em> the first satisfying exploit of the human mind — because the brain
+                        deserves the same protection we give our networks.
+                    </p>
+                </div>
+
                 <p class="hero-desc">
                     BCIs are being implanted in humans today — with no security standard.
-                    ONI is building one. 14 layers extending OSI into the biological domain
+                    ONI provides 14 layers extending OSI into the biological domain,
+                    giving researchers, developers, and regulators a shared vocabulary
                     to protect the most sensitive interface humanity will create.
                 </p>
 
@@ -928,6 +951,155 @@
         </div>
     </section>
 
+    <!-- The Problem Section -->
+    <section class="section" id="problem" style="background: var(--bg-secondary); margin: 0; max-width: 100%; padding: 5rem 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header">
+                <h2>The Problem</h2>
+                <p>Brain-computer interfaces are here. Security standards are not.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;">
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">2024</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem;">Neuralink implants first human patient. No security audit published.</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">0</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem;">Number of international BCI security standards in force today.</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">∞</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem;">Attack surface of direct brain access. The brain has no firewall.</div>
+                </div>
+            </div>
+
+            <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 1.5rem; margin-top: 2.5rem; text-align: center;">
+                <p style="color: var(--text-primary); font-size: 1rem; margin: 0;">
+                    <strong style="color: #f87171;">The brain evolved no mechanism to distinguish real from injected signals.</strong><br>
+                    <span style="color: var(--text-secondary);">If a signal's amplitude, frequency, and timing fall within biological norms, the brain processes it as real.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who It's For Section -->
+    <section class="section" id="audience">
+        <div class="section-header">
+            <h2>Who ONI Is For</h2>
+            <p>A shared vocabulary for everyone building, securing, and governing BCIs</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🔬</div>
+                <h4 style="margin-bottom: 0.5rem;">Researchers</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Academic teams studying BCI security, neuroethics, and neural engineering.</p>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.75rem;">💻</div>
+                <h4 style="margin-bottom: 0.5rem;">Developers</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Engineers building neural interfaces who need security primitives.</p>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.75rem;">⚖️</div>
+                <h4 style="margin-bottom: 0.5rem;">Regulators</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">FDA, FCC, and policy makers defining neural device requirements.</p>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🛡️</div>
+                <h4 style="margin-bottom: 0.5rem;">Security Teams</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Red teams, pentesters, and security researchers in medical devices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision / Roadmap Section -->
+    <section class="section" id="vision" style="background: var(--bg-secondary); margin: 0; max-width: 100%; padding: 5rem 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header">
+                <h2>Vision & Roadmap</h2>
+                <p>Where we're going</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                <!-- Vision -->
+                <div>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 1rem; font-size: 1.1rem;">THE VISION</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+                        A world where brain-computer interfaces are as secure as they are powerful.
+                        Where neural data is protected by law and by design. Where the boundary
+                        between mind and machine is guarded by open standards, not corporate secrecy.
+                    </p>
+                    <p style="color: var(--text-primary); font-weight: 500;">
+                        ONI aims to become the IEEE 802 of neural interfaces — the foundation
+                        that all BCI security builds upon.
+                    </p>
+                </div>
+
+                <!-- Roadmap -->
+                <div>
+                    <h3 style="color: var(--accent-purple); margin-bottom: 1rem; font-size: 1.1rem;">ROADMAP</h3>
+                    <div style="border-left: 2px solid var(--border); padding-left: 1.5rem;">
+                        <div style="margin-bottom: 1.25rem; position: relative;">
+                            <div style="position: absolute; left: -1.85rem; top: 0.25rem; width: 10px; height: 10px; background: var(--accent-emerald); border-radius: 50%;"></div>
+                            <div style="color: var(--accent-emerald); font-size: 0.8rem; font-weight: 600;">COMPLETE</div>
+                            <div style="color: var(--text-primary);">14-layer model, Coherence Metric, TARA MVP</div>
+                        </div>
+                        <div style="margin-bottom: 1.25rem; position: relative;">
+                            <div style="position: absolute; left: -1.85rem; top: 0.25rem; width: 10px; height: 10px; background: var(--accent-amber); border-radius: 50%;"></div>
+                            <div style="color: var(--accent-amber); font-size: 0.8rem; font-weight: 600;">IN PROGRESS</div>
+                            <div style="color: var(--text-primary);">OpenBCI hardware validation, bidirectional security</div>
+                        </div>
+                        <div style="margin-bottom: 1.25rem; position: relative;">
+                            <div style="position: absolute; left: -1.85rem; top: 0.25rem; width: 10px; height: 10px; background: var(--border); border-radius: 50%;"></div>
+                            <div style="color: var(--text-muted); font-size: 0.8rem; font-weight: 600;">PLANNED</div>
+                            <div style="color: var(--text-secondary);">IEEE standards proposal, regulatory alignment</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="position: absolute; left: -1.85rem; top: 0.25rem; width: 10px; height: 10px; background: var(--border); border-radius: 50%;"></div>
+                            <div style="color: var(--text-muted); font-size: 0.8rem; font-weight: 600;">FUTURE</div>
+                            <div style="color: var(--text-secondary);">Clinical trial integration, international adoption</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section class="section" id="contribute">
+        <div class="section-header">
+            <h2>Get Involved</h2>
+            <p>ONI is open-source and community-driven</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+            <a href="https://github.com/qikevinl/ONI" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-decoration: none; color: inherit; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--accent-blue)'" onmouseout="this.style.borderColor='var(--border)'">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">⭐</div>
+                <h4 style="margin-bottom: 0.5rem;">Star on GitHub</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Help us reach more researchers and developers.</p>
+            </a>
+            <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/CONTRIBUTING.md" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-decoration: none; color: inherit; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--accent-purple)'" onmouseout="this.style.borderColor='var(--border)'">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🔧</div>
+                <h4 style="margin-bottom: 0.5rem;">Contribute Code</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Add attack patterns, improve the firewall, extend TARA.</p>
+            </a>
+            <a href="https://github.com/qikevinl/ONI/issues" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-decoration: none; color: inherit; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--accent-cyan)'" onmouseout="this.style.borderColor='var(--border)'">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">💬</div>
+                <h4 style="margin-bottom: 0.5rem;">Join Discussion</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Share ideas, report issues, propose new features.</p>
+            </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border-radius: 12px;">
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Academic collaborations welcome</p>
+            <p style="color: var(--text-primary); font-size: 1.1rem;">
+                <strong>Contact:</strong> <a href="mailto:kevin@qikevinl.com" style="color: var(--accent-blue);">kevin@qikevinl.com</a>
+            </p>
+        </div>
+    </section>
+
     <section class="section" id="resources">
         <div class="section-header">
             <h2>Documentation & Resources</h2>
@@ -998,16 +1170,29 @@
     </section>
 
     <footer>
+        <!-- Research Foundation Banner -->
+        <div style="max-width: 800px; margin: 0 auto 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px;">
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.75rem;">BUILT ON RESEARCH FROM</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8;">
+                University of Washington (Kohno, Bonaci, Chizeck) · Columbia University (Yuste) ·
+                UC Berkeley (Song) · Northeastern University (Fu) · Yale Digital Ethics Center (Floridi) ·
+                ETH Zurich (Ienca) · Oxford Uehiro Centre · Harvard Bioethics · Stanford NPTL · Brown BrainGate
+            </p>
+        </div>
+
         <div class="footer-links">
             <a href="https://github.com/qikevinl/ONI">GitHub</a>
             <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/INDEX.md">Documentation</a>
             <a href="https://pypi.org/project/oni-framework/">PyPI</a>
             <a href="https://github.com/qikevinl/ONI/blob/main/LICENSE">Apache 2.0</a>
         </div>
-        <p>
-            ONI Framework &mdash; Open-source neural interface security
+        <p style="margin-top: 1rem;">
+            <strong>ONI Framework</strong> &mdash; Open-source neural interface security
         </p>
-        <p style="margin-top: 0.5rem;">
+        <p style="margin-top: 0.5rem; color: var(--text-muted);">
+            The brain's first firewall won't build itself.
+        </p>
+        <p style="margin-top: 1rem;">
             Created by <a href="https://github.com/qikevinl">Kevin L. Qi</a>
         </p>
     </footer>
