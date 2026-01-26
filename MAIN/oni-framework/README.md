@@ -418,6 +418,8 @@ oni-framework/
 
 ## API Reference
 
+> **Full API documentation:** [API.md](API.md) — Complete reference with all classes, methods, parameters, and examples.
+
 ### Signal Trust & Validation
 
 | Class | Method | Returns | Description |
@@ -478,6 +480,7 @@ oni-framework/
 
 | Resource | Description |
 |----------|-------------|
+| [API Reference](API.md) | **Complete API documentation** — all classes, methods, parameters, examples |
 | [ONI Framework Wiki](https://github.com/qikevinl/ONI/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
 | [14-Layer Model Reference](https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/ONI_LAYERS.md) | Complete layer specification with attack surfaces |
 | [Biological Foundation](https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/ONI_LAYERS.md#biological-foundation-what-l8-encapsulates) | Research on what L8 encapsulates (neurotransmitter pathways, cofactors, time-scales) |
