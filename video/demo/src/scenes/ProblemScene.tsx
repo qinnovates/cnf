@@ -26,7 +26,9 @@ export const ProblemScene: React.FC = () => {
   const phase3End = 400;   // Problem words
   const phase4Start = 420;
   const phase4End = 520;   // "Until now"
-  const phase5Start = 540; // "ONI changes that"
+  const phase5Start = 540; // "ONI Framework"
+  const phase5End = 780;   // End of ONI Framework intro
+  const phase6Start = 800; // Selling points
 
   // Wave opacity - subtle background
   const waveOpacity = interpolate(frame, [0, 40], [0, 0.3], {
@@ -83,6 +85,10 @@ export const ProblemScene: React.FC = () => {
     extrapolateRight: 'clamp',
   });
   const oniProgress = appleEase(oniRaw);
+  const phase5Out = interpolate(frame, [phase5End, phase5End + 30], [1, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
 
   // Staggered timing for Phase 5 elements
   const introTextProgress = appleEase(interpolate(frame - phase5Start, [0, 40], [0, 1], {
@@ -94,6 +100,13 @@ export const ProblemScene: React.FC = () => {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   }));
+
+  // Phase 6: Selling points
+  const sellingPoints = [
+    { text: 'Universal', sub: 'One framework for the entire neural stack' },
+    { text: 'Secure by Design', sub: 'Built-in protection from Layer 1 to 14' },
+    { text: 'Biodigital Ready', sub: 'Bridging silicon to synapse' },
+  ];
 
   // Typing effect for bottom text
   const bottomTextStart = phase5Start + 70;
@@ -281,7 +294,7 @@ export const ProblemScene: React.FC = () => {
       )}
 
       {/* Phase 5: ONI Framework - Full screen with staggered reveal */}
-      {frame >= phase5Start && (
+      {frame >= phase5Start && frame < phase6Start && (
         <div
           style={{
             position: 'absolute',
@@ -290,6 +303,7 @@ export const ProblemScene: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+            opacity: phase5Out,
           }}
         >
           {/* 1. "Introducing" appears first */}
@@ -374,6 +388,73 @@ export const ProblemScene: React.FC = () => {
               />
             )}
           </div>
+        </div>
+      )}
+
+      {/* Phase 6: Selling Points */}
+      {frame >= phase6Start && (
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 50,
+          }}
+        >
+          {sellingPoints.map((point, i) => {
+            const pointDelay = i * 50;
+            const pointRaw = interpolate(frame - phase6Start - pointDelay, [0, 40], [0, 1], {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+            });
+            const pointProgress = appleEase(pointRaw);
+
+            return (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 12,
+                  opacity: pointProgress,
+                  transform: `translateY(${interpolate(pointProgress, [0, 1], [30, 0])}px)`,
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 56,
+                    fontWeight: 600,
+                    fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
+                    background: i === 0
+                      ? 'linear-gradient(90deg, #2a7ab8, #4aa8d8, #a0dff0)'
+                      : i === 1
+                      ? 'linear-gradient(90deg, #22c55e, #4ade80, #86efac)'
+                      : 'linear-gradient(90deg, #f59e0b, #fbbf24, #fde68a)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  {point.text}
+                </div>
+                <div
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 400,
+                    fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
+                    color: 'rgba(180, 200, 220, 0.8)',
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {point.sub}
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </AbsoluteFill>

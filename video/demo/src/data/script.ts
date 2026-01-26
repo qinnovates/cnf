@@ -71,221 +71,231 @@ export const script: ScriptLine[] = [
     scene: 'problem',
     text: "Introducing ONI—the Open Neurosecurity Interoperability.",
     startFrame: 960,
-    endFrame: 1200,
+    endFrame: 1140,
+  },
+  {
+    scene: 'problem',
+    text: "A universal framework. Secure by design. Ready for the biodigital future.",
+    startFrame: 1140,
+    endFrame: 1380,
   },
 
-  // Scene 3: 14-Layer Model (0:40-1:20)
+  // Scene 3: 14-Layer Model (0:46-1:26)
   {
     scene: 'layers',
     text: "ONI defines fourteen layers spanning silicon to synapse.",
-    startFrame: 1200,
-    endFrame: 1350,
+    startFrame: 1380,
+    endFrame: 1530,
   },
   {
     scene: 'layers',
     text: "Layers one through seven mirror the classical OSI model—physical signals, protocols, transport, and application interfaces.",
-    startFrame: 1350,
-    endFrame: 1650,
+    startFrame: 1530,
+    endFrame: 1830,
   },
   {
     scene: 'layers',
     text: "But here's where ONI goes further.",
-    startFrame: 1650,
-    endFrame: 1770,
+    startFrame: 1830,
+    endFrame: 1950,
   },
   {
     scene: 'layers',
     text: "Layer eight is the Neural Gateway—the critical bridge where silicon meets synapse.",
-    startFrame: 1770,
-    endFrame: 2010,
-  },
-  {
-    scene: 'layers',
-    text: "This is where traditional security ends and neurosecurity begins.",
-    startFrame: 2010,
+    startFrame: 1950,
     endFrame: 2190,
   },
   {
     scene: 'layers',
-    text: "Layers nine through fourteen map the biological stack—from ion channels to spike trains, neural populations, circuit dynamics, cognitive function, and ultimately, identity.",
+    text: "This is where traditional security ends and neurosecurity begins.",
     startFrame: 2190,
-    endFrame: 2400,
+    endFrame: 2370,
+  },
+  {
+    scene: 'layers',
+    text: "Layers nine through fourteen map the biological stack—from ion channels to spike trains, neural populations, circuit dynamics, cognitive function, and ultimately, identity.",
+    startFrame: 2370,
+    endFrame: 2580,
   },
 
-  // Scene 4: Coherence Metric (1:20-2:00)
+  // Scene 4: Coherence Metric (1:26-2:06)
   {
     scene: 'coherence',
     text: "But how do you measure neural security?",
-    startFrame: 2400,
-    endFrame: 2520,
+    startFrame: 2580,
+    endFrame: 2700,
   },
   {
     scene: 'coherence',
     text: "ONI introduces the Coherence Score—a unified metric combining phase variance, timing precision, and frequency stability.",
-    startFrame: 2520,
-    endFrame: 2760,
-  },
-  {
-    scene: 'coherence',
-    text: "When coherence drops below threshold, automated defense mechanisms activate.",
-    startFrame: 2760,
+    startFrame: 2700,
     endFrame: 2940,
   },
   {
     scene: 'coherence',
-    text: "Whether it's MRI interference, electromagnetic disruption, or a malicious injection attack—the system responds instantly.",
+    text: "When coherence drops below threshold, automated defense mechanisms activate.",
     startFrame: 2940,
-    endFrame: 3180,
+    endFrame: 3120,
+  },
+  {
+    scene: 'coherence',
+    text: "Whether it's MRI interference, electromagnetic disruption, or a malicious injection attack—the system responds instantly.",
+    startFrame: 3120,
+    endFrame: 3360,
   },
   {
     scene: 'coherence',
     text: "And the Scale-Frequency Invariant ensures neural patterns maintain constant relationships across all scales.",
-    startFrame: 3180,
-    endFrame: 3420,
+    startFrame: 3360,
+    endFrame: 3600,
   },
   {
     scene: 'coherence',
     text: "As scale increases, frequency decreases proportionally. The product remains invariant—a fingerprint of healthy neural activity.",
-    startFrame: 3420,
-    endFrame: 3660,
+    startFrame: 3600,
+    endFrame: 3840,
   },
 
-  // Scene 5: TARA Platform (2:00-2:30)
+  // Scene 5: TARA Platform (2:06-2:36)
   {
     scene: 'tara',
     text: "For security professionals, there's TARA—the Telemetry Analysis and Response Automation platform.",
-    startFrame: 3660,
-    endFrame: 3900,
+    startFrame: 3840,
+    endFrame: 4080,
   },
   {
     scene: 'tara',
     text: "Real-time brain topology visualization.",
-    startFrame: 3900,
-    endFrame: 4050,
-  },
-  {
-    scene: 'tara',
-    text: "Attack simulation across all fourteen layers.",
-    startFrame: 4050,
+    startFrame: 4080,
     endFrame: 4230,
   },
   {
     scene: 'tara',
-    text: "Neural Signal Assurance Monitoring that flags anomalies before they become breaches.",
+    text: "Attack simulation across all fourteen layers.",
     startFrame: 4230,
-    endFrame: 4500,
+    endFrame: 4410,
+  },
+  {
+    scene: 'tara',
+    text: "Neural Signal Assurance Monitoring that flags anomalies before they become breaches.",
+    startFrame: 4410,
+    endFrame: 4680,
   },
 
-  // Scene 6: Academic Foundation (2:30-2:55)
+  // Scene 6: Academic Foundation (2:36-3:01)
   {
     scene: 'academic',
     text: "ONI isn't built in a vacuum.",
-    startFrame: 4500,
-    endFrame: 4620,
+    startFrame: 4680,
+    endFrame: 4800,
   },
   {
     scene: 'academic',
     text: "It extends the threat models of Kohno and colleagues at the University of Washington.",
-    startFrame: 4620,
-    endFrame: 4860,
+    startFrame: 4800,
+    endFrame: 5040,
   },
   {
     scene: 'academic',
     text: "It incorporates neurosecurity research from Columbia, Yale, and the Graz BCI Lab.",
-    startFrame: 4860,
-    endFrame: 5130,
+    startFrame: 5040,
+    endFrame: 5310,
   },
   {
     scene: 'academic',
     text: "Every claim is cited. Every formula is documented.",
-    startFrame: 5130,
-    endFrame: 5280,
-  },
-  {
-    scene: 'academic',
-    text: "Built for researchers, developers, regulators, security teams...",
-    startFrame: 5280,
+    startFrame: 5310,
     endFrame: 5460,
   },
   {
     scene: 'academic',
-    // NOTE: This line should have slow pan-in animation with white text for emphasis
-    text: "...and you.",
+    text: "Built for researchers, developers, regulators, security teams...",
     startFrame: 5460,
-    endFrame: 5700, // Extended for dramatic effect
+    endFrame: 5640,
+  },
+  {
+    scene: 'academic',
+    // NOTE: This line should have slow pan-in animation with WHITE TEXT for dramatic emphasis
+    text: "...and you.",
+    startFrame: 5640,
+    endFrame: 5880, // Extended for dramatic effect
   },
 
-  // Scene 7: Call to Action (2:55-3:15)
+  // Scene 7: Call to Action (3:01-3:21)
   {
     scene: 'cta',
     text: "Ready to secure the neural frontier?",
-    startFrame: 5700,
-    endFrame: 5850,
+    startFrame: 5880,
+    endFrame: 6030,
   },
   {
     scene: 'cta',
     text: "Install ONI with a single command.",
-    startFrame: 5850,
-    endFrame: 6000,
+    startFrame: 6030,
+    endFrame: 6180,
   },
   {
     scene: 'cta',
-    text: "pip install oni-framework",
-    startFrame: 6000,
-    endFrame: 6150,
+    text: "pip install oni-framework, oni-tara, or oni-academy",
+    startFrame: 6180,
+    endFrame: 6360,
   },
   {
     scene: 'cta',
     text: "Join us in building the security standards for brain-computer interfaces.",
-    startFrame: 6150,
-    endFrame: 6360,
+    startFrame: 6360,
+    endFrame: 6570,
   },
 
-  // Scene 8: Credits (3:15-3:35) - Powerful closing
+  // Scene 8: Credits (3:21-3:53) - Powerful closing with dynamic waves
   {
     scene: 'credits',
     text: "Our mind.",
-    startFrame: 6360,
-    endFrame: 6450,
+    startFrame: 6570,
+    endFrame: 6660,
   },
   {
     scene: 'credits',
     text: "Our future.",
-    startFrame: 6450,
-    endFrame: 6540,
+    startFrame: 6660,
+    endFrame: 6750,
   },
   {
     scene: 'credits',
     text: "Our rules.",
-    startFrame: 6540,
-    endFrame: 6630,
+    startFrame: 6750,
+    endFrame: 6840,
   },
   {
     scene: 'credits',
     text: "Because life's most important connections deserve the most thought.",
-    startFrame: 6630,
-    endFrame: 6810,
+    startFrame: 6840,
+    endFrame: 7050,
   },
   {
     scene: 'credits',
     text: "Welcome to the OSI of Mind.",
-    startFrame: 6810,
-    endFrame: 6990,
+    startFrame: 7050,
+    endFrame: 7290,
   },
 ];
 
 // Full script as single text for voiceover generation
 export const fullScript = script.map(line => line.text).join(' ');
 
-// Word count: ~420 words
-// Estimated read time at 110 WPM: ~3:50 (fits 3:53 with natural pacing)
-// Final frame: 6990 = 3:53 at 30fps
+// Word count: ~440 words
+// Estimated read time at 110 WPM: ~4:03 (fits 4:03 with natural pacing)
+// Final frame: 7290 = 4:03 at 30fps
 //
 // ANIMATION NOTES:
+// - Scene 2 (Problem): NEW selling points phase after "ONI Framework" intro
+//   - Universal, Secure by Design, Biodigital Ready - staggered reveal
 // - Scene 4 (Coherence): Show threshold trigger → defense mechanism activation
 //   - Visual: Gauge drops below threshold → shield/alert animation
 //   - Examples: MRI interference, electromagnetic disruption, injection attacks
 // - Scene 4 (Scale-Frequency): Animated visualization of f × S ≈ k
 //   - Scale bar grows (10→1000), Frequency shrinks (100→1 Hz), k stays ~1000
-// - Scene 6 ("...and you"): SLOW PAN-IN with WHITE TEXT for emphasis
-// - TARA scene: REMOVED "100% open source" line
+// - Scene 6 ("...and you"): SLOW PAN-IN with WHITE TEXT and glow for emphasis
+// - Scene 7 (CTA): Cycling pip install animation (framework → tara → academy)
+// - Scene 8 (Credits): Dynamic circular wave animation on "Welcome to" finale
+// - Cold Open: Wave grid fades in 5 seconds before transition for continuity

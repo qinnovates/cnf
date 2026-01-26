@@ -321,29 +321,31 @@ export const AcademicScene: React.FC = () => {
             })}
           </div>
 
-          {/* And You - emphasized */}
+          {/* And You - emphasized with white text and dramatic animation */}
           <div
             style={{
               marginTop: 24,
               textAlign: 'center',
-              opacity: interpolate(frame - 290, [0, 25], [0, 1], {
+              opacity: interpolate(frame - 290, [0, 40], [0, 1], {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
               }),
-              transform: `scale(${interpolate(frame - 290, [0, 25], [0.9, 1], {
+              transform: `scale(${interpolate(frame - 290, [0, 40], [0.85, 1], {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
-              })})`,
+              })}) translateY(${interpolate(frame - 290, [0, 40], [20, 0], {
+                extrapolateLeft: 'clamp',
+                extrapolateRight: 'clamp',
+              })}px)`,
             }}
           >
             <span
               style={{
-                fontSize: 22,
-                fontWeight: 600,
-                background: `linear-gradient(90deg, ${colors.primary.accent}, ${colors.security.safe})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                letterSpacing: '0.05em',
+                fontSize: 28,
+                fontWeight: 700,
+                color: '#ffffff',
+                letterSpacing: '0.08em',
+                textShadow: `0 0 30px ${colors.primary.accent}66, 0 0 60px ${colors.primary.accent}33`,
               }}
             >
               ...and you.

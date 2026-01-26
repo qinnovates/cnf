@@ -7,6 +7,7 @@ import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig } from 'remotion';
 import { Starfield } from '../components/Particles';
 import { NeuralFlow } from '../components/NeuralFlow';
+import { WaveGrid } from '../components/reactbits';
 import { colors, typography } from '../data/oni-theme';
 
 // Headlines for the cold open montage - alternating hope and tension
@@ -40,6 +41,32 @@ export const ColdOpenScene: React.FC = () => {
     >
       {/* Starfield background - subtle depth */}
       <Starfield starCount={200} speed={0.3} />
+
+      {/* Wave grid - fades in 5 seconds before transition for smooth continuity */}
+      {frame > 90 && (
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: interpolate(frame, [90, 180], [0, 0.15], {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+            }),
+          }}
+        >
+          <WaveGrid
+            lineCount={6}
+            color="#006688"
+            secondaryColor="#004455"
+            amplitude={20}
+            speed={0.06}
+            strokeWidth={0.8}
+            showNodes={false}
+            glow={true}
+            glowIntensity={5}
+          />
+        </div>
+      )}
 
       {/* Gradient overlay for depth */}
       <div
