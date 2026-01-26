@@ -12,6 +12,8 @@ The most important connections deserve the most thought.
 
 One framework to understand, build, and secure brain-computer interfaces. Open. Extensible. Universal.
 
+> **Brand Reference:** [`MAIN/brand.json`](MAIN/brand.json) — Single source of truth for project naming and identity
+
 ---
 
 ## Table of Contents

@@ -1,16 +1,18 @@
 """
 ONI Framework Brand Constants
 
-Single source of truth for project naming, slogans, and mission statements.
-Import from here to ensure consistency across all documentation and code.
+Loads brand identity from brand.json (single source of truth at repo root).
+All packages in the monorepo share this same source.
 
 Usage:
     from oni.brand import ONI, TARA
     print(ONI.name)  # "ONI Framework"
-    print(TARA.slogan)  # "Protection for the neural frontier"
+    print(TARA.tagline)  # "Protection for the neural frontier"
 """
 
+import json
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Optional
 
 
@@ -24,49 +26,76 @@ class ProjectBrand:
     mission: str
     tagline: Optional[str] = None
     description: Optional[str] = None
+    version: Optional[str] = None
+
+
+def _load_brand_json() -> dict:
+    """Load brand.json from repo root."""
+    # Try multiple paths for different installation contexts
+    possible_paths = [
+        Path(__file__).parent.parent.parent.parent.parent / "brand.json",  # From oni/brand.py -> repo root
+        Path(__file__).parent.parent.parent.parent / "brand.json",  # Alternate
+        Path(__file__).parent.parent.parent / "brand.json",  # If installed as package
+    ]
+
+    for path in possible_paths:
+        if path.exists():
+            with open(path, "r") as f:
+                return json.load(f)
+
+    # Fallback to hardcoded values if brand.json not found (e.g., pip installed)
+    return None
+
+
+def _create_brand(data: dict) -> ProjectBrand:
+    """Create ProjectBrand from JSON data."""
+    return ProjectBrand(
+        acronym=data.get("acronym", ""),
+        full_name=data.get("full_name", ""),
+        name=data.get("name", ""),
+        tagline=data.get("tagline"),
+        slogan=data.get("slogan", ""),
+        mission=data.get("mission", ""),
+        description=data.get("description"),
+        version=data.get("version"),
+    )
 
 
 # =============================================================================
-# ONI Framework
+# Load from brand.json or use fallbacks
 # =============================================================================
 
-ONI = ProjectBrand(
-    acronym="ONI",
-    full_name="Open Neurosecurity Interoperability",
-    name="ONI Framework",
-    tagline="The OSI of Mind",
-    slogan="Our minds. Our rules. Our future.",
-    mission=(
-        "The mind is the last frontier. We're making sure it's protected "
-        "from day one — with a universal, open standard that leaves no brain behind."
-    ),
-    description=(
-        "A unified 14-layer model extending OSI into the biological domain. "
-        "One framework to understand, build, and secure brain-computer interfaces. "
-        "Open. Extensible. Universal."
-    ),
-)
+_brand_data = _load_brand_json()
 
-
-# =============================================================================
-# TARA Platform
-# =============================================================================
-
-TARA = ProjectBrand(
-    acronym="TARA",
-    full_name="Telemetry Analysis & Response Automation",
-    name="TARA Platform",
-    tagline="Protection for the neural frontier",
-    slogan="Named after the Buddhist goddess of protection.",
-    mission=(
-        "Provide real-time neural security monitoring, attack simulation, "
-        "and response automation aligned with the ONI 14-layer model."
-    ),
-    description=(
-        "A neural security platform for BCI monitoring, simulation, and attack testing. "
-        "Real-time security analysis for brain-computer interfaces."
-    ),
-)
+if _brand_data:
+    ONI = _create_brand(_brand_data["oni"])
+    TARA = _create_brand(_brand_data["tara"])
+    ONI_VERSION = _brand_data["oni"].get("version", "0.2.0")
+    TARA_VERSION = _brand_data["tara"].get("version", "0.8.0")
+else:
+    # Fallback for pip-installed package without brand.json
+    ONI = ProjectBrand(
+        acronym="ONI",
+        full_name="Open Neurosecurity Interoperability",
+        name="ONI Framework",
+        tagline="The OSI of Mind",
+        slogan="Our minds. Our rules. Our future.",
+        mission="The mind is the last frontier. We're making sure it's protected from day one.",
+        description="A unified 14-layer model extending OSI into the biological domain.",
+        version="0.2.0",
+    )
+    TARA = ProjectBrand(
+        acronym="TARA",
+        full_name="Telemetry Analysis & Response Automation",
+        name="TARA Platform",
+        tagline="Protection for the neural frontier",
+        slogan="Named after the Buddhist goddess of protection.",
+        mission="Real-time neural security monitoring aligned with ONI.",
+        description="A neural security platform for BCI monitoring and attack testing.",
+        version="0.8.0",
+    )
+    ONI_VERSION = "0.2.0"
+    TARA_VERSION = "0.8.0"
 
 
 # =============================================================================
@@ -85,21 +114,10 @@ def get_brand(name: str) -> ProjectBrand:
 
 
 # =============================================================================
-# Version Info (updated with releases)
-# =============================================================================
-
-ONI_VERSION = "0.2.0"
-TARA_VERSION = "0.8.0"
-
-
-# =============================================================================
 # Quick Access Strings
 # =============================================================================
 
-# For documentation headers
 ONI_HEADER = f"{ONI.name} — {ONI.tagline}"
 TARA_HEADER = f"{TARA.name} — {TARA.tagline}"
-
-# For footers/credits
 ONI_FOOTER = f"{ONI.name} | {ONI.slogan}"
 TARA_FOOTER = f"{TARA.name} | {TARA.slogan}"
