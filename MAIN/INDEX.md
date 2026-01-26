@@ -253,6 +253,7 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 
 | Document | Purpose |
 |----------|---------|
+| [DATA_POLICY_FAQ.md](governance/DATA_POLICY_FAQ.md) | **FAQ & Data Policy** — privacy questions, anonymization, user rights, known vulnerabilities |
 | [TRANSPARENCY.md](governance/TRANSPARENCY.md) | Human-AI collaboration audit trail — cognitive boundary documentation, HITL methodology |
 | [NEUROETHICS_ALIGNMENT.md](governance/NEUROETHICS_ALIGNMENT.md) | Maps framework components to cognitive liberty, mental privacy, mental integrity principles |
 | [REGULATORY_COMPLIANCE.md](governance/REGULATORY_COMPLIANCE.md) | **US regulatory mapping** — FDA, FCC, HIPAA, FTC, NIST alignment for ONI-compliant BCIs |
@@ -421,6 +422,7 @@ MAIN/
 ├── ACADEMIC_LANDSCAPE.md       # Universities, researchers, collaboration opportunities
 │
 ├── governance/                 # Ethics & transparency
+│   ├── DATA_POLICY_FAQ.md      # **FAQ & Data Policy** — privacy, anonymization, vulnerabilities
 │   ├── TRANSPARENCY.md         # Human-AI collaboration audit trail
 │   ├── NEUROETHICS_ALIGNMENT.md # Framework-to-ethics principle mapping
 │   ├── INFORMED_CONSENT_FRAMEWORK.md # Consent requirements (Lázaro-Muñoz)

@@ -65,8 +65,10 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 
 | Document | Purpose |
 |----------|---------|
+| **[DATA_POLICY_FAQ.md](MAIN/governance/DATA_POLICY_FAQ.md)** | **FAQ & Data Policy** — privacy, anonymization, user rights, known vulnerabilities |
 | **[TRANSPARENCY.md](MAIN/governance/TRANSPARENCY.md)** | Human-AI collaboration audit trail — documents cognitive boundary, HITL methodology |
 | **[NEUROETHICS_ALIGNMENT.md](MAIN/governance/NEUROETHICS_ALIGNMENT.md)** | Maps framework components to neuroethics principles |
+| **[INFORMED_CONSENT_FRAMEWORK.md](MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md)** | Consent architecture for BCIs — continuous consent, pediatric considerations |
 | **[RELATED_WORK.md](MAIN/RELATED_WORK.md)** | Prior BCI security research — acknowledges foundational work, positions ONI contribution |
 | **[ACADEMIC_LANDSCAPE.md](MAIN/ACADEMIC_LANDSCAPE.md)** | Research landscape — top universities, key researchers, collaboration opportunities |
 
@@ -85,7 +87,9 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 
 **ONI is NOT a surveillance framework.** It exists to **protect** neural privacy, not compromise it. Signal integrity can be validated without reading thoughts. Attacks can be detected without decoding intent.
 
-**Full statement:** [NEUROETHICS_ALIGNMENT.md](MAIN/governance/NEUROETHICS_ALIGNMENT.md)
+**Key Resources:**
+- **[DATA_POLICY_FAQ.md](MAIN/governance/DATA_POLICY_FAQ.md)** — FAQ, data handling, anonymization, known vulnerabilities
+- **[NEUROETHICS_ALIGNMENT.md](MAIN/governance/NEUROETHICS_ALIGNMENT.md)** — Full ethics statement and principle mapping
 
 ---
 
