@@ -1,10 +1,7 @@
 # ONI Framework
 
 *The OSI of Mind*
-
-**Our minds. Our rules. Our future.**
-
-The most important connections deserve the most thought.
+Life's most important connections deserve the best thought.
 
 ---
 
