@@ -1163,6 +1163,18 @@
         </div>
     </section>
 
+    <!-- Mission Section (loads from brand.json) -->
+    <section class="section" id="mission" style="background: var(--bg-secondary); margin: 0; max-width: 100%; padding: 5rem 2rem;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <div class="section-header">
+                <h2>Mission</h2>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border-left: 3px solid var(--accent-blue); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; text-align: left;">
+                <p id="mission-text" style="font-size: 1.15rem; color: var(--text-primary); font-weight: 500; line-height: 1.6; margin: 0;">The power of mind is our frontier. We're making sure it's protected from day one with a universal, open standard that leaves no brain behind. Because important connections deserve the most thought.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Vision / Roadmap Section -->
     <section class="section" id="vision" style="background: var(--bg-secondary); margin: 0; max-width: 100%; padding: 5rem 2rem;">
         <div style="max-width: 1200px; margin: 0 auto;">
@@ -1212,20 +1224,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mission Section -->
-    <section class="section" id="mission" style="background: var(--bg-secondary); margin: 0; max-width: 100%; padding: 5rem 2rem;">
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <div class="section-header">
-                <h2>Mission</h2>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border-left: 3px solid var(--accent-blue); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; text-align: left;">
-                <p style="font-size: 1.15rem; color: var(--text-primary); font-weight: 500; line-height: 1.6; margin: 0;">
-                    The mind is the last frontier. We're making sure it's protected from day one — with a universal, open standard that leaves no brain behind.
-                </p>
             </div>
         </div>
     </section>
@@ -1441,10 +1439,32 @@
             });
         }
 
+        // Load brand constants from brand.json
+        async function loadBrandConstants() {
+            try {
+                // Try to load brand.json from repo (works on GitHub Pages)
+                const response = await fetch('https://raw.githubusercontent.com/qikevinl/ONI/main/brand.json');
+                if (!response.ok) throw new Error('Failed to fetch brand.json');
+
+                const brand = await response.json();
+
+                // Update mission text
+                const missionEl = document.getElementById('mission-text');
+                if (missionEl && brand.oni && brand.oni.mission) {
+                    missionEl.textContent = brand.oni.mission;
+                }
+
+                console.log('Brand loaded:', brand.oni.name, 'v' + brand.oni.version);
+            } catch (err) {
+                console.log('Using default mission text (brand.json not available)');
+            }
+        }
+
         // Initialize on load
         document.addEventListener('DOMContentLoaded', function() {
             createNeuralBackground();
             animateCounters();
+            loadBrandConstants();
         });
     </script>
 </body>
