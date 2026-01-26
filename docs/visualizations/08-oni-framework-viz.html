@@ -37,10 +37,10 @@
           const layers = [
             {
               id: 1,
-              name: 'Physical Carrier',
+              name: 'Physical',
               category: 'silicon',
               osi: 'Physical',
-              description: 'Electromagnetic signals, fiber optics, wireless carriers, electrode interfaces',
+              description: 'Transmission of raw bits over medium: copper, fiber optics, RF, electrode interfaces',
               attacks: [
                 { id: 'T1.1', name: 'EM Side-Channel Capture', tactic: 'Reconnaissance', description: 'Passive electromagnetic emanation capture to extract neural signal patterns without direct access' },
                 { id: 'T1.2', name: 'Signal Injection', tactic: 'Initial Access', description: 'Inject malicious signals through physical medium to corrupt or spoof neural readings' },
@@ -49,24 +49,24 @@
             },
             {
               id: 2,
-              name: 'Signal Processing',
+              name: 'Data Link',
               category: 'silicon',
               osi: 'Data Link',
-              description: 'ADC/DAC conversion, error correction, framing, signal conditioning',
+              description: 'Framing, MAC addressing, local delivery: Ethernet, Wi-Fi, Bluetooth',
               attacks: [
-                { id: 'T2.1', name: 'Timing Side-Channel', tactic: 'Collection', description: 'Exploit timing variations in signal processing to infer sensitive neural data patterns' },
-                { id: 'T2.2', name: 'ADC Threshold Manipulation', tactic: 'Defense Evasion', description: 'Alter analog-to-digital conversion thresholds to modify signal interpretation' },
+                { id: 'T2.1', name: 'MAC Spoofing', tactic: 'Initial Access', description: 'Impersonate legitimate BCI device by spoofing MAC address to inject unauthorized commands' },
+                { id: 'T2.2', name: 'Frame Injection', tactic: 'Execution', description: 'Inject malicious frames into data link layer to corrupt or hijack communication' },
               ]
             },
             {
               id: 3,
-              name: 'Protocol',
+              name: 'Network',
               category: 'silicon',
               osi: 'Network',
-              description: 'Packet routing, addressing, network topology, BCI protocol stack',
+              description: 'Logical addressing and routing: IP, ICMP, BGP',
               attacks: [
-                { id: 'T3.1', name: 'Protocol Downgrade', tactic: 'Defense Evasion', description: 'Force fallback to less secure protocol versions with known vulnerabilities' },
-                { id: 'T3.2', name: 'Neural Routing Hijack', tactic: 'Collection', description: 'Redirect neural data streams through attacker-controlled network paths' },
+                { id: 'T3.1', name: 'Route Hijacking', tactic: 'Collection', description: 'Redirect neural data streams through attacker-controlled network paths via BGP/routing attacks' },
+                { id: 'T3.2', name: 'IP Spoofing', tactic: 'Defense Evasion', description: 'Mask attack origin by spoofing source IP addresses in BCI network traffic' },
               ]
             },
             {
@@ -104,10 +104,10 @@
             },
             {
               id: 7,
-              name: 'Application Interface',
+              name: 'Application',
               category: 'silicon',
               osi: 'Application',
-              description: 'API endpoints, user-facing protocols, BCI application layer',
+              description: 'User-facing network services: HTTP, REST APIs, BCI applications',
               attacks: [
                 { id: 'T7.1', name: 'BCI API Exploitation', tactic: 'Initial Access', description: 'Exploit vulnerabilities in brain-computer interface application APIs' },
                 { id: 'T7.2', name: 'Neural Command Injection', tactic: 'Execution', description: 'Inject malicious commands through API calls to manipulate BCI behavior' },
