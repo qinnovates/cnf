@@ -412,13 +412,13 @@ L14: Identity & Ethics         (Biology)
 ### Architecture
 
 ```
-MAIN/resources/brand.json      ← Single source of truth
+MAIN/resources/brand/brand.json      ← Single source of truth
     │
     ├── oni/brand.py           ← Python API for ONI Framework
     ├── tara_mvp/_brand.py     ← Python API for TARA (no oni dependency)
     ├── oni_academy/_brand.py  ← Python API for ONI Academy
     │
-    ├── scripts/sync_brand.py  ← Syncs to README.md, docs/index.html
+    ├── MAIN/resources/brand/sync_brand.py  ← Syncs to README.md, docs/index.html
     │
     └── docs/index.html        ← JavaScript fetches from GitHub raw URL
 ```
@@ -437,8 +437,8 @@ MAIN/resources/brand.json      ← Single source of truth
 
 | Trigger | How |
 |---------|-----|
-| **Automatic** | GitHub Action on push to `main` when `MAIN/resources/brand.json` changes |
-| **Manual** | `python scripts/sync_brand.py` |
+| **Automatic** | GitHub Action on push to `main` when `MAIN/resources/brand/brand.json` changes |
+| **Manual** | `python MAIN/resources/brand/sync_brand.py` |
 | **Dynamic** | docs/index.html fetches from raw.githubusercontent.com at runtime |
 
 ### Key Patterns

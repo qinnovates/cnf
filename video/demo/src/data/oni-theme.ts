@@ -20,7 +20,7 @@ export const colors = {
   },
 
   // Layer colors - 14-layer model
-  // Source of truth: MAIN/resources/brand.json > layers section
+  // Source of truth: MAIN/resources/brand/brand.json > layers section
   // MUST MATCH: docs/index.html, LayerStack.tsx
   silicon: {
     L1: '#1e3a5f',  // Physical Carrier - dark blue

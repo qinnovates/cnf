@@ -1977,7 +1977,7 @@
         async function loadBrandConstants() {
             try {
                 // Try to load brand.json from repo (works on GitHub Pages)
-                const response = await fetch('https://raw.githubusercontent.com/qikevinl/ONI/main/MAIN/resources/brand.json');
+                const response = await fetch('https://raw.githubusercontent.com/qikevinl/ONI/main/MAIN/resources/brand/brand.json');
                 if (!response.ok) throw new Error('Failed to fetch brand.json');
 
                 const brand = await response.json();

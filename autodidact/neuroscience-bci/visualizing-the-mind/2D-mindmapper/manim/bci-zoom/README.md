@@ -140,7 +140,7 @@ manim -pqh --fps 60 scenes/bci_zoom_animation.py BCIZoomAnimation
 
 This visualization references:
 - `MAIN/oni-framework/ONI_LAYERS.md` - Layer definitions, timescale table
-- `MAIN/resources/brand.json` - Brand colors (should sync with theme.py)
+- `MAIN/resources/brand/brand.json` - Brand colors (should sync with theme.py)
 
 When ONI layer definitions change, update:
 1. `data/scales.json` - Scale mappings

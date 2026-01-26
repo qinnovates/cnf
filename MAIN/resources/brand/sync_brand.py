@@ -3,7 +3,7 @@
 Sync brand.json values into README.md and other documentation.
 
 Usage:
-    python scripts/sync_brand.py
+    python MAIN/resources/brand/sync_brand.py
 
 This script updates documentation files to match brand.json,
 ensuring consistency across the repository.
@@ -15,15 +15,15 @@ from pathlib import Path
 
 
 def load_brand() -> dict:
-    """Load brand.json from MAIN/resources/."""
-    brand_path = Path(__file__).parent.parent / "MAIN" / "resources" / "brand.json"
+    """Load brand.json from MAIN/resources/brand/."""
+    brand_path = Path(__file__).parent / "brand.json"
     with open(brand_path) as f:
         return json.load(f)
 
 
 def update_readme(brand: dict) -> bool:
     """Update README.md with brand values."""
-    readme_path = Path(__file__).parent.parent / "README.md"
+    readme_path = Path(__file__).parent.parent.parent.parent / "README.md"
     content = readme_path.read_text()
     original = content
 
@@ -76,7 +76,7 @@ def update_readme(brand: dict) -> bool:
 
 def update_github_pages(brand: dict) -> bool:
     """Update docs/index.html with brand values."""
-    html_path = Path(__file__).parent.parent / "docs" / "index.html"
+    html_path = Path(__file__).parent.parent.parent.parent / "docs" / "index.html"
     if not html_path.exists():
         return False
 

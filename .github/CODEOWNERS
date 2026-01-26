@@ -11,7 +11,7 @@
 SECURITY.md @qikevinl
 
 # Brand configuration (single source of truth)
-MAIN/resources/brand.json @qikevinl
+MAIN/resources/brand/ @qikevinl
 
 # Layer definitions
 MAIN/oni-framework/ONI_LAYERS.md @qikevinl

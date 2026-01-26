@@ -58,11 +58,12 @@
   },
   "_meta": {
     "last_updated": "2026-01-26",
-    "location": "MAIN/resources/brand.json",
+    "location": "MAIN/resources/brand/brand.json",
     "consumers": [
       "MAIN/oni-framework/oni/brand.py",
       "MAIN/tara-nsec-platform/tara_mvp/_brand.py",
       "autodidact/oni-academy/oni_academy/_brand.py",
+      "MAIN/resources/brand/sync_brand.py",
       "docs/index.html",
       "video/demo/src/data/oni-theme.ts",
       "video/demo/src/components/LayerStack.tsx",

@@ -114,7 +114,7 @@ The following files require explicit maintainer approval to modify:
 ```
 .github/CODEOWNERS          # Self-protecting
 .github/workflows/          # CI/CD pipelines (prevents malicious publish)
-MAIN/resources/brand.json   # Brand configuration
+MAIN/resources/brand/brand.json   # Brand configuration
 MAIN/oni-framework/ONI_LAYERS.md  # Authoritative layer definitions
 ```
 

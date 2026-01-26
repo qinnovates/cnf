@@ -2,7 +2,7 @@ import React from 'react';
 import { useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
 import { colors, typography } from '../data/oni-theme';
 
-// Layer definitions - MUST MATCH brand.json (MAIN/resources/brand.json)
+// Layer definitions - MUST MATCH brand.json (MAIN/resources/brand/brand.json)
 // Source of truth: brand.json > layers section
 // L1-L7: Silicon (OSI), L8: Neural Gateway (Bridge), L9-L14: Biology (Cognitive)
 // Updated 2026-01-26: Aligned with ONI_LAYERS.md v3.0 (Biological Foundation research)

@@ -654,7 +654,7 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 | Priority | File | Purpose | Update When |
 |----------|------|---------|-------------|
 | **1** | `MAIN/oni-framework/ONI_LAYERS.md` | Authoritative reference | Layer definitions change |
-| **2** | `MAIN/resources/brand.json` | Machine-readable source | Any layer name/zone change |
+| **2** | `MAIN/resources/brand/brand.json` | Machine-readable source | Any layer name/zone change |
 
 ### Consumer Files (Must Match Source of Truth)
 
@@ -753,7 +753,7 @@ These implementations render the 14-layer model and must stay synchronized with 
 
 | Implementation | Location | Purpose |
 |----------------|----------|---------|
-| **brand.json** | [`MAIN/resources/brand.json`](../resources/brand.json) | Single source of truth for layer data (names, colors, zones) |
+| **brand.json** | [`MAIN/resources/brand/brand.json`](../resources/brand/brand.json) | Single source of truth for layer data (names, colors, zones) |
 | **Video Animation** | [`video/demo/src/components/LayerStack.tsx`](../../video/demo/src/components/LayerStack.tsx) | Remotion video layer stack with cascade animation |
 | **GitHub Pages** | [`docs/index.html`](../../docs/index.html) | Website scroll-reveal animation with L8 expansion effect |
 | **Python API - Layers** | [`oni/layers.py`](oni/layers.py) | Programmatic layer access, attack surfaces, defenses |

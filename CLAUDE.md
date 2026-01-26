@@ -8,7 +8,7 @@
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
-| **Brand Constants** | `MAIN/resources/brand.json` | **Single source of truth for ONI/TARA naming, slogans, versions, stats** |
+| **Brand Constants** | `MAIN/resources/brand/brand.json` | **Single source of truth for ONI/TARA naming, slogans, versions, stats** |
 | **Website Stats** | `docs/index.html` | **Dynamic stats system - see "Website Stats System" section** |
 | **Main Wiki (INDEX)** | `MAIN/INDEX.md` | **Central hub - navigation, dependencies, cross-references** |
 | **Python Package** | `MAIN/oni-framework/` | **pip install oni-framework** |
@@ -157,13 +157,13 @@ ONI/
 ### Architecture
 
 ```
-MAIN/resources/brand.json      ← EDIT THIS to change any brand value
+MAIN/resources/brand/brand.json      ← EDIT THIS to change any brand value
     │
     ├── oni/brand.py           ← Python API for ONI Framework
     ├── tara_mvp/_brand.py     ← Python API for TARA
     ├── oni_academy/_brand.py  ← Python API for ONI Academy
     │
-    └── scripts/sync_brand.py  ← Syncs changes to README.md
+    └── MAIN/resources/brand/sync_brand.py  ← Syncs changes to README.md
 ```
 
 ### Brand Values
@@ -181,7 +181,7 @@ MAIN/resources/brand.json      ← EDIT THIS to change any brand value
 # Quick check - run from repo root
 python3 -c "
 import json
-with open('MAIN/resources/brand.json') as f: b = json.load(f)
+with open('MAIN/resources/brand/brand.json') as f: b = json.load(f)
 print(f\"ONI: {b['oni']['full_name']}\")
 print(f\"TARA: {b['tara']['full_name']}\")
 print(f\"ONI v{b['oni']['version']} | TARA v{b['tara']['version']}\")
@@ -190,7 +190,7 @@ print(f\"ONI v{b['oni']['version']} | TARA v{b['tara']['version']}\")
 
 ### When to Update brand.json
 
-Update `MAIN/resources/brand.json` when:
+Update `MAIN/resources/brand/brand.json` when:
 - Changing project name, acronym, or full name
 - Updating taglines, slogans, or mission statements
 - Bumping version numbers for releases
@@ -198,7 +198,7 @@ Update `MAIN/resources/brand.json` when:
 
 ### After Updating brand.json
 
-1. **Run sync script:** `python scripts/sync_brand.py`
+1. **Run sync script:** `python MAIN/resources/brand/sync_brand.py`
 2. **Verify Python loads correctly:** Test import from each package
 3. **Commit both brand.json and any synced files**
 4. **GitHub Action auto-syncs** README.md on push
@@ -257,7 +257,7 @@ print(TARA.tagline)  # "Protection for the neural frontier"
 
 ### Updating Manual Stats
 
-Edit `MAIN/resources/brand.json`:
+Edit `MAIN/resources/brand/brand.json`:
 
 ```json
 {

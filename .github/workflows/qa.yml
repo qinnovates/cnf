@@ -36,17 +36,17 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Validate JSON syntax
-          python -c "import json; json.load(open('MAIN/resources/brand.json'))" || {
+          python -c "import json; json.load(open('MAIN/resources/brand/brand.json'))" || {
             echo "::error::brand.json has invalid JSON syntax"
             exit 1
           }
           echo "- JSON syntax: valid" >> $GITHUB_STEP_SUMMARY
 
           # Extract brand values
-          ONI_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand.json'))['oni']['name'])")
-          TARA_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand.json'))['tara']['name'])")
-          ONI_VERSION=$(python -c "import json; print(json.load(open('MAIN/resources/brand.json'))['oni']['version'])")
-          TARA_VERSION=$(python -c "import json; print(json.load(open('MAIN/resources/brand.json'))['tara']['version'])")
+          ONI_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['oni']['name'])")
+          TARA_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['tara']['name'])")
+          ONI_VERSION=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['oni']['version'])")
+          TARA_VERSION=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['tara']['version'])")
 
           echo "- ONI name: $ONI_NAME" >> $GITHUB_STEP_SUMMARY
           echo "- TARA name: $TARA_NAME" >> $GITHUB_STEP_SUMMARY
@@ -96,7 +96,7 @@ jobs:
           echo "### Stale Brand Reference Check" >> $GITHUB_STEP_SUMMARY
 
           # Get current TARA name from brand.json
-          TARA_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand.json'))['tara']['name'])")
+          TARA_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['tara']['name'])")
 
           # Check for old "TARA Platform" if current name is different
           if [ "$TARA_NAME" != "TARA Platform" ]; then
