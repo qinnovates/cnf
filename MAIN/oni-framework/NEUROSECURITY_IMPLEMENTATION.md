@@ -197,9 +197,7 @@ Integrating Kohno's model with modern BCI attack research:
 │  │  • Memory content            • Cognitive vulnerabilities             │ │
 │  └─────────────────────────────────────────────────────────────────────┘ │
 └──────────────────────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-                        NEURAL TISSUE
+
 ```
 
 ---
