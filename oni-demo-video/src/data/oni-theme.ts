@@ -1,15 +1,22 @@
 /**
  * ONI Framework Design System
- * Color palette and theme constants for the demo video
+ * Color palette optimized for trust, curiosity, and investment psychology
+ *
+ * Psychology-backed color choices:
+ * - Deep blue-purple: Trust + Innovation
+ * - Cyan accents: Openness + Futuristic
+ * - Purple highlights: Curiosity + Forward-thinking
  */
 
 export const colors = {
-  // Primary palette - matches ONI branding
+  // Primary palette - blue-purple for trust + innovation
   primary: {
-    dark: '#0a0e1a',      // Deep navy background
-    main: '#1a237e',      // ONI navy blue
-    light: '#3949ab',     // Lighter blue for highlights
-    accent: '#00e5ff',    // Cyan accent (neural glow)
+    dark: '#080b16',       // Deep blue-purple background (trust + depth)
+    darkPurple: '#0d0f1a', // Subtle purple undertone
+    main: '#1a1a3e',       // Blue-purple midtone (innovation)
+    light: '#2d2d5a',      // Lighter purple-blue
+    accent: '#00e5ff',     // Cyan accent (openness, futuristic)
+    accentPurple: '#a855f7', // Purple accent (curiosity, creativity)
   },
 
   // Layer colors - 14-layer model
@@ -33,7 +40,7 @@ export const colors = {
     L11: '#388e3c',  // Neural Population
     L12: '#2e7d32',  // Circuit Dynamics
     L13: '#1b5e20',  // Cognitive Function
-    L14: '#4a148c',  // Identity & Ethics - purple
+    L14: '#7c3aed',  // Identity & Ethics - vibrant purple
   },
 
   // Security states
@@ -47,16 +54,40 @@ export const colors = {
   // Text colors
   text: {
     primary: '#ffffff',
-    secondary: 'rgba(255, 255, 255, 0.7)',
+    secondary: 'rgba(255, 255, 255, 0.75)',
     muted: 'rgba(255, 255, 255, 0.5)',
   },
 
-  // Gradients
+  // Psychology-optimized gradients
   gradients: {
-    title: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 50%, #00e5ff 100%)',
+    // Main background - trust (blue) + innovation (purple)
+    background: 'radial-gradient(ellipse at center, #1a1a3e 0%, #0d0f1a 50%, #080b16 100%)',
+    backgroundSubtle: 'radial-gradient(ellipse at 50% 30%, #1a1a3e15 0%, #080b16 70%)',
+
+    // Title gradient - premium feel
+    title: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #a855f7 100%)',
+
+    // Text gradients
+    textPremium: 'linear-gradient(180deg, #ffffff 0%, rgba(200,210,230,0.9) 100%)',
+    textAccent: 'linear-gradient(90deg, #00e5ff, #a855f7)',
+
+    // Layer gradients
     silicon: 'linear-gradient(180deg, #2196f3 0%, #01579b 100%)',
     biology: 'linear-gradient(180deg, #4caf50 0%, #1b5e20 100%)',
     gateway: 'linear-gradient(180deg, #ff9800 0%, #e65100 100%)',
+
+    // Innovation/TARA scenes - purple emphasis
+    innovation: 'radial-gradient(ellipse at 70% 50%, #7c3aed20 0%, #080b16 70%)',
+
+    // CTA gradient - action-oriented
+    cta: 'linear-gradient(135deg, #00e5ff 0%, #a855f7 100%)',
+  },
+
+  // Glow colors for effects
+  glow: {
+    cyan: '#00e5ff',
+    purple: '#a855f7',
+    blue: '#667eea',
   },
 };
 
@@ -107,7 +138,7 @@ export const videoConfig = {
   width: 1920,
   height: 1080,
   durationInSeconds: 210, // 3:30
-  durationInFrames: 210 * 30, // 6300 frames
+  durationInFrames: 6300, // 3:30 at 30fps (content ends at ~6210)
 };
 
 // Scene timestamps (in frames at 30fps)

@@ -1,185 +1,146 @@
+/**
+ * Layers Scene - 14-layer ONI model visualization
+ * Shows hourglass image first, then transitions to animated layer stack
+ */
+
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, spring, useVideoConfig, Img, staticFile, interpolate } from 'remotion';
 import { LayerStack } from '../components/LayerStack';
-import { TextReveal } from '../components/TextReveal';
-import { colors, typography } from '../data/oni-theme';
+import { FloatingParticles } from '../components/Particles';
+import { colors } from '../data/oni-theme';
 
 export const LayersScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Phases of the scene
+  // Phase 1: Show hourglass image (frames 0-300)
+  // Phase 2: Show animated layer stack (frames 300+)
   const showHourglass = frame < 300;
   const showStack = frame >= 300;
-  const highlightGateway = frame >= 600 && frame < 900;
 
-  // Highlight which layer based on frame
-  const getHighlightLayer = () => {
-    if (frame >= 600 && frame < 750) return 8; // Gateway
-    if (frame >= 900 && frame < 1000) return 14; // Identity
-    if (frame >= 1000 && frame < 1100) return 1; // Physical
-    return undefined;
-  };
+  // Hourglass image animation
+  const hourglassProgress = spring({
+    frame,
+    fps,
+    config: { damping: 25, stiffness: 60 },
+  });
 
-  // Hourglass opacity
   const hourglassOpacity = interpolate(
     frame,
-    [0, 30, 270, 300],
+    [0, 30, 260, 300],
     [0, 1, 1, 0],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
   );
 
-  // Stack fade in
-  const stackOpacity = spring({
+  const hourglassScale = interpolate(
+    Math.max(0, hourglassProgress),
+    [0, 1],
+    [0.92, 1]
+  );
+
+  // Stack animation
+  const stackProgress = spring({
     frame: frame - 300,
     fps,
-    config: { damping: 100 },
+    config: { damping: 25, stiffness: 80 },
   });
+
+  // Subtle glow pulse
+  const glowIntensity = interpolate(
+    Math.sin(frame * 0.04),
+    [-1, 1],
+    [0.2, 0.5]
+  );
+
+  // Highlight specific layers based on timing
+  const getHighlightLayer = () => {
+    if (frame >= 600 && frame < 750) return 8; // Gateway
+    if (frame >= 750 && frame < 850) return 14; // Identity
+    if (frame >= 850 && frame < 950) return 1; // Physical
+    return undefined;
+  };
 
   return (
     <AbsoluteFill
       style={{
-        background: colors.primary.dark,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        background: `radial-gradient(ellipse at center, ${colors.primary.main} 0%, ${colors.primary.dark} 80%)`,
       }}
     >
-      {/* Hourglass diagram from assets */}
+      {/* Subtle particles */}
+      <FloatingParticles
+        count={30}
+        color={showStack ? colors.gateway.L8 : colors.primary.accent}
+        speed={0.1}
+        minSize={1}
+        maxSize={2}
+      />
+
+      {/* Phase 1: Centered hourglass image */}
       {showHourglass && (
         <div
           style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%) scale(${hourglassScale})`,
             opacity: hourglassOpacity,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 40,
+            filter: `drop-shadow(0 0 ${40 * glowIntensity}px ${colors.primary.accent}33)`,
           }}
         >
-          <TextReveal
-            text="14 Layers: Silicon to Synapse"
-            fontSize={typography.fontSize.heading}
-            delay={0}
-          />
           <Img
-            src={staticFile("assets/ONI_Layers_Diagram-HOURGLASS.png")}
+            src={staticFile('assets/ONI_Layers_Diagram-HOURGLASS.png')}
             style={{
-              maxWidth: 900,
-              maxHeight: 700,
+              maxWidth: '80vw',
+              maxHeight: '80vh',
               objectFit: 'contain',
             }}
           />
         </div>
       )}
 
-      {/* Interactive layer stack */}
+      {/* Phase 2: Animated layer stack */}
       {showStack && (
         <div
           style={{
-            display: 'flex',
-            gap: 100,
-            alignItems: 'center',
-            opacity: Math.max(0, stackOpacity),
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            opacity: Math.max(0, stackProgress),
           }}
         >
-          {/* Layer stack */}
           <LayerStack
             highlightLayer={getHighlightLayer()}
             animationStyle="cascade"
           />
-
-          {/* Description panel */}
-          <div
-            style={{
-              maxWidth: 500,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 30,
-            }}
-          >
-            {/* Zone descriptions */}
-            {highlightGateway ? (
-              <div
-                style={{
-                  padding: 30,
-                  backgroundColor: `${colors.gateway.L8}22`,
-                  borderRadius: 16,
-                  border: `2px solid ${colors.gateway.L8}`,
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: typography.fontSize.subheading,
-                    color: colors.gateway.L8,
-                    fontWeight: 700,
-                    marginBottom: 16,
-                  }}
-                >
-                  Layer 8: Neural Gateway
-                </div>
-                <div
-                  style={{
-                    fontSize: typography.fontSize.body,
-                    color: colors.text.secondary,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  The critical bridge between machine and mind. All BCI communication
-                  passes through this layer—making it the prime target for security controls.
-                </div>
-              </div>
-            ) : (
-              <>
-                <div
-                  style={{
-                    padding: 24,
-                    backgroundColor: 'rgba(33, 150, 243, 0.1)',
-                    borderRadius: 12,
-                    borderLeft: `4px solid ${colors.silicon.L1}`,
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: typography.fontSize.body,
-                      color: colors.silicon.L1,
-                      fontWeight: 600,
-                      marginBottom: 8,
-                    }}
-                  >
-                    Silicon (L1-L7)
-                  </div>
-                  <div style={{ color: colors.text.secondary, fontSize: typography.fontSize.small }}>
-                    Physical signals, protocols, and data transport
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    padding: 24,
-                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                    borderRadius: 12,
-                    borderLeft: `4px solid ${colors.biology.L9}`,
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: typography.fontSize.body,
-                      color: colors.biology.L9,
-                      fontWeight: 600,
-                      marginBottom: 8,
-                    }}
-                  >
-                    Biology (L9-L14)
-                  </div>
-                  <div style={{ color: colors.text.secondary, fontSize: typography.fontSize.small }}>
-                    Ion channels to cognition to identity
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
         </div>
       )}
+
+      {/* Subtle vignette */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Bottom gradient fade */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 100,
+          background: `linear-gradient(transparent, ${colors.primary.dark}88)`,
+          pointerEvents: 'none',
+        }}
+      />
     </AbsoluteFill>
   );
 };

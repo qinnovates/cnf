@@ -7,15 +7,14 @@ import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig } from 'remotion';
 import { Starfield } from '../components/Particles';
 import { NeuralFlow } from '../components/NeuralFlow';
-import { BlurInText } from '../components/TextAnimations';
 import { colors, typography } from '../data/oni-theme';
 
-// Headlines for the cold open montage
+// Headlines for the cold open montage - alternating hope and tension
 const headlines = [
   { text: 'Neuralink receives FDA approval', source: '2024', accent: colors.primary.accent },
   { text: 'Synchron achieves thought-to-text', source: '2024', accent: colors.silicon.L3 },
-  { text: 'BCI market to reach $24.8B by 2030', source: 'Research', accent: colors.biology.L11 },
-  { text: 'First paralyzed patient controls devices', source: 'Medical', accent: colors.security.safe },
+  { text: 'But security standards remain undefined', source: 'Research Gap', accent: colors.security.warning },
+  { text: 'Who is protecting your neural data?', source: 'The Question', accent: colors.security.danger },
 ];
 
 export const ColdOpenScene: React.FC = () => {
@@ -35,7 +34,7 @@ export const ColdOpenScene: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        background: colors.primary.dark,
+        background: `radial-gradient(ellipse at center, ${colors.primary.main} 0%, ${colors.primary.dark} 70%)`,
         transform: `translate(${cameraX}px, ${cameraY}px)`,
       }}
     >

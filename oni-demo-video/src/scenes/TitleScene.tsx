@@ -1,117 +1,85 @@
 /**
- * Title Scene - Apple-quality logo reveal
- * Features: Blur-in text, spring physics, liquid glass effects
+ * Title Scene - Apple-quality logo reveal with animated ONI branding
+ * Features: Custom animated logo, circular waves, spring physics
  */
 
 import React from 'react';
-import { AbsoluteFill, useCurrentFrame, spring, useVideoConfig, Img, staticFile, interpolate } from 'remotion';
-import { NeuralFlow, NeuralFlowBackground } from '../components/NeuralFlow';
+import { AbsoluteFill, useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
+import { AnimatedONILogo, CircularWaves } from '../components/AnimatedONILogo';
+import { NeuralFlow } from '../components/NeuralFlow';
 import { FloatingParticles } from '../components/Particles';
-import { BlurInText, GradualSpacing } from '../components/TextAnimations';
 import { colors } from '../data/oni-theme';
 
 export const TitleScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Phase 1: Logo reveal with spring
-  const logoScale = spring({
+  // Scene fade in
+  const sceneOpacity = spring({
     frame,
     fps,
-    config: { damping: 15, stiffness: 60 },
+    config: { damping: 50, stiffness: 100 },
   });
-
-  const logoOpacity = spring({
-    frame,
-    fps,
-    config: { damping: 80, stiffness: 150 },
-  });
-
-  // Glow pulse - smooth and subtle
-  const glowPhase = Math.sin(frame * 0.06);
-  const glowIntensity = interpolate(glowPhase, [-1, 1], [0.4, 0.9]);
-
-  // Phase 2: Text reveals
-  const textRevealDelay = 20;
-  const taglineDelay = 35;
-  const descriptorDelay = 50;
 
   // Neural flow activation timing
-  const flowState = frame > 40 ? 'reactive' : 'resting';
+  const flowState = frame > 60 ? 'reactive' : 'resting';
 
-  // Outer ring pulse effect
-  const ringProgress = spring({
-    frame: frame - 10,
-    fps,
-    config: { damping: 100, stiffness: 50 },
-  });
+  // Subtle ambient movement
+  const ambientShift = Math.sin(frame * 0.02) * 5;
 
   return (
     <AbsoluteFill
       style={{
-        background: `radial-gradient(ellipse at center, ${colors.primary.main}18 0%, ${colors.primary.dark} 70%)`,
+        background: colors.gradients.background,
+        opacity: Math.max(0, sceneOpacity),
       }}
     >
-      {/* Subtle particle field */}
+      {/* Circular wave background */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          opacity: 0.4,
+        }}
+      >
+        <CircularWaves
+          numWaves={6}
+          baseRadius={150}
+          color={colors.primary.accent}
+        />
+      </div>
+
+      {/* Secondary wave layer with different color */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          opacity: 0.2,
+        }}
+      >
+        <CircularWaves
+          numWaves={4}
+          baseRadius={200}
+          color={colors.gateway.L8}
+        />
+      </div>
+
+      {/* Floating particles */}
       <FloatingParticles
-        count={80}
+        count={60}
         color={colors.primary.accent}
-        speed={0.2}
+        speed={0.15}
         minSize={1}
         maxSize={4}
       />
 
-      {/* Neural flow background - very subtle */}
-      <NeuralFlowBackground numLines={3} opacity={0.1} />
-
-      {/* Expanding ring behind logo */}
-      {[0, 1, 2].map((i) => {
-        const ringSize = interpolate(
-          Math.max(0, ringProgress),
-          [0, 1],
-          [200, 600 + i * 200]
-        );
-        const ringOpacity = interpolate(
-          Math.max(0, ringProgress),
-          [0, 0.3, 1],
-          [0, 0.15, 0.03 - i * 0.01]
-        );
-
-        return (
-          <div
-            key={i}
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              width: ringSize,
-              height: ringSize,
-              borderRadius: '50%',
-              border: `1px solid ${colors.primary.accent}`,
-              transform: 'translate(-50%, -50%)',
-              opacity: Math.max(0, ringOpacity),
-            }}
-          />
-        );
-      })}
-
-      {/* Radial glow behind logo - liquid glass effect */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 900,
-          height: 600,
-          borderRadius: '50%',
-          background: `radial-gradient(ellipse, ${colors.primary.accent}${Math.round(glowIntensity * 25).toString(16).padStart(2, '0')} 0%, transparent 55%)`,
-          filter: 'blur(60px)',
-          opacity: logoOpacity,
-        }}
-      />
-
-      {/* Main content container */}
+      {/* Main content */}
       <div
         style={{
           display: 'flex',
@@ -119,34 +87,23 @@ export const TitleScene: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           height: '100%',
-          gap: 30,
+          transform: `translateY(${ambientShift}px)`,
         }}
       >
-        {/* ONI Banner Logo with smooth reveal */}
-        <div
-          style={{
-            transform: `scale(${interpolate(Math.max(0, logoScale), [0, 1], [0.85, 1])})`,
-            opacity: Math.max(0, logoOpacity),
-            filter: `
-              drop-shadow(0 0 ${20 * glowIntensity}px ${colors.primary.accent}55)
-              drop-shadow(0 0 ${60 * glowIntensity}px ${colors.primary.accent}22)
-            `,
-          }}
-        >
-          <Img
-            src={staticFile('assets/ONI_Banner_Logo.png')}
-            style={{
-              width: 700,
-              objectFit: 'contain',
-            }}
+        {/* Animated ONI Logo */}
+        <div style={{ marginTop: -80 }}>
+          <AnimatedONILogo
+            width={700}
+            height={500}
+            showText={true}
           />
         </div>
 
-        {/* Neural Flow under logo - ElevenLabs inspired */}
+        {/* Neural Flow under logo */}
         <div
           style={{
-            marginTop: -10,
-            opacity: interpolate(frame, [25, 40], [0, 1], {
+            marginTop: 40,
+            opacity: interpolate(frame, [50, 70], [0, 1], {
               extrapolateLeft: 'clamp',
               extrapolateRight: 'clamp',
             }),
@@ -154,44 +111,24 @@ export const TitleScene: React.FC = () => {
         >
           <NeuralFlow
             state={flowState}
-            width={450}
+            width={500}
             height={50}
             intensity={0.7}
           />
         </div>
-
-        {/* Tagline with blur-in effect */}
-        <div style={{ marginTop: 20 }}>
-          <BlurInText
-            text="The OSI of Mind"
-            delay={taglineDelay}
-            fontSize={36}
-            color={colors.primary.accent}
-            fontWeight={300}
-          />
-        </div>
-
-        {/* Descriptor with gradual spacing */}
-        <GradualSpacing
-          text="Neural Security Framework"
-          delay={descriptorDelay}
-          fontSize={16}
-          color={colors.text.muted}
-          fontWeight={400}
-        />
       </div>
 
-      {/* Corner accents - more refined */}
+      {/* Decorative corner brackets */}
       {[
-        { top: 50, left: 50, borderTop: true, borderLeft: true },
-        { top: 50, right: 50, borderTop: true, borderRight: true },
-        { bottom: 50, left: 50, borderBottom: true, borderLeft: true },
-        { bottom: 50, right: 50, borderBottom: true, borderRight: true },
-      ].map((corner, i) => {
-        const cornerProgress = spring({
-          frame: frame - 60 - i * 5,
+        { top: 60, left: 60, rotate: 0 },
+        { top: 60, right: 60, rotate: 90 },
+        { bottom: 60, right: 60, rotate: 180 },
+        { bottom: 60, left: 60, rotate: 270 },
+      ].map((pos, i) => {
+        const bracketProgress = spring({
+          frame: frame - 80 - i * 8,
           fps,
-          config: { damping: 30, stiffness: 100 },
+          config: { damping: 25, stiffness: 80 },
         });
 
         return (
@@ -199,43 +136,52 @@ export const TitleScene: React.FC = () => {
             key={i}
             style={{
               position: 'absolute',
-              top: corner.top,
-              left: corner.left,
-              right: corner.right,
-              bottom: corner.bottom,
-              width: 80,
-              height: 80,
-              borderTop: corner.borderTop
-                ? `1px solid ${colors.primary.accent}33`
-                : 'none',
-              borderBottom: corner.borderBottom
-                ? `1px solid ${colors.primary.accent}33`
-                : 'none',
-              borderLeft: corner.borderLeft
-                ? `1px solid ${colors.primary.accent}33`
-                : 'none',
-              borderRight: corner.borderRight
-                ? `1px solid ${colors.primary.accent}33`
-                : 'none',
-              opacity: Math.max(0, cornerProgress),
-              transform: `scale(${interpolate(
-                Math.max(0, cornerProgress),
+              top: pos.top,
+              left: pos.left,
+              right: pos.right,
+              bottom: pos.bottom,
+              width: 40,
+              height: 40,
+              opacity: Math.max(0, bracketProgress) * 0.4,
+              transform: `rotate(${pos.rotate}deg) scale(${interpolate(
+                Math.max(0, bracketProgress),
                 [0, 1],
-                [0.8, 1]
+                [0.5, 1]
               )})`,
             }}
-          />
+          >
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <path
+                d="M 0 20 L 0 0 L 20 0"
+                stroke={colors.primary.accent}
+                strokeWidth="1"
+                fill="none"
+                opacity="0.6"
+              />
+            </svg>
+          </div>
         );
       })}
 
-      {/* Bottom gradient fade */}
+      {/* Gradient overlays for depth */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 200,
+          background: `linear-gradient(${colors.primary.dark}88, transparent)`,
+          pointerEvents: 'none',
+        }}
+      />
       <div
         style={{
           position: 'absolute',
           bottom: 0,
           left: 0,
           right: 0,
-          height: 150,
+          height: 200,
           background: `linear-gradient(transparent, ${colors.primary.dark}88)`,
           pointerEvents: 'none',
         }}

@@ -45,7 +45,7 @@ export const script: ScriptLine[] = [
   // Scene 2: Problem (0:15-0:40)
   {
     scene: 'problem',
-    text: "Today's BCIs lack standardized security frameworks.",
+    text: "Today's brain-computer interfaces lack standardized security frameworks.",
     startFrame: 450,
     endFrame: 570,
   },
@@ -187,58 +187,71 @@ export const script: ScriptLine[] = [
     scene: 'academic',
     text: "Every claim is cited. Every formula is documented.",
     startFrame: 4980,
-    endFrame: 5100,
+    endFrame: 5070,
+  },
+  {
+    scene: 'academic',
+    text: "Built for researchers, developers, regulators, security teams...",
+    startFrame: 5070,
+    endFrame: 5220,
+  },
+  {
+    scene: 'academic',
+    text: "...and you.",
+    startFrame: 5220,
+    endFrame: 5340,
   },
 
-  // Scene 7: Call to Action (2:50-3:15)
+  // Scene 7: Call to Action (2:53-3:15)
   {
     scene: 'cta',
     text: "Ready to secure the neural frontier?",
-    startFrame: 5100,
-    endFrame: 5220,
+    startFrame: 5340,
+    endFrame: 5460,
   },
   {
     scene: 'cta',
     text: "Install ONI with a single command.",
-    startFrame: 5220,
-    endFrame: 5370,
+    startFrame: 5460,
+    endFrame: 5580,
   },
   {
     scene: 'cta',
     text: "pip install oni-framework",
-    startFrame: 5370,
-    endFrame: 5520,
+    startFrame: 5580,
+    endFrame: 5700,
   },
   {
     scene: 'cta',
     text: "Explore the documentation on GitHub.",
-    startFrame: 5520,
-    endFrame: 5670,
+    startFrame: 5700,
+    endFrame: 5820,
   },
   {
     scene: 'cta',
     text: "Join us in building the security standards for brain-computer interfaces.",
-    startFrame: 5670,
-    endFrame: 5850,
+    startFrame: 5820,
+    endFrame: 5970,
   },
 
-  // Scene 8: Credits (3:15-3:30)
+  // Scene 8: Credits (3:19-3:30)
   {
     scene: 'credits',
     text: "The Open Neural Interface Framework.",
-    startFrame: 5850,
-    endFrame: 6000,
+    startFrame: 5970,
+    endFrame: 6090,
   },
   {
     scene: 'credits',
     text: "The OSI of Mind.",
-    startFrame: 6000,
-    endFrame: 6150,
+    startFrame: 6090,
+    endFrame: 6210,
   },
 ];
 
 // Full script as single text for voiceover generation
 export const fullScript = script.map(line => line.text).join(' ');
 
-// Word count: ~360 words
-// Estimated read time at 110 WPM: ~3:17 (fits 3:30 with pauses)
+// Word count: ~380 words
+// Estimated read time at 110 WPM: ~3:27 (fits 3:30 with brief pauses)
+// Final frame: 6210 = 3:27 at 30fps

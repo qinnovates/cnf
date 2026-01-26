@@ -44,7 +44,7 @@ export const BlurInText: React.FC<{
     transform: `scale(${scale})`,
     ...(gradient
       ? {
-          background: `linear-gradient(135deg, ${colors.text.primary} 0%, ${colors.primary.accent} 100%)`,
+          background: `linear-gradient(90deg, ${colors.text.primary} 0%, rgba(255,255,255,0.85) 50%, ${colors.text.primary} 100%)`,
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
         }
@@ -217,7 +217,7 @@ export const LettersPullUp: React.FC<{
           whiteSpace: letter === ' ' ? 'pre' : 'normal',
           ...(gradient
             ? {
-                background: `linear-gradient(135deg, ${colors.text.primary} 0%, ${colors.primary.accent} 100%)`,
+                background: `linear-gradient(180deg, ${colors.text.primary} 0%, rgba(200,210,230,0.9) 100%)`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }
