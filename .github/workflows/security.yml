@@ -6,12 +6,18 @@ on:
     paths:
       - 'MAIN/oni-framework/**/*.py'
       - 'MAIN/tara-nsec-platform/**/*.py'
+      - 'MAIN/oni-academy/**/*.py'
+      - 'docs/**/*.html'
+      - 'docs/**/*.js'
       - '.github/workflows/security.yml'
   pull_request:
     branches: [main]
     paths:
       - 'MAIN/oni-framework/**/*.py'
       - 'MAIN/tara-nsec-platform/**/*.py'
+      - 'MAIN/oni-academy/**/*.py'
+      - 'docs/**/*.html'
+      - 'docs/**/*.js'
   schedule:
     # Run weekly on Mondays at 9am UTC
     - cron: '0 9 * * 1'
@@ -113,8 +119,8 @@ jobs:
           path: safety-report.json
           retention-days: 30
 
-  codeql:
-    name: CodeQL Analysis
+  codeql-python:
+    name: CodeQL Analysis (Python)
     runs-on: ubuntu-latest
 
     steps:
@@ -131,9 +137,87 @@ jobs:
         with:
           category: "/language:python"
 
+  codeql-javascript:
+    name: CodeQL Analysis (JavaScript)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+          queries: security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript"
+
+  web-security:
+    name: Web Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for dangerous patterns in HTML/JS
+        run: |
+          echo "## Web Security Scan" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check for innerHTML usage (XSS risk)
+          echo "### innerHTML Usage (XSS Risk)" >> $GITHUB_STEP_SUMMARY
+          if grep -rn "innerHTML" docs/ --include="*.html" --include="*.js" 2>/dev/null; then
+            echo "⚠️ Found innerHTML usage - review for XSS" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No innerHTML found" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check for eval usage
+          echo "### eval() Usage" >> $GITHUB_STEP_SUMMARY
+          if grep -rn "eval(" docs/ --include="*.html" --include="*.js" 2>/dev/null; then
+            echo "❌ Found eval() - CRITICAL SECURITY RISK" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ No eval() found" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check for document.write
+          echo "### document.write() Usage" >> $GITHUB_STEP_SUMMARY
+          if grep -rn "document\.write" docs/ --include="*.html" --include="*.js" 2>/dev/null; then
+            echo "⚠️ Found document.write - review for security" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No document.write found" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check CSP is present
+          echo "### Content Security Policy" >> $GITHUB_STEP_SUMMARY
+          if grep -l "Content-Security-Policy" docs/index.html 2>/dev/null; then
+            echo "✅ CSP header found" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No CSP found in index.html" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check for SRI on external scripts
+          echo "### Subresource Integrity (SRI)" >> $GITHUB_STEP_SUMMARY
+          EXTERNAL_SCRIPTS=$(grep -c "script src=\"https://" docs/index.html 2>/dev/null || echo "0")
+          SRI_SCRIPTS=$(grep -c "integrity=\"sha" docs/index.html 2>/dev/null || echo "0")
+          echo "External scripts: $EXTERNAL_SCRIPTS, With SRI: $SRI_SCRIPTS" >> $GITHUB_STEP_SUMMARY
+          if [ "$EXTERNAL_SCRIPTS" -eq "$SRI_SCRIPTS" ] && [ "$EXTERNAL_SCRIPTS" -gt 0 ]; then
+            echo "✅ All external scripts have SRI" >> $GITHUB_STEP_SUMMARY
+          elif [ "$EXTERNAL_SCRIPTS" -gt "$SRI_SCRIPTS" ]; then
+            echo "⚠️ Some external scripts missing SRI" >> $GITHUB_STEP_SUMMARY
+          fi
+
   security-summary:
     name: Security Summary
-    needs: [bandit, safety, codeql]
+    needs: [bandit, safety, codeql-python, codeql-javascript, web-security]
     runs-on: ubuntu-latest
     if: always()
 
@@ -158,8 +242,10 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Bandit | ${{ needs.bandit.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Safety | ${{ needs.safety.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| CodeQL | ${{ needs.codeql.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Bandit (Python) | ${{ needs.bandit.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Safety (Dependencies) | ${{ needs.safety.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| CodeQL (Python) | ${{ needs.codeql-python.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| CodeQL (JavaScript) | ${{ needs.codeql-javascript.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Web Security | ${{ needs.web-security.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "See artifacts for detailed reports." >> $GITHUB_STEP_SUMMARY
