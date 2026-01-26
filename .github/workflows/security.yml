@@ -4,20 +4,28 @@ on:
   push:
     branches: [main]
     paths:
+      # Python packages
       - 'MAIN/oni-framework/**/*.py'
       - 'MAIN/tara-nsec-platform/**/*.py'
       - 'MAIN/oni-academy/**/*.py'
+      # GitHub Pages (HTML/JS)
       - 'docs/**/*.html'
       - 'docs/**/*.js'
+      # Video projects (TypeScript/React)
+      - 'video/**/*.ts'
+      - 'video/**/*.tsx'
+      - 'video/**/*.js'
+      # Workflow itself
       - '.github/workflows/security.yml'
   pull_request:
     branches: [main]
     paths:
-      - 'MAIN/oni-framework/**/*.py'
-      - 'MAIN/tara-nsec-platform/**/*.py'
-      - 'MAIN/oni-academy/**/*.py'
+      - 'MAIN/**/*.py'
       - 'docs/**/*.html'
       - 'docs/**/*.js'
+      - 'video/**/*.ts'
+      - 'video/**/*.tsx'
+      - 'video/**/*.js'
   schedule:
     # Run weekly on Mondays at 9am UTC
     - cron: '0 9 * * 1'
@@ -138,7 +146,7 @@ jobs:
           category: "/language:python"
 
   codeql-javascript:
-    name: CodeQL Analysis (JavaScript)
+    name: CodeQL Analysis (JavaScript/TypeScript)
     runs-on: ubuntu-latest
 
     steps:
@@ -147,13 +155,13 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: javascript
+          languages: javascript-typescript
           queries: security-and-quality
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-          category: "/language:javascript"
+          category: "/language:javascript-typescript"
 
   web-security:
     name: Web Security Scan
@@ -162,24 +170,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check for dangerous patterns in HTML/JS
+      - name: Check for dangerous patterns in all code
         run: |
           echo "## Web Security Scan" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Scanning: docs/, video/" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Check for innerHTML usage (XSS risk)
+          # Check for innerHTML usage (XSS risk) - across all code
           echo "### innerHTML Usage (XSS Risk)" >> $GITHUB_STEP_SUMMARY
-          if grep -rn "innerHTML" docs/ --include="*.html" --include="*.js" 2>/dev/null; then
-            echo "⚠️ Found innerHTML usage - review for XSS" >> $GITHUB_STEP_SUMMARY
+          INNER_HTML=$(grep -rn "innerHTML" docs/ video/ --include="*.html" --include="*.js" --include="*.ts" --include="*.tsx" 2>/dev/null || true)
+          if [ -n "$INNER_HTML" ]; then
+            echo "⚠️ Found innerHTML usage - review for XSS:" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "$INNER_HTML" | head -10 >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           else
             echo "✅ No innerHTML found" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Check for eval usage
+          # Check for eval usage - FAILS BUILD
           echo "### eval() Usage" >> $GITHUB_STEP_SUMMARY
-          if grep -rn "eval(" docs/ --include="*.html" --include="*.js" 2>/dev/null; then
-            echo "❌ Found eval() - CRITICAL SECURITY RISK" >> $GITHUB_STEP_SUMMARY
+          EVAL_USAGE=$(grep -rn "eval(" docs/ video/ --include="*.html" --include="*.js" --include="*.ts" --include="*.tsx" 2>/dev/null || true)
+          if [ -n "$EVAL_USAGE" ]; then
+            echo "❌ Found eval() - CRITICAL SECURITY RISK:" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "$EVAL_USAGE" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
             exit 1
           else
             echo "✅ No eval() found" >> $GITHUB_STEP_SUMMARY
@@ -188,19 +206,36 @@ jobs:
 
           # Check for document.write
           echo "### document.write() Usage" >> $GITHUB_STEP_SUMMARY
-          if grep -rn "document\.write" docs/ --include="*.html" --include="*.js" 2>/dev/null; then
-            echo "⚠️ Found document.write - review for security" >> $GITHUB_STEP_SUMMARY
+          DOC_WRITE=$(grep -rn "document\.write" docs/ video/ --include="*.html" --include="*.js" --include="*.ts" --include="*.tsx" 2>/dev/null || true)
+          if [ -n "$DOC_WRITE" ]; then
+            echo "⚠️ Found document.write - review for security:" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "$DOC_WRITE" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           else
             echo "✅ No document.write found" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Check CSP is present
+          # Check for dangerouslySetInnerHTML (React)
+          echo "### dangerouslySetInnerHTML (React XSS)" >> $GITHUB_STEP_SUMMARY
+          DANGEROUS_HTML=$(grep -rn "dangerouslySetInnerHTML" video/ --include="*.tsx" --include="*.jsx" 2>/dev/null || true)
+          if [ -n "$DANGEROUS_HTML" ]; then
+            echo "⚠️ Found dangerouslySetInnerHTML - review for XSS:" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "$DANGEROUS_HTML" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No dangerouslySetInnerHTML found" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check CSP is present in main page
           echo "### Content Security Policy" >> $GITHUB_STEP_SUMMARY
           if grep -l "Content-Security-Policy" docs/index.html 2>/dev/null; then
-            echo "✅ CSP header found" >> $GITHUB_STEP_SUMMARY
+            echo "✅ CSP header found in docs/index.html" >> $GITHUB_STEP_SUMMARY
           else
-            echo "⚠️ No CSP found in index.html" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ No CSP found in docs/index.html" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
 
@@ -214,6 +249,13 @@ jobs:
           elif [ "$EXTERNAL_SCRIPTS" -gt "$SRI_SCRIPTS" ]; then
             echo "⚠️ Some external scripts missing SRI" >> $GITHUB_STEP_SUMMARY
           fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Summary of files scanned
+          echo "### Files Scanned" >> $GITHUB_STEP_SUMMARY
+          echo "- HTML: $(find docs/ -name '*.html' 2>/dev/null | wc -l | tr -d ' ')" >> $GITHUB_STEP_SUMMARY
+          echo "- TypeScript/TSX: $(find video/ -name '*.ts' -o -name '*.tsx' 2>/dev/null | wc -l | tr -d ' ')" >> $GITHUB_STEP_SUMMARY
+          echo "- JavaScript: $(find docs/ video/ -name '*.js' 2>/dev/null | wc -l | tr -d ' ')" >> $GITHUB_STEP_SUMMARY
 
   security-summary:
     name: Security Summary
