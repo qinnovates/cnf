@@ -12,6 +12,9 @@ import { AcademicScene } from "./scenes/AcademicScene";
 import { CTAScene } from "./scenes/CTAScene";
 import { CreditsScene } from "./scenes/CreditsScene";
 
+// Persistent components
+import { Watermark } from "./components/Watermark";
+
 export const ONIDemoVideo: React.FC = () => {
   const { coldOpen, title, problem, layers, coherence, tara, academic, cta, credits } = sceneTimestamps;
 
@@ -70,6 +73,9 @@ export const ONIDemoVideo: React.FC = () => {
       <Sequence from={credits.start} durationInFrames={credits.end - credits.start}>
         <CreditsScene />
       </Sequence>
+
+      {/* Persistent watermark - © 2026 Kevin Qi • ONI Framework™ */}
+      <Watermark position="bottom-right" opacity={0.6} fadeInDelay={60} />
     </AbsoluteFill>
   );
 };
