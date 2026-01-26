@@ -5,13 +5,13 @@ on:
     branches: [main]
     paths:
       - 'MAIN/oni-framework/**/*.py'
-      - 'MAIN/tara-neural-security-platform/**/*.py'
+      - 'MAIN/tara-nsec-platform/**/*.py'
       - '.github/workflows/security.yml'
   pull_request:
     branches: [main]
     paths:
       - 'MAIN/oni-framework/**/*.py'
-      - 'MAIN/tara-neural-security-platform/**/*.py'
+      - 'MAIN/tara-nsec-platform/**/*.py'
   schedule:
     # Run weekly on Mondays at 9am UTC
     - cron: '0 9 * * 1'
@@ -47,7 +47,7 @@ jobs:
 
       - name: Run Bandit on TARA
         run: |
-          bandit -r MAIN/tara-neural-security-platform/tara_mvp/ \
+          bandit -r MAIN/tara-nsec-platform/tara_mvp/ \
             -f json -o bandit-tara.json \
             --severity-level medium \
             --confidence-level medium \
@@ -64,7 +64,7 @@ jobs:
       - name: Display TARA results
         run: |
           echo "=== TARA Security Scan ==="
-          bandit -r MAIN/tara-neural-security-platform/tara_mvp/ \
+          bandit -r MAIN/tara-nsec-platform/tara_mvp/ \
             --severity-level medium \
             --confidence-level medium \
             || true
@@ -96,7 +96,7 @@ jobs:
       - name: Install project dependencies
         run: |
           pip install -e MAIN/oni-framework
-          pip install -e MAIN/tara-neural-security-platform
+          pip install -e MAIN/tara-nsec-platform
 
       - name: Run Safety check
         run: |

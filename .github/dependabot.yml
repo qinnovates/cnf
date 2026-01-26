@@ -20,7 +20,7 @@ updates:
       - "automated"
 
   - package-ecosystem: "pip"
-    directory: "/MAIN/tara-neural-security-platform"
+    directory: "/MAIN/tara-nsec-platform"
     schedule:
       interval: "weekly"
       day: "monday"

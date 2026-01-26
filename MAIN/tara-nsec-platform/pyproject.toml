@@ -92,7 +92,7 @@ dev = [
 
 [project.urls]
 Homepage = "https://github.com/qikevinl/ONI"
-Documentation = "https://github.com/qikevinl/ONI/tree/main/MAIN/tara-neural-security-platform"
+Documentation = "https://github.com/qikevinl/ONI/tree/main/MAIN/tara-nsec-platform"
 Repository = "https://github.com/qikevinl/ONI"
 Issues = "https://github.com/qikevinl/ONI/issues"
 
