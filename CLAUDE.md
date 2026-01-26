@@ -8,7 +8,7 @@
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
-| **Brand Constants** | `brand.json` | **Single source of truth for ONI/TARA naming, slogans, versions** |
+| **Brand Constants** | `MAIN/resources/brand.json` | **Single source of truth for ONI/TARA naming, slogans, versions** |
 | **Main Wiki (INDEX)** | `MAIN/INDEX.md` | **Central hub - navigation, dependencies, cross-references** |
 | **Python Package** | `MAIN/oni-framework/` | **pip install oni-framework** |
 | **Transparency Statement** | `MAIN/governance/TRANSPARENCY.md` | **Human-AI collaboration audit trail** |
@@ -49,7 +49,7 @@ ONI/
 ├── AGENTS.md                           # Ralph Loop learnings (read at session start)
 ├── ABOUT.md                            # Author bio
 ├── LICENSE                             # Apache 2.0 License
-├── brand.json                          # BRAND: Single source of truth for naming/versions
+│
 │
 ├── scripts/
 │   └── sync_brand.py                   # Syncs brand.json → README.md
@@ -152,7 +152,7 @@ ONI/
 ### Architecture
 
 ```
-brand.json (repo root)         ← EDIT THIS to change any brand value
+MAIN/resources/brand.json      ← EDIT THIS to change any brand value
     │
     ├── oni/brand.py           ← Python API for ONI Framework
     ├── tara_mvp/_brand.py     ← Python API for TARA
@@ -176,7 +176,7 @@ brand.json (repo root)         ← EDIT THIS to change any brand value
 # Quick check - run from repo root
 python3 -c "
 import json
-with open('brand.json') as f: b = json.load(f)
+with open('MAIN/resources/brand.json') as f: b = json.load(f)
 print(f\"ONI: {b['oni']['full_name']}\")
 print(f\"TARA: {b['tara']['full_name']}\")
 print(f\"ONI v{b['oni']['version']} | TARA v{b['tara']['version']}\")
@@ -185,7 +185,7 @@ print(f\"ONI v{b['oni']['version']} | TARA v{b['tara']['version']}\")
 
 ### When to Update brand.json
 
-Update `brand.json` when:
+Update `MAIN/resources/brand.json` when:
 - Changing project name, acronym, or full name
 - Updating taglines, slogans, or mission statements
 - Bumping version numbers for releases

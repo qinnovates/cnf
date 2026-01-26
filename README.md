@@ -12,7 +12,7 @@ The most important connections deserve the most thought.
 
 One framework to understand, build, and secure brain-computer interfaces. Open. Accessible. Universal.
 
-> **Brand Reference:** [`MAIN/brand.json`](MAIN/brand.json) — Single source of truth for project naming and identity
+> **Brand Reference:** [`MAIN/resources/brand.json`](MAIN/resources/brand.json) — Single source of truth for project naming and identity
 
 ---
 

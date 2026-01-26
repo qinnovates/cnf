@@ -21,7 +21,7 @@
   },
   "_meta": {
     "last_updated": "2026-01-26",
-    "location": "repo root (brand.json)",
+    "location": "MAIN/resources/brand.json",
     "consumers": [
       "MAIN/oni-framework/oni/brand.py",
       "MAIN/tara-nsec-platform/tara_mvp/_brand.py",

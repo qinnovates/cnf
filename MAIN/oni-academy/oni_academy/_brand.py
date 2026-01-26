@@ -28,11 +28,11 @@ class ProjectBrand:
 
 
 def _load_brand_json() -> dict:
-    """Load brand.json from repo root."""
+    """Load brand.json from MAIN/resources/."""
     possible_paths = [
-        Path(__file__).parent.parent.parent.parent / "brand.json",  # oni_academy -> oni-academy -> MAIN -> repo root
-        Path(__file__).parent.parent.parent / "brand.json",
-        Path(__file__).parent.parent / "brand.json",
+        Path(__file__).parent.parent.parent / "resources" / "brand.json",  # oni_academy -> oni-academy -> MAIN/resources
+        Path(__file__).parent.parent.parent.parent / "MAIN" / "resources" / "brand.json",  # From repo root
+        Path(__file__).parent.parent / "resources" / "brand.json",  # If restructured
     ]
 
     for path in possible_paths:

@@ -15,8 +15,8 @@ from pathlib import Path
 
 
 def load_brand() -> dict:
-    """Load brand.json from repo root."""
-    brand_path = Path(__file__).parent.parent / "brand.json"
+    """Load brand.json from MAIN/resources/."""
+    brand_path = Path(__file__).parent.parent / "MAIN" / "resources" / "brand.json"
     with open(brand_path) as f:
         return json.load(f)
 

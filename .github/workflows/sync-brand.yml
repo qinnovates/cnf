@@ -3,7 +3,7 @@ name: Sync Brand to Docs
 on:
   push:
     paths:
-      - 'brand.json'
+      - 'MAIN/resources/brand.json'
     branches:
       - main
 
