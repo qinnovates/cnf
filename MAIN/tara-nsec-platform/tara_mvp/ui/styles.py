@@ -67,7 +67,7 @@ GLOBAL_CSS = """
         top: -40px;
         left: 0;
         background: #00f5ff;
-        color: #0a0a0f;
+        color: #0a0a0f;  /* WCAG AA: 12.6:1 against #00f5ff background */
         padding: 8px 16px;
         z-index: 10000;
         font-weight: 600;

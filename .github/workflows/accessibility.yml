@@ -1,0 +1,133 @@
+# ONI Framework Accessibility Compliance Check
+# WCAG 2.1 Level AA automated verification
+#
+# This workflow runs on:
+# - Every push to main
+# - Every pull request
+# - Manual trigger
+#
+# It checks:
+# - Color contrast ratios (4.5:1 minimum)
+# - Font size minimums (0.875rem)
+# - Focus indicator presence
+# - Reduced motion support
+# - Skip link implementation
+
+name: Accessibility Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'MAIN/oni-framework/oni/ui/**'
+      - 'MAIN/tara-nsec-platform/tara_mvp/ui/**'
+      - 'MAIN/governance/scripts/check_accessibility.py'
+      - '.github/workflows/accessibility.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'MAIN/oni-framework/oni/ui/**'
+      - 'MAIN/tara-nsec-platform/tara_mvp/ui/**'
+  workflow_dispatch:
+    inputs:
+      strict:
+        description: 'Treat warnings as errors'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  accessibility-check:
+    name: WCAG 2.1 AA Compliance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run accessibility checker
+        id: a11y-check
+        run: |
+          cd MAIN/governance/scripts
+          if [ "${{ github.event.inputs.strict }}" == "true" ]; then
+            python check_accessibility.py --verbose --strict
+          else
+            python check_accessibility.py --verbose
+          fi
+
+      - name: Create accessibility badge
+        if: always()
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gistID: ${{ secrets.A11Y_BADGE_GIST_ID }}
+          filename: accessibility.json
+          label: accessibility
+          message: ${{ steps.a11y-check.outcome == 'success' && 'WCAG AA' || 'needs review' }}
+          color: ${{ steps.a11y-check.outcome == 'success' && 'green' || 'red' }}
+        continue-on-error: true
+
+      - name: Comment on PR
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## ⚠️ Accessibility Check Failed
+
+            This PR contains changes that may not meet WCAG 2.1 Level AA requirements.
+
+            Please review the [workflow logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
+
+            ### Common fixes:
+            - **Low contrast text**: Use colors with at least 4.5:1 contrast ratio
+            - **Small fonts**: Use minimum 0.875rem (14px) font size
+            - **Missing focus states**: Add \`:focus-visible\` styles
+            - **Motion sensitivity**: Add \`prefers-reduced-motion\` media query
+
+            See [ACCESSIBILITY.md](../blob/main/MAIN/governance/ACCESSIBILITY.md) for guidelines.`
+            })
+        continue-on-error: true
+
+      - name: Upload accessibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: |
+            MAIN/governance/scripts/*.log
+          retention-days: 30
+        continue-on-error: true
+
+  # Optional: Run with axe-core for more comprehensive checks
+  axe-check:
+    name: Axe-Core Analysis (Optional)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install axe-core CLI
+        run: npm install -g @axe-core/cli
+
+      - name: Note about axe check
+        run: |
+          echo "Note: Full axe-core analysis requires a running web server."
+          echo "For comprehensive accessibility testing, run the UI locally and use:"
+          echo "  npx axe http://localhost:8501 --save accessibility-report.json"

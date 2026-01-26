@@ -116,13 +116,64 @@ HTML structure includes:
 
 ---
 
-## Testing
+## Automated Testing
 
-Accessibility testing performed with:
-- Manual keyboard navigation testing
+### GitHub Action: Accessibility Check
+
+Accessibility compliance is automatically verified on every push and pull request.
+
+**Workflow:** `.github/workflows/accessibility.yml`
+
+**Checks performed:**
+- Color contrast ratios (WCAG 1.4.3)
+- Minimum font sizes
+- Focus indicator presence (WCAG 2.4.7)
+- Reduced motion support (WCAG 2.3.3)
+- Skip link implementation (WCAG 2.4.1)
+
+**Badge:** The repository displays an accessibility compliance badge showing current status.
+
+### Running Locally
+
+```bash
+# Run accessibility checker
+python MAIN/governance/scripts/check_accessibility.py
+
+# Verbose output with suggestions
+python MAIN/governance/scripts/check_accessibility.py --verbose
+
+# Strict mode (warnings become errors)
+python MAIN/governance/scripts/check_accessibility.py --strict
+
+# Check specific files
+python MAIN/governance/scripts/check_accessibility.py --files path/to/styles.py
+```
+
+### Script Location
+
+```
+MAIN/governance/scripts/check_accessibility.py
+```
+
+### Exit Codes
+
+| Code | Meaning |
+|------|---------|
+| 0 | All checks passed |
+| 1 | Accessibility violations found |
+| 2 | Script error |
+
+---
+
+## Manual Testing
+
+In addition to automated checks, perform manual testing with:
+- Keyboard-only navigation (Tab, Enter, Escape)
+- Screen reader testing (VoiceOver, NVDA)
+- Browser zoom up to 200%
 - Color contrast analyzer tools
 - Chrome DevTools Accessibility audit
-- prefers-reduced-motion testing
+- prefers-reduced-motion simulation
 
 ---
 
@@ -138,12 +189,14 @@ Please report accessibility issues:
 
 ## Technical Implementation
 
-### Files Modified
+### Files
 
-| File | Changes |
+| File | Purpose |
 |------|---------|
-| `oni-framework/oni/ui/styles.py` | WCAG-compliant colors, focus states, reduced motion |
-| `tara-nsec-platform/tara_mvp/ui/styles.py` | WCAG-compliant colors, focus states, reduced motion |
+| `oni-framework/oni/ui/styles.py` | ONI Academy styles (WCAG compliant) |
+| `tara-nsec-platform/tara_mvp/ui/styles.py` | TARA styles (WCAG compliant) |
+| `governance/scripts/check_accessibility.py` | Automated compliance checker |
+| `.github/workflows/accessibility.yml` | CI/CD accessibility workflow |
 
 ### CSS Features Added
 
@@ -156,6 +209,34 @@ Please report accessibility issues:
 
 /* Focus states for keyboard navigation */
 *:focus-visible { ... }
+```
+
+### Accessibility Checker Features
+
+The `check_accessibility.py` script validates:
+
+```python
+# Color contrast calculation (WCAG algorithm)
+def contrast_ratio(color1, color2) -> float
+
+# Minimum requirements
+WCAG_AA_CONTRAST_NORMAL = 4.5  # For regular text
+WCAG_AA_CONTRAST_LARGE = 3.0   # For large text (18pt+)
+MIN_FONT_SIZE_REM = 0.875      # 14px minimum
+```
+
+### CI/CD Integration
+
+The GitHub Action runs on:
+- Push to `main` branch (UI file changes)
+- Pull requests (UI file changes)
+- Manual workflow dispatch
+
+```yaml
+# Trigger paths
+paths:
+  - 'MAIN/oni-framework/oni/ui/**'
+  - 'MAIN/tara-nsec-platform/tara_mvp/ui/**'
 ```
 
 ---

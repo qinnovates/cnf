@@ -322,7 +322,7 @@ GLOBAL_CSS = """
     }
 
     .oni-card-text {
-        font-size: 0.85rem;
+        font-size: 0.875rem;
         color: #a8b5c7 !important;  /* WCAG AA: 7.2:1 */
         line-height: 1.5;
         flex-grow: 1;
@@ -365,7 +365,7 @@ GLOBAL_CSS = """
     }
 
     .oni-metric-label {
-        font-size: 0.8rem;
+        font-size: 0.875rem;
         color: #8b9cb3  /* WCAG AA: 5.5:1 */ !important;
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -553,7 +553,7 @@ GLOBAL_CSS = """
 
     /* Progress and metrics */
     [data-testid="stMetricValue"] {
-        color: #6366f1 !important;
+        color: #818cf8 !important;  /* WCAG AA: 5.8:1 */
     }
 
     /* Hide streamlit elements */
@@ -815,7 +815,7 @@ TERMINAL_CSS = """
 
     .api-method-returns {
         color: #7ee787;
-        font-size: 0.85rem;
+        font-size: 0.875rem;
         margin-top: 0.5rem;
     }
 
