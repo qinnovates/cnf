@@ -1,3 +1,5 @@
+NOTE: Trying to codify this and stitching the elements together. It's not as easy as expected and will need to be backlogged for now and revisiting! This is a great way for visual learners like myself to grasp at how BCIs truly work at the bio-digital boundary and demonstrate the synapses that get stimulated. 
+
 # BCI Macro-to-Micro Zoom Animation Rendering (3D)
 
 > **Objective:** Learn and visually demonstrate how different BCIs stimulate neurons — including Utah Arrays, Neuralink, and other devices — showing what depth they reach, which brain regions they target, and how signals propagate from electrode to molecule.
