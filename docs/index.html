@@ -967,7 +967,7 @@
                 <div class="stat-label">Commits</div>
             </a>
             <a href="visualizations/06-oni-attack-matrix.html" class="stat" data-aos="zoom-in" data-aos-delay="200">
-                <div class="stat-value" id="stat-threats" data-count="25">25</div>
+                <div class="stat-value" id="stat-threats" data-count="25">25+</div>
                 <div class="stat-label">Threat Signatures</div>
             </a>
             <a href="https://github.com/qikevinl/ONI/blob/main/MAIN/oni-framework/ONI_LAYERS.md" class="stat" data-aos="zoom-in" data-aos-delay="300">
@@ -1631,15 +1631,15 @@
                 // These require human updates: security_layers (always 14), threat_signatures, learning_portals
                 if (brand.stats) {
                     const manualStats = {
-                        'stat-layers': brand.stats.security_layers,
-                        'stat-threats': brand.stats.threat_signatures,
-                        'stat-portals': brand.stats.learning_portals
+                        'stat-layers': { value: brand.stats.security_layers, suffix: '' },
+                        'stat-threats': { value: brand.stats.threat_signatures, suffix: '+' },
+                        'stat-portals': { value: brand.stats.learning_portals, suffix: '' }
                     };
-                    for (const [id, value] of Object.entries(manualStats)) {
+                    for (const [id, config] of Object.entries(manualStats)) {
                         const el = document.getElementById(id);
-                        if (el && value !== undefined) {
-                            el.textContent = value;
-                            el.setAttribute('data-count', value);
+                        if (el && config.value !== undefined) {
+                            el.textContent = config.value + config.suffix;
+                            el.setAttribute('data-count', config.value);
                         }
                     }
                 }
@@ -1664,7 +1664,7 @@
                     const totalCommits = contributors.reduce((sum, c) => sum + c.contributions, 0);
                     const commitEl = document.getElementById('stat-commits');
                     if (commitEl && totalCommits > 0) {
-                        commitEl.textContent = totalCommits;
+                        commitEl.textContent = totalCommits + '+';
                         commitEl.setAttribute('data-count', totalCommits);
                     }
                 }
