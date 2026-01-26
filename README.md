@@ -1,6 +1,6 @@
 # ONI Framework
 *Our mind. Our future. Our rules.*
-*Because the most important connections deserves the most thought.*
+>*Because the most important connections deserves the most thought.*
 *"Welcome to the OSI of Mind"*
 
 > **ONI**: . 
