@@ -91,6 +91,13 @@
             opacity: 0;
             transform: translateX(-30px) scale(0.95);
             transition: opacity 0.4s ease-out, transform 0.4s ease-out, box-shadow 0.3s ease;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .oni-layer-bar:hover {
+            filter: brightness(1.15);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
         }
 
         .oni-layer-bar.visible {
@@ -1062,6 +1069,7 @@
             <ul class="nav-links">
                 <li><a href="#mission">Mission</a></li>
                 <li><a href="#explore">Explore</a></li>
+                <li><a href="visualizations/08-oni-framework-viz.html">ONI Model</a></li>
                 <li><a href="#vision">Roadmap</a></li>
                 <li><a href="#contribute">Contribute</a></li>
                 <li><a href="https://github.com/qikevinl/ONI">GitHub</a></li>
@@ -1936,6 +1944,16 @@
 
             // Additional fallback: retry after layout settles
             setTimeout(updateReveal, 500);
+
+            // Make layer bars clickable - navigate to Layer Explorer
+            layerBars.forEach(bar => {
+                bar.addEventListener('click', (e) => {
+                    const layerNum = bar.dataset.layer;
+                    if (layerNum) {
+                        window.location.href = `visualizations/02-oni-layer-explorer.html?layer=${layerNum}`;
+                    }
+                });
+            });
         }
 
         // Security: Sanitize and validate brand.json input

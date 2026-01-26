@@ -1001,8 +1001,25 @@
             mini.addEventListener('click', () => selectLayer(parseInt(mini.dataset.layer)));
         });
 
-        // Initialize with Layer 14 selected
-        selectLayer(14);
+        // Check URL for layer parameter (e.g., ?layer=8 or #layer8)
+        function getInitialLayer() {
+            // Check query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryLayer = urlParams.get('layer');
+            if (queryLayer && queryLayer >= 1 && queryLayer <= 14) {
+                return parseInt(queryLayer);
+            }
+            // Check hash (e.g., #layer8 or #8)
+            const hash = window.location.hash.replace('#', '').replace('layer', '');
+            if (hash && hash >= 1 && hash <= 14) {
+                return parseInt(hash);
+            }
+            // Default to Layer 14
+            return 14;
+        }
+
+        // Initialize with layer from URL or default to 14
+        selectLayer(getInitialLayer());
     </script>
 </body>
 </html>

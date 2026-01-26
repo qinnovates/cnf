@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONI Framework Visualization | 14-Layer Security Model</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+        }
+        #root { min-height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useCallback } = React;
+
+        const ONIFrameworkViz = () => {
+          const [activeLayer, setActiveLayer] = useState(null);
+          const [signalPhase, setSignalPhase] = useState(0);
+          const [isAnimating, setIsAnimating] = useState(true);
+          const [direction, setDirection] = useState('up');
+          const [selectedAttack, setSelectedAttack] = useState(null);
+
+          // ONI Framework 14 Layers with 25+ Attack Signatures
+          const layers = [
+            {
+              id: 1,
+              name: 'Physical Carrier',
+              category: 'silicon',
+              osi: 'Physical',
+              description: 'Electromagnetic signals, fiber optics, wireless carriers, electrode interfaces',
+              attacks: [
+                { id: 'T1.1', name: 'EM Side-Channel Capture', tactic: 'Reconnaissance', description: 'Passive electromagnetic emanation capture to extract neural signal patterns without direct access' },
+                { id: 'T1.2', name: 'Signal Injection', tactic: 'Initial Access', description: 'Inject malicious signals through physical medium to corrupt or spoof neural readings' },
+                { id: 'T1.3', name: 'Hardware Implant', tactic: 'Persistence', description: 'Physical modification or implantation of malicious components in BCI hardware' },
+              ]
+            },
+            {
+              id: 2,
+              name: 'Signal Processing',
+              category: 'silicon',
+              osi: 'Data Link',
+              description: 'ADC/DAC conversion, error correction, framing, signal conditioning',
+              attacks: [
+                { id: 'T2.1', name: 'Timing Side-Channel', tactic: 'Collection', description: 'Exploit timing variations in signal processing to infer sensitive neural data patterns' },
+                { id: 'T2.2', name: 'ADC Threshold Manipulation', tactic: 'Defense Evasion', description: 'Alter analog-to-digital conversion thresholds to modify signal interpretation' },
+              ]
+            },
+            {
+              id: 3,
+              name: 'Protocol',
+              category: 'silicon',
+              osi: 'Network',
+              description: 'Packet routing, addressing, network topology, BCI protocol stack',
+              attacks: [
+                { id: 'T3.1', name: 'Protocol Downgrade', tactic: 'Defense Evasion', description: 'Force fallback to less secure protocol versions with known vulnerabilities' },
+                { id: 'T3.2', name: 'Neural Routing Hijack', tactic: 'Collection', description: 'Redirect neural data streams through attacker-controlled network paths' },
+              ]
+            },
+            {
+              id: 4,
+              name: 'Transport',
+              category: 'silicon',
+              osi: 'Transport',
+              description: 'Reliable delivery, flow control, segmentation, QoS for neural streams',
+              attacks: [
+                { id: 'T4.1', name: 'Neural DoS', tactic: 'Impact', description: 'Overwhelm transport layer with malformed packets causing denial of neural service' },
+                { id: 'T4.2', name: 'Stream Injection', tactic: 'Execution', description: 'Insert malicious payloads into active neural data transport streams' },
+              ]
+            },
+            {
+              id: 5,
+              name: 'Session',
+              category: 'silicon',
+              osi: 'Session',
+              description: 'Connection management, synchronization, handshake protocols',
+              attacks: [
+                { id: 'T5.1', name: 'BCI Session Hijacking', tactic: 'Credential Access', description: 'Take over authenticated BCI sessions to gain unauthorized neural interface access' },
+                { id: 'T5.2', name: 'Neural Replay Attack', tactic: 'Initial Access', description: 'Capture and replay valid neural session tokens to bypass authentication' },
+              ]
+            },
+            {
+              id: 6,
+              name: 'Presentation',
+              category: 'silicon',
+              osi: 'Presentation',
+              description: 'Data encryption, compression, neural data formatting',
+              attacks: [
+                { id: 'T6.1', name: 'Encryption Downgrade', tactic: 'Defense Evasion', description: 'Force use of weak or null encryption to expose raw neural data in transit' },
+                { id: 'T6.2', name: 'Neural Format Exploit', tactic: 'Execution', description: 'Exploit neural data format parsing vulnerabilities for arbitrary code execution' },
+              ]
+            },
+            {
+              id: 7,
+              name: 'Application Interface',
+              category: 'silicon',
+              osi: 'Application',
+              description: 'API endpoints, user-facing protocols, BCI application layer',
+              attacks: [
+                { id: 'T7.1', name: 'BCI API Exploitation', tactic: 'Initial Access', description: 'Exploit vulnerabilities in brain-computer interface application APIs' },
+                { id: 'T7.2', name: 'Neural Command Injection', tactic: 'Execution', description: 'Inject malicious commands through API calls to manipulate BCI behavior' },
+              ]
+            },
+            {
+              id: 8,
+              name: 'Neural Gateway',
+              category: 'gateway',
+              osi: 'Firewall',
+              description: 'Critical security boundary between silicon and biology - the NSAM checkpoint',
+              attacks: [
+                { id: 'T8.1', name: 'Gateway Bypass', tactic: 'Defense Evasion', description: 'Circumvent neural gateway security controls through protocol-level manipulation' },
+                { id: 'T8.2', name: 'NSAM Baseline Poisoning', tactic: 'Persistence', description: 'Gradually corrupt Neural Signal Assurance Model training baselines over time' },
+                { id: 'T8.3', name: 'Coherence Metric Spoofing', tactic: 'Defense Evasion', description: 'Forge valid Cs coherence scores to pass NSAM security inspection undetected' },
+                { id: 'T8.4', name: 'Bidirectional Channel Exploit', tactic: 'Lateral Movement', description: 'Exploit read/write neural interface capabilities for full bidirectional compromise' },
+              ]
+            },
+            {
+              id: 9,
+              name: 'Signal Processing',
+              category: 'biology',
+              osi: 'Filtering',
+              description: 'Neural noise filtering, signal isolation, sensory gating mechanisms',
+              attacks: [
+                { id: 'T9.1', name: 'Sensory Overload', tactic: 'Impact', description: 'Overwhelm neural signal processing capacity with excessive artificial stimulation' },
+                { id: 'T9.2', name: 'Neural Filter Bypass', tactic: 'Defense Evasion', description: 'Craft signals specifically designed to evade natural neural filtering mechanisms' },
+              ]
+            },
+            {
+              id: 10,
+              name: 'Neural Protocol',
+              category: 'biology',
+              osi: 'Encoding',
+              description: 'Spike timing, neural encoding schemes, rate coding, temporal coding patterns',
+              attacks: [
+                { id: 'T10.1', name: 'Spike Timing Attack', tactic: 'Execution', description: 'Alter precise spike timing patterns to corrupt or change neural message meaning' },
+                { id: 'T10.2', name: 'False Rate Pattern Injection', tactic: 'Impact', description: 'Inject fabricated firing rate patterns to create phantom neural signals' },
+              ]
+            },
+            {
+              id: 11,
+              name: 'Cognitive Transport',
+              category: 'biology',
+              osi: 'Delivery',
+              description: 'Neurotransmitter pathways, synaptic transmission, neural circuit routing',
+              attacks: [
+                { id: 'T11.1', name: 'Neural Pathway Hijack', tactic: 'Lateral Movement', description: 'Redirect cognitive signals through unintended neural pathways for interception' },
+                { id: 'T11.2', name: 'Synaptic Timing Disruption', tactic: 'Impact', description: 'Interfere with precise neurotransmitter release timing and reuptake mechanisms' },
+              ]
+            },
+            {
+              id: 12,
+              name: 'Cognitive Session',
+              category: 'biology',
+              osi: 'Context',
+              description: 'Working memory, attention binding, cognitive state management',
+              attacks: [
+                { id: 'T12.1', name: 'Working Memory Poisoning', tactic: 'Impact', description: 'Inject false contextual information directly into active working memory' },
+                { id: 'T12.2', name: 'Attention Capture Attack', tactic: 'Collection', description: 'Force cognitive attention toward attacker-chosen stimuli, thoughts, or concepts' },
+              ]
+            },
+            {
+              id: 13,
+              name: 'Semantic Layer',
+              category: 'biology',
+              osi: 'Intent',
+              description: 'Meaning extraction, conceptual processing, intention formation',
+              attacks: [
+                { id: 'T13.1', name: 'Semantic Interference', tactic: 'Impact', description: 'Induce systematic misinterpretation of perceived information and abstract concepts' },
+                { id: 'T13.2', name: 'Intent Subversion', tactic: 'Execution', description: 'Subtly manipulate the formation of user intentions and decision-making processes' },
+              ]
+            },
+            {
+              id: 14,
+              name: 'Identity Layer',
+              category: 'biology',
+              osi: 'Self',
+              description: 'Self-model, sense of agency, consciousness boundary, identity integrity',
+              attacks: [
+                { id: 'T14.1', name: 'Identity Fragmentation', tactic: 'Impact', description: 'Disrupt coherent sense of self, personal continuity, and identity boundaries' },
+                { id: 'T14.2', name: 'Agency Manipulation', tactic: 'Impact', description: 'Compromise user sense of authorship and voluntary control over their own actions' },
+                { id: 'T14.3', name: 'Self-Model Corruption', tactic: 'Persistence', description: 'Gradually alter internal self-representation to accept foreign signals as authentic' },
+              ]
+            },
+          ];
+
+          const tacticColors = {
+            'Reconnaissance': '#a371f7',
+            'Initial Access': '#f85149',
+            'Execution': '#f0883e',
+            'Persistence': '#d29922',
+            'Privilege Escalation': '#7ee787',
+            'Defense Evasion': '#3fb950',
+            'Credential Access': '#39d353',
+            'Collection': '#2f81f7',
+            'Lateral Movement': '#58a6ff',
+            'Impact': '#ff7b72',
+          };
+
+          useEffect(() => {
+            if (!isAnimating) return;
+            const interval = setInterval(() => {
+              setSignalPhase(prev => {
+                const next = prev + 1;
+                if (next > 15) {
+                  setDirection(d => d === 'up' ? 'down' : 'up');
+                  return 0;
+                }
+                return next;
+              });
+            }, 400);
+            return () => clearInterval(interval);
+          }, [isAnimating]);
+
+          const getSignalLayer = useCallback(() => {
+            if (signalPhase === 0 || signalPhase > 14) return null;
+            return direction === 'up' ? signalPhase : 15 - signalPhase;
+          }, [signalPhase, direction]);
+
+          const signalLayer = getSignalLayer();
+          const selectedLayerData = activeLayer ? layers.find(l => l.id === activeLayer) : null;
+          const totalAttacks = layers.reduce((sum, layer) => sum + layer.attacks.length, 0);
+
+          return (
+            <div style={{
+              minHeight: '100vh',
+              background: '#0d1117',
+              fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              color: '#c9d1d9',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              {/* Grid background */}
+              <div style={{
+                position: 'fixed',
+                inset: 0,
+                backgroundImage: `
+                  radial-gradient(ellipse at 50% 0%, rgba(88, 166, 255, 0.08) 0%, transparent 50%),
+                  linear-gradient(rgba(48, 54, 61, 0.3) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(48, 54, 61, 0.3) 1px, transparent 1px)
+                `,
+                backgroundSize: '100% 100%, 60px 60px, 60px 60px',
+                pointerEvents: 'none'
+              }} />
+
+              {/* Header */}
+              <header style={{
+                padding: '24px 40px',
+                borderBottom: '1px solid #21262d',
+                background: 'rgba(13, 17, 23, 0.8)',
+                backdropFilter: 'blur(10px)',
+                position: 'sticky',
+                top: 0,
+                zIndex: 100
+              }}>
+                <div style={{
+                  maxWidth: '1400px',
+                  margin: '0 auto',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '20px'
+                }}>
+                  <div>
+                    <div style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#58a6ff', marginBottom: '4px' }}>
+                      NEURAL SECURITY STANDARD
+                    </div>
+                    <h1 style={{ fontSize: '28px', fontWeight: 600, margin: 0, color: '#f0f6fc' }}>
+                      ONI Framework
+                    </h1>
+                    <div style={{ fontSize: '14px', color: '#8b949e', marginTop: '2px' }}>
+                      The OSI of Mind — 14 Layer Security Model
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                    <div style={{ textAlign: 'center' }}>
+                      <div style={{ fontSize: '24px', fontWeight: 600, color: '#58a6ff' }}>14</div>
+                      <div style={{ fontSize: '10px', color: '#8b949e', letterSpacing: '0.1em' }}>LAYERS</div>
+                    </div>
+                    <div style={{ width: '1px', height: '40px', background: '#21262d' }} />
+                    <div style={{ textAlign: 'center' }}>
+                      <div style={{ fontSize: '24px', fontWeight: 600, color: '#f85149' }}>{totalAttacks}+</div>
+                      <div style={{ fontSize: '10px', color: '#8b949e', letterSpacing: '0.1em' }}>THREAT SIGNATURES</div>
+                    </div>
+                    <div style={{ width: '1px', height: '40px', background: '#21262d' }} />
+                    <a href="../" style={{
+                      color: '#58a6ff',
+                      textDecoration: 'none',
+                      fontSize: '13px',
+                      padding: '8px 16px',
+                      border: '1px solid #21262d',
+                      borderRadius: '6px',
+                      transition: 'all 0.2s'
+                    }}>
+                      ← Back to ONI
+                    </a>
+                  </div>
+                </div>
+              </header>
+
+              {/* Main Content */}
+              <main style={{
+                maxWidth: '1400px',
+                margin: '0 auto',
+                padding: '30px 40px',
+                display: 'grid',
+                gridTemplateColumns: 'minmax(320px, 380px) 1fr',
+                gap: '30px'
+              }}>
+                {/* Left Panel - Layer Stack */}
+                <div>
+                  {/* Biology Zone Header */}
+                  <div style={{
+                    padding: '12px 16px',
+                    background: 'linear-gradient(90deg, rgba(63, 185, 80, 0.1), transparent)',
+                    borderLeft: '3px solid #3fb950',
+                    marginBottom: '8px',
+                    borderRadius: '0 8px 8px 0'
+                  }}>
+                    <div style={{ fontSize: '11px', letterSpacing: '0.15em', color: '#3fb950' }}>
+                      BIOLOGY LAYERS L9-L14
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#8b949e' }}>Cognitive Systems</div>
+                  </div>
+
+                  {/* Layer Stack */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    {[...layers].reverse().map((layer) => {
+                      const isActive = signalLayer === layer.id;
+                      const isSelected = activeLayer === layer.id;
+
+                      const categoryStyles = {
+                        biology: { accent: '#3fb950', bg: 'rgba(63, 185, 80, 0.1)' },
+                        gateway: { accent: '#f0883e', bg: 'rgba(240, 136, 62, 0.15)' },
+                        silicon: { accent: '#58a6ff', bg: 'rgba(88, 166, 255, 0.1)' }
+                      };
+                      const style = categoryStyles[layer.category];
+
+                      return (
+                        <React.Fragment key={layer.id}>
+                          {/* Gateway Header */}
+                          {layer.id === 8 && (
+                            <div style={{
+                              padding: '12px 16px',
+                              background: 'linear-gradient(90deg, rgba(240, 136, 62, 0.15), transparent)',
+                              borderLeft: '3px solid #f0883e',
+                              margin: '12px 0 8px 0',
+                              borderRadius: '0 8px 8px 0'
+                            }}>
+                              <div style={{ fontSize: '11px', letterSpacing: '0.15em', color: '#f0883e' }}>
+                                NEURAL GATEWAY L8
+                              </div>
+                              <div style={{ fontSize: '12px', color: '#8b949e' }}>Security Firewall / NSAM Checkpoint</div>
+                            </div>
+                          )}
+
+                          {/* Silicon Header */}
+                          {layer.id === 7 && (
+                            <div style={{
+                              padding: '12px 16px',
+                              background: 'linear-gradient(90deg, rgba(88, 166, 255, 0.1), transparent)',
+                              borderLeft: '3px solid #58a6ff',
+                              margin: '12px 0 8px 0',
+                              borderRadius: '0 8px 8px 0'
+                            }}>
+                              <div style={{ fontSize: '11px', letterSpacing: '0.15em', color: '#58a6ff' }}>
+                                SILICON LAYERS L1-L7
+                              </div>
+                              <div style={{ fontSize: '12px', color: '#8b949e' }}>OSI Model Extension</div>
+                            </div>
+                          )}
+
+                          {/* Layer Item */}
+                          <div
+                            onClick={() => {
+                              setActiveLayer(activeLayer === layer.id ? null : layer.id);
+                              setSelectedAttack(null);
+                            }}
+                            style={{
+                              display: 'grid',
+                              gridTemplateColumns: '50px 1fr 24px',
+                              alignItems: 'center',
+                              gap: '12px',
+                              padding: layer.id === 8 ? '14px 16px' : '10px 16px',
+                              background: isSelected ? style.bg : isActive ? 'rgba(48, 54, 61, 0.5)' : '#161b22',
+                              borderRadius: '8px',
+                              border: `1px solid ${isSelected ? '#ffffff' : isActive ? 'rgba(139, 148, 158, 0.3)' : '#21262d'}`,
+                              cursor: 'pointer',
+                              transition: 'all 0.15s ease',
+                              boxShadow: isActive ? `0 0 20px ${style.accent}30` : 'none'
+                            }}
+                          >
+                            <div style={{
+                              background: isSelected || isActive ? style.accent : '#21262d',
+                              borderRadius: '6px',
+                              padding: '6px',
+                              textAlign: 'center',
+                              fontSize: '13px',
+                              fontWeight: 600,
+                              color: isSelected || isActive ? '#0d1117' : '#8b949e',
+                              transition: 'all 0.15s ease'
+                            }}>
+                              L{layer.id}
+                            </div>
+                            <div>
+                              <div style={{
+                                fontSize: '14px',
+                                fontWeight: 500,
+                                color: isSelected ? '#f0f6fc' : '#c9d1d9'
+                              }}>
+                                {layer.name}
+                              </div>
+                              <div style={{ fontSize: '11px', color: '#8b949e' }}>
+                                {layer.osi}
+                              </div>
+                            </div>
+                            <div style={{
+                              width: '8px',
+                              height: '8px',
+                              borderRadius: '50%',
+                              background: isActive ? style.accent : 'transparent',
+                              boxShadow: isActive ? `0 0 8px ${style.accent}` : 'none'
+                            }} />
+                          </div>
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
+
+                  {/* Signal Flow Controls */}
+                  <div style={{
+                    marginTop: '20px',
+                    padding: '16px',
+                    background: '#161b22',
+                    borderRadius: '8px',
+                    border: '1px solid #21262d'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center'
+                    }}>
+                      <div>
+                        <div style={{ fontSize: '10px', color: '#8b949e', letterSpacing: '0.1em' }}>SIGNAL FLOW</div>
+                        <div style={{ fontSize: '13px', color: direction === 'up' ? '#3fb950' : '#58a6ff', marginTop: '4px' }}>
+                          {direction === 'up' ? 'BIOLOGY → SILICON' : 'SILICON → BIOLOGY'}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setIsAnimating(!isAnimating)}
+                        style={{
+                          background: isAnimating ? 'rgba(248, 81, 73, 0.1)' : 'rgba(63, 185, 80, 0.1)',
+                          border: `1px solid ${isAnimating ? '#f85149' : '#3fb950'}`,
+                          color: isAnimating ? '#f85149' : '#3fb950',
+                          padding: '8px 16px',
+                          borderRadius: '6px',
+                          cursor: 'pointer',
+                          fontSize: '12px',
+                          fontWeight: 500
+                        }}
+                      >
+                        {isAnimating ? 'PAUSE' : 'PLAY'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Panel - Details & Attack Matrix */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                  {/* Layer Detail Card */}
+                  <div style={{
+                    background: '#161b22',
+                    borderRadius: '12px',
+                    border: '1px solid #21262d',
+                    overflow: 'hidden',
+                    flex: selectedLayerData ? 'none' : 1
+                  }}>
+                    <div style={{
+                      padding: '16px 20px',
+                      borderBottom: '1px solid #21262d',
+                      background: '#0d1117'
+                    }}>
+                      <h2 style={{ margin: 0, fontSize: '14px', color: '#8b949e', letterSpacing: '0.1em' }}>
+                        {selectedLayerData ? `LAYER ${selectedLayerData.id} — ${selectedLayerData.name.toUpperCase()}` : 'SELECT A LAYER TO EXPLORE'}
+                      </h2>
+                    </div>
+
+                    {selectedLayerData ? (
+                      <div style={{ padding: '20px' }}>
+                        {/* Layer Info Grid */}
+                        <div style={{
+                          display: 'grid',
+                          gridTemplateColumns: '1fr 1fr',
+                          gap: '16px',
+                          marginBottom: '20px'
+                        }}>
+                          <div style={{
+                            padding: '14px',
+                            background: '#0d1117',
+                            borderRadius: '8px',
+                            borderLeft: `3px solid ${
+                              selectedLayerData.category === 'silicon' ? '#58a6ff' :
+                              selectedLayerData.category === 'gateway' ? '#f0883e' : '#3fb950'
+                            }`
+                          }}>
+                            <div style={{ fontSize: '10px', color: '#8b949e', letterSpacing: '0.1em', marginBottom: '6px' }}>
+                              FUNCTION
+                            </div>
+                            <div style={{ fontSize: '13px', color: '#c9d1d9', lineHeight: 1.5 }}>
+                              {selectedLayerData.description}
+                            </div>
+                          </div>
+                          <div style={{
+                            padding: '14px',
+                            background: '#0d1117',
+                            borderRadius: '8px',
+                            borderLeft: '3px solid #8b949e'
+                          }}>
+                            <div style={{ fontSize: '10px', color: '#8b949e', letterSpacing: '0.1em', marginBottom: '6px' }}>
+                              OSI MAPPING
+                            </div>
+                            <div style={{ fontSize: '13px', color: '#c9d1d9' }}>
+                              <span style={{ color: '#f0f6fc', fontWeight: 500 }}>{selectedLayerData.osi}</span>
+                              <span style={{ color: '#8b949e' }}> Layer</span>
+                            </div>
+                            <div style={{ fontSize: '11px', color: '#8b949e', marginTop: '8px' }}>
+                              {selectedLayerData.category === 'silicon' && 'Standard OSI network model'}
+                              {selectedLayerData.category === 'gateway' && 'Security perimeter control'}
+                              {selectedLayerData.category === 'biology' && 'Cognitive system extension'}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Attack Mappings */}
+                        <div>
+                          <div style={{
+                            fontSize: '11px',
+                            letterSpacing: '0.15em',
+                            color: '#f85149',
+                            marginBottom: '12px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px'
+                          }}>
+                            <span style={{ fontSize: '14px' }}>⚠</span>
+                            ATTACK VECTORS ({selectedLayerData.attacks.length})
+                          </div>
+
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {selectedLayerData.attacks.map((attack) => (
+                              <div
+                                key={attack.id}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedAttack(selectedAttack === attack.id ? null : attack.id);
+                                }}
+                                style={{
+                                  padding: '12px 16px',
+                                  background: selectedAttack === attack.id ? '#21262d' : '#0d1117',
+                                  borderRadius: '8px',
+                                  border: `1px solid ${selectedAttack === attack.id ? '#ffffff' : '#21262d'}`,
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease'
+                                }}
+                              >
+                                <div style={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'flex-start',
+                                  marginBottom: selectedAttack === attack.id ? '10px' : 0
+                                }}>
+                                  <div>
+                                    <span style={{ fontSize: '11px', color: '#8b949e', marginRight: '8px' }}>
+                                      {attack.id}
+                                    </span>
+                                    <span style={{ fontSize: '14px', fontWeight: 500, color: '#f0f6fc' }}>
+                                      {attack.name}
+                                    </span>
+                                  </div>
+                                  <span style={{
+                                    fontSize: '10px',
+                                    padding: '3px 8px',
+                                    borderRadius: '4px',
+                                    background: `${tacticColors[attack.tactic]}20`,
+                                    color: tacticColors[attack.tactic],
+                                    fontWeight: 500,
+                                    whiteSpace: 'nowrap'
+                                  }}>
+                                    {attack.tactic}
+                                  </span>
+                                </div>
+                                {selectedAttack === attack.id && (
+                                  <div style={{
+                                    fontSize: '13px',
+                                    color: '#8b949e',
+                                    lineHeight: 1.5,
+                                    paddingTop: '10px',
+                                    borderTop: '1px solid #21262d'
+                                  }}>
+                                    {attack.description}
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div style={{ padding: '30px 20px' }}>
+                        {/* Welcome State */}
+                        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+                          <div style={{
+                            fontSize: '64px',
+                            marginBottom: '16px',
+                            opacity: 0.2,
+                            fontWeight: 300,
+                            background: 'linear-gradient(90deg, #58a6ff, #f0883e, #3fb950)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent'
+                          }}>
+                            L1-L14
+                          </div>
+                          <div style={{ color: '#8b949e', marginBottom: '8px' }}>Click on any layer to explore attack vectors</div>
+                          <div style={{ fontSize: '12px', color: '#484f58' }}>Each layer maps to specific threat signatures</div>
+                        </div>
+
+                        {/* Layer Overview Cards */}
+                        <div style={{
+                          display: 'grid',
+                          gridTemplateColumns: 'repeat(3, 1fr)',
+                          gap: '12px',
+                          marginBottom: '24px'
+                        }}>
+                          <div style={{
+                            padding: '16px',
+                            background: 'rgba(88, 166, 255, 0.05)',
+                            borderRadius: '8px',
+                            border: '1px solid rgba(88, 166, 255, 0.2)',
+                            textAlign: 'center'
+                          }}>
+                            <div style={{ fontSize: '24px', fontWeight: 600, color: '#58a6ff' }}>L1-L7</div>
+                            <div style={{ fontSize: '11px', color: '#8b949e', marginTop: '4px' }}>Silicon Layers</div>
+                            <div style={{ fontSize: '10px', color: '#484f58', marginTop: '2px' }}>OSI Model</div>
+                          </div>
+                          <div style={{
+                            padding: '16px',
+                            background: 'rgba(240, 136, 62, 0.08)',
+                            borderRadius: '8px',
+                            border: '1px solid rgba(240, 136, 62, 0.3)',
+                            textAlign: 'center'
+                          }}>
+                            <div style={{ fontSize: '24px', fontWeight: 600, color: '#f0883e' }}>L8</div>
+                            <div style={{ fontSize: '11px', color: '#8b949e', marginTop: '4px' }}>Neural Gateway</div>
+                            <div style={{ fontSize: '10px', color: '#484f58', marginTop: '2px' }}>NSAM Firewall</div>
+                          </div>
+                          <div style={{
+                            padding: '16px',
+                            background: 'rgba(63, 185, 80, 0.05)',
+                            borderRadius: '8px',
+                            border: '1px solid rgba(63, 185, 80, 0.2)',
+                            textAlign: 'center'
+                          }}>
+                            <div style={{ fontSize: '24px', fontWeight: 600, color: '#3fb950' }}>L9-L14</div>
+                            <div style={{ fontSize: '11px', color: '#8b949e', marginTop: '4px' }}>Biology Layers</div>
+                            <div style={{ fontSize: '10px', color: '#484f58', marginTop: '2px' }}>Cognitive Systems</div>
+                          </div>
+                        </div>
+
+                        {/* Tactic Legend */}
+                        <div style={{ marginBottom: '24px' }}>
+                          <div style={{ fontSize: '11px', color: '#8b949e', letterSpacing: '0.1em', marginBottom: '12px' }}>
+                            THREAT TACTICS
+                          </div>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+                            {Object.entries(tacticColors).map(([tactic, color]) => (
+                              <div key={tactic} style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                padding: '8px 10px',
+                                background: '#0d1117',
+                                borderRadius: '6px'
+                              }}>
+                                <div style={{ width: '10px', height: '10px', borderRadius: '3px', background: color }} />
+                                <span style={{ fontSize: '11px', color: '#8b949e' }}>{tactic}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Key Concepts */}
+                        <div>
+                          <div style={{ fontSize: '11px', color: '#8b949e', letterSpacing: '0.1em', marginBottom: '12px' }}>
+                            KEY CONCEPTS
+                          </div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            <div style={{
+                              padding: '12px',
+                              background: '#0d1117',
+                              borderRadius: '8px',
+                              display: 'flex',
+                              gap: '12px',
+                              alignItems: 'flex-start'
+                            }}>
+                              <div style={{ fontSize: '16px', fontWeight: 600, color: '#3fb950', minWidth: '36px' }}>Cs</div>
+                              <div>
+                                <div style={{ fontSize: '12px', color: '#c9d1d9', fontWeight: 500 }}>Coherence Metric</div>
+                                <div style={{ fontSize: '11px', color: '#8b949e', marginTop: '2px' }}>
+                                  Signal trust score: Cs = e^(-(o2phi + o2tau + o2gamma))
+                                </div>
+                              </div>
+                            </div>
+                            <div style={{
+                              padding: '12px',
+                              background: '#0d1117',
+                              borderRadius: '8px',
+                              display: 'flex',
+                              gap: '12px',
+                              alignItems: 'flex-start'
+                            }}>
+                              <div style={{ fontSize: '14px', fontWeight: 600, color: '#f0883e', minWidth: '36px' }}>NSAM</div>
+                              <div>
+                                <div style={{ fontSize: '12px', color: '#c9d1d9', fontWeight: 500 }}>Neural Signal Assurance Model</div>
+                                <div style={{ fontSize: '11px', color: '#8b949e', marginTop: '2px' }}>
+                                  ML-trained baseline for anomaly detection at L8
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Visual Flow Diagram */}
+                  <div style={{
+                    background: '#161b22',
+                    borderRadius: '12px',
+                    border: '1px solid #21262d',
+                    padding: '20px'
+                  }}>
+                    <div style={{ fontSize: '11px', letterSpacing: '0.15em', color: '#8b949e', marginBottom: '16px' }}>
+                      SIGNAL PROPAGATION
+                    </div>
+
+                    <svg viewBox="0 0 700 200" style={{ width: '100%', height: 'auto' }}>
+                      <defs>
+                        <linearGradient id="siliconGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#58a6ff"/>
+                          <stop offset="100%" stopColor="#1f6feb"/>
+                        </linearGradient>
+                        <linearGradient id="bioGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#3fb950"/>
+                          <stop offset="100%" stopColor="#238636"/>
+                        </linearGradient>
+                        <filter id="glow">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                      </defs>
+
+                      {/* Silicon Zone */}
+                      <rect x="20" y="20" width="280" height="160" fill="rgba(88, 166, 255, 0.05)" rx="8" stroke="#21262d"/>
+                      <text x="35" y="45" fill="#58a6ff" fontSize="10" fontFamily="inherit">SILICON L1-L7</text>
+
+                      {/* Silicon Layers */}
+                      {[1,2,3,4,5,6,7].map((id, i) => {
+                        const isActive = signalLayer === id;
+                        const isSelected = activeLayer === id;
+                        return (
+                          <g key={id}>
+                            <rect
+                              x={35 + i * 36}
+                              y={60}
+                              width={32}
+                              height={100}
+                              rx={4}
+                              fill={isActive ? 'url(#siliconGrad)' : isSelected ? 'rgba(88, 166, 255, 0.3)' : '#21262d'}
+                              stroke={isSelected ? '#ffffff' : isActive ? '#58a6ff' : '#30363d'}
+                              strokeWidth={isSelected ? 2 : 1}
+                              filter={isActive ? 'url(#glow)' : 'none'}
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => setActiveLayer(activeLayer === id ? null : id)}
+                            />
+                            <text
+                              x={51 + i * 36}
+                              y={115}
+                              fill={isActive || isSelected ? '#fff' : '#8b949e'}
+                              fontSize="11"
+                              fontFamily="inherit"
+                              textAnchor="middle"
+                              style={{ pointerEvents: 'none' }}
+                            >
+                              L{id}
+                            </text>
+                          </g>
+                        );
+                      })}
+
+                      {/* Gateway */}
+                      {(() => {
+                        const isSelected = activeLayer === 8;
+                        return (
+                          <g>
+                            <rect
+                              x="320" y="60" width="60" height="100" rx="8"
+                              fill={signalLayer === 8 ? '#f0883e' : isSelected ? 'rgba(240, 136, 62, 0.4)' : 'rgba(240, 136, 62, 0.2)'}
+                              stroke={isSelected ? '#ffffff' : '#f0883e'}
+                              strokeWidth={isSelected ? 2 : signalLayer === 8 ? 2 : 1}
+                              filter={signalLayer === 8 ? 'url(#glow)' : 'none'}
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => setActiveLayer(activeLayer === 8 ? null : 8)}
+                            />
+                            <text x="350" y="100" fill={signalLayer === 8 ? '#0d1117' : '#f0883e'} fontSize="12" fontFamily="inherit" textAnchor="middle" fontWeight="600" style={{ pointerEvents: 'none' }}>L8</text>
+                            <text x="350" y="120" fill={signalLayer === 8 ? '#0d1117' : '#8b949e'} fontSize="8" fontFamily="inherit" textAnchor="middle" style={{ pointerEvents: 'none' }}>GATEWAY</text>
+                            <text x="350" y="145" fill={signalLayer === 8 ? '#0d1117' : '#8b949e'} fontSize="8" fontFamily="inherit" textAnchor="middle" style={{ pointerEvents: 'none' }}>NSAM</text>
+                          </g>
+                        );
+                      })()}
+
+                      {/* Biology Zone */}
+                      <rect x="400" y="20" width="280" height="160" fill="rgba(63, 185, 80, 0.05)" rx="8" stroke="#21262d"/>
+                      <text x="415" y="45" fill="#3fb950" fontSize="10" fontFamily="inherit">BIOLOGY L9-L14</text>
+
+                      {/* Biology Layers */}
+                      {[9,10,11,12,13,14].map((id, i) => {
+                        const isActive = signalLayer === id;
+                        const isSelected = activeLayer === id;
+                        return (
+                          <g key={id}>
+                            <rect
+                              x={415 + i * 42}
+                              y={60}
+                              width={38}
+                              height={100}
+                              rx={4}
+                              fill={isActive ? 'url(#bioGrad)' : isSelected ? 'rgba(63, 185, 80, 0.3)' : '#21262d'}
+                              stroke={isSelected ? '#ffffff' : isActive ? '#3fb950' : '#30363d'}
+                              strokeWidth={isSelected ? 2 : 1}
+                              filter={isActive ? 'url(#glow)' : 'none'}
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => setActiveLayer(activeLayer === id ? null : id)}
+                            />
+                            <text
+                              x={434 + i * 42}
+                              y={115}
+                              fill={isActive || isSelected ? '#fff' : '#8b949e'}
+                              fontSize="11"
+                              fontFamily="inherit"
+                              textAnchor="middle"
+                              style={{ pointerEvents: 'none' }}
+                            >
+                              L{id}
+                            </text>
+                          </g>
+                        );
+                      })}
+
+                      {/* Flow arrows */}
+                      <path d="M 295 110 L 315 110" stroke="#f0883e" strokeWidth="2" opacity="0.5"/>
+                      <path d="M 385 110 L 405 110" stroke="#f0883e" strokeWidth="2" opacity="0.5"/>
+                    </svg>
+                  </div>
+                </div>
+              </main>
+
+              {/* Footer */}
+              <footer style={{
+                padding: '20px 40px',
+                borderTop: '1px solid #21262d',
+                textAlign: 'center',
+                marginTop: '40px'
+              }}>
+                <p style={{ margin: 0, fontSize: '12px', color: '#8b949e' }}>
+                  ONI Framework — Open Neurosecurity Interoperability —
+                  <span style={{ color: '#f0883e' }}> "Life's most important connections deserve the most thought"</span>
+                </p>
+              </footer>
+            </div>
+          );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ONIFrameworkViz />);
+    </script>
+</body>
+</html>
