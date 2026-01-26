@@ -376,7 +376,7 @@ When assigning priority, score each criterion (0-2):
 │  - Layer correction      │  - Attack scenarios │  - Peer review sub  │  - FDA alignment
 │  - Ethics framework      │  - Performance      │  - Conference       │
 │                          │                     │                     │
-├─ M2: Implementation ◐    ├─ M4: Integration    ├─ M6: Community      ├─ M8: Privacy-First
+├─ M2: Implementation ◐    ├─ M4: Integration    ├─ M6: Community      ├─ M8: Privacy-First ◐
 │  - Python packages       │  - BrainFlow        │  - Contributors     │  - Federated AI
 │  - Neurosecurity         │  - Real hardware    │  - Documentation    │  - Score-only TARA
 │  - Consent module        │  - CI/CD complete   │  - Tutorials        │  - Gradient encryption
@@ -396,11 +396,23 @@ When assigning priority, score each criterion (0-2):
 | M5 | Publication Ready | 2026-06-30 | Planned | arXiv, peer review submission |
 | M6 | Community Launch | 2026-08-31 | Planned | Contributors, tutorials |
 | M7 | Industry Ready | 2026-12-31 | Planned | Manufacturer guide, FDA docs |
-| M8 | Privacy-First Architecture | 2027-Q1 | **Future** | Federated AI, score-only transmission, gradient encryption |
+| M8 | Privacy-First Architecture | 2027-Q1 | **In Progress** | Federated AI, score-only transmission, gradient encryption |
 
-### M8: Privacy-First Architecture (Future Implementation Goal)
+### M8: Privacy-First Architecture (In Progress)
 
 **Vision:** TARA monitors neural security without ever seeing raw neural data.
+
+**Progress (Started 2026-01-26):**
+
+| Phase | Status | Deliverables |
+|-------|--------|--------------|
+| **Design & Documentation** | ✅ Complete | Architecture diagram, data flow, threat model |
+| **Vulnerability Analysis** | ✅ Complete | Cₛ fingerprinting identified, mitigations designed |
+| **User Documentation** | ✅ Complete | DATA_POLICY_FAQ.md, visualization, demo video |
+| **Score Anonymization Spec** | ✅ Complete | ε-DP, bucketing, temporal aggregation defined |
+| **Federated Learning Design** | 🔄 In Progress | TensorFlow Federated / PySyft evaluation |
+| **Implementation** | ⏳ Pending | Python modules, integration with TARA |
+| **Testing & Validation** | ⏳ Pending | Privacy budget optimization, attack testing |
 
 **Architecture:**
 ```

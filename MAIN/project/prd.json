@@ -223,9 +223,11 @@
       "id": "epic-federated-ai-training",
       "title": "Federated AI Training for Privacy-Preserving Neural Security",
       "type": "epic",
+      "status": "in-progress",
+      "started_at": "2026-01-26",
       "description": "Implement federated learning architecture where AI models train locally on user devices, sharing only encrypted gradients with central servers. TARA portal receives only mathematical scores (Cₛ, Δ, σ)—never raw neural data. This enables collective learning while preserving individual privacy.",
       "rationale": "Current centralized ML approaches require raw data transmission, creating privacy risks. Federated learning enables model improvement without data exposure. This aligns with ONI's core principle: your thoughts stay on your device.",
-      "feasibility": "research-needed",
+      "feasibility": "in-progress",
       "components": [
         {
           "id": "fl-local-training-module",
@@ -249,7 +251,8 @@
           "id": "fl-score-only-transmission",
           "title": "Score-Only Transmission Protocol",
           "description": "Ensure only Cₛ scores, deltas, and deviations are transmitted to TARA",
-          "status": "not-started"
+          "status": "design-complete",
+          "notes": "Architecture documented, visualization created, FAQ written"
         },
         {
           "id": "fl-aggregation-server",
@@ -261,9 +264,10 @@
           "id": "fl-score-anonymization",
           "title": "Score Anonymization Layer",
           "description": "Prevent Cₛ fingerprinting via: (1) differential privacy noise injection, (2) bucketed transmission (LOW/MED/HIGH), (3) temporal aggregation windows, (4) session unlinkability with rotating pseudonyms",
-          "status": "not-started",
+          "status": "design-complete",
           "priority": "critical",
-          "rationale": "Raw Cₛ time-series can fingerprint users even without neural data"
+          "rationale": "Raw Cₛ time-series can fingerprint users even without neural data",
+          "notes": "Vulnerability documented, mitigations specified in DATA_POLICY_FAQ.md and visualization"
         }
       ],
       "technical_approach": {
