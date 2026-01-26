@@ -243,9 +243,9 @@ GLOBAL_CSS = """
         font-size: 1rem;
         color: #8b9cb3  /* WCAG AA: 5.5:1 */ !important;
         max-width: 600px;
-        margin: 0 auto;
+        margin: 0 auto !important;
         line-height: 1.6;
-        text-align: center;
+        text-align: center !important;
     }
 
     /* Cards - uniform grid */
