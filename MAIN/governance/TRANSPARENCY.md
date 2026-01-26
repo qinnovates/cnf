@@ -92,6 +92,19 @@ This example illustrates why domain expertise cannot be fully offloaded to AI �
 - **Reasoning**: Zero-trust principles require identity verification independent of signal quality
 - **Action Taken**: Implemented full decision matrix with alert levels
 
+#### Example 5: Coherence Formula Notation Correction (2026-01-26)
+- **Legacy Notation**: `Cₛ = Σᵢ wᵢ × Φᵢ(Δtᵢ) × Θᵢ(fᵢ, Aᵢ)` (weighted sum representation)
+- **Authoritative Formula**: `Cₛ = e^(−(σ²φ + σ²τ + σ²γ))` (exponential decay)
+- **Discovery Process**: Systematic repository audit found 8 files containing the legacy notation that contradicted the authoritative TechDoc and code implementation
+- **Mathematical Proof**:
+  1. The exponential form models biological threshold behaviors (Markram et al., 1997 — STDP windows)
+  2. Formula is derived from Shannon entropy: Cₛ = e^(−H_total) where H_total = total variance
+  3. Produces bounded output [0, 1] with proper asymptotic behavior (Cₛ → 1 as variance → 0)
+  4. All 14 unit tests in `test_coherence.py` explicitly verify e^−x behavior
+  5. Both `oni-framework` and `tara_mvp` implementations use `math.exp(-total_variance)`
+- **Files Corrected**: CLAUDE.md, AGENTS.md, TARA/API.md, TARA/CLAUDE.md, PERSONAS.md, app.py, CoherenceGauge.tsx, coherence.tsx
+- **Lesson**: Legacy notation from early development propagated to auxiliary documentation without review against authoritative sources. This underscores the importance of establishing clear truth hierarchies (TechDoc > Implementation > Supporting docs).
+
 ### Correction Rate
 
 Across the development of ONI Framework v0.1.0:

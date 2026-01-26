@@ -15,16 +15,20 @@ export const CoherenceScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
+  // Phase timing - Coherence first, then Scale-Frequency
+  const showCoherence = frame < 500;
+  const showScaleFreq = frame >= 500;
+
   // Animate coherence value over time
   const coherenceValue = interpolate(
     frame,
-    [0, 250, 500, 800],
+    [0, 250, 400, 500],
     [0.35, 0.78, 0.92, 0.88],
     { extrapolateRight: 'clamp' }
   );
 
-  // Show interactive demo hint after main animation
-  const showDemo = frame > 550;
+  // Show interactive demo hint
+  const showDemo = frame > 350 && frame < 480;
 
   // Background glow based on coherence
   const bgGlow = interpolate(
@@ -32,6 +36,23 @@ export const CoherenceScene: React.FC = () => {
     [0.3, 0.7, 0.9],
     [0.05, 0.1, 0.15]
   );
+
+  // Scale-Frequency animation
+  const sfProgress = interpolate(frame - 500, [0, 60], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  // Animated scale and frequency values for visualization
+  const scaleValue = interpolate(frame - 520, [0, 200], [10, 1000], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const freqValue = interpolate(frame - 520, [0, 200], [100, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const kConstant = scaleValue * freqValue; // Should stay ~1000
 
   return (
     <AbsoluteFill
@@ -94,7 +115,7 @@ export const CoherenceScene: React.FC = () => {
           <CoherenceGauge value={coherenceValue} showFormula={true} animated={true} />
         </div>
 
-        {/* Component explanation cards */}
+        {/* Component explanation cards - matching formula: e^(−(σ²φ + σ²τ + σ²γ)) */}
         <div
           style={{
             display: 'flex',
@@ -103,9 +124,9 @@ export const CoherenceScene: React.FC = () => {
           }}
         >
           {[
-            { label: 'Φ Phase Sync', desc: 'Neural oscillation alignment', color: colors.biology.L11 },
-            { label: 'Δt Timing', desc: 'Temporal precision', color: colors.gateway.L8 },
-            { label: 'Θ Frequency', desc: 'Band-specific response', color: colors.silicon.L3 },
+            { label: 'σ²φ', name: 'Phase Variance', desc: 'Neural oscillation alignment', color: colors.biology.L11 },
+            { label: 'σ²τ', name: 'Timing Variance', desc: 'Temporal jitter precision', color: colors.gateway.L8 },
+            { label: 'σ²γ', name: 'Frequency Variance', desc: 'Band-specific stability', color: colors.silicon.L3 },
           ].map((item, index) => {
             const cardProgress = spring({
               frame: frame - 180 - index * 12,
@@ -123,7 +144,7 @@ export const CoherenceScene: React.FC = () => {
                   borderRadius: 14,
                   border: `1px solid ${item.color}22`,
                   textAlign: 'center',
-                  minWidth: 180,
+                  minWidth: 200,
                   opacity: Math.max(0, cardProgress),
                   transform: `translateY(${interpolate(
                     Math.max(0, cardProgress),
@@ -134,11 +155,11 @@ export const CoherenceScene: React.FC = () => {
               >
                 <div
                   style={{
-                    fontSize: 18,
+                    fontSize: 24,
                     color: item.color,
                     fontFamily: typography.fontFamily.mono,
-                    marginBottom: 10,
-                    fontWeight: 600,
+                    marginBottom: 6,
+                    fontWeight: 700,
                   }}
                 >
                   {item.label}
@@ -146,6 +167,16 @@ export const CoherenceScene: React.FC = () => {
                 <div
                   style={{
                     fontSize: 14,
+                    color: colors.text.secondary,
+                    marginBottom: 8,
+                    fontWeight: 500,
+                  }}
+                >
+                  {item.name}
+                </div>
+                <div
+                  style={{
+                    fontSize: 13,
                     color: colors.text.muted,
                     lineHeight: 1.4,
                   }}
