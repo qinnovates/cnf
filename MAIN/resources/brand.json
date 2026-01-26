@@ -1,3 +1,4 @@
+### IMPORTANT NOTE: This JSON contains env. variables that I referenced on the main ONI landing page (https://qikevinl.github.io/ONI/) and within the python packages. The intent is for when any modifications to the brand details change, it will reflect elsewhere dynamically. For secure measures, I've configured input validation and other guardrails to prevent abuse and misuse. 
 {
   "oni": {
     "acronym": "ONI",
