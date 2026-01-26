@@ -3,6 +3,7 @@ import { ONIDemoVideo } from "./ONIDemoVideo";
 import { videoConfig } from "./data/oni-theme";
 import { LayersCanvasScene } from "./scenes/LayersCanvasScene";
 import { TitleSceneEnhanced } from "./scenes/TitleSceneEnhanced";
+import { TitleThreadsScene } from "./scenes/TitleThreadsScene";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -37,6 +38,15 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="TitleEnhanced"
         component={TitleSceneEnhanced}
+        durationInFrames={240} // 8 seconds
+        fps={videoConfig.fps}
+        width={videoConfig.width}
+        height={videoConfig.height}
+      />
+      {/* Title with Threads - Brain Wave Animation */}
+      <Composition
+        id="TitleThreads"
+        component={TitleThreadsScene}
         durationInFrames={240} // 8 seconds
         fps={videoConfig.fps}
         width={videoConfig.width}
