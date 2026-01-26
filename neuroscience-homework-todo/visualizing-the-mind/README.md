@@ -54,7 +54,7 @@ Create an animated "Powers of Ten" style zoom that:
 
 ### 1. Blender 3D Animation
 
-**Location:** [`blender/bci-zoom-3d/`](./blender/bci-zoom-3d/)
+**Location:** [`3D-mindmapper/blender/bci-zoom-3d/`](./3D-mindmapper/blender/bci-zoom-3d/)
 
 True 3D visualization with smooth camera zoom through all scales.
 
@@ -68,7 +68,7 @@ True 3D visualization with smooth camera zoom through all scales.
 
 ### 2. Manim 2D/2.5D Animation
 
-**Location:** [`manim/bci-zoom/`](./manim/bci-zoom/)
+**Location:** [`2D-mindmapper/manim/bci-zoom/`](./2D-mindmapper/manim/bci-zoom/)
 
 Scientific visualization with dual logarithmic axes showing scale relationships.
 
@@ -133,8 +133,8 @@ Understanding this physical interface is critical for BCI security because **att
 
 | Folder | Content |
 |--------|---------|
-| `blender/bci-zoom-3d/renders/` | Blender frame sequences and MP4 |
-| `manim/bci-zoom/media/videos/` | Manim rendered animations |
+| `3D-mindmapper/blender/bci-zoom-3d/renders/` | Blender frame sequences and MP4 |
+| `2D-mindmapper/manim/bci-zoom/media/videos/` | Manim rendered animations |
 
 ---
 
@@ -142,11 +142,11 @@ Understanding this physical interface is critical for BCI security because **att
 
 ```bash
 # Blender (3D visualization)
-cd blender/bci-zoom-3d
+cd 3D-mindmapper/blender/bci-zoom-3d
 blender --python scripts/bci_zoom_3d.py
 
 # Manim (2D scientific animation)
-cd manim/bci-zoom
+cd 2D-mindmapper/manim/bci-zoom
 manim -pql scenes/bci_zoom_animation.py BCIZoomAnimation
 ```
 
