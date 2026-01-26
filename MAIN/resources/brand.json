@@ -4,8 +4,8 @@
     "full_name": "Open Neurosecurity Interoperability",
     "name": "ONI Framework",
     "tagline": "The OSI of Mind",
-    "slogan": "Our minds. Our rules. Our future.",
-    "mission": "The power of mind is our frontier. We're making sure it's protected from day one with a universal, open standard that leaves no brain behind. Because important connections deserve the most thought.",
+    "slogan": "Your mind. Your rule. Our future.",
+    "mission": "The power of mind is our frontier. We're making sure it's protected from day one with a universal, open standard that leaves no brain behind. Why? Because the most important connections deserve the utmost thought.",
     "description": "A unified 14-layer model extending OSI into the biological domain. One framework to understand, build, and secure brain-computer interfaces. Open. Extensible. Universal.",
     "version": "0.2.2"
   },
@@ -16,13 +16,13 @@
     "tagline": "Protection for the neural frontier",
     "slogan": "Named after the Buddhist goddess of protection.",
     "mission": "Provide real-time neural security monitoring, attack simulation, and response automation aligned with the ONI 14-layer model.",
-    "description": "A neural security platform for BCI monitoring, simulation, and attack testing. Real-time security analysis for brain-computer interfaces.",
+    "description": "A neural security platform for BCI security monitoring, simulation, and attack testing. Real-time security analysis for brain-computer interfaces.",
     "version": "0.8.1"
   },
   "stats": {
-    "_comment": "Manual stats only. Auto-updating stats (commits, tools, packages) are fetched via GitHub API in docs/index.html",
+    "_comment": "Manual stats only. Auto-updating stats (commits, tools) are fetched via GitHub API in docs/index.html",
     "security_layers": 14,
-    "threat_patterns": 25,
+    "threat_signatures": 25,
     "learning_portals": 1
   },
   "_meta": {
