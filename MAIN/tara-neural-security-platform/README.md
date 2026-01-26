@@ -16,7 +16,8 @@ TARA provides:
 - **Attack Simulation**: Comprehensive attack pattern library for security testing (ransomware, DoS, gateway bypass, etc.)
 - **Neural Signal Assurance Monitoring (NSAM)**: Real-time anomaly detection and signal integrity validation
 - **Brain Topology Visualization**: 3D brain visualization with electrode monitoring and region analysis
-- **Neural Firewall**: ONI-aligned 7-layer (L8-L14) signal validation pipeline
+- **Neural Firewall**: ONI-aligned 7-layer (L8-L14) signal validation pipeline with **bidirectional BCI support**
+- **Bidirectional BCI Security**: Stimulation command validation with safety bounds, region authorization, and charge density limits
 - **Neural Simulator**: Interactive brain region security analysis with attack vectors and defenses
 - **BCI Node Network**: Monitoring and connectivity visualization for distributed firewall nodes
 - **Unified Dashboard**: Streamlit-based web interface for monitoring, testing, and analysis
@@ -154,6 +155,57 @@ result = simulator.run_scenario(scenario)
 print(f"Detection rate: {result.detection_rate:.1%}")
 print(f"Block rate: {result.block_rate:.1%}")
 ```
+
+### Bidirectional BCI Security
+
+TARA supports bidirectional BCIs that both READ from and WRITE (stimulate) the brain:
+
+```python
+from tara import NeuralFirewall, StimulationCommand, FlowDirection
+
+# Create firewall with stimulation safety bounds
+firewall = NeuralFirewall(
+    # READ settings
+    threshold_high=0.6,
+    threshold_low=0.3,
+    # WRITE (stimulation) settings
+    stim_amplitude_bounds=(0.0, 3000.0),   # 0-3 mA
+    stim_frequency_bounds=(1.0, 200.0),    # 1-200 Hz
+    charge_density_limit=25.0,              # uC/cm^2 (Shannon limit)
+    authorized_regions={"M1", "S1", "PMC"}, # Only authorized regions
+    stim_rate_limit=10,                     # Max 10 commands/second
+)
+
+# Validate a stimulation command
+stim_cmd = StimulationCommand(
+    target_region="M1",
+    amplitude_uA=1000.0,    # 1 mA
+    frequency_Hz=100.0,
+    pulse_width_us=200.0,
+    authenticated=True,
+)
+
+result = firewall.filter_stimulation(stim_cmd)
+if result.accepted:
+    print("Stimulation approved")
+else:
+    print(f"Rejected: {result.reason}")
+    for check, passed in result.safety_checks.items():
+        print(f"  {'✓' if passed else '✗'} {check}")
+
+# Check bidirectional flow stats
+stats = firewall.get_stats()
+print(f"Flow direction: {stats['flow_direction']}")
+```
+
+**Safety Bounds (based on Shannon 1992, Merrill 2005):**
+
+| Parameter | Default Range | Purpose |
+|-----------|---------------|---------|
+| Amplitude | 0-5 mA | Prevent tissue damage |
+| Frequency | 0.1-500 Hz | Physiological range |
+| Pulse Width | 50-1000 μs | Balance efficacy/safety |
+| Charge Density | <30 μC/cm²/phase | Shannon limit (k=1.5) |
 
 ---
 

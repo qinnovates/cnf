@@ -1,6 +1,6 @@
 # TARA API Reference
 
-> **TARA v0.7.0** - Telemetry Analysis and Response Automation
+> **TARA v0.8.0** - Telemetry Analysis and Response Automation
 > Neural Security Platform for Brain-Computer Interfaces
 
 ---
@@ -10,6 +10,7 @@
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Core Module](#core-module)
+- [Bidirectional BCI Security](#bidirectional-bci-security)
 - [Attack Simulation](#attack-simulation)
 - [Yale Threat Model & CVSS](#yale-threat-model--cvss)
 - [NSAM (Neural Signal Assurance Monitoring)](#nsam-neural-signal-assurance-monitoring)
@@ -95,32 +96,66 @@ score = calculate_cs(signal_data)
 
 ### NeuralFirewall
 
-ONI Layer 8 firewall for signal validation.
+ONI Layer 8 firewall for signal validation. Supports both READ (recording) and WRITE (stimulation) operations for bidirectional BCIs.
 
 ```python
-from tara_mvp import NeuralFirewall
+from tara_mvp import NeuralFirewall, Signal, StimulationCommand
 
+# Create firewall for bidirectional BCI
 firewall = NeuralFirewall(
-    coherence_threshold=0.7,
-    rate_limit=1000,           # signals/second
-    block_on_anomaly=True,
+    # READ (recording) settings
+    threshold_high=0.6,
+    threshold_low=0.3,
+    amplitude_bounds=(0, 500),
+    rate_limit=1000,
+    # WRITE (stimulation) settings
+    stim_amplitude_bounds=(0.0, 3000.0),  # 0-3 mA
+    stim_frequency_bounds=(1.0, 200.0),   # 1-200 Hz
+    stim_pulse_width_bounds=(100.0, 500.0),
+    charge_density_limit=25.0,             # uC/cm^2/phase
+    authorized_regions={"M1", "S1", "PMC"},
+    stim_rate_limit=10,
 )
 
-# Validate a signal
-result = firewall.validate(signal)
-print(f"Allowed: {result.allowed}")
-print(f"Reason: {result.reason}")
+# Validate a READ signal
+signal = Signal(
+    arrival_times=[0.0, 0.025, 0.050],
+    amplitudes=[100.0, 98.0, 102.0],
+    authenticated=True,
+)
+result = firewall.filter(signal)
+print(f"Decision: {result.decision.name}")
+print(f"Coherence: {result.coherence:.3f}")
 
-# Batch validation
-results = firewall.validate_batch(signals)
+# Validate a WRITE (stimulation) command
+stim = StimulationCommand(
+    target_region="M1",
+    amplitude_uA=1000.0,
+    frequency_Hz=100.0,
+    pulse_width_us=200.0,
+    authenticated=True,
+)
+stim_result = firewall.filter_stimulation(stim)
+print(f"Decision: {stim_result.decision.name}")
+print(f"All checks passed: {stim_result.all_checks_passed}")
+
+# Get bidirectional statistics
+stats = firewall.get_stats()
+print(f"Flow direction: {stats['flow_direction']}")
+print(f"Read stats: {stats['read']}")
+print(f"Stimulation stats: {stats['stimulation']}")
 ```
 
 | Method | Parameters | Returns | Description |
 |--------|------------|---------|-------------|
-| `validate(signal)` | np.ndarray | FirewallResult | Validate single signal |
-| `validate_batch(signals)` | List[np.ndarray] | List[FirewallResult] | Batch validation |
-| `get_stats()` | None | Dict | Get pass/block statistics |
-| `reset_stats()` | None | None | Reset statistics |
+| `filter(signal)` | Signal | FilterResult | Validate READ signal |
+| `filter_batch(signals)` | List[Signal] | List[FilterResult] | Batch READ validation |
+| `filter_stimulation(cmd)` | StimulationCommand | StimulationResult | Validate WRITE command |
+| `filter_stimulation_batch(cmds)` | List[StimulationCommand] | List[StimulationResult] | Batch WRITE validation |
+| `authorize_region(region)` | str | None | Add authorized stimulation region |
+| `revoke_region(region)` | str | None | Remove authorized region |
+| `get_stats()` | None | Dict | Get bidirectional statistics |
+| `clear_log()` | None | None | Clear all logs |
 
 ---
 
@@ -172,6 +207,149 @@ scale = invariant.scale_at_frequency(freq=40.0)  # 40 Hz
 # Verify invariant holds
 is_valid = invariant.verify(frequency=40.0, scale=0.025)
 ```
+
+---
+
+## Bidirectional BCI Security
+
+Support for BCIs that both READ from and WRITE to the brain.
+
+### FlowDirection
+
+Enum indicating data flow direction through L8.
+
+```python
+from tara_mvp import FlowDirection
+
+directions = [
+    FlowDirection.READ,         # Brain → Computer (recording)
+    FlowDirection.WRITE,        # Computer → Brain (stimulation)
+    FlowDirection.BIDIRECTIONAL # Both directions (closed-loop)
+]
+```
+
+---
+
+### StimulationCommand
+
+Represents a stimulation command for validation.
+
+```python
+from tara_mvp import StimulationCommand
+
+cmd = StimulationCommand(
+    target_region="M1",           # Brain region identifier
+    amplitude_uA=1000.0,          # Amplitude in microamperes
+    frequency_Hz=100.0,           # Frequency in Hertz
+    pulse_width_us=200.0,         # Pulse width in microseconds
+    duration_ms=1000.0,           # Total duration
+    waveform="biphasic",          # "biphasic", "monophasic", "burst"
+    authenticated=True,           # Authentication status
+    source_id="clinical_001",     # Source identifier
+    metadata={"trial": 1},        # Additional metadata
+)
+
+# Calculate charge per phase
+print(f"Charge: {cmd.charge_per_phase_nC:.2f} nC")
+```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `target_region` | str | required | Brain region (e.g., "M1", "PFC") |
+| `amplitude_uA` | float | required | Stimulation amplitude (μA) |
+| `frequency_Hz` | float | required | Stimulation frequency (Hz) |
+| `pulse_width_us` | float | 200.0 | Pulse width (μs) |
+| `duration_ms` | float | 1000.0 | Total duration (ms) |
+| `waveform` | str | "biphasic" | Waveform type |
+| `authenticated` | bool | False | Authentication status |
+
+---
+
+### StimulationResult
+
+Result of stimulation command validation.
+
+```python
+from tara_mvp import StimulationResult, Decision, AlertLevel
+
+# After firewall.filter_stimulation(cmd)
+print(f"Decision: {result.decision.name}")      # ACCEPT or REJECT
+print(f"Alert Level: {result.alert_level.name}")
+print(f"Reason: {result.reason}")
+
+# Check individual safety checks
+for check, passed in result.safety_checks.items():
+    status = "✓" if passed else "✗"
+    print(f"  {status} {check}")
+
+# Convenience properties
+print(f"Accepted: {result.accepted}")
+print(f"Rejected: {result.rejected}")
+print(f"All checks passed: {result.all_checks_passed}")
+```
+
+**Safety Checks Performed:**
+
+| Check | Description | Alert Level on Fail |
+|-------|-------------|---------------------|
+| `authenticated` | Command has valid authentication | ALERT |
+| `region_authorized` | Target region in authorized set | CRITICAL |
+| `amplitude_in_bounds` | Within configured amplitude limits | CRITICAL |
+| `frequency_in_bounds` | Within configured frequency limits | CRITICAL |
+| `pulse_width_in_bounds` | Within configured pulse width limits | ENHANCED |
+| `charge_density_safe` | Below Shannon limit | CRITICAL |
+| `rate_limit_ok` | Not exceeding commands/second | ALERT |
+
+---
+
+### Stimulation Safety Bounds
+
+Default safety bounds based on literature (Shannon 1992, Merrill 2005):
+
+| Parameter | Default Range | Rationale |
+|-----------|---------------|-----------|
+| Amplitude | 0-5000 μA | Prevent tissue damage |
+| Frequency | 0.1-500 Hz | Physiological range |
+| Pulse Width | 50-1000 μs | Balance efficacy/safety |
+| Charge Density | <30 μC/cm²/phase | Shannon limit (k=1.5) |
+
+```python
+# Configure custom safety bounds
+firewall = NeuralFirewall(
+    stim_amplitude_bounds=(0.0, 2000.0),   # Max 2 mA
+    stim_frequency_bounds=(1.0, 130.0),    # DBS range
+    stim_pulse_width_bounds=(60.0, 450.0),
+    charge_density_limit=25.0,
+    authorized_regions={"STN", "GPi"},      # Deep brain targets
+    stim_rate_limit=5,
+)
+```
+
+---
+
+### Region Authorization
+
+Dynamic management of authorized stimulation targets.
+
+```python
+from tara_mvp import NeuralFirewall
+
+firewall = NeuralFirewall(
+    authorized_regions={"M1", "S1"}  # Initial regions
+)
+
+# Add new region
+firewall.authorize_region("PMC")
+
+# Revoke region
+firewall.revoke_region("S1")
+
+# Check current regions
+stats = firewall.get_stats()
+print(f"Authorized: {stats['stimulation']['authorized_regions']}")
+```
+
+**Security Note:** If no regions are authorized (empty set), ALL stimulation commands are rejected (fail-closed behavior).
 
 ---
 
@@ -619,6 +797,7 @@ tara --version
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 0.8.0 | 2026-01-25 | Bidirectional BCI security, stimulation filtering, MOABB tests |
 | 0.7.0 | 2026-01-25 | Yale threat model, CVSS v4.0 scoring |
 | 0.6.0 | 2026-01-24 | Neurosecurity page, Real EEG, Neural ATT&CK matrix |
 | 0.5.0 | 2026-01-23 | Consolidated package, ONI Visualization Suite |
@@ -635,8 +814,10 @@ tara --version
 2. Kohno, T., et al. (2009). Analysis of Wireless and Implantable Medical Devices. *J Neurosurg Focus*.
 3. Bonaci, T., et al. (2015). App Stores for the Brain. *IEEE S&P Workshop*.
 4. FIRST. (2023). Common Vulnerability Scoring System v4.0.
+5. Shannon, R. V. (1992). A model of safe levels for electrical stimulation. *IEEE Trans Biomed Eng*.
+6. Merrill, D. R., et al. (2005). Electrical stimulation of excitable tissue. *J Neurosci Methods*.
 
 ---
 
 *Last Updated: 2026-01-25*
-*TARA v0.7.0*
+*TARA v0.8.0*

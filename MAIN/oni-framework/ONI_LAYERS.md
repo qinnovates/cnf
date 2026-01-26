@@ -102,6 +102,39 @@ This is where the brain enters the network.
 - Trust establishment
 - Isolation enforcement
 
+##### Bidirectional BCI Security at L8
+
+Modern BCIs increasingly support bidirectional operation:
+
+| Direction | Operation | Security Concern | Validation |
+|-----------|-----------|------------------|------------|
+| **READ** | Brain → Computer | Eavesdropping, privacy leakage | Coherence score (Cₛ), anomaly detection |
+| **WRITE** | Computer → Brain | Unauthorized stimulation, tissue damage | Safety bounds, region authorization |
+
+**Stimulation Safety Bounds (WRITE direction):**
+
+The L8 firewall must enforce hardware safety limits for stimulation:
+
+| Parameter | Typical Safe Range | Rationale |
+|-----------|-------------------|-----------|
+| **Amplitude** | 0–5 mA (5000 μA) | Prevent tissue damage, electrode degradation |
+| **Frequency** | 0.1–500 Hz | Within physiological range |
+| **Pulse Width** | 50–1000 μs | Balance efficacy and charge injection |
+| **Charge Density** | <30 μC/cm²/phase | Shannon limit (k=1.5) prevents irreversible damage |
+
+**Stimulation Command Validation:**
+
+All WRITE commands must pass:
+1. **Authentication** — Command source verified
+2. **Authorization** — Target region explicitly approved
+3. **Safety bounds** — Amplitude, frequency, pulse width within limits
+4. **Charge density** — Below tissue damage threshold
+5. **Rate limiting** — Prevent stimulation flooding
+
+**References:**
+- Shannon, R. V. (1992). A model of safe levels for electrical stimulation. *IEEE Trans Biomed Eng*, 39(4), 424-426.
+- Merrill, D. R., Bikson, M., & Jefferys, J. G. (2005). Electrical stimulation of excitable tissue. *J Neurosci Methods*, 141(2), 171-198.
+
 #### L9 — Signal Processing
 
 | Attribute | Value |
@@ -256,12 +289,26 @@ The model works for:
 |-------|-----------------|------------------|
 | **L1-L4** | Network attacks, MitM, DDoS | Standard network security |
 | **L5-L7** | Application exploits, injection | Input validation, encryption |
-| **L8** | Bypass attacks, unauthorized access | ONI Firewall, coherence validation |
+| **L8 (READ)** | Eavesdropping, signal interception | ONI Firewall, coherence validation |
+| **L8 (WRITE)** | Unauthorized stimulation, tissue damage | Safety bounds, region authorization, charge limits |
 | **L9** | Signal injection, jamming | Anomaly detection, hardware validation |
 | **L10** | Protocol manipulation | Schema validation, checksums |
 | **L11-L12** | Session hijacking, state corruption | Session tokens, integrity checks |
 | **L13** | Intent manipulation, semantic attacks | Context validation, anomaly detection |
 | **L14** | Identity attacks, long-term manipulation | Behavioral baselines, ethics filters |
+
+### Bidirectional Threat Considerations
+
+For BCIs supporting both READ and WRITE operations:
+
+| Attack Type | Direction | Target Layers | Impact |
+|-------------|-----------|---------------|--------|
+| **Motor Hijacking** | WRITE | L8, L13 | Unauthorized movement commands |
+| **Sensory Override** | WRITE | L8, L12 | Fake sensory input injection |
+| **Stimulation Flooding** | WRITE | L8 | DoS via rapid command sequences |
+| **Amplifier Saturation** | WRITE | L8-L9 | Exceed safe charge density |
+| **Closed-Loop Poisoning** | BOTH | L8-L11 | Manipulate feedback systems |
+| **Cognitive State Manipulation** | BOTH | L11-L14 | Alter mood, attention, memory |
 
 ---
 
@@ -364,6 +411,7 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.2 | 2026-01-25 | Added bidirectional BCI security: stimulation safety bounds, WRITE direction threats |
 | 2.1 | 2026-01-24 | Fixed L9-L11 domain labels: Silicon → Biology (L9+ is neural side of bridge) |
 | 2.0 | 2026-01-22 | Major revision: L1-L7 now pure OSI, L8-L14 neural extension |
 | 1.0 | 2026-01 | Initial release with biological L1-L7 (deprecated) |
@@ -372,4 +420,4 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 
 *This document is the authoritative reference for ONI layer definitions. All other documentation should reference this file.*
 
-*Last Updated: 2026-01-24*
+*Last Updated: 2026-01-25*

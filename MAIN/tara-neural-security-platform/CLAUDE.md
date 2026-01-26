@@ -597,10 +597,11 @@ pytest tests/ -v
 | 0.5.0 | 2026-01 | Consolidated package structure, integrated ONI Visualization Suite |
 | 0.5.1 | 2026-01 | Fixed Layer Explorer interactivity, comprehensive educational content for all 14 layers |
 | 0.6.0 | 2026-01 | Major UI enhancements: Neurosecurity page, Real EEG Data page, Neural ATT&CK matrix, pew-pew attack animation |
+| 0.8.0 | 2026-01-25 | Bidirectional BCI security, stimulation filtering, MOABB integration tests |
 | 0.7.0 | 2026-01-25 | Yale threat model with CVSS v4.0, API.md documentation |
 
 ---
 
-*Version: 1.7*
+*Version: 1.8*
 *Last Updated: 2026-01-25*
 *For: Claude AI Assistant*

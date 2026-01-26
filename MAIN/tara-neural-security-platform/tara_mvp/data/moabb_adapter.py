@@ -527,6 +527,38 @@ class MOABBAdapter:
             injection_duration_samples=duration_samples,
         )
 
+    def _calculate_signal_coherence(
+        self,
+        data: np.ndarray,
+        sampling_rate: float,
+        coherence_metric: Any,
+    ) -> float:
+        """Calculate coherence score for multichannel EEG data.
+
+        Converts 2D EEG array (channels x samples) to the format expected
+        by CoherenceMetric (arrival_times, amplitudes).
+
+        Args:
+            data: EEG data array (channels x samples)
+            sampling_rate: Sampling rate in Hz
+            coherence_metric: CoherenceMetric instance
+
+        Returns:
+            Coherence score (0-1)
+        """
+        # Average across channels to get a single time series
+        mean_signal = np.mean(data, axis=0)
+        n_samples = len(mean_signal)
+
+        # Generate arrival times based on sampling rate
+        arrival_times = np.arange(n_samples) / sampling_rate
+
+        # Use the signal amplitudes directly
+        amplitudes = mean_signal.tolist()
+        times = arrival_times.tolist()
+
+        return coherence_metric.calculate(times, amplitudes)
+
     def benchmark_coherence(
         self,
         signals: List[EEGSignal],
@@ -558,7 +590,7 @@ class MOABBAdapter:
 
         # Analyze clean signals
         for signal in signals:
-            score = coherence.calculate(signal.data)
+            score = self._calculate_signal_coherence(signal.data, signal.sampling_rate, coherence)
             results["clean_signals"]["scores"].append(score)
 
         results["clean_signals"]["mean_score"] = float(np.mean(results["clean_signals"]["scores"]))
@@ -575,7 +607,11 @@ class MOABBAdapter:
             }
 
             for attacked in attacked_signals:
-                score = coherence.calculate(attacked.attacked)
+                score = self._calculate_signal_coherence(
+                    attacked.attacked,
+                    attacked.original.sampling_rate,
+                    coherence
+                )
                 results["attacked_signals"]["scores"].append(score)
 
                 # Group by attack type

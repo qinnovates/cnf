@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "oni-tara"
-version = "0.7.0"
+version = "0.8.0"
 description = "TARA - Telemetry Analysis and Response Automation. A neural security platform for brain-computer interfaces with Kohno threat taxonomy and BCI privacy filtering."
 readme = "README.md"
 license = {text = "Apache-2.0"}
