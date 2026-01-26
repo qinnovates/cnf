@@ -1,6 +1,6 @@
 # ONI Framework API Reference
 
-> **Version:** 0.2.2
+> **Version:** 0.2.6
 > **Package:** `oni-framework`
 > **Install:** `pip install oni-framework`
 
@@ -822,13 +822,13 @@ SecurityDecision.EMERGENCY_SHUTOFF
 
 | Version | Changes |
 |---------|---------|
-| 0.2.2 | Added neuroscience mappings (brain regions, NTs, functions) |
+| 0.2.6 | Added comprehensive API documentation, neuroscience mappings |
 | 0.2.1 | Added NeurosecurityFirewall, BCIAnonymizer |
 | 0.2.0 | Added Kohno threat model integration |
 | 0.1.0 | Initial release (CoherenceMetric, NeuralFirewall, ONIStack) |
 
 ---
 
-*Generated for oni-framework v0.2.2*
+*Generated for oni-framework v0.2.6*
 *License: Apache 2.0*
 *https://github.com/qikevinl/ONI*

@@ -33,7 +33,7 @@ class TestCLIMain:
         assert result == 0
         captured = capsys.readouterr()
         assert "oni-framework" in captured.out
-        assert "0.2.2" in captured.out
+        assert "0.2.6" in captured.out
 
     def test_demo_command(self, capsys):
         """The demo command should run without errors."""
