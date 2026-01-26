@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
-import { colors, typography } from '../data/oni-theme';
+// Colors now defined locally to match GitHub Pages exactly
 
 // Layer definitions - ordered L1 to L14 for animation
 // Gradients and colors matched to GitHub Pages (docs/index.html)
@@ -161,9 +161,9 @@ export const LayersScene: React.FC = () => {
               gap: 20,
             }}
           >
-            <span style={{ color: colors.silicon.L3 }}>silicon</span>
+            <span style={{ color: zoneColors.silicon }}>silicon</span>
             <span style={{ color: 'rgba(255,255,255,0.5)' }}>to</span>
-            <span style={{ color: colors.biology.L12 }}>synapse</span>
+            <span style={{ color: zoneColors.biology }}>synapse</span>
           </div>
         </div>
       )}
@@ -235,7 +235,7 @@ export const LayersScene: React.FC = () => {
                         fontSize: 16,
                         fontWeight: 500,
                         fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
-                        color: isSiliconPhase ? colors.silicon.L3 : 'rgba(100,150,200,0.6)',
+                        color: isSiliconPhase ? zoneColors.silicon : 'rgba(96,165,250,0.6)',
                         letterSpacing: '0.2em',
                         marginBottom: 12,
                         opacity: layerOpacity,
@@ -252,11 +252,11 @@ export const LayersScene: React.FC = () => {
                         fontSize: 18,
                         fontWeight: 600,
                         fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
-                        color: isGatewayPhase ? colors.gateway.L8 : 'rgba(255,150,0,0.6)',
+                        color: isGatewayPhase ? zoneColors.gateway : 'rgba(255,150,50,0.6)',
                         letterSpacing: '0.15em',
                         margin: '20px 0 12px',
                         opacity: layerOpacity,
-                        textShadow: isGatewayPhase ? `0 0 20px ${colors.gateway.L8}` : 'none',
+                        textShadow: isGatewayPhase ? `0 0 20px ${zoneColors.gateway}` : 'none',
                       }}
                     >
                       ★ NEURAL GATEWAY — THE BRIDGE ★
@@ -270,7 +270,7 @@ export const LayersScene: React.FC = () => {
                         fontSize: 16,
                         fontWeight: 500,
                         fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
-                        color: isBiologyPhase ? colors.biology.L11 : 'rgba(100,200,100,0.6)',
+                        color: isBiologyPhase ? zoneColors.biology : 'rgba(74,222,128,0.6)',
                         letterSpacing: '0.2em',
                         margin: '20px 0 12px',
                         opacity: layerOpacity,
@@ -358,10 +358,10 @@ export const LayersScene: React.FC = () => {
               fontSize: 28,
               fontWeight: 400,
               fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
-              color: colors.gateway.L8,
+              color: zoneColors.gateway,
               letterSpacing: '0.1em',
               textAlign: 'center',
-              textShadow: `0 0 30px ${colors.gateway.L8}`,
+              textShadow: `0 0 30px ${zoneColors.gateway}`,
             }}
           >
             The critical bridge between machine and mind

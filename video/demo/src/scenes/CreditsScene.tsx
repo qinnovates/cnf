@@ -1,12 +1,65 @@
 /**
  * Credits Scene - Powerful closing with manifesto
- * Features: Dramatic text reveals, cinematic pacing
+ * Features: Dramatic text reveals, cinematic pacing, circular wave finale
  */
 
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, spring, useVideoConfig, interpolate } from 'remotion';
 import { FloatingParticles } from '../components/Particles';
 import { colors } from '../data/oni-theme';
+
+// Circular waves component for the finale
+const CircularWaveEffect: React.FC<{ intensity: number }> = ({ intensity }) => {
+  const frame = useCurrentFrame();
+  const numWaves = 8;
+
+  return (
+    <svg
+      style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+      }}
+      viewBox="0 0 1920 1080"
+    >
+      <defs>
+        <filter id="waveBlur">
+          <feGaussianBlur stdDeviation="2" />
+        </filter>
+        <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={colors.primary.accent} stopOpacity="0.6" />
+          <stop offset="50%" stopColor={colors.primary.accentPurple} stopOpacity="0.4" />
+          <stop offset="100%" stopColor={colors.primary.accent} stopOpacity="0.2" />
+        </linearGradient>
+      </defs>
+      {Array.from({ length: numWaves }, (_, i) => {
+        const baseRadius = 150 + i * 80;
+        const phase = (frame * 0.02 + i * 0.5) % (Math.PI * 2);
+        const wobble = Math.sin(frame * 0.03 + i) * 20;
+        const radius = baseRadius + wobble + Math.sin(phase) * 30;
+        const opacity = interpolate(i, [0, numWaves - 1], [0.4, 0.1]) * intensity;
+        const rotation = frame * (0.3 + i * 0.1);
+
+        return (
+          <g key={i} transform={`translate(960, 540) rotate(${rotation})`}>
+            <ellipse
+              cx={0}
+              cy={0}
+              rx={radius * 1.3}
+              ry={radius}
+              fill="none"
+              stroke="url(#waveGrad)"
+              strokeWidth={2 - i * 0.15}
+              opacity={opacity}
+              filter="url(#waveBlur)"
+            />
+          </g>
+        );
+      })}
+    </svg>
+  );
+};
 
 export const CreditsScene: React.FC = () => {
   const frame = useCurrentFrame();
