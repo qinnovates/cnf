@@ -55,6 +55,8 @@ ONI/
 ├── scripts/
 │   └── sync_brand.py                   # Syncs brand.json → README.md
 │
+├── neuroscience-homework-todo/         # Personal research/learning - neuroscience for BCI security
+│
 ├── .github/
 │   ├── .gitignore                      # Git ignore rules
 │   ├── workflows/                      # CI/CD pipelines (tests, publish, security, brand-sync)

@@ -20,7 +20,7 @@
 ## Folder Structure
 
 ```
-neuroscience-bci/
+neuroscience-homework-todo/
 ├── README.md                           # This file
 ├── Research-BCI_Mouse_Movement.md      # How BCIs enable cursor/keyboard control
 │
