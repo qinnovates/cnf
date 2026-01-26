@@ -121,20 +121,26 @@ export const script: ScriptLine[] = [
   },
   {
     scene: 'coherence',
-    text: "ONI introduces the Coherence Score—a unified metric combining phase synchronization, timing precision, and frequency response.",
+    text: "ONI introduces the Coherence Score—a unified metric combining phase variance, timing precision, and frequency stability.",
     startFrame: 2520,
-    endFrame: 2820,
+    endFrame: 2760,
   },
   {
     scene: 'coherence',
     text: "It's not a black box. It's fully configurable and mathematically grounded.",
-    startFrame: 2820,
-    endFrame: 3060,
+    startFrame: 2760,
+    endFrame: 2940,
   },
   {
     scene: 'coherence',
-    text: "Explore it yourself in our interactive playground.",
-    startFrame: 3060,
+    text: "And there's the Scale-Frequency Invariant—neural patterns maintain constant relationships across scales.",
+    startFrame: 2940,
+    endFrame: 3150,
+  },
+  {
+    scene: 'coherence',
+    text: "As scale increases, frequency decreases proportionally. The product remains invariant.",
+    startFrame: 3150,
     endFrame: 3300,
   },
 

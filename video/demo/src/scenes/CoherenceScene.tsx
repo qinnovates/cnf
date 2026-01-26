@@ -27,8 +27,14 @@ export const CoherenceScene: React.FC = () => {
     { extrapolateRight: 'clamp' }
   );
 
-  // Show interactive demo hint
+  // Show interactive demo hint (during coherence phase)
   const showDemo = frame > 350 && frame < 480;
+
+  // Fade out coherence elements when transitioning to scale-frequency
+  const coherenceFadeOut = interpolate(frame, [480, 520], [1, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
 
   // Background glow based on coherence
   const bgGlow = interpolate(
@@ -272,95 +278,100 @@ export const CoherenceScene: React.FC = () => {
           </div>
         )}
 
-        {/* Coherence gauge */}
-        <div
-          style={{
-            marginTop: 20,
-            opacity: interpolate(frame, [40, 80], [0, 1], {
-              extrapolateLeft: 'clamp',
-              extrapolateRight: 'clamp',
-            }),
-            transform: `scale(${interpolate(frame, [40, 80], [0.9, 1], {
-              extrapolateLeft: 'clamp',
-              extrapolateRight: 'clamp',
-            })})`,
-          }}
-        >
-          <CoherenceGauge value={coherenceValue} showFormula={true} animated={true} />
-        </div>
+        {/* Coherence gauge - only during coherence phase */}
+        {showCoherence && (
+          <div
+            style={{
+              marginTop: 20,
+              opacity: interpolate(frame, [40, 80], [0, 1], {
+                extrapolateLeft: 'clamp',
+                extrapolateRight: 'clamp',
+              }) * coherenceFadeOut,
+              transform: `scale(${interpolate(frame, [40, 80], [0.9, 1], {
+                extrapolateLeft: 'clamp',
+                extrapolateRight: 'clamp',
+              })})`,
+            }}
+          >
+            <CoherenceGauge value={coherenceValue} showFormula={true} animated={true} />
+          </div>
+        )}
 
         {/* Component explanation cards - matching formula: e^(−(σ²φ + σ²τ + σ²γ)) */}
-        <div
-          style={{
-            display: 'flex',
-            gap: 24,
-            marginTop: 30,
-          }}
-        >
-          {[
-            { label: 'σ²φ', name: 'Phase Variance', desc: 'Neural oscillation alignment', color: colors.biology.L11 },
-            { label: 'σ²τ', name: 'Timing Variance', desc: 'Temporal jitter precision', color: colors.gateway.L8 },
-            { label: 'σ²γ', name: 'Frequency Variance', desc: 'Band-specific stability', color: colors.silicon.L3 },
-          ].map((item, index) => {
-            const cardProgress = spring({
-              frame: frame - 180 - index * 12,
-              fps,
-              config: { damping: 25, stiffness: 100 },
-            });
+        {showCoherence && (
+          <div
+            style={{
+              display: 'flex',
+              gap: 24,
+              marginTop: 30,
+              opacity: coherenceFadeOut,
+            }}
+          >
+            {[
+              { label: 'σ²φ', name: 'Phase Variance', desc: 'Neural oscillation alignment', color: colors.biology.L11 },
+              { label: 'σ²τ', name: 'Timing Variance', desc: 'Temporal jitter precision', color: colors.gateway.L8 },
+              { label: 'σ²γ', name: 'Frequency Variance', desc: 'Band-specific stability', color: colors.silicon.L3 },
+            ].map((item, index) => {
+              const cardProgress = spring({
+                frame: frame - 180 - index * 12,
+                fps,
+                config: { damping: 25, stiffness: 100 },
+              });
 
-            return (
-              <div
-                key={item.label}
-                style={{
-                  padding: '20px 28px',
-                  background: `linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)`,
-                  backdropFilter: 'blur(15px)',
-                  borderRadius: 14,
-                  border: `1px solid ${item.color}22`,
-                  textAlign: 'center',
-                  minWidth: 200,
-                  opacity: Math.max(0, cardProgress),
-                  transform: `translateY(${interpolate(
-                    Math.max(0, cardProgress),
-                    [0, 1],
-                    [30, 0]
-                  )}px)`,
-                }}
-              >
+              return (
                 <div
+                  key={item.label}
                   style={{
-                    fontSize: 24,
-                    color: item.color,
-                    fontFamily: typography.fontFamily.mono,
-                    marginBottom: 6,
-                    fontWeight: 700,
+                    padding: '20px 28px',
+                    background: `linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)`,
+                    backdropFilter: 'blur(15px)',
+                    borderRadius: 14,
+                    border: `1px solid ${item.color}22`,
+                    textAlign: 'center',
+                    minWidth: 200,
+                    opacity: Math.max(0, cardProgress),
+                    transform: `translateY(${interpolate(
+                      Math.max(0, cardProgress),
+                      [0, 1],
+                      [30, 0]
+                    )}px)`,
                   }}
                 >
-                  {item.label}
+                  <div
+                    style={{
+                      fontSize: 24,
+                      color: item.color,
+                      fontFamily: typography.fontFamily.mono,
+                      marginBottom: 6,
+                      fontWeight: 700,
+                    }}
+                  >
+                    {item.label}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 14,
+                      color: colors.text.secondary,
+                      marginBottom: 8,
+                      fontWeight: 500,
+                    }}
+                  >
+                    {item.name}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      color: colors.text.muted,
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {item.desc}
+                  </div>
                 </div>
-                <div
-                  style={{
-                    fontSize: 14,
-                    color: colors.text.secondary,
-                    marginBottom: 8,
-                    fontWeight: 500,
-                  }}
-                >
-                  {item.name}
-                </div>
-                <div
-                  style={{
-                    fontSize: 13,
-                    color: colors.text.muted,
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {item.desc}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* Interactive demo callout */}
         {showDemo && (
@@ -375,12 +386,12 @@ export const CoherenceScene: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               gap: 14,
-              opacity: interpolate(frame - 550, [0, 30], [0, 1], {
+              opacity: interpolate(frame - 350, [0, 30], [0, 1], {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
-              }),
+              }) * coherenceFadeOut,
               transform: `translateY(${interpolate(
-                frame - 550,
+                frame - 350,
                 [0, 30],
                 [20, 0],
                 { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }

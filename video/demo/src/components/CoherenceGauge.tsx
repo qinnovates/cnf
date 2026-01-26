@@ -131,7 +131,7 @@ export const CoherenceGauge: React.FC<CoherenceGaugeProps> = ({
         </div>
       </div>
 
-      {/* Component breakdown */}
+      {/* Component breakdown - matching formula: e^(−(σ²φ + σ²τ + σ²γ)) */}
       <div
         style={{
           display: 'flex',
@@ -141,9 +141,9 @@ export const CoherenceGauge: React.FC<CoherenceGaugeProps> = ({
         }}
       >
         {[
-          { label: 'Phase Sync', value: 0.92, symbol: 'Φ' },
-          { label: 'Timing', value: 0.88, symbol: 'Δt' },
-          { label: 'Frequency', value: 0.79, symbol: 'Θ' },
+          { label: 'Phase Variance', value: 0.08, symbol: 'σ²φ' },
+          { label: 'Timing Variance', value: 0.12, symbol: 'σ²τ' },
+          { label: 'Freq Variance', value: 0.05, symbol: 'σ²γ' },
         ].map((component, index) => (
           <div
             key={component.label}
@@ -169,7 +169,7 @@ export const CoherenceGauge: React.FC<CoherenceGaugeProps> = ({
                 fontFamily: typography.fontFamily.mono,
               }}
             >
-              {component.symbol}: {(component.value * animatedValue / value).toFixed(2)}
+              {component.symbol}: {(component.value * (1 - animatedValue)).toFixed(3)}
             </div>
           </div>
         ))}
