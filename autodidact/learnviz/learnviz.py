@@ -23,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from analyzer import analyze, VisualizationPlan, Engine
 from generators.manim_gen import generate_manim_code, TEMPLATES
+from generators.narration import ScriptGenerator, TTSGenerator, NarrationScript
 
 
 # Output directory
@@ -282,6 +283,21 @@ Examples:
         "--params",
         help="JSON parameters for template (e.g., '{\"array\": [1,2,3]}')"
     )
+    parser.add_argument(
+        "--narration",
+        action="store_true",
+        help="Generate narration script for the visualization"
+    )
+    parser.add_argument(
+        "--tts",
+        choices=["gtts", "pyttsx3", "edge-tts"],
+        help="Generate text-to-speech audio (requires --narration)"
+    )
+    parser.add_argument(
+        "--tts-only",
+        action="store_true",
+        help="Only generate narration/TTS, skip video generation"
+    )
 
     args = parser.parse_args()
 
@@ -331,10 +347,17 @@ Examples:
     if args.interactive:
         plan = interactive_mode(plan)
 
-    # Generate code
-    print(f"\n{'=' * 60}")
-    print("GENERATING CODE")
-    print(f"{'=' * 60}")
+    # Skip code generation if --tts-only
+    output_path = None
+    if args.tts_only:
+        print(f"\n{'=' * 60}")
+        print("SKIPPING CODE GENERATION (--tts-only)")
+        print(f"{'=' * 60}")
+    else:
+        # Generate code
+        print(f"\n{'=' * 60}")
+        print("GENERATING CODE")
+        print(f"{'=' * 60}")
 
     # Parse template parameters
     params = {}
@@ -345,7 +368,7 @@ Examples:
             print(f"Warning: Could not parse params JSON: {args.params}")
 
     # Currently only Manim is fully implemented
-    if plan.engine == Engine.MANIM:
+    if plan.engine == Engine.MANIM and not args.tts_only:
         code = generate_manim_code(
             plan.to_dict(),
             template_name=plan.template,
@@ -382,7 +405,7 @@ Examples:
             else:
                 print("\nRender failed. Check the generated code.")
 
-    else:
+    elif not args.tts_only:
         print(f"\nEngine '{plan.engine.value}' code generation not yet implemented.")
         print("Currently supported: manim")
         print("\nPlan saved as JSON:")
@@ -391,17 +414,69 @@ Examples:
             f.write(plan.to_json())
         print(f"  {json_path}")
 
+    # Generate narration if requested
+    if args.narration or args.tts:
+        print(f"\n{'=' * 60}")
+        print("GENERATING NARRATION")
+        print(f"{'=' * 60}")
+
+        # Map template to narration script
+        narration_type = plan.template
+        if narration_type in ["neuron_structure"]:
+            narration_type = "action_potential"
+
+        try:
+            script = ScriptGenerator.generate_script(narration_type or "general")
+            print(f"\nNarration script generated: {script.title}")
+            print(f"Total duration: {script.total_duration:.1f}s")
+            print(f"Segments: {len(script.segments)}")
+
+            # Save script to file
+            script_filename = generate_filename(args.concept, "json").replace(".json", "_narration.json")
+            script_path = OUTPUT_DIR / script_filename
+            with open(script_path, "w") as f:
+                f.write(script.to_json())
+            print(f"\nScript saved: {script_path}")
+
+            # Also save as plain text
+            text_filename = script_filename.replace(".json", ".txt")
+            text_path = OUTPUT_DIR / text_filename
+            with open(text_path, "w") as f:
+                f.write(f"# {script.title}\n")
+                f.write(f"# Total duration: {script.total_duration:.1f}s\n\n")
+                for seg in script.segments:
+                    f.write(f"## {seg.id} ({seg.duration}s)\n")
+                    f.write(f"{seg.text}\n\n")
+            print(f"Text script saved: {text_path}")
+
+            # Generate TTS if requested
+            if args.tts:
+                print(f"\nGenerating TTS audio with {args.tts}...")
+                tts = TTSGenerator(engine=args.tts, output_dir=str(OUTPUT_DIR))
+                audio_filename = generate_filename(args.concept, "mp3").replace(".mp3", "_narration.mp3")
+                audio_path = tts.generate(script, filename=audio_filename)
+                if audio_path:
+                    print(f"Audio saved: {audio_path}")
+                else:
+                    print("TTS generation failed. Check that the TTS engine is installed.")
+
+        except Exception as e:
+            print(f"Narration generation error: {e}")
+            print("Note: Narration templates are available for: action_potential, synapse")
+
     print(f"\n{'=' * 60}")
     print("DONE")
     print(f"{'=' * 60}")
 
     # Print next steps
     print("\nNext steps:")
-    if not args.render and plan.engine == Engine.MANIM:
+    if not args.render and plan.engine == Engine.MANIM and not args.tts_only:
         print(f"  1. Review generated code: {output_path}")
         print(f"  2. Render: python learnviz.py \"{args.concept}\" --render")
-    print("  3. Edit code to customize the visualization")
-    print("  4. Re-render with higher quality: --quality h")
+    if not args.narration:
+        print(f"  3. Add narration: python learnviz.py \"{args.concept}\" --narration --tts gtts")
+    print("  4. Edit code to customize the visualization")
+    print("  5. Re-render with higher quality: --quality h")
 
 
 if __name__ == "__main__":

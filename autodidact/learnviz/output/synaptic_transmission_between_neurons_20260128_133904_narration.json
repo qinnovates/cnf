@@ -1,0 +1,62 @@
+{
+  "title": "Synapse",
+  "segments": [
+    {
+      "id": "intro",
+      "text": "Now let's see how neurons communicate with each other across the synapse. This is where chemical signaling takes over from electrical signaling.",
+      "duration": 5.0,
+      "position": "bottom",
+      "style": "explanation"
+    },
+    {
+      "id": "structure",
+      "text": "The synapse has three main parts: the presynaptic terminal at the top, the synaptic cleft - a tiny gap about 20 nanometers wide - and the postsynaptic membrane below with its receptor proteins.",
+      "duration": 7.0,
+      "position": "bottom",
+      "style": "explanation"
+    },
+    {
+      "id": "vesicles",
+      "text": "Inside the presynaptic terminal, you can see vesicles - small spheres filled with neurotransmitter molecules. These are the chemical messengers that will carry the signal across the gap.",
+      "duration": 6.0,
+      "position": "bottom",
+      "style": "explanation"
+    },
+    {
+      "id": "signal_arrival",
+      "text": "When an action potential arrives at the terminal, it triggers calcium channels to open. Calcium ions flow in, causing the vesicles to move toward and fuse with the membrane.",
+      "duration": 6.0,
+      "position": "bottom",
+      "style": "explanation"
+    },
+    {
+      "id": "release",
+      "text": "Watch the vesicles release their neurotransmitters into the synaptic cleft. This process is called exocytosis. Thousands of neurotransmitter molecules are released in just microseconds.",
+      "duration": 6.0,
+      "position": "bottom",
+      "style": "explanation"
+    },
+    {
+      "id": "binding",
+      "text": "The neurotransmitters diffuse across the cleft and bind to specific receptors on the postsynaptic membrane. Each receptor only accepts certain neurotransmitters - like a lock and key.",
+      "duration": 6.0,
+      "position": "bottom",
+      "style": "explanation"
+    },
+    {
+      "id": "response",
+      "text": "When neurotransmitters bind, the receptors open ion channels in the postsynaptic neuron. This can either excite the neuron, making it more likely to fire, or inhibit it. The signal has been transmitted!",
+      "duration": 7.0,
+      "position": "bottom",
+      "style": "explanation"
+    },
+    {
+      "id": "conclusion",
+      "text": "Synaptic transmission is the basis of all neural communication. Learning and memory involve strengthening or weakening these synaptic connections over time.",
+      "duration": 5.0,
+      "position": "bottom",
+      "style": "explanation"
+    }
+  ],
+  "total_duration": 48.0
+}
