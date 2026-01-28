@@ -145,19 +145,19 @@ jobs:
 
       - name: Build oni-academy
         run: |
-          cd autodidact/oni-academy
+          cd autodidact
           python -m build
 
       - name: Check package
         run: |
-          cd autodidact/oni-academy
+          cd autodidact
           twine check dist/*
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v6
         with:
           name: dist-oni-academy
-          path: autodidact/oni-academy/dist/
+          path: autodidact/dist/
 
   publish-oni-academy:
     needs: build-oni-academy
