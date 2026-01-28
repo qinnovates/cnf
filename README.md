@@ -48,6 +48,7 @@ One framework to understand, build, and secure brain-computer interfaces. Open. 
 | **[Live Demo](https://qikevinl.github.io/ONI/)** | **Interactive visualizations** — animated, dynamic exploration of the framework |
 | **[MAIN/](MAIN/)** | All research content — publications, visualizations, resources |
 | **[INDEX.md](MAIN/INDEX.md)** | **Main Wiki** — central hub for navigation, dependencies, cross-references, roadmap |
+| **[autodidact/](autodidact/)** | **Learn ONI** — educational ecosystem (ONI Academy, LearnViz, research notes) |
 | **[GLOSSARY.md](GLOSSARY.md)** | **Quick Summary** — auto-generated index with folder descriptions (AI-powered) |
 | **This README** | Public overview — key concepts, quick reference |
 
@@ -217,6 +218,27 @@ tara ui
 
 **Full documentation:** [MAIN/tara-nsec-platform/README.md](MAIN/tara-nsec-platform/README.md)
 
+### Autodidact - Educational Ecosystem
+
+The `autodidact/` directory contains tools for learning and teaching ONI concepts. **Ultimate goal:** Adaptive learning that adjusts to each individual's cognitive patterns, pace, and style.
+
+| Component | Purpose | Status |
+|-----------|---------|--------|
+| **[LearnViz](autodidact/learnviz/)** | Adaptive visualization engine — concept → code → video | v0.1 ✅ |
+| **[ONI Academy](autodidact/oni-academy/)** | Structured curriculum with learning modules | `pip install oni-academy` |
+| **[Neuroscience-BCI](autodidact/neuroscience-bci/)** | Research notes on the biological substrate | Active research |
+
+**How they align:**
+```
+Research (neuroscience-bci)  →  Curriculum (oni-academy)  →  Visualizations (learnviz)
+         ↑                              ↑                            ↑
+    Raw knowledge              Structured learning         Adaptive to YOUR style
+```
+
+**LearnViz vision:** Visualizations that adapt to how *you* learn — tracking your pace, style preferences, and knowledge gaps. All local-first, privacy-preserving.
+
+**Full documentation:** [autodidact/README.md](autodidact/README.md)
+
 ---
 
 ## Repository Structure
@@ -238,9 +260,10 @@ ONI/
 │   ├── workflows/               # CI/CD pipelines (tests, publish, auto-index)
 │   └── security-audit/          # Security scanning tools
 │
-├── autodidact/                  # Educational content
+├── autodidact/                  # Educational ecosystem — [README](autodidact/README.md)
+│   ├── learnviz/                # Adaptive visualization engine (concept → video)
 │   ├── oni-academy/             # ONI Academy (pip install oni-academy)
-│   └── neuroscience-bci/        # Personal neuroscience learning
+│   └── neuroscience-bci/        # Personal neuroscience research notes
 │
 └── MAIN/
     ├── INDEX.md                 # Central hub — navigation, dependencies, cross-references
@@ -548,5 +571,5 @@ Apache License 2.0 - See [LICENSE](LICENSE)
 ---
 
 *Auto-published from research pipeline*
-*Last update: 2026-01-26*
+*Last update: 2026-01-28*
 *Documents: 17 | Topics: 7 | Python Packages: oni-framework v0.2.0, oni-tara v0.8.0*
