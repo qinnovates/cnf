@@ -139,8 +139,8 @@ export const videoConfig = {
   fps: 30,
   width: 1920,
   height: 1080,
-  durationInSeconds: 236, // 3:56
-  durationInFrames: 7080, // 3:56 at 30fps
+  durationInSeconds: 231, // 3:51
+  durationInFrames: 6930, // 3:51 at 30fps
 };
 
 // Scene timestamps (in frames at 30fps)
@@ -152,6 +152,6 @@ export const sceneTimestamps = {
   coherence: { start: 80 * 30, end: 110 * 30 },   // 1:20-1:50 (900 frames)
   tara: { start: 110 * 30, end: 145 * 30 },       // 1:50-2:25 (1050 frames)
   academic: { start: 145 * 30, end: 164 * 30 },   // 2:25-2:44 (570 frames) - shortened to match 19s audio
-  cta: { start: 164 * 30, end: 189 * 30 },        // 2:44-3:09 (750 frames)
-  credits: { start: 189 * 30, end: 236 * 30 },    // 3:09-3:56 (1410 frames) - finale with CTA at 3:44
+  cta: { start: 164 * 30, end: 184 * 30 },        // 2:44-3:04 (600 frames) - shortened to match 17s voiceover
+  credits: { start: 184 * 30, end: 231 * 30 },    // 3:04-3:51 (1410 frames) - finale with CTA at 3:39
 };

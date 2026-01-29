@@ -264,7 +264,7 @@ export const ONIDemoVideo: React.FC = () => {
         />
       </Sequence>
 
-      {/* ═══ Final CTA at 3:44 ═══ */}
+      {/* ═══ Final CTA at 3:39 ═══ */}
       {/* "So... what are you waiting for?" - then 10s ambient, then cut */}
       <Sequence from={credits.start + 1050}>
         <Audio src={staticFile("audio/vo-finale-cta.mp3")} volume={0.9} />
