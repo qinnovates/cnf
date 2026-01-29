@@ -1,10 +1,121 @@
 # Autodidact
 
-> **Status:** ✅ **COMPLETE** (Phase 1 Foundation)
+> **Status:** Active Development
 
-> **Ultimate Goal:** Build a self-directed learning system that adapts to how each individual learns — making complex knowledge accessible through personalized visualizations, pacing, and pathways.
+> **Ultimate Goal:** Build a self-directed learning system that adapts to how each individual learns — making complex knowledge accessible through personalized visualizations, pacing, and pathways. Eventually delivered through BCI technology.
 
 The `autodidact` module is the educational arm of the ONI Framework. It's not just documentation — it's a living system for learning and teaching neurosecurity concepts, built on the principle that **education should adapt to the learner, not the other way around**.
+
+---
+
+## Autodidactive: The Web Platform
+
+**[Autodidactive](https://frontend-phi-seven-64.vercel.app)** is the public-facing web application built on this research. It's a demo of what adaptive AI-driven learning can look like.
+
+### Relationship to ONI
+
+| Project | Purpose | Audience |
+|---------|---------|----------|
+| **ONI Framework** | BCI security research, 14-layer model, academic publications | Researchers, academics, security professionals |
+| **Autodidactive** | Interactive learning platform, AI-generated content, knowledge graphs | Learners, students, curious minds |
+
+**Key distinction:** ONI is the *research foundation*. Autodidactive is an *application* that demonstrates how ONI concepts can be taught interactively. They're related but serve different purposes.
+
+### Why the Separation Matters
+
+Academics visiting the ONI Framework expect rigorous security research — threat models, formal methods, peer-reviewed concepts. They shouldn't be confused by a learning platform.
+
+Learners visiting Autodidactive want to explore topics interactively — click around, expand nodes, watch generated videos. They don't need the full academic depth upfront.
+
+**Autodidactive showcases ONI. ONI doesn't depend on Autodidactive.**
+
+### Current Features (Demo)
+
+- **Interactive Knowledge Graphs** — Click nodes to explore topics
+- **ONI Framework Courses** — Pre-built curriculum (no API key needed)
+- **Explore Any Topic** — AI-generated graphs for any subject (bring your own API key)
+- **Memory-Only Security** — API keys never persisted, cleared on refresh
+
+### Live Demo
+
+**Web:** [frontend-phi-seven-64.vercel.app](https://frontend-phi-seven-64.vercel.app)
+
+**Source:** [@kevinqicode/projects/autodidactive](https://github.com/kevinqicode) (private development repo)
+
+---
+
+## The BCI Vision
+
+This is where it all connects to the larger ONI mission.
+
+### The Future: Learning Through BCIs
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                     THE BCI LEARNING PIPELINE                            │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│   TODAY (Autodidactive Demo)                                            │
+│   ┌─────────────────────────────────────────────────────────────────┐   │
+│   │  User Input: "I want to learn quantum computing"                │   │
+│   │       ↓                                                         │   │
+│   │  AI generates knowledge graph + explanations                    │   │
+│   │       ↓                                                         │   │
+│   │  User clicks to explore (screen-based)                          │   │
+│   │       ↓                                                         │   │
+│   │  AI generates video when visual explanation helps               │   │
+│   └─────────────────────────────────────────────────────────────────┘   │
+│                                                                         │
+│   NEAR FUTURE (AR Glasses Integration)                                  │
+│   ┌─────────────────────────────────────────────────────────────────┐   │
+│   │  Knowledge graphs visualized in 3D space around you             │   │
+│   │  Point at a node → expand explanation                           │   │
+│   │  Voice interaction: "Explain this deeper"                       │   │
+│   │  Contextual learning: See related concepts in your environment  │   │
+│   └─────────────────────────────────────────────────────────────────┘   │
+│                                                                         │
+│   LONG-TERM (Direct BCI Integration)                                    │
+│   ┌─────────────────────────────────────────────────────────────────┐   │
+│   │  BCI detects confusion/comprehension states                     │   │
+│   │       ↓                                                         │   │
+│   │  Automatically adjusts explanation depth/pace                   │   │
+│   │       ↓                                                         │   │
+│   │  Visualizations rendered directly to visual cortex              │   │
+│   │       ↓                                                         │   │
+│   │  Learning optimized for YOUR neural patterns                    │   │
+│   │                                                                 │   │
+│   │  ⚠️  SECURED BY ONI FRAMEWORK                                   │   │
+│   │  • 14-layer security model protects neural data                 │   │
+│   │  • Coherence metric validates signal integrity                  │   │
+│   │  • Neural firewall prevents unauthorized access                 │   │
+│   └─────────────────────────────────────────────────────────────────┘   │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+### How This Enhances ONI
+
+| ONI Component | How Autodidactive Uses It | Future BCI Application |
+|---------------|---------------------------|------------------------|
+| **14-Layer Model** | Teaches users the security layers | Validates learning content at each layer |
+| **Coherence Metric (Cₛ)** | Explains signal integrity | Monitors neural signal quality during learning |
+| **Neural Firewall** | Interactive demo of threat detection | Protects learner's brain from malicious content |
+| **Scale-Frequency Invariant** | Visualizes f × S ≈ k | Optimizes content delivery across neural scales |
+
+### The Feedback Loop
+
+```
+ONI Research → Autodidactive Content → User Learning Data → Better ONI Research
+     ↑                                                              │
+     └──────────────────────────────────────────────────────────────┘
+```
+
+1. **ONI defines** how to secure brain-computer interfaces
+2. **Autodidactive demonstrates** these concepts through interactive learning
+3. **User engagement** reveals which explanations work best
+4. **Insights feed back** into ONI research (e.g., how people understand neural security)
+
+---
 
 ## AI-Powered Learning Pipeline
 
@@ -13,7 +124,8 @@ Autodidact leverages AI and automation to accelerate content creation and person
 | Component | AI/Automation Role |
 |-----------|-------------------|
 | **LearnViz** | LLM-powered concept → visualization pipeline |
-| **ONI Academy** | Automated module generation from research notes |
+| **Autodidactive Web** | AI-generated knowledge graphs and explanations |
+| **ONI Academy** | Pre-built modules from research notes |
 | **Research Synthesis** | AI-assisted paper summarization and knowledge extraction |
 | **Content Pipeline** | Automated rendering, publishing, and cross-linking |
 
@@ -21,7 +133,7 @@ This isn't AI replacing learning — it's AI **enabling** self-directed learning
 
 ---
 
-## The Vision
+## The Adaptive Learning Vision
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -34,13 +146,14 @@ This isn't AI replacing learning — it's AI **enabling** self-directed learning
 │   │   • Pace & comprehension tracking                       │   │
 │   │   • Knowledge graph (what you already know)             │   │
 │   │   • Preferences (animation speed, detail level)         │   │
+│   │   • [Future] Neural patterns from BCI feedback          │   │
 │   └─────────────────────────────────────────────────────────┘   │
 │                            │                                    │
 │                            ▼                                    │
 │   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐          │
-│   │  LEARNVIZ   │   │ ONI ACADEMY │   │ NEUROSCIENCE│          │
-│   │  Adaptive   │◀──│  Structured │◀──│   RESEARCH  │          │
-│   │  Visuals    │   │  Curriculum │   │  Foundation │          │
+│   │  LEARNVIZ   │   │AUTODIDACTIVE│   │ NEUROSCIENCE│          │
+│   │  Adaptive   │◀──│    Web      │◀──│   RESEARCH  │          │
+│   │  Visuals    │   │  Platform   │   │  Foundation │          │
 │   └─────────────┘   └─────────────┘   └─────────────┘          │
 │         │                 │                 │                   │
 │         └─────────────────┼─────────────────┘                   │
@@ -51,9 +164,8 @@ This isn't AI replacing learning — it's AI **enabling** self-directed learning
 │   │   • Visualizations tailored to your style               │   │
 │   │   • Pacing based on your comprehension                  │   │
 │   │   • Prerequisites auto-detected from knowledge graph    │   │
+│   │   • [Future] BCI-optimized content delivery             │   │
 │   └─────────────────────────────────────────────────────────┘   │
-│                                                                 │
-│   [100% Local — Your learning data never leaves your machine]   │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -62,7 +174,28 @@ This isn't AI replacing learning — it's AI **enabling** self-directed learning
 
 ## Components
 
-### 1. LearnViz — Adaptive Visualization Engine
+### 1. Autodidactive Web — Interactive Learning Platform
+
+**Purpose:** Public demo of AI-driven adaptive learning.
+
+**Current (v0.1 Demo):**
+- Interactive knowledge graph exploration
+- Pre-built ONI Framework courses
+- AI-generated content for any topic (with API key)
+- React Flow visualization
+- Next.js + Vercel deployment
+
+**Future:**
+- Real-time video generation (LearnViz integration)
+- User accounts with learning profiles
+- AR/glasses integration
+- BCI comprehension feedback
+
+**Live:** [frontend-phi-seven-64.vercel.app](https://frontend-phi-seven-64.vercel.app)
+
+---
+
+### 2. LearnViz — Adaptive Visualization Engine
 
 **Purpose:** Generate educational visualizations that adapt to individual learning behaviors.
 
@@ -78,8 +211,8 @@ This isn't AI replacing learning — it's AI **enabling** self-directed learning
 **Future (v0.4+):**
 - Learner profiles with style/pace tracking
 - Visualizations that adjust to YOUR learning patterns
-- Local LLM integration for custom explanations
-- Interactive mode with Q&A
+- Cloud LLM integration (Claude, OpenAI) for web platform
+- Real-time generation for Autodidactive
 
 **Location:** [`learnviz/`](./learnviz/)
 
@@ -91,7 +224,7 @@ python learnviz.py "Explain binary search" --render
 
 ---
 
-### 2. ONI Academy — Structured Curriculum
+### 3. ONI Academy — Structured Curriculum
 
 **Purpose:** Provide structured learning paths for neurosecurity concepts, from basics to advanced.
 
@@ -121,7 +254,7 @@ oni-academy ui
 
 ---
 
-### 3. Neuroscience-BCI — Research Foundation
+### 4. Neuroscience-BCI — Research Foundation
 
 **Purpose:** Personal research repository for understanding the biological substrate that BCIs interface with.
 
@@ -148,75 +281,70 @@ oni-academy ui
 │   ┌────────────────────────────┐                                 │
 │   │ • Raw research notes       │                                 │
 │   │ • Brain region anatomy     │                                 │
-│   │ • "Figure out what I       │                                 │
-│   │    don't know"             │                                 │
+│   │ • BCI signal processing    │                                 │
 │   └────────────┬───────────────┘                                 │
 │                │ (research matures into curriculum)              │
 │                ▼                                                 │
-│   ONI ACADEMY                                                    │
+│   ONI ACADEMY + AUTODIDACTIVE                                    │
 │   ┌────────────────────────────┐                                 │
 │   │ • Structured modules       │                                 │
-│   │ • Learning paths           │                                 │
-│   │ • Interactive web tools    │                                 │
-│   │ • pip-installable package  │                                 │
+│   │ • Interactive web platform │                                 │
+│   │ • Knowledge graph explorer │                                 │
+│   │ • AI-generated content     │                                 │
 │   └────────────┬───────────────┘                                 │
 │                │ (curriculum generates visualizations)           │
 │                ▼                                                 │
 │   LEARNVIZ                                                       │
 │   ┌────────────────────────────┐                                 │
 │   │ • Adaptive visualizations  │                                 │
-│   │ • Learner profiles         │                                 │
+│   │ • Video generation         │                                 │
+│   │ • TTS narration            │                                 │
 │   │ • Custom pacing/style      │                                 │
-│   │ • Local-first, private     │                                 │
 │   └────────────────────────────┘                                 │
 │                                                                  │
 │   ════════════════════════════════════════════════════           │
-│   ULTIMATE OUTPUT: Personalized learning experience              │
-│   that adapts to each individual's cognitive patterns            │
+│   FUTURE: BCI-delivered personalized learning that               │
+│   adapts in real-time to neural comprehension signals            │
 │   ════════════════════════════════════════════════════           │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
-### The Feedback Loop
-
-| Stage | Input | Output | Next Stage Uses |
-|-------|-------|--------|-----------------|
-| **Research** (neuroscience-bci) | Papers, questions, unknowns | Documented knowledge | Academy curriculum |
-| **Curriculum** (oni-academy) | Documented knowledge | Structured learning modules | LearnViz topics |
-| **Visualization** (learnviz) | Topics + learner profile | Adaptive animations | Learner comprehension |
-| **Profile Update** | Comprehension data | Updated learner model | Better visualizations |
-
 ---
 
 ## Design Principles
 
-### 1. Local-First
+### 1. Separation of Concerns
 
-All computation and learner data stays on your machine:
-- No cloud dependency
-- Works offline
-- You own your learning data
-- Privacy by default
+- **ONI** = Security research (for academics)
+- **Autodidactive** = Learning application (for everyone)
+- **LearnViz** = Visualization engine (for content creation)
+
+Each can evolve independently while feeding into the others.
 
 ### 2. Adaptive by Default
 
 Every component eventually adapts to the learner:
-- Pace: How fast you comprehend
-- Style: Visual vs verbal vs kinesthetic
-- Depth: Beginner-friendly or expert-level
-- History: Skip what you already know
+- **Pace:** How fast you comprehend
+- **Style:** Visual vs verbal vs kinesthetic
+- **Depth:** Beginner-friendly or expert-level
+- **History:** Skip what you already know
+- **[Future] Neural feedback:** Real-time BCI signals
 
-### 3. Open & Extensible
+### 3. Progressive Enhancement
 
-- Add your own research to neuroscience-bci
-- Contribute modules to oni-academy
-- Create templates for learnviz
-- All Apache 2.0 licensed
+```
+Web (today) → AR Glasses (near-term) → Direct BCI (long-term)
+```
 
-### 4. Research → Curriculum → Visualization
+The same content works across delivery mechanisms. Start with screens, add spatial computing, eventually integrate neural interfaces.
 
-Knowledge flows from raw research to structured curriculum to adaptive visualizations. Each stage builds on the previous.
+### 4. Security-First (ONI Integration)
+
+All future BCI learning features are secured by the ONI Framework:
+- Content validated through 14-layer model
+- Signal integrity via Coherence Metric
+- Unauthorized access blocked by Neural Firewall
 
 ---
 
@@ -228,30 +356,37 @@ Knowledge flows from raw research to structured curriculum to adaptive visualiza
 - [x] Neuroscience research repository structure
 - [x] LearnViz v0.1 (concept → video pipeline)
 
-### Phase 2: Content Expansion
+### Phase 2: Autodidactive Web Platform ← **CURRENT**
+- [x] Knowledge graph visualization (React Flow)
+- [x] Pre-built ONI courses
+- [x] AI-powered topic exploration
+- [ ] LearnViz video integration
+- [ ] User learning profiles
+
+### Phase 3: Content Expansion
 - [ ] More LearnViz templates (graphs, recursion, physics)
 - [ ] Expanded ONI Academy modules
 - [ ] Brain region deep dives (motor cortex → full)
 - [ ] Cross-linking between components
 
-### Phase 3: LLM Integration
-- [ ] Local LLM for custom LearnViz scenes
-- [ ] AI tutoring in ONI Academy
-- [ ] Research synthesis assistance
-- [ ] Natural language → visualization
-
-### Phase 4: Adaptive Learning ⭐ Core Goal
+### Phase 4: Adaptive Learning
 - [ ] Learner profile implementation
 - [ ] Pace/style tracking
 - [ ] Knowledge graph per user
 - [ ] Auto-adjusting difficulty
 - [ ] Personalized learning paths
 
-### Phase 5: Full Integration
-- [ ] LearnViz ↔ Academy deep integration
-- [ ] Research notes auto-generate curriculum
-- [ ] Community template sharing (opt-in)
-- [ ] Cross-platform sync (still local-first)
+### Phase 5: AR/Glasses Integration
+- [ ] Spatial knowledge graph visualization
+- [ ] Voice-controlled exploration
+- [ ] Contextual learning overlays
+- [ ] Gesture-based interaction
+
+### Phase 6: BCI Integration (Long-term Vision)
+- [ ] Comprehension detection from neural signals
+- [ ] Real-time difficulty adjustment
+- [ ] Direct visual cortex rendering (far future)
+- [ ] Full ONI security integration
 
 ---
 
@@ -260,6 +395,7 @@ Knowledge flows from raw research to structured curriculum to adaptive visualiza
 ```
 autodidact/
 ├── README.md                    # This file — ecosystem overview
+├── pyproject.toml               # Python package configuration
 │
 ├── learnviz/                    # Adaptive visualization engine
 │   ├── README.md                # Vision, implementation, roadmap
@@ -277,21 +413,22 @@ autodidact/
 ├── neuroscience-bci/            # Research foundation
 │   ├── README.md                # Research roadmap
 │   ├── brain-regions/           # Anatomical documentation
-│   │   ├── cerebral-cortex/     # Motor, sensory, visual, etc.
-│   │   ├── limbic-system/       # Amygdala, hippocampus
-│   │   └── ...                  # Other regions
 │   └── visualizing-the-mind/    # BCI zoom animations
-│       ├── 3D-mindmapper/       # Blender renders
-│       └── 2D-mindmapper/       # Manim animations
 │
 └── neuroscience-homework-todo/  # Active research tasks
 ```
+
+**Web Platform Source:** `@kevinqicode/projects/autodidactive/` (separate repo)
 
 ---
 
 ## Getting Started
 
-### For Learning
+### For Interactive Learning (Easiest)
+
+Visit **[Autodidactive](https://frontend-phi-seven-64.vercel.app)** — no installation required.
+
+### For ONI Academy (pip install)
 
 ```bash
 # Install ONI Academy
@@ -331,20 +468,23 @@ python learnviz.py "Binary search algorithm" --render
 
 Traditional education assumes everyone learns the same way. Autodidact rejects this assumption. By tracking how you learn — your pace, your preferred modalities, what you already know — we can generate educational experiences tailored specifically to you.
 
-This isn't about replacing teachers. It's about augmenting self-directed learning with tools that understand your unique cognitive patterns.
+**The BCI connection:** Eventually, we won't need to infer learning styles from clicks and watch time. BCIs will provide direct neural feedback — confusion, comprehension, engagement — enabling truly adaptive education.
 
-**The ultimate goal:** Anyone, anywhere, can learn neurosecurity concepts at their own pace, in their own style, without barriers.
+**But security comes first.** That's why ONI exists. Before we pipe learning content directly to brains, we need robust security frameworks. Autodidactive demonstrates the learning system; ONI secures it.
+
+**The ultimate goal:** Anyone, anywhere, can learn any topic at their own pace, in their own style, eventually through direct neural interfaces — safely.
 
 ---
 
 ## Related
 
-- [ONI Framework](../MAIN/) — The security framework these tools teach
+- [ONI Framework](../MAIN/) — The security framework that protects neural interfaces
 - [TARA Platform](../MAIN/tara-nsec-platform/) — Security monitoring & simulation
 - [GitHub Pages](https://qikevinl.github.io/ONI/) — Live interactive tools
+- [Autodidactive Demo](https://frontend-phi-seven-64.vercel.app) — Interactive learning platform
 
 ---
 
 *Part of the ONI Framework*
 
-> *"Autodidact: Learn how you learn, then learn faster."*
+> *"Autodidact: Learn how you learn, then learn faster. Eventually, learn through thought."*
