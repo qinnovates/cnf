@@ -1015,7 +1015,8 @@
         /* Scenario Bar */
         #scenario-bar {
             position: fixed;
-            top: 64px;
+            top: 8px;
+            transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             left: 0;
             right: 0;
             min-height: 48px;
@@ -3472,6 +3473,8 @@
         var hideTimer = null;
         var headerVisible = true;
 
+        var scenarioBar = document.getElementById('scenario-bar');
+
         function collapseHeader() {
             if (!headerVisible) return;
             // Don't hide on landing screen
@@ -3479,12 +3482,15 @@
             headerVisible = false;
             header.classList.add('header-collapsed');
             revealBar.classList.remove('header-visible');
+            if (scenarioBar) scenarioBar.style.top = '8px';
         }
 
         function showHeader() {
             headerVisible = true;
             header.classList.remove('header-collapsed');
             revealBar.classList.add('header-visible');
+            // Push scenario bar below header
+            if (scenarioBar) scenarioBar.style.top = header.offsetHeight + 'px';
             resetHideTimer();
         }
         window.showHeader = showHeader;
@@ -3515,16 +3521,29 @@
             }
         });
 
-        // Start auto-hide after a view is launched (not on landing)
+        // Collapse header instantly (no animation) when a view is launched
+        function collapseInstant() {
+            headerVisible = false;
+            header.style.transition = 'none';
+            header.classList.add('header-collapsed');
+            revealBar.classList.remove('header-visible');
+            // Re-enable transition after a frame
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    header.style.transition = '';
+                });
+            });
+        }
+
         var origLaunchView = window.launchView;
         window.launchView = function(view) {
             origLaunchView(view);
-            resetHideTimer();
+            collapseInstant();
         };
         var origLaunchScenario = window.launchScenario;
         window.launchScenario = function() {
             origLaunchScenario();
-            resetHideTimer();
+            collapseInstant();
         };
     })();
     </script>
