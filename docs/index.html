@@ -1134,7 +1134,7 @@
     <canvas id="hyperspeed-canvas"></canvas>
     <nav>
         <div class="nav-inner">
-            <a href="#" class="nav-logo" id="nav-logo-text">Open Neurosecurity Interoperability</a>
+            <a href="#" class="nav-logo">Neurosecurity &amp; Ethics</a>
             <ul class="nav-links">
                 <li><a href="#research-mission">Mission</a></li>
                 <li><a href="#governance">Ethics</a></li>
@@ -2313,13 +2313,6 @@
                 // Validate structure
                 if (!brand || typeof brand !== 'object' || !brand.oni) {
                     throw new Error('Invalid brand.json structure');
-                }
-
-                // Update nav logo from brand full_name (with validation)
-                const navLogoEl = document.getElementById('nav-logo-text');
-                const safeFullName = sanitizeText(brand.oni.full_name, 100);
-                if (navLogoEl && safeFullName) {
-                    navLogoEl.textContent = safeFullName;
                 }
 
                 // Update mission text (with validation)
