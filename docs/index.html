@@ -258,6 +258,22 @@
             padding: 0 2rem;
         }
 
+        .hero-mission {
+            font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto 1.75rem;
+            opacity: 0;
+        }
+
+        .hero-mission em {
+            color: var(--text-primary);
+            font-style: normal;
+            font-weight: 500;
+        }
+
         .hero-label {
             font-size: 0.75rem;
             letter-spacing: 0.25em;
@@ -329,6 +345,16 @@
         @keyframes float-bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        .hero-scroll-text {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
         }
 
         .hero-scroll-indicator svg {
@@ -438,11 +464,23 @@
         }
 
         .framework-panel {
-            min-height: 70vh;
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 2rem 0;
+        }
+
+        .framework-panel.layer-panel {
+            min-height: 40vh;
+        }
+
+        .framework-panel.layer-panel[data-layer="L8"] {
+            min-height: 55vh;
+        }
+
+        .framework-panel.closing-panel {
+            min-height: 50vh;
         }
 
         .framework-panel h3 {
@@ -485,6 +523,62 @@
         .zone-accent.silicon { background: rgba(59,130,246,0.12); color: #60a5fa; }
         .zone-accent.gateway { background: rgba(245,158,11,0.12); color: #fbbf24; }
         .zone-accent.biology { background: rgba(16,185,129,0.12); color: #34d399; }
+
+        .layer-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .layer-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+        }
+        .layer-badge.silicon { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+        .layer-badge.gateway { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+        .layer-badge.biology { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+
+        .layer-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .layer-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 440px;
+        }
+
+        .layer-context {
+            margin-top: 0.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .context-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+            letter-spacing: 0.03em;
+        }
+        .context-tag.osi { background: rgba(59,130,246,0.1); color: var(--accent-blue); border: 1px solid rgba(59,130,246,0.2); }
+        .context-tag.novel { background: rgba(139,92,246,0.1); color: var(--accent-purple); border: 1px solid rgba(139,92,246,0.2); }
+
+        .context-example {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
 
         .framework-link {
             display: inline-flex;
@@ -1021,14 +1115,16 @@
         <div class="hero-content">
             <div class="hero-label" id="hero-label">NEUROSECURITY STANDARDS FOR BRAIN-COMPUTER INTERFACES</div>
             <h1 class="hero-title" id="hero-title"></h1>
-            <p class="hero-subtitle" id="hero-subtitle">No firewall. No standard. No protection by design. Until now.</p>
-            <a href="#scene-framework" class="hero-cta" id="hero-cta">
-                Explore the Framework
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            <p class="hero-mission" id="hero-mission">Where <em>cybersecurity</em>, <em>neuroscience</em>, and <em>brain-computer interfaces</em> converge &mdash; a universal security framework for the neural frontier. Open. Extensible. Governed by ethics from day one.</p>
+            <p class="hero-subtitle" id="hero-subtitle">The greatest frameworks are built before their world is understood. OSI didn't wait for the internet. The neuroscience exists. The security exists. The framework connecting them didn't &mdash; until now.</p>
+            <a href="whitepaper/index.html" class="hero-cta" id="hero-cta">
+                Read Whitepaper
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>
         <div class="hero-scroll-indicator" id="scroll-indicator">
             <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            <span class="hero-scroll-text">Scroll to explore the framework</span>
         </div>
     </section>
 
@@ -1068,38 +1164,199 @@
         <div class="scene-inner">
             <div class="framework-container">
                 <div class="framework-text-track">
-                    <!-- Panel 1: Overview -->
+                    <!-- Overview Panel -->
                     <div class="framework-panel" data-zone="all">
                         <div class="section-label">The Framework</div>
                         <h3>14 layers.<br>From silicon to self.</h3>
                         <p>ONI extends the OSI model beyond Layer 7 into the biological domain. Seven silicon layers handle traditional digital security. A Neural Gateway bridges machine and mind. Six biological layers map the neural processing pipeline from ion channels to identity.</p>
                     </div>
 
-                    <!-- Panel 2: Silicon -->
-                    <div class="framework-panel" data-zone="silicon">
-                        <span class="zone-accent silicon">Layers 1&ndash;7</span>
-                        <h3>The digital infrastructure.</h3>
-                        <p>Where traditional security applies. Physical carriers, signal processing, protocols, transport, sessions, presentation, and application interfaces. These layers inherit decades of cybersecurity knowledge &mdash; adapted for neural interface constraints.</p>
+                    <!-- L1: Physical Carrier -->
+                    <div class="framework-panel layer-panel" data-layer="L1" data-zone="silicon">
+                        <div class="layer-header">
+                            <span class="layer-badge silicon">L1</span>
+                            <span class="layer-name">Physical Carrier</span>
+                        </div>
+                        <p class="layer-desc">The hardware that touches your body &mdash; electrodes, wires, wireless signals carrying neural data from brain to device.</p>
+                        <div class="layer-context">
+                            <span class="context-tag osi">OSI: Physical Layer</span>
+                            <span class="context-example">Think: the cables and radio waves that carry internet traffic</span>
+                        </div>
                     </div>
 
-                    <!-- Panel 3: L8 Gateway -->
-                    <div class="framework-panel" data-zone="gateway">
-                        <span class="zone-accent gateway">Layer 8</span>
-                        <h3>The Neural Gateway.</h3>
-                        <p>The firewall between machine and mind. Every signal crossing this boundary is measured against the Coherence Metric &mdash; a mathematical signature of signal integrity.</p>
+                    <!-- L2: Signal Processing -->
+                    <div class="framework-panel layer-panel" data-layer="L2" data-zone="silicon">
+                        <div class="layer-header">
+                            <span class="layer-badge silicon">L2</span>
+                            <span class="layer-name">Signal Processing</span>
+                        </div>
+                        <p class="layer-desc">Cleaning raw brain signals &mdash; filtering noise, amplifying patterns, organizing data into usable frames.</p>
+                        <div class="layer-context">
+                            <span class="context-tag osi">OSI: Data Link</span>
+                            <span class="context-example">Think: Ethernet frames that package raw data for delivery</span>
+                        </div>
+                    </div>
+
+                    <!-- L3: Protocol -->
+                    <div class="framework-panel layer-panel" data-layer="L3" data-zone="silicon">
+                        <div class="layer-header">
+                            <span class="layer-badge silicon">L3</span>
+                            <span class="layer-name">Protocol</span>
+                        </div>
+                        <p class="layer-desc">Routing rules for neural data &mdash; which signals go where, how packets are addressed across the interface.</p>
+                        <div class="layer-context">
+                            <span class="context-tag osi">OSI: Network</span>
+                            <span class="context-example">Think: IP addresses that route traffic across the internet</span>
+                        </div>
+                    </div>
+
+                    <!-- L4: Transport -->
+                    <div class="framework-panel layer-panel" data-layer="L4" data-zone="silicon">
+                        <div class="layer-header">
+                            <span class="layer-badge silicon">L4</span>
+                            <span class="layer-name">Transport</span>
+                        </div>
+                        <p class="layer-desc">Ensuring neural data arrives complete and in order &mdash; reliable delivery between device and processing systems.</p>
+                        <div class="layer-context">
+                            <span class="context-tag osi">OSI: Transport</span>
+                            <span class="context-example">Think: TCP ensuring your web page loads without missing pieces</span>
+                        </div>
+                    </div>
+
+                    <!-- L5: Session -->
+                    <div class="framework-panel layer-panel" data-layer="L5" data-zone="silicon">
+                        <div class="layer-header">
+                            <span class="layer-badge silicon">L5</span>
+                            <span class="layer-name">Session</span>
+                        </div>
+                        <p class="layer-desc">Managing the conversation between device and brain &mdash; connection lifecycle, state management, synchronization.</p>
+                        <div class="layer-context">
+                            <span class="context-tag osi">OSI: Session</span>
+                            <span class="context-example">Think: staying logged in while you browse a website</span>
+                        </div>
+                    </div>
+
+                    <!-- L6: Presentation -->
+                    <div class="framework-panel layer-panel" data-layer="L6" data-zone="silicon">
+                        <div class="layer-header">
+                            <span class="layer-badge silicon">L6</span>
+                            <span class="layer-name">Presentation</span>
+                        </div>
+                        <p class="layer-desc">Translating neural data into formats software understands &mdash; encoding, compression, encryption.</p>
+                        <div class="layer-context">
+                            <span class="context-tag osi">OSI: Presentation</span>
+                            <span class="context-example">Think: SSL encryption and data formatting for secure communication</span>
+                        </div>
+                    </div>
+
+                    <!-- L7: Application Interface -->
+                    <div class="framework-panel layer-panel" data-layer="L7" data-zone="silicon">
+                        <div class="layer-header">
+                            <span class="layer-badge silicon">L7</span>
+                            <span class="layer-name">Application Interface</span>
+                        </div>
+                        <p class="layer-desc">The software layer &mdash; BCI apps, prosthetic control panels, neurofeedback dashboards.</p>
+                        <div class="layer-context">
+                            <span class="context-tag osi">OSI: Application</span>
+                            <span class="context-example">Think: the apps and browsers you use every day</span>
+                        </div>
+                    </div>
+
+                    <!-- L8: Neural Gateway -->
+                    <div class="framework-panel layer-panel" data-layer="L8" data-zone="gateway">
+                        <div class="layer-header">
+                            <span class="layer-badge gateway">L8</span>
+                            <span class="layer-name">Neural Gateway</span>
+                        </div>
+                        <p class="layer-desc">The firewall between machine and mind. Every signal crossing this boundary is measured against the Coherence Metric &mdash; a mathematical signature of signal integrity.</p>
                         <div class="formula">C&#x209B; = e<sup>&minus;(&sigma;&sup2;&phi; + &sigma;&sup2;&tau; + &sigma;&sup2;&gamma;)</sup></div>
-                        <p style="margin-top:1rem;">Phase variance, transport variance, gain variance. If coherence drops below threshold, the signal is rejected before it reaches biology.</p>
+                        <p class="layer-desc" style="margin-top:1rem;">Phase variance, transport variance, gain variance. If coherence drops below threshold, the signal is rejected before it reaches biology.</p>
+                        <div class="layer-context">
+                            <span class="context-tag novel">New to ONI</span>
+                            <span class="context-example">No equivalent in traditional networking &mdash; networks don't connect to living tissue</span>
+                        </div>
                     </div>
 
-                    <!-- Panel 4: Biology -->
-                    <div class="framework-panel" data-zone="biology">
-                        <span class="zone-accent biology">Layers 9&ndash;14</span>
-                        <h3>Where signals become thoughts.</h3>
-                        <p>Ion channel encoding, neural protocols, cognitive transport, working memory context, semantic intent, and the identity layer. These layers map the processing pipeline from raw neural signal to conscious experience &mdash; each with its own threat surface.</p>
+                    <!-- L9: Signal Processing (Bio) -->
+                    <div class="framework-panel layer-panel" data-layer="L9" data-zone="biology">
+                        <div class="layer-header">
+                            <span class="layer-badge biology">L9</span>
+                            <span class="layer-name">Signal Processing</span>
+                        </div>
+                        <p class="layer-desc">Your brain's own noise filter &mdash; how neurons clean, amplify, and gate the signals they receive from the interface.</p>
+                        <div class="layer-context">
+                            <span class="context-tag novel">New to ONI</span>
+                            <span class="context-example">Biological filtering at the ion channel level</span>
+                        </div>
                     </div>
 
-                    <!-- Panel 5: Threat Mapping -->
-                    <div class="framework-panel" data-zone="all">
+                    <!-- L10: Neural Protocol -->
+                    <div class="framework-panel layer-panel" data-layer="L10" data-zone="biology">
+                        <div class="layer-header">
+                            <span class="layer-badge biology">L10</span>
+                            <span class="layer-name">Neural Protocol</span>
+                        </div>
+                        <p class="layer-desc">How your brain encodes information &mdash; the electrochemical language neurons use to communicate with each other.</p>
+                        <div class="layer-context">
+                            <span class="context-tag novel">New to ONI</span>
+                            <span class="context-example">Neurotransmitter signaling and spike-timing patterns</span>
+                        </div>
+                    </div>
+
+                    <!-- L11: Cognitive Transport -->
+                    <div class="framework-panel layer-panel" data-layer="L11" data-zone="biology">
+                        <div class="layer-header">
+                            <span class="layer-badge biology">L11</span>
+                            <span class="layer-name">Cognitive Transport</span>
+                        </div>
+                        <p class="layer-desc">How thoughts travel across brain regions &mdash; the neural highways connecting perception, memory, and action.</p>
+                        <div class="layer-context">
+                            <span class="context-tag novel">New to ONI</span>
+                            <span class="context-example">White matter tracts and cross-regional neural routing</span>
+                        </div>
+                    </div>
+
+                    <!-- L12: Cognitive Session -->
+                    <div class="framework-panel layer-panel" data-layer="L12" data-zone="biology">
+                        <div class="layer-header">
+                            <span class="layer-badge biology">L12</span>
+                            <span class="layer-name">Cognitive Session</span>
+                        </div>
+                        <p class="layer-desc">Your brain's working memory and attention &mdash; the context window that makes thoughts coherent and meaningful.</p>
+                        <div class="layer-context">
+                            <span class="context-tag novel">New to ONI</span>
+                            <span class="context-example">Prefrontal cortex state management and attentional gating</span>
+                        </div>
+                    </div>
+
+                    <!-- L13: Semantic Layer -->
+                    <div class="framework-panel layer-panel" data-layer="L13" data-zone="biology">
+                        <div class="layer-header">
+                            <span class="layer-badge biology">L13</span>
+                            <span class="layer-name">Semantic Layer</span>
+                        </div>
+                        <p class="layer-desc">Where signals become meaning &mdash; how your brain turns neural patterns into understanding, intention, and decisions.</p>
+                        <div class="layer-context">
+                            <span class="context-tag novel">New to ONI</span>
+                            <span class="context-example">Higher-order cognition, intent formation, and decision-making</span>
+                        </div>
+                    </div>
+
+                    <!-- L14: Identity Layer -->
+                    <div class="framework-panel layer-panel" data-layer="L14" data-zone="biology">
+                        <div class="layer-header">
+                            <span class="layer-badge biology">L14</span>
+                            <span class="layer-name">Identity Layer</span>
+                        </div>
+                        <p class="layer-desc">Your sense of self &mdash; consciousness, personality, the subjective "you" that experiences everything. The deepest layer to protect.</p>
+                        <div class="layer-context">
+                            <span class="context-tag novel">New to ONI</span>
+                            <span class="context-example">Neural correlates of consciousness and personal identity</span>
+                        </div>
+                    </div>
+
+                    <!-- Closing Panel: Threat Mapping -->
+                    <div class="framework-panel closing-panel" data-zone="all">
                         <h3>46 threat signatures mapped.</h3>
                         <p>Every layer has been threat-modeled. From physical EM capture at L1 to brainprint theft at L14, the ONI framework provides a taxonomy of neural attack vectors &mdash; each with detection strategies and mitigation paths.</p>
                         <a href="visualizations/06-oni-threat-matrix.html" class="framework-link">
@@ -1412,9 +1669,10 @@
             ease: 'power2.out'
         });
 
-        gsap.to('#hero-subtitle', { opacity: 1, duration: 0.8, delay: 1.8 });
-        gsap.to('#hero-cta', { opacity: 1, duration: 0.8, delay: 2.2 });
-        gsap.to('#scroll-indicator', { opacity: 1, duration: 0.8, delay: 2.8 });
+        gsap.to('#hero-mission', { opacity: 1, duration: 0.8, delay: 1.6 });
+        gsap.to('#hero-subtitle', { opacity: 1, duration: 0.8, delay: 2.2 });
+        gsap.to('#hero-cta', { opacity: 1, duration: 0.8, delay: 2.8 });
+        gsap.to('#scroll-indicator', { opacity: 1, duration: 0.8, delay: 3.4 });
 
         // Fade out hero on scroll
         gsap.to('.hero-content', {
@@ -1908,20 +2166,50 @@
             });
 
             // =============================================
-            // FRAMEWORK PANEL HIGHLIGHTING
+            // PER-LAYER SCROLL TRACKING
             // =============================================
+            var activeLayerIndex = -1; // -1 = no specific layer active (overview/closing)
             var activeZone = 'all';
-            var frameworkPanels = document.querySelectorAll('.framework-panel');
+            var layerPanels = document.querySelectorAll('.layer-panel');
 
-            frameworkPanels.forEach(function(panel) {
+            // Build a mapping from layer ID (L1-L14) to shell index
+            var layerIdToShellIndex = {};
+            activeLayers.forEach(function(layer, idx) {
+                layerIdToShellIndex[layer.id] = idx;
+            });
+
+            layerPanels.forEach(function(panel) {
                 ScrollTrigger.create({
                     trigger: panel,
                     start: 'top 60%',
                     end: 'bottom 40%',
-                    onEnter: function() { activeZone = panel.dataset.zone; },
-                    onEnterBack: function() { activeZone = panel.dataset.zone; }
+                    onEnter: function() {
+                        var lid = panel.dataset.layer;
+                        activeLayerIndex = (lid && layerIdToShellIndex[lid] !== undefined) ? layerIdToShellIndex[lid] : -1;
+                        activeZone = panel.dataset.zone || 'all';
+                    },
+                    onEnterBack: function() {
+                        var lid = panel.dataset.layer;
+                        activeLayerIndex = (lid && layerIdToShellIndex[lid] !== undefined) ? layerIdToShellIndex[lid] : -1;
+                        activeZone = panel.dataset.zone || 'all';
+                    }
                 });
             });
+
+            // Also track non-layer panels (overview, closing) to reset activeLayerIndex
+            var nonLayerPanels = document.querySelectorAll('.framework-panel:not(.layer-panel)');
+            nonLayerPanels.forEach(function(panel) {
+                ScrollTrigger.create({
+                    trigger: panel,
+                    start: 'top 60%',
+                    end: 'bottom 40%',
+                    onEnter: function() { activeLayerIndex = -1; activeZone = panel.dataset.zone || 'all'; },
+                    onEnterBack: function() { activeLayerIndex = -1; activeZone = panel.dataset.zone || 'all'; }
+                });
+            });
+
+            // Per-shell scale multipliers (lerped in animation loop)
+            var shellScaleMultipliers = activeLayers.map(function() { return 1.0; });
 
             // =============================================
             // ANIMATION LOOP
@@ -1959,12 +2247,38 @@
                 coreMesh.material.opacity = 1 - morphProgress.value;
                 glowMat.opacity = (0.12 + Math.sin(t*1.8)*0.05) * (1 - morphProgress.value);
 
-                // MORPH: Spheres → Flat Discs → Vertical Stack
+                // MORPH: Spheres → Flat Discs → Vertical Stack + Per-Layer Grow/Snap
                 var mp = morphProgress.value;
+
+                // Determine per-shell scale targets based on active layer
                 shellMeshes.forEach(function(mesh, i) {
                     var origR = originalRadii[i];
                     var layer = activeLayers[i];
+                    var isGW = layer.zone === 'gateway';
                     var breathing = 1 + Math.sin(t*0.6+i*0.5)*0.006;
+
+                    // Compute grow/snap target for this shell
+                    var scaleTarget = 1.0;
+                    var targetOpacity;
+
+                    if (i === activeLayerIndex) {
+                        // Active layer: grow
+                        scaleTarget = isGW ? 1.8 : 1.4;
+                        targetOpacity = isGW ? 0.95 : 0.8;
+                    } else if (activeLayerIndex === -1) {
+                        // No specific layer active (overview/closing) — use zone matching
+                        var zoneMatch = (activeZone === 'all') || (activeZone === layer.zone);
+                        scaleTarget = 1.0;
+                        targetOpacity = zoneMatch ? (isGW ? 0.85 : 0.55) : (isGW ? 0.3 : 0.15);
+                    } else {
+                        // Different layer is active: dim
+                        scaleTarget = 1.0;
+                        targetOpacity = isGW ? 0.25 : 0.12;
+                    }
+
+                    // Lerp scale multiplier (slower grow, quicker snap-back)
+                    var lerpFactor = (scaleTarget > shellScaleMultipliers[i]) ? 0.06 : 0.1;
+                    shellScaleMultipliers[i] += (scaleTarget - shellScaleMultipliers[i]) * lerpFactor;
 
                     if (mp < 0.01) {
                         // Pure sphere mode
@@ -1972,7 +2286,8 @@
                         mesh.position.y = 0;
                     } else {
                         // Morphing: flatten Y, separate positions
-                        var scaleXZ = origR * breathing;
+                        var sm = shellScaleMultipliers[i];
+                        var scaleXZ = origR * breathing * sm;
                         var scaleY = origR * breathing * (1 - mp * 0.92); // Flatten to ~8% height
 
                         // Stack position: evenly distribute layers vertically
@@ -1981,7 +2296,6 @@
                         var targetY = (i - (totalLayers - 1) / 2) * stackSpacing;
 
                         // L8 gets extra gap
-                        var isGW = layer.zone === 'gateway';
                         var gwIndex = -1;
                         for (var g = 0; g < activeLayers.length; g++) {
                             if (activeLayers[g].zone === 'gateway') { gwIndex = g; break; }
@@ -1994,28 +2308,30 @@
                         mesh.scale.set(scaleXZ, scaleY, scaleXZ);
                         mesh.position.y = targetY * mp;
 
-                        // Zone highlighting during framework section
-                        var zoneMatch = false;
-                        if (activeZone === 'all') zoneMatch = true;
-                        else if (activeZone === layer.zone) zoneMatch = true;
-
-                        var targetOpacity = zoneMatch ?
-                            (isGW ? 0.85 : 0.55) :
-                            (isGW ? 0.3 : 0.15);
-
+                        // Opacity lerp
                         shellUniforms[i].uOpacity.value +=
                             (targetOpacity - shellUniforms[i].uOpacity.value) * 0.05;
                     }
                 });
 
-                // Camera adjusts during morph
+                // Camera adjusts during morph + L8 emphasis zoom
+                var l8CameraZoom = 0;
+                if (activeLayerIndex >= 0 && activeLayers[activeLayerIndex] && activeLayers[activeLayerIndex].zone === 'gateway') {
+                    l8CameraZoom = -0.5; // nudge closer
+                }
                 var targetCamY = 0.3 + mp * 0.5;
-                var targetCamZ = 7 + mp * 1;
+                var targetCamZ = 7 + mp * 1 + l8CameraZoom;
                 camera.position.y += (targetCamY - camera.position.y) * 0.03;
                 camera.position.z += (targetCamZ - camera.position.z) * 0.03;
 
-                // Gateway light
-                gatewayLight.intensity = 0.8 + Math.sin(t*3.0)*0.4;
+                // Gateway light — intensifies when L8 is active
+                var gwLightBase = 0.8;
+                var gwLightPulse = Math.sin(t*3.0)*0.4;
+                if (activeLayerIndex >= 0 && activeLayers[activeLayerIndex] && activeLayers[activeLayerIndex].zone === 'gateway') {
+                    gwLightBase = 1.6;
+                    gwLightPulse = Math.sin(t*5.0)*0.6; // faster, stronger pulse
+                }
+                gatewayLight.intensity += ((gwLightBase + gwLightPulse) - gatewayLight.intensity) * 0.05;
 
                 // Dust drift
                 dustCloud.rotation.y = t*0.02;
