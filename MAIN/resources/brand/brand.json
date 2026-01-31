@@ -11,8 +11,8 @@
     "full_name": "Open Neurosecurity Interoperability",
     "name": "ONI Framework",
     "tagline": "The OSI of Mind",
-    "slogan": "Only life's most important connections deserve the most thought.",
-    "mission": "The power of mind is our frontier. We're making sure it's protected from day one with a universal, open standard that leaves no brain behind.",
+    "slogan": "Life's most important connections deserve the most thought.",
+    "mission": "Brain-computer interfaces are here — and they have no universal security standard. ONI provides the shared language that makes an entire industry of neural security possible.",
     "description": "A unified 14-layer model extending OSI into the biological domain. One framework to understand, build, and secure brain-computer interfaces. Open. Extensible. Universal.",
     "version": "0.2.2",
     "vision": "A world where brain-computer interfaces are as secure as they are powerful. Where neural data is protected by law and by design. Where the boundary between mind and machine is guarded by open standards, with security and privacy built in from inception."
