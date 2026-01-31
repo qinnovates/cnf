@@ -18,11 +18,33 @@
             height: 100vh;
         }
 
+        /* Header reveal bar */
+        #header-reveal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            z-index: 101;
+            background: linear-gradient(90deg, #58a6ff 0%, #f0883e 50%, #3fb950 100%);
+            opacity: 0.5;
+            cursor: pointer;
+            transition: opacity 0.2s, height 0.2s;
+        }
+        #header-reveal:hover {
+            opacity: 1;
+            height: 6px;
+        }
+        #header-reveal.header-visible {
+            opacity: 0;
+            pointer-events: none;
+        }
+
         /* Header */
         #header {
             padding: 16px 24px;
             border-bottom: 1px solid #21262d;
-            background: rgba(13, 17, 23, 0.85);
+            background: rgba(13, 17, 23, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             position: fixed;
@@ -35,6 +57,11 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 12px;
+            transform: translateY(0);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #header.header-collapsed {
+            transform: translateY(-100%);
         }
         .header-left .header-label {
             font-size: 10px;
@@ -461,6 +488,7 @@
             transition: all 0.15s ease;
             font-weight: 500;
             white-space: nowrap;
+            text-decoration: none;
         }
         .view-btn:hover {
             color: #c9d1d9;
@@ -652,6 +680,7 @@
 
         /* Hide everything when landing is visible */
         body.view-landing #header,
+        body.view-landing #header-reveal,
         body.view-landing #oni-3d-container,
         body.view-landing #layer-sidebar,
         body.view-landing #detail-panel,
@@ -1195,6 +1224,9 @@
         <div class="landing-footer">You can switch views anytime from the header</div>
     </div>
 
+    <!-- Header reveal bar -->
+    <div id="header-reveal" onclick="showHeader()"></div>
+
     <!-- Header -->
     <header id="header">
         <div class="header-left">
@@ -1204,6 +1236,7 @@
         </div>
         <div class="header-right">
             <div class="view-toggle">
+                <a class="view-btn" href="02-oni-layer-explorer.html">Layer Overview</a>
                 <button class="view-btn active" data-view="3d" onclick="switchView('3d')">3D Simulator</button>
                 <button class="view-btn" data-view="explorer" onclick="switchView('explorer')">Interactive Explorer</button>
             </div>
@@ -3431,6 +3464,69 @@
         resize();
         animate();
     }
+
+    // --- Header auto-hide ---
+    (function() {
+        var header = document.getElementById('header');
+        var revealBar = document.getElementById('header-reveal');
+        var hideTimer = null;
+        var headerVisible = true;
+
+        function collapseHeader() {
+            if (!headerVisible) return;
+            // Don't hide on landing screen
+            if (document.body.classList.contains('view-landing')) return;
+            headerVisible = false;
+            header.classList.add('header-collapsed');
+            revealBar.classList.remove('header-visible');
+        }
+
+        function showHeader() {
+            headerVisible = true;
+            header.classList.remove('header-collapsed');
+            revealBar.classList.add('header-visible');
+            resetHideTimer();
+        }
+        window.showHeader = showHeader;
+
+        function resetHideTimer() {
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(collapseHeader, 3000);
+        }
+
+        // Hover on header keeps it open
+        header.addEventListener('mouseenter', function() {
+            clearTimeout(hideTimer);
+            if (!headerVisible) showHeader();
+        });
+        header.addEventListener('mouseleave', function() {
+            resetHideTimer();
+        });
+
+        // Hover on reveal bar shows header
+        revealBar.addEventListener('mouseenter', function() {
+            showHeader();
+        });
+
+        // Moving mouse near top of screen shows header
+        document.addEventListener('mousemove', function(e) {
+            if (e.clientY < 8 && !headerVisible) {
+                showHeader();
+            }
+        });
+
+        // Start auto-hide after a view is launched (not on landing)
+        var origLaunchView = window.launchView;
+        window.launchView = function(view) {
+            origLaunchView(view);
+            resetHideTimer();
+        };
+        var origLaunchScenario = window.launchScenario;
+        window.launchScenario = function() {
+            origLaunchScenario();
+            resetHideTimer();
+        };
+    })();
     </script>
 </body>
 </html>
