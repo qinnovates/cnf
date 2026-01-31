@@ -531,6 +531,76 @@
             letter-spacing: 0.08em;
         }
 
+        /* Layer detail overlay (centered) */
+        .layer-detail {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            max-width: 480px;
+            padding: 2rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .layer-detail.visible {
+            opacity: 1;
+        }
+
+        .layer-detail-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.7rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+        .layer-detail-tag.osi {
+            background: rgba(59,130,246,0.12);
+            color: var(--accent-blue);
+            border: 1px solid rgba(59,130,246,0.25);
+        }
+        .layer-detail-tag.novel {
+            background: rgba(139,92,246,0.12);
+            color: var(--accent-purple);
+            border: 1px solid rgba(139,92,246,0.25);
+        }
+        .layer-detail-tag.gateway-tag {
+            background: rgba(245,158,11,0.12);
+            color: var(--accent-amber);
+            border: 1px solid rgba(245,158,11,0.25);
+        }
+
+        .layer-detail-desc {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .layer-detail-context {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .layer-detail-formula {
+            font-family: 'Inter', monospace;
+            font-size: 1rem;
+            color: var(--accent-amber);
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 0.75rem;
+        }
+
         /* ============================================
            SCENE 4: THE PROOF
            ============================================ */
@@ -1241,6 +1311,14 @@
             <div class="framework-closing-trigger" data-zone="all"></div>
         </div>
     </section>
+
+    <!-- Layer detail overlay (centered) -->
+    <div class="layer-detail" id="layer-detail">
+        <div class="layer-detail-tag" id="layer-detail-tag"></div>
+        <p class="layer-detail-desc" id="layer-detail-desc"></p>
+        <p class="layer-detail-context" id="layer-detail-context"></p>
+        <div class="layer-detail-formula" id="layer-detail-formula" style="display:none;"></div>
+    </div>
 
     <!-- Layer HUD (floating label) -->
     <div class="layer-hud" id="layer-hud">
@@ -2152,15 +2230,60 @@
             var layerHudName = document.getElementById('layer-hud-name');
             var layerHudZone = document.getElementById('layer-hud-zone');
 
-            // Layer name lookup
-            var layerNames = {
-                L1:'Physical Carrier', L2:'Signal Processing', L3:'Protocol',
-                L4:'Transport', L5:'Session', L6:'Presentation', L7:'Application Interface',
-                L8:'Neural Gateway',
-                L9:'Signal Processing', L10:'Neural Protocol', L11:'Cognitive Transport',
-                L12:'Cognitive Session', L13:'Semantic Layer', L14:'Identity Layer'
+            // Layer data lookup
+            var layerData = {
+                L1: { name:'Physical Carrier', tag:'OSI: Physical Layer', tagClass:'osi',
+                    desc:'The hardware that touches your body \u2014 electrodes, wires, wireless signals carrying neural data from brain to device.',
+                    context:'Think: the cables and radio waves that carry internet traffic' },
+                L2: { name:'Signal Processing', tag:'OSI: Data Link', tagClass:'osi',
+                    desc:'Cleaning raw brain signals \u2014 filtering noise, amplifying patterns, organizing data into usable frames.',
+                    context:'Think: Ethernet frames that package raw data for delivery' },
+                L3: { name:'Protocol', tag:'OSI: Network', tagClass:'osi',
+                    desc:'Routing rules for neural data \u2014 which signals go where, how packets are addressed across the interface.',
+                    context:'Think: IP addresses that route traffic across the internet' },
+                L4: { name:'Transport', tag:'OSI: Transport', tagClass:'osi',
+                    desc:'Ensuring neural data arrives complete and in order \u2014 reliable delivery between device and processing systems.',
+                    context:'Think: TCP ensuring your web page loads without missing pieces' },
+                L5: { name:'Session', tag:'OSI: Session', tagClass:'osi',
+                    desc:'Managing the conversation between device and brain \u2014 connection lifecycle, state management, synchronization.',
+                    context:'Think: staying logged in while you browse a website' },
+                L6: { name:'Presentation', tag:'OSI: Presentation', tagClass:'osi',
+                    desc:'Translating neural data into formats software understands \u2014 encoding, compression, encryption.',
+                    context:'Think: SSL encryption and data formatting for secure communication' },
+                L7: { name:'Application Interface', tag:'OSI: Application', tagClass:'osi',
+                    desc:'The software layer \u2014 BCI apps, prosthetic control panels, neurofeedback dashboards.',
+                    context:'Think: the apps and browsers you use every day' },
+                L8: { name:'Neural Gateway', tag:'The Neural Firewall', tagClass:'gateway-tag',
+                    desc:'The boundary between machine and mind. Every signal crossing this layer is measured against the Coherence Metric \u2014 a mathematical signature of signal integrity. No equivalent exists in traditional networking.',
+                    context:'If coherence drops below threshold, the signal is rejected before it reaches biology.',
+                    formula:'C\u209B = e\u207B\u207D\u03C3\u00B2\u03C6 + \u03C3\u00B2\u03C4 + \u03C3\u00B2\u03B3\u207E' },
+                L9: { name:'Signal Processing', tag:'Beyond OSI \u2014 Biological Domain', tagClass:'novel',
+                    desc:'Your brain\u2019s own noise filter \u2014 how neurons clean, amplify, and gate the signals they receive from the interface.',
+                    context:'Biological filtering at the ion channel level' },
+                L10: { name:'Neural Protocol', tag:'Beyond OSI \u2014 Biological Domain', tagClass:'novel',
+                    desc:'How your brain encodes information \u2014 the electrochemical language neurons use to communicate with each other.',
+                    context:'Neurotransmitter signaling and spike-timing patterns' },
+                L11: { name:'Cognitive Transport', tag:'Beyond OSI \u2014 Biological Domain', tagClass:'novel',
+                    desc:'How thoughts travel across brain regions \u2014 the neural highways connecting perception, memory, and action.',
+                    context:'White matter tracts and cross-regional neural routing' },
+                L12: { name:'Cognitive Session', tag:'Beyond OSI \u2014 Biological Domain', tagClass:'novel',
+                    desc:'Your brain\u2019s working memory and attention \u2014 the context window that makes thoughts coherent and meaningful.',
+                    context:'Prefrontal cortex state management and attentional gating' },
+                L13: { name:'Semantic Layer', tag:'Beyond OSI \u2014 Biological Domain', tagClass:'novel',
+                    desc:'Where signals become meaning \u2014 how your brain turns neural patterns into understanding, intention, and decisions.',
+                    context:'Higher-order cognition, intent formation, and decision-making' },
+                L14: { name:'Identity Layer', tag:'Beyond OSI \u2014 Biological Domain', tagClass:'novel',
+                    desc:'Your sense of self \u2014 consciousness, personality, the subjective \u201Cyou\u201D that experiences everything. The deepest layer to protect.',
+                    context:'Neural correlates of consciousness and personal identity' }
             };
             var zoneLabels = { silicon:'Silicon', gateway:'Gateway', biology:'Biology' };
+
+            // Detail overlay elements
+            var layerDetail = document.getElementById('layer-detail');
+            var layerDetailTag = document.getElementById('layer-detail-tag');
+            var layerDetailDesc = document.getElementById('layer-detail-desc');
+            var layerDetailContext = document.getElementById('layer-detail-context');
+            var layerDetailFormula = document.getElementById('layer-detail-formula');
 
             // Build a mapping from layer ID (L1-L14) to shell index
             var layerIdToShellIndex = {};
@@ -2170,14 +2293,30 @@
 
             function updateHud(lid, zone) {
                 if (!layerHud) return;
-                if (lid && layerNames[lid]) {
+                var data = lid ? layerData[lid] : null;
+                if (data) {
+                    // Bottom HUD
                     layerHudBadge.textContent = lid;
                     layerHudBadge.className = 'layer-hud-badge ' + zone;
-                    layerHudName.textContent = layerNames[lid];
+                    layerHudName.textContent = data.name;
                     layerHudZone.textContent = zoneLabels[zone] || '';
                     layerHud.classList.add('visible');
+
+                    // Center detail overlay
+                    layerDetailTag.textContent = data.tag;
+                    layerDetailTag.className = 'layer-detail-tag ' + data.tagClass;
+                    layerDetailDesc.textContent = data.desc;
+                    layerDetailContext.textContent = data.context;
+                    if (data.formula) {
+                        layerDetailFormula.textContent = data.formula;
+                        layerDetailFormula.style.display = 'inline-block';
+                    } else {
+                        layerDetailFormula.style.display = 'none';
+                    }
+                    layerDetail.classList.add('visible');
                 } else {
                     layerHud.classList.remove('visible');
+                    layerDetail.classList.remove('visible');
                 }
             }
 
@@ -2212,8 +2351,11 @@
                 });
             });
 
-            // Per-shell scale multipliers (lerped in animation loop)
+            // Per-shell animation state (lerped in animation loop)
             var shellScaleMultipliers = activeLayers.map(function() { return 1.0; });
+            var shellZOffsets = activeLayers.map(function() { return 0; });
+            var shellYOffsets = activeLayers.map(function() { return 0; });
+            var shellFaceCamera = activeLayers.map(function() { return 0; });
 
             // =============================================
             // ANIMATION LOOP
@@ -2233,14 +2375,19 @@
                 // Effective morph: max of intro (collapsing to sphere) and scroll (expanding to stack)
                 var effectiveMorph = Math.max(introProgress.value, morphProgress.value);
 
-                // Auto-rotation (slows during morph)
-                var rotSpeed = 0.002 * (1 - effectiveMorph * 0.6);
+                // Auto-rotation (slows during morph, near-zero when layer pulled out)
+                var maxFace = 0;
+                for (var fi = 0; fi < shellFaceCamera.length; fi++) {
+                    if (shellFaceCamera[fi] > maxFace) maxFace = shellFaceCamera[fi];
+                }
+                var pullDampen = 1 - maxFace * 0.95; // smooth dampening as layer pulls out
+                var rotSpeed = 0.002 * (1 - effectiveMorph * 0.6) * pullDampen;
                 autoRotateGroup.rotation.y += rotSpeed;
-                autoRotateGroup.rotation.x = Math.sin(t*0.15)*0.08 * (1 - effectiveMorph * 0.8);
+                autoRotateGroup.rotation.x = Math.sin(t*0.15)*0.08 * (1 - effectiveMorph * 0.8) * pullDampen;
 
-                // Mouse parallax
+                // Mouse parallax (near-zero when layer pulled out)
                 if (!isMobile) {
-                    var parallaxStr = 1 - effectiveMorph * 0.7;
+                    var parallaxStr = (1 - effectiveMorph * 0.7) * pullDampen;
                     parallaxGroup.rotation.x += (mouseY*0.2*parallaxStr - parallaxGroup.rotation.x)*0.04;
                     parallaxGroup.rotation.y += (mouseX*0.3*parallaxStr - parallaxGroup.rotation.y)*0.04;
                 }
@@ -2255,53 +2402,69 @@
                 coreMesh.material.opacity = coreFade;
                 glowMat.opacity = (0.12 + Math.sin(t*1.8)*0.05) * coreFade;
 
-                // MORPH: Spheres → Flat Discs → Vertical Stack + Per-Layer Grow/Snap
+                // MORPH: Spheres → Flat Discs → Vertical Stack + Jenga Pull-Out
                 var mp = effectiveMorph;
 
-                // Determine per-shell scale targets based on active layer
+                // Determine per-shell targets based on active layer
                 shellMeshes.forEach(function(mesh, i) {
                     var origR = originalRadii[i];
                     var layer = activeLayers[i];
                     var isGW = layer.zone === 'gateway';
                     var breathing = 1 + Math.sin(t*0.6+i*0.5)*0.006;
 
-                    // Compute grow/snap target for this shell
+                    // Compute targets for this shell
                     var scaleTarget = 1.0;
                     var targetOpacity;
+                    var targetZ = 0;
+                    var targetFace = 0;
 
-                    if (i === activeLayerIndex) {
-                        // Active layer: grow big
-                        scaleTarget = isGW ? 2.4 : 1.9;
-                        targetOpacity = isGW ? 1.0 : 0.9;
+                    if (i === activeLayerIndex && mp > 0.5) {
+                        // Active layer: pull out like a Jenga block
+                        scaleTarget = isGW ? 1.6 : 1.3;
+                        targetOpacity = 1.0;
+                        targetZ = isGW ? 5.0 : 4.0;
+                        targetFace = 1.0;
                     } else if (activeLayerIndex === -1) {
-                        // No specific layer active (overview/closing) — use zone matching
+                        // No specific layer active — all visible
                         var zoneMatch = (activeZone === 'all') || (activeZone === layer.zone);
                         scaleTarget = 1.0;
                         targetOpacity = zoneMatch ? (isGW ? 0.85 : 0.55) : (isGW ? 0.3 : 0.15);
                     } else {
-                        // Different layer is active: shrink and dim
-                        scaleTarget = 0.85;
-                        targetOpacity = isGW ? 0.18 : 0.08;
+                        // Different layer is active: stay in stack, dim
+                        scaleTarget = 0.9;
+                        targetOpacity = isGW ? 0.15 : 0.07;
                     }
 
-                    // Lerp scale multiplier (responsive in both directions)
-                    var lerpFactor = (scaleTarget > shellScaleMultipliers[i]) ? 0.12 : 0.15;
-                    shellScaleMultipliers[i] += (scaleTarget - shellScaleMultipliers[i]) * lerpFactor;
+                    // Lerp scale
+                    var scaleLerp = (scaleTarget > shellScaleMultipliers[i]) ? 0.1 : 0.12;
+                    shellScaleMultipliers[i] += (scaleTarget - shellScaleMultipliers[i]) * scaleLerp;
+
+                    // Lerp Z pull-out (smooth out, snappy return)
+                    var zLerp = (targetZ > shellZOffsets[i]) ? 0.07 : 0.11;
+                    shellZOffsets[i] += (targetZ - shellZOffsets[i]) * zLerp;
+
+                    // Lerp face-camera (slow engage, quick disengage)
+                    var faceLerp = (targetFace > shellFaceCamera[i]) ? 0.05 : 0.09;
+                    shellFaceCamera[i] += (targetFace - shellFaceCamera[i]) * faceLerp;
 
                     if (mp < 0.01) {
                         // Pure sphere mode
                         mesh.scale.setScalar(origR * breathing);
-                        mesh.position.y = 0;
+                        mesh.position.set(0, 0, 0);
+                        mesh.rotation.set(0, 0, 0);
                     } else {
                         // Morphing: flatten Y, separate positions
                         var sm = shellScaleMultipliers[i];
                         var scaleXZ = origR * breathing * sm;
-                        var scaleY = origR * breathing * (1 - mp * 0.92); // Flatten to ~8% height
+
+                        // Disc gets slightly thicker when pulled out (Jenga block depth)
+                        var pullThick = 1 + shellFaceCamera[i] * 2.5;
+                        var scaleY = origR * breathing * (1 - mp * 0.92) * pullThick;
 
                         // Stack position: evenly distribute layers vertically
                         var totalLayers = activeLayers.length;
                         var stackSpacing = 0.4;
-                        var targetY = (i - (totalLayers - 1) / 2) * stackSpacing;
+                        var stackY = (i - (totalLayers - 1) / 2) * stackSpacing;
 
                         // L8 gets extra gap
                         var gwIndex = -1;
@@ -2309,18 +2472,34 @@
                             if (activeLayers[g].zone === 'gateway') { gwIndex = g; break; }
                         }
                         if (gwIndex >= 0) {
-                            if (i < gwIndex) targetY -= 0.15;
-                            if (i > gwIndex) targetY += 0.15;
+                            if (i < gwIndex) stackY -= 0.15;
+                            if (i > gwIndex) stackY += 0.15;
                         }
 
-                        mesh.scale.set(scaleXZ, scaleY, scaleXZ);
-                        mesh.position.y = targetY * mp;
+                        var baseY = stackY * mp;
 
-                        // Opacity lerp (responsive)
+                        // Y centering: lerp active layer toward camera center (Y=0)
+                        var targetYCenter = (i === activeLayerIndex && mp > 0.5) ? -baseY * 0.85 : 0;
+                        shellYOffsets[i] += (targetYCenter - shellYOffsets[i]) * 0.07;
+
+                        mesh.scale.set(scaleXZ, scaleY, scaleXZ);
+                        mesh.position.y = baseY + shellYOffsets[i];
+                        mesh.position.z = shellZOffsets[i];
+
+                        // Face camera: counter-rotate against parent group rotations
+                        var faceAmt = shellFaceCamera[i];
+                        if (faceAmt > 0.01) {
+                            mesh.rotation.y = (-autoRotateGroup.rotation.y - parallaxGroup.rotation.y) * faceAmt;
+                            mesh.rotation.x = (-autoRotateGroup.rotation.x - parallaxGroup.rotation.x) * faceAmt;
+                        } else {
+                            mesh.rotation.set(0, 0, 0);
+                        }
+
+                        // Opacity lerp
                         shellUniforms[i].uOpacity.value +=
                             (targetOpacity - shellUniforms[i].uOpacity.value) * 0.1;
 
-                        // Active glow lerp (slow ramp up, gentle decay)
+                        // Active glow lerp
                         var glowTarget = (i === activeLayerIndex) ? 1.0 : 0.0;
                         var glowLerp = (glowTarget > shellUniforms[i].uActiveGlow.value) ? 0.03 : 0.06;
                         shellUniforms[i].uActiveGlow.value +=
@@ -2328,13 +2507,14 @@
                     }
                 });
 
-                // Camera adjusts during morph + L8 emphasis zoom
+                // Camera: pull back when a layer is pulled out, L8 emphasis
                 var l8CameraZoom = 0;
                 if (activeLayerIndex >= 0 && activeLayers[activeLayerIndex] && activeLayers[activeLayerIndex].zone === 'gateway') {
-                    l8CameraZoom = -0.5; // nudge closer
+                    l8CameraZoom = -0.5;
                 }
+                var pullOutCamOffset = (activeLayerIndex >= 0 && mp > 0.5) ? 1.5 : 0;
                 var targetCamY = 0.3 + mp * 0.5;
-                var targetCamZ = 7 + mp * 1 + l8CameraZoom;
+                var targetCamZ = 7 + mp * 1 + l8CameraZoom + pullOutCamOffset;
                 camera.position.y += (targetCamY - camera.position.y) * 0.03;
                 camera.position.z += (targetCamZ - camera.position.z) * 0.03;
 
