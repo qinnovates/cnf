@@ -465,12 +465,12 @@
         }
 
         .layer-trigger {
-            height: 28vh;
+            height: 45vh;
             position: relative;
         }
 
         .layer-trigger[data-layer="L8"] {
-            height: 40vh;
+            height: 60vh;
         }
 
         .framework-intro-trigger,
@@ -2184,19 +2184,15 @@
             layerPanels.forEach(function(panel) {
                 ScrollTrigger.create({
                     trigger: panel,
-                    start: 'top 60%',
-                    end: 'bottom 40%',
-                    onEnter: function() {
-                        var lid = panel.dataset.layer;
-                        activeLayerIndex = (lid && layerIdToShellIndex[lid] !== undefined) ? layerIdToShellIndex[lid] : -1;
-                        activeZone = panel.dataset.zone || 'all';
-                        updateHud(lid, activeZone);
-                    },
-                    onEnterBack: function() {
-                        var lid = panel.dataset.layer;
-                        activeLayerIndex = (lid && layerIdToShellIndex[lid] !== undefined) ? layerIdToShellIndex[lid] : -1;
-                        activeZone = panel.dataset.zone || 'all';
-                        updateHud(lid, activeZone);
+                    start: 'top 70%',
+                    end: 'bottom 30%',
+                    onToggle: function(self) {
+                        if (self.isActive) {
+                            var lid = panel.dataset.layer;
+                            activeLayerIndex = (lid && layerIdToShellIndex[lid] !== undefined) ? layerIdToShellIndex[lid] : -1;
+                            activeZone = panel.dataset.zone || 'all';
+                            updateHud(lid, activeZone);
+                        }
                     }
                 });
             });
@@ -2206,10 +2202,13 @@
             resetTriggers.forEach(function(panel) {
                 ScrollTrigger.create({
                     trigger: panel,
-                    start: 'top 60%',
-                    end: 'bottom 40%',
-                    onEnter: function() { activeLayerIndex = -1; activeZone = 'all'; updateHud(null); },
-                    onEnterBack: function() { activeLayerIndex = -1; activeZone = 'all'; updateHud(null); }
+                    start: 'top 70%',
+                    end: 'bottom 30%',
+                    onToggle: function(self) {
+                        if (self.isActive) {
+                            activeLayerIndex = -1; activeZone = 'all'; updateHud(null);
+                        }
+                    }
                 });
             });
 
