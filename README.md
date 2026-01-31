@@ -229,52 +229,22 @@ ONI builds directly on pioneering research from leading institutions in BCI secu
 
 🎯 **[Explore Interactive Gap Analysis →](https://qikevinl.github.io/ONI/visualizations/03-academic-alignment.html)**
 
-### TARA - Neural Security Platform
+### TARA - Neural Security Research Platform
 
 [![PyPI version](https://badge.fury.io/py/oni-tara.svg)](https://badge.fury.io/py/oni-tara)
 [![Tests](https://github.com/qikevinl/ONI/actions/workflows/tests.yml/badge.svg)](https://github.com/qikevinl/ONI/actions/workflows/tests.yml)
 [![Security](https://github.com/qikevinl/ONI/actions/workflows/security.yml/badge.svg)](https://github.com/qikevinl/ONI/actions/workflows/security.yml)
 
-**TARA** (Telemetry Analysis & Response Automation) is a neural security platform for BCI monitoring, simulation, and attack testing. Named after the Buddhist goddess of protection, TARA provides real-time security analysis aligned with the ONI 14-layer model.
+**TARA** (Telemetry Analysis & Response Automation) is a research and development platform for BCI security analysis — neural network simulation, attack pattern testing, and real-time monitoring aligned with the ONI 14-layer model.
 
-**Features:** Neural network simulation, attack pattern testing, Neural Signal Assurance Monitoring (NSAM), 3D brain topology visualization, and a Streamlit web dashboard.
+> **Status: Research tool — not production software.** TARA is intended for security researchers exploring BCI threat models, not for use in clinical or production BCI systems.
 
 ```bash
-# Installation
 pip install oni-tara[full]  # Full installation with UI and simulation
-
-# Launch the dashboard
-tara ui
+tara ui                     # Launch the research dashboard
 ```
-
-**Note:** TARA is a research and development tool for BCI security analysis. It requires `oni-framework` as a dependency and is intended for security researchers, not production BCI systems.
 
 **Full documentation:** [MAIN/tara-nsec-platform/README.md](MAIN/tara-nsec-platform/README.md)
-
-### Autodidact - Educational Ecosystem ✅
-
-> **Status:** Phase 1 Foundation **COMPLETE**
-
-The `autodidact/` directory contains tools for learning and teaching ONI concepts. **Ultimate goal:** Adaptive learning that adjusts to each individual's cognitive patterns, pace, and style.
-
-| Component | Purpose | Status |
-|-----------|---------|--------|
-| **[LearnViz](autodidact/learnviz/)** | Adaptive visualization engine — concept → code → video | v0.1 ✅ |
-| **[ONI Academy](autodidact/oni-academy/)** | Structured curriculum with learning modules | `pip install oni-academy` ✅ |
-| **[Neuroscience-BCI](autodidact/neuroscience-bci/)** | Research notes on the biological substrate | Active research |
-
-**AI-Powered Pipeline:** Autodidact leverages AI and automation for content creation — LLM-powered concept→visualization generation, automated module creation from research notes, and AI-assisted knowledge extraction.
-
-**How they align:**
-```
-Research (neuroscience-bci)  →  Curriculum (oni-academy)  →  Visualizations (learnviz)
-         ↑                              ↑                            ↑
-    Raw knowledge              Structured learning         Adaptive to YOUR style
-```
-
-**LearnViz vision:** Visualizations that adapt to how *you* learn — tracking your pace, style preferences, and knowledge gaps. All local-first, privacy-preserving.
-
-**Full documentation:** [autodidact/README.md](autodidact/README.md)
 
 ---
 
