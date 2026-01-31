@@ -130,6 +130,14 @@ The pattern is consistent: **transformative technology only scales when the indu
 
 ONI provides that same shared vocabulary for the brain. It doesn't prescribe implementation — it defines the layers, the boundaries, the metrics, and the threat surfaces. Any company can build to the ONI model, just as any manufacturer can build to TCP/IP.
 
+But ONI has an advantage that OSI never had: **hindsight.**
+
+The OSI model was invented in 1983 — before the first major computer virus (Brain, 1986), before the Morris worm (1988), before ransomware, before zero-day markets, before nation-state cyber operations. Security was never part of the original design. It was bolted on after the fact, layer by painful layer — SSL in 1995, IPsec in 1998, WPA2 in 2004, TLS 1.3 in 2018 — each one a response to an attack that the original model never anticipated. The internet was built open and trusting, and the security community has spent four decades trying to retrofit protections onto a foundation that was never designed for them.
+
+We don't have to repeat that mistake. The cybersecurity industry has accumulated decades of hard-won knowledge: zero-trust architecture, defense-in-depth, secure-by-design principles, threat modeling methodologies, incident response frameworks, and the painful economics of "bolt-on" vs. "built-in" security. ONI incorporates all of this from day one. The Coherence Metric, the Neural Firewall, the layer-aware threat model — these aren't afterthoughts. They are foundational. Every layer of the ONI Framework was designed with security as a first-class constraint, not a feature to be added later.
+
+**This is the unique opportunity of neurosecurity: we get to do it right the first time.** The BCI industry is early enough that the standard hasn't been set yet, and the security community is mature enough to know exactly what "right" looks like. ONI exists at the intersection of those two facts.
+
 **The ultimate goal of the ONI Framework is not to be a product — it is to be the standard that makes an entire industry of neural security products possible.** ONI is designed as a proposal — a seed specification that could be submitted to formal standards bodies like IEEE and ISO/IEC, or serve as the foundation for a dedicated neurotech standards organization. The path from open research to ratified standard is long, but every successful standard started as someone's proposal.
 
 ---
