@@ -2245,14 +2245,15 @@
                     parallaxGroup.rotation.y += (mouseX*0.3*parallaxStr - parallaxGroup.rotation.y)*0.04;
                 }
 
-                // Brain pulse
+                // Brain pulse — dissolve early so it's gone before layers separate
                 var pulse = 1 + Math.sin(t*1.2)*0.025;
-                var coreScale = 1 - effectiveMorph * 0.7; // Shrink during morph
+                var coreFade = Math.max(0, 1 - effectiveMorph * 2.5); // Gone by 40% morph
+                var coreScale = coreFade;
                 coreMesh.scale.set(pulse*coreScale, pulse*0.85*coreScale, pulse*coreScale);
                 nodeCloud.scale.set(pulse*coreScale, pulse*0.85*coreScale, pulse*coreScale);
                 if (synapseLines) synapseLines.scale.set(pulse*coreScale, pulse*0.85*coreScale, pulse*coreScale);
-                coreMesh.material.opacity = 1 - effectiveMorph;
-                glowMat.opacity = (0.12 + Math.sin(t*1.8)*0.05) * (1 - effectiveMorph);
+                coreMesh.material.opacity = coreFade;
+                glowMat.opacity = (0.12 + Math.sin(t*1.8)*0.05) * coreFade;
 
                 // MORPH: Spheres → Flat Discs → Vertical Stack + Per-Layer Grow/Snap
                 var mp = effectiveMorph;
