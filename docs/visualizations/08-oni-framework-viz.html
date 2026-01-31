@@ -785,7 +785,7 @@
             </div>
             <div class="header-divider"></div>
             <div class="header-stat">
-                <div class="stat-val" style="color: #f85149">25+</div>
+                <div class="stat-val" style="color: #f85149">46</div>
                 <div class="stat-label">THREAT SIGNATURES</div>
             </div>
             <div class="header-divider"></div>
@@ -900,8 +900,10 @@
             id: 7, name: 'Application', category: 'silicon', osi: 'Application',
             description: 'User-facing network services: HTTP, REST APIs, BCI applications',
             attacks: [
-                { id: 'T7.1', name: 'BCI API Exploitation', tactic: 'Initial Access', description: 'Exploit vulnerabilities in brain-computer interface application APIs' },
-                { id: 'T7.2', name: 'Neural Command Injection', tactic: 'Execution', description: 'Inject malicious commands through API calls to manipulate BCI behavior' },
+                { id: 'T7.1', name: 'BCI API Exploitation', tactic: 'Initial Access', description: 'Exploit vulnerabilities in brain-computer interface application APIs to gain initial access to the neural data pipeline' },
+                { id: 'T7.2', name: 'Neural Command Injection', tactic: 'Execution', description: 'Inject malicious commands through API calls to manipulate BCI behavior or trigger unauthorized stimulation' },
+                { id: 'T7.3', name: 'Brain Spyware', tactic: 'Collection', description: 'Malicious BCI application with unrestricted SDK access to raw brainwave signals, silently exfiltrating neural data (Bonaci et al., 2015: "App Stores for the Brain")' },
+                { id: 'T7.4', name: 'Firmware Privilege Escalation', tactic: 'Privilege Escalation', description: 'Escalate from app-level API access to firmware-level device control, gaining read-write access to the neural interface (Schroder et al., 2025)' },
             ]
         },
         {
@@ -918,49 +920,61 @@
             id: 9, name: 'Signal Processing', category: 'biology', osi: 'Filtering',
             description: 'Neural noise filtering, signal isolation, sensory gating mechanisms',
             attacks: [
-                { id: 'T9.1', name: 'Sensory Overload', tactic: 'Impact', description: 'Overwhelm neural signal processing capacity with excessive artificial stimulation' },
-                { id: 'T9.2', name: 'Neural Filter Bypass', tactic: 'Defense Evasion', description: 'Craft signals specifically designed to evade natural neural filtering mechanisms' },
+                { id: 'T9.1', name: 'Sensory Overload', tactic: 'Impact', description: 'Overwhelm neural signal processing capacity with excessive artificial stimulation — analogous to DDoS flooding (Bernal et al., 2023: "Neural Flooding")' },
+                { id: 'T9.2', name: 'Neural Filter Bypass', tactic: 'Defense Evasion', description: 'Craft signals that exploit habituation and sensory gating thresholds to pass through natural neural filters undetected' },
+                { id: 'T9.3', name: 'Neural Topology Scanning', tactic: 'Reconnaissance', description: 'Systematic probe stimulation to map signal processing pathways, electrode coverage, and exploitable bottlenecks (Bernal et al., 2023: "Neural Scanning")' },
+                { id: 'T9.4', name: 'Neural Jamming', tactic: 'Impact', description: 'Targeted inhibition preventing spike generation in specific signal processing regions, suppressing legitimate neural activity (Bernal et al., 2023: "Neural Jamming")' },
             ]
         },
         {
             id: 10, name: 'Neural Protocol', category: 'biology', osi: 'Encoding',
             description: 'Spike timing, neural encoding schemes, rate coding, temporal coding patterns',
             attacks: [
-                { id: 'T10.1', name: 'Spike Timing Attack', tactic: 'Execution', description: 'Alter precise spike timing patterns to corrupt or change neural message meaning' },
-                { id: 'T10.2', name: 'False Rate Pattern Injection', tactic: 'Impact', description: 'Inject fabricated firing rate patterns to create phantom neural signals' },
+                { id: 'T10.1', name: 'Spike Timing Attack', tactic: 'Execution', description: 'Alter precise spike timing patterns to corrupt or change neural message meaning — targets temporal coding' },
+                { id: 'T10.2', name: 'False Rate Pattern Injection', tactic: 'Impact', description: 'Inject fabricated firing rate patterns to create phantom neural signals indistinguishable from genuine activity' },
+                { id: 'T10.3', name: 'Neural Codec Interception', tactic: 'Collection', description: 'Intercept and decode neural encoding patterns to extract raw signal content before cognitive processing — extends Kohno (2009) eavesdropping to the protocol layer' },
+                { id: 'T10.4', name: 'Neural Spoofing', tactic: 'Defense Evasion', description: 'Inject false neural signals mimicking legitimate spike timing and rate coding to evade anomaly detection (Bernal et al., 2023: "Neural Spoofing")' },
             ]
         },
         {
             id: 11, name: 'Cognitive Transport', category: 'biology', osi: 'Delivery',
             description: 'Neurotransmitter pathways, synaptic transmission, neural circuit routing',
             attacks: [
-                { id: 'T11.1', name: 'Neural Pathway Hijack', tactic: 'Lateral Movement', description: 'Redirect cognitive signals through unintended neural pathways for interception' },
-                { id: 'T11.2', name: 'Synaptic Timing Disruption', tactic: 'Impact', description: 'Interfere with precise neurotransmitter release timing and reuptake mechanisms' },
+                { id: 'T11.1', name: 'Neural Pathway Hijack', tactic: 'Lateral Movement', description: 'Redirect cognitive signals through unintended neural pathways for interception or modification — analogous to route hijacking at L3' },
+                { id: 'T11.2', name: 'Synaptic Timing Disruption', tactic: 'Impact', description: 'Interfere with precise neurotransmitter release timing and reuptake mechanisms, degrading signal fidelity' },
+                { id: 'T11.3', name: 'Memory Trace Interception', tactic: 'Collection', description: 'Intercept signals during hippocampal memory consolidation to extract episodic memories being transferred between brain regions — extends Kohno (2009) eavesdropping' },
+                { id: 'T11.4', name: 'Neural Selective Forwarding', tactic: 'Execution', description: 'Selectively stimulate some neural pathways while inhibiting others to reroute cognitive signals through attacker-controlled channels (Bernal et al., 2023: "Neural Selective Forwarding")' },
             ]
         },
         {
             id: 12, name: 'Cognitive Session', category: 'biology', osi: 'Context',
             description: 'Working memory, attention binding, cognitive state management',
             attacks: [
-                { id: 'T12.1', name: 'Working Memory Poisoning', tactic: 'Impact', description: 'Inject false contextual information directly into active working memory' },
-                { id: 'T12.2', name: 'Attention Capture Attack', tactic: 'Collection', description: 'Force cognitive attention toward attacker-chosen stimuli, thoughts, or concepts' },
+                { id: 'T12.1', name: 'Working Memory Poisoning', tactic: 'Impact', description: 'Inject false contextual information directly into active working memory, corrupting ongoing cognitive processing' },
+                { id: 'T12.2', name: 'Attention Capture Attack', tactic: 'Collection', description: 'Force cognitive attention toward attacker-chosen stimuli to reveal cognitive associations and knowledge through involuntary neural responses' },
+                { id: 'T12.3', name: 'P300 Interrogation', tactic: 'Credential Access', description: 'Present subliminal stimuli to elicit involuntary P300 event-related potentials, extracting whether the user recognizes specific items — PINs, faces, locations — without their knowledge (Martinovic et al., 2012)' },
+                { id: 'T12.4', name: 'Cognitive State Spoofing', tactic: 'Defense Evasion', description: 'Forge cognitive state indicators (attention level, alertness, emotional valence) to bypass BCI safety checks that verify the user is conscious and consenting' },
             ]
         },
         {
             id: 13, name: 'Semantic Layer', category: 'biology', osi: 'Intent',
             description: 'Meaning extraction, conceptual processing, intention formation',
             attacks: [
-                { id: 'T13.1', name: 'Semantic Interference', tactic: 'Impact', description: 'Induce systematic misinterpretation of perceived information and abstract concepts' },
-                { id: 'T13.2', name: 'Intent Subversion', tactic: 'Execution', description: 'Subtly manipulate the formation of user intentions and decision-making processes' },
+                { id: 'T13.1', name: 'Semantic Interference', tactic: 'Impact', description: 'Induce systematic misinterpretation of perceived information and abstract concepts, corrupting meaning construction' },
+                { id: 'T13.2', name: 'Intent Subversion', tactic: 'Execution', description: 'Subtly manipulate the formation of user intentions and decision-making processes without triggering awareness' },
+                { id: 'T13.3', name: 'Thought Decoding', tactic: 'Collection', description: 'Decode semantic representations from neural activity to extract intended meanings, plans, and inner speech — extends Bonaci et al. (2015) brain spyware to the semantic layer' },
+                { id: 'T13.4', name: 'Neural Sinkhole', tactic: 'Lateral Movement', description: 'Attract semantic processing signals to a compromised neural region, then modify or drop them before forwarding — alters meaning in transit (Bernal et al., 2023: "Neural Sinkhole")' },
             ]
         },
         {
             id: 14, name: 'Identity Layer', category: 'biology', osi: 'Self',
             description: 'Self-model, sense of agency, consciousness boundary, identity integrity',
             attacks: [
-                { id: 'T14.1', name: 'Identity Fragmentation', tactic: 'Impact', description: 'Disrupt coherent sense of self, personal continuity, and identity boundaries' },
-                { id: 'T14.2', name: 'Agency Manipulation', tactic: 'Impact', description: 'Compromise user sense of authorship and voluntary control over their own actions' },
-                { id: 'T14.3', name: 'Self-Model Corruption', tactic: 'Persistence', description: 'Gradually alter internal self-representation to accept foreign signals as authentic' },
+                { id: 'T14.1', name: 'Identity Fragmentation', tactic: 'Impact', description: 'Disrupt coherent sense of self, personal continuity, and identity boundaries — threatens psychological continuity (Ienca & Andorno, 2017)' },
+                { id: 'T14.2', name: 'Agency Manipulation', tactic: 'Impact', description: 'Compromise user sense of authorship and voluntary control over their own actions — violates cognitive liberty (Yuste et al., 2017)' },
+                { id: 'T14.3', name: 'Self-Model Corruption', tactic: 'Persistence', description: 'Gradually alter internal self-representation to accept foreign signals as authentic — exploits brain plasticity for long-term persistence' },
+                { id: 'T14.4', name: 'Brainprint Theft', tactic: 'Credential Access', description: 'Extract the user\'s unique neural authentication signature to impersonate them to BCI systems or forge their neural identity (Armstrong et al., 2015; Gui et al., 2016)' },
+                { id: 'T14.5', name: 'Neural Sybil Attack', tactic: 'Defense Evasion', description: 'One stimulation source impersonates multiple neural signal origins, fragmenting identity verification and overwhelming authentication systems (Bernal et al., 2023: "Neural Sybil")' },
             ]
         },
     ];

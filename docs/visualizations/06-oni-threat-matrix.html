@@ -505,7 +505,7 @@
     <header class="header">
         <div class="header-left">
             <h1>ONI Threat Matrix</h1>
-            <p>Neural Threat Framework — 7 Tactics, 18 Techniques mapped to ONI Layers</p>
+            <p>Neural Threat Framework — 10 Tactics, 29 Techniques mapped to ONI Layers</p>
         </div>
         <div class="header-right">
             <div class="filter-group">
@@ -546,7 +546,7 @@
                 <div style="font-size: 0.9rem;">
                     <strong style="color: #ef4444;">What is this?</strong>
                     <span style="color: #94a3b8; margin-left: 0.5rem;">
-                        Neural threat framework inspired by MITRE methodology. 7 tactics across the attack lifecycle, 18 techniques mapped to ONI layers.
+                        Neural threat framework inspired by MITRE methodology. 10 tactics across the attack lifecycle, 29 techniques mapped to ONI layers. Grounded in BCI security research: Kohno (2009), Martinovic (2012), Bonaci (2015), Bernal (2023), Schroder (2025).
                         <strong style="color: #e2e8f0;">Click any technique</strong> to see details, defenses, and references.
                         <strong style="color: #e2e8f0;">Use filters</strong> above to narrow by severity, layer range, or Kohno category.
                     </span>
@@ -559,23 +559,23 @@
         <section class="matrix-panel">
             <div class="stats-bar">
                 <div class="stat-item">
-                    <div class="stat-value">7</div>
+                    <div class="stat-value">10</div>
                     <div class="stat-label">Tactics</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">18</div>
+                    <div class="stat-value">29</div>
                     <div class="stat-label">Techniques</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">8</div>
+                    <div class="stat-value">19</div>
                     <div class="stat-label">Critical</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">7</div>
+                    <div class="stat-value">8</div>
                     <div class="stat-label">High</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">3</div>
+                    <div class="stat-value">2</div>
                     <div class="stat-label">Medium</div>
                 </div>
             </div>
@@ -620,13 +620,16 @@
     <script>
         // ONI Threat Matrix Data
         const tactics = [
-            { id: "RECON", name: "Reconnaissance", layers: "L7-L8", description: "Gather information for attack planning" },
-            { id: "ACCESS", name: "Initial Access", layers: "L8-L9", description: "Gain entry to the BCI system" },
-            { id: "EXEC", name: "Execution", layers: "L9-L11", description: "Run malicious neural signals" },
-            { id: "PERSIST", name: "Persistence", layers: "L10-L11", description: "Maintain long-term access" },
-            { id: "EVADE", name: "Defense Evasion", layers: "L8-L9", description: "Avoid detection by NSAM" },
-            { id: "COLLECT", name: "Collection", layers: "L12-L14", description: "Extract neural data" },
-            { id: "IMPACT", name: "Impact", layers: "L11-L14", description: "Cause harm to the user" }
+            { id: "RECON", name: "Reconnaissance", layers: "L1, L7-L9", description: "Gather information for attack planning — signal profiling, neural topology scanning" },
+            { id: "ACCESS", name: "Initial Access", layers: "L1-L2, L5, L7-L9", description: "Gain entry to the BCI system" },
+            { id: "EXEC", name: "Execution", layers: "L9-L11, L13", description: "Run malicious neural signals or commands" },
+            { id: "PERSIST", name: "Persistence", layers: "L1, L8, L10-L11, L14", description: "Maintain long-term access — exploits brain plasticity" },
+            { id: "PRIVESC", name: "Privilege Escalation", layers: "L7-L8", description: "Escalate from app-level to firmware-level control (Schroder et al., 2025)" },
+            { id: "EVADE", name: "Defense Evasion", layers: "L3, L6, L8-L10, L12, L14", description: "Avoid detection — coherence spoofing, neural spoofing, cognitive state forgery" },
+            { id: "CRED", name: "Credential Access", layers: "L5, L12, L14", description: "Steal neural credentials — brainprint theft, P300 interrogation (Martinovic et al., 2012)" },
+            { id: "COLLECT", name: "Collection", layers: "L3, L7, L10-L14", description: "Extract neural data — brain spyware, thought decoding, memory interception" },
+            { id: "LATERAL", name: "Lateral Movement", layers: "L8, L11, L13", description: "Move between neural pathways or implants — neural sinkhole, pathway hijack" },
+            { id: "IMPACT", name: "Impact", layers: "L4, L9-L14", description: "Cause harm — flooding, jamming, identity erosion, agency manipulation" }
         ];
 
         const techniques = {
@@ -665,6 +668,18 @@
                     defenses: [
                         { name: "Network Segmentation", description: "Isolate BCI components" },
                         { name: "Topology Obfuscation", description: "Hide network structure" }
+                    ]
+                },
+                {
+                    id: "RECON-04",
+                    name: "Neural Topology Scanning",
+                    description: "Systematic probe stimulation to map neural signal processing pathways, electrode coverage, and exploitable bottlenecks (Bernal et al., 2023: 'Neural Scanning').",
+                    severity: "high",
+                    layers: [9],
+                    kohno: "eavesdropping",
+                    defenses: [
+                        { name: "Stimulation Monitoring", description: "Detect unauthorized probe patterns" },
+                        { name: "Response Masking", description: "Add noise to prevent topology mapping" }
                     ]
                 }
             ],
@@ -796,6 +811,96 @@
                     ]
                 }
             ],
+            PRIVESC: [
+                {
+                    id: "PRIVESC-01",
+                    name: "Firmware Privilege Escalation",
+                    description: "Escalate from app-level API access to firmware-level device control, gaining read-write access to the neural interface (Schroder et al., 2025).",
+                    severity: "critical",
+                    layers: [7, 8],
+                    kohno: "alteration",
+                    defenses: [
+                        { name: "Code Signing", description: "Verify firmware authenticity" },
+                        { name: "Privilege Separation", description: "Isolate app and firmware contexts" }
+                    ]
+                }
+            ],
+            CRED: [
+                {
+                    id: "CRED-01",
+                    name: "P300 Interrogation",
+                    description: "Present subliminal stimuli to elicit involuntary P300 event-related potentials, extracting whether the user recognizes specific items — PINs, faces, locations (Martinovic et al., 2012).",
+                    severity: "critical",
+                    layers: [12, 13],
+                    kohno: "eavesdropping",
+                    defenses: [
+                        { name: "BCI Anonymizer", description: "Filter P300 components before app access (Bonaci et al., 2015)" },
+                        { name: "Stimulus Auditing", description: "Monitor and restrict stimuli presented to user" }
+                    ]
+                },
+                {
+                    id: "CRED-02",
+                    name: "Brainprint Theft",
+                    description: "Extract the user's unique neural authentication signature to impersonate them to BCI systems or forge their neural identity (Armstrong et al., 2015).",
+                    severity: "critical",
+                    layers: [14],
+                    kohno: "eavesdropping",
+                    defenses: [
+                        { name: "Cancellable Biometrics", description: "Revocable neural templates that can be regenerated" },
+                        { name: "Multi-modal Auth", description: "Combine brainprint with other factors" }
+                    ]
+                },
+                {
+                    id: "CRED-03",
+                    name: "Session Token Hijacking",
+                    description: "Take over authenticated BCI sessions by capturing or replaying neural session tokens to gain unauthorized access.",
+                    severity: "high",
+                    layers: [5],
+                    kohno: "eavesdropping",
+                    defenses: [
+                        { name: "Token Rotation", description: "Frequently rotate session tokens" },
+                        { name: "Binding", description: "Bind tokens to neural signature" }
+                    ]
+                }
+            ],
+            LATERAL: [
+                {
+                    id: "LATERAL-01",
+                    name: "Neural Pathway Hijack",
+                    description: "Redirect cognitive signals through unintended neural pathways for interception or modification — cross-region lateral movement.",
+                    severity: "high",
+                    layers: [11],
+                    kohno: "alteration",
+                    defenses: [
+                        { name: "Pathway Monitoring", description: "Track expected vs actual signal routes" },
+                        { name: "Circuit Isolation", description: "Restrict cross-region signal flow" }
+                    ]
+                },
+                {
+                    id: "LATERAL-02",
+                    name: "Neural Sinkhole",
+                    description: "Attract semantic processing signals to a compromised neural region, then modify or drop them before forwarding (Bernal et al., 2023).",
+                    severity: "critical",
+                    layers: [13],
+                    kohno: "alteration",
+                    defenses: [
+                        { name: "Signal Integrity Checks", description: "Verify content at destination matches source" },
+                        { name: "Redundant Pathways", description: "Send via multiple routes for comparison" }
+                    ]
+                },
+                {
+                    id: "LATERAL-03",
+                    name: "Bidirectional Channel Exploit",
+                    description: "Exploit read/write neural interface capabilities to pivot from data collection to active stimulation — full bidirectional compromise.",
+                    severity: "critical",
+                    layers: [8],
+                    kohno: "alteration",
+                    defenses: [
+                        { name: "Unidirectional Enforcement", description: "Hardware-enforced read-only mode when stimulation not prescribed" },
+                        { name: "Command Authorization", description: "Require explicit authorization for write operations" }
+                    ]
+                }
+            ],
             COLLECT: [
                 {
                     id: "COLLECT-01",
@@ -831,6 +936,30 @@
                     defenses: [
                         { name: "Memory Encryption", description: "Encrypt memory-related signals" },
                         { name: "Query Detection", description: "Detect memory probing patterns" }
+                    ]
+                },
+                {
+                    id: "COLLECT-04",
+                    name: "Brain Spyware",
+                    description: "Malicious BCI application with unrestricted SDK access to raw brainwave signals, silently exfiltrating neural data (Bonaci et al., 2015: 'App Stores for the Brain').",
+                    severity: "critical",
+                    layers: [7],
+                    kohno: "eavesdropping",
+                    defenses: [
+                        { name: "BCI Anonymizer", description: "Filter raw signals before app access (Bonaci et al., 2015)" },
+                        { name: "SDK Sandboxing", description: "Restrict API access to decoded commands only" }
+                    ]
+                },
+                {
+                    id: "COLLECT-05",
+                    name: "Thought Decoding",
+                    description: "Decode semantic representations from neural activity to extract intended meanings, plans, and inner speech — the deepest form of neural privacy violation.",
+                    severity: "critical",
+                    layers: [13, 14],
+                    kohno: "eavesdropping",
+                    defenses: [
+                        { name: "Semantic Obfuscation", description: "Inject noise at semantic processing layer" },
+                        { name: "Consent Verification", description: "Require explicit consent for semantic-level data access" }
                     ]
                 }
             ],
