@@ -263,7 +263,7 @@
             z-index: 2;
             text-align: center;
             max-width: 900px;
-            padding: 0 2rem;
+            padding: 12vh 2rem 0;
         }
 
         .hero-mission {
@@ -386,8 +386,8 @@
             z-index: 1;
             background: linear-gradient(180deg,
                 rgba(5, 10, 20, 0) 0%,
-                rgba(5, 10, 20, 0.5) 15%,
-                rgba(5, 10, 20, 0.5) 85%,
+                rgba(5, 10, 20, 0.7) 15%,
+                rgba(5, 10, 20, 0.7) 85%,
                 rgba(5, 10, 20, 0) 100%);
         }
 
@@ -2426,7 +2426,6 @@
                         if (self.isActive) {
                             var lid = panel.dataset.layer;
                             if (lid === 'OSI') {
-                                // Group mode: converge L1-L7
                                 activeGroupMode = 'osi';
                                 activeLayerIndex = -1;
                             } else {
@@ -2435,6 +2434,12 @@
                             }
                             activeZone = panel.dataset.zone || 'all';
                             updateHud(lid, activeZone);
+                        } else {
+                            // Clear HUD when scrolling out of any trigger
+                            activeLayerIndex = -1;
+                            activeZone = 'all';
+                            activeGroupMode = null;
+                            updateHud(null);
                         }
                     }
                 });
