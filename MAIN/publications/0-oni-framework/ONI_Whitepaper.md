@@ -49,6 +49,8 @@ The ONI Framework — **Open Neurosecurity Interoperability** — fills this gap
 
 This whitepaper presents the ONI Framework: a 14-layer reference architecture that extends OSI into biological territory, providing the security industry with a structured, mathematically grounded, and regulation-ready model for protecting the bio-digital boundary.
 
+> **A note on terminology:** Foundational research in this space — Kohno (2009), Bonaci (2015), and others — established the term *"BCI security."* This whitepaper honors that terminology when citing their work. For its own framing, ONI adopts **neurosecurity** as the broader discipline name. "BCI security" is anchored to today's hardware — electrodes, implants, computers. But the threats modeled in ONI's upper layers (cognitive manipulation at L12, semantic interference at L13, identity fragmentation at L14) are not limited to computer interfaces. Future neural interfaces may be biological, chemical, optical, or technologies not yet conceived. *Neurosecurity* protects the neural system itself, regardless of what interfaces with it.
+
 ---
 
 ## 2. Why BCIs Need Their Own Security Standard
