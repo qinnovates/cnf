@@ -33,6 +33,26 @@ This isn't a new interest. It traces back to learning that a CEO at a former com
 
 **I know that even the more I learn, the more I need to be aware that there are far more unknowns than knowns to draw good conclusions from.** Does knowing about quantum biology help solve my security problems? Not yet. But it tells me *where the gaps are* — and a framework that honestly labels its gaps is more valuable than one that hides them.
 
+### The Indeterministic Path
+
+This project has led me to an indeterministic way of thinking — and, honestly, a way of life. I've always wanted to work at the intersection of AI and ethics. But the deeper I go into neuroscience, quantum mechanics, and the fundamental architecture of the brain, the more I realize: **the path itself is indeterministic.**
+
+I didn't plan to build a funnel model. I didn't plan to study quantum tunneling in enzymes. I didn't plan for the Josephson junction analogy to map perfectly to the brain. Each step emerged from the previous one in ways I couldn't have predicted — and each step revealed more unknowns than answers. The framework-v2 documents (01-08) are a record of that journey: starting from "the layer model is wrong" and arriving at "we need a Quantum Integer to label what we can't measure."
+
+**So is this destiny?**
+
+If the universe is deterministic (Q = 0 at every scale), then every prior event — the CEO's donation, my interests, the way my brain processes connections between seemingly unrelated fields — was an unbroken chain of cause and effect. I was always going to end up here. But "destiny" in a deterministic universe is just complex causation too tangled to trace. It's not meaningful. It's just physics running forward.
+
+If the universe is genuinely indeterministic (Q > 0), then no single path was predetermined. I could have ended up anywhere. The fact that I arrived at neuroethics is one outcome out of a probability distribution of possible trajectories. It's not destiny — it's one branch that collapsed into reality each time I made a choice.
+
+The paradox: **I'm using indeterministic thinking to arrive at a field that studies indeterminism.** I can't determine whether my path to studying indeterminism was itself determined. That's not a flaw in my reasoning — that's the [measurement wall](MAIN/framework-v2/07-QUANTUM-BIOLOGY.md) applied to my own life.
+
+The honest answer: **it doesn't matter.** Whether it's destiny or indeterminism, I'm here, doing the work, asking the questions. The container holds regardless of the answer. Just like Q.
+
+And that's exactly why neuroethics comes first. Because the questions about identity, consciousness, free will, and self — the questions that v1 tried to model in L13-L14 — are Outer Rim questions. Maximum complexity. Maximum unknowns. Uncollapsed. They can't be answered with math or science. They can only be approached with ethics, governance, and intellectual honesty about what we don't know.
+
+> *The more I know, the more I realize how much I don't know. And a framework built on that humility — one that labels its gaps instead of hiding them — is more trustworthy than one that claims to have all the answers.*
+
 ### The Priority Stack
 
 ```
