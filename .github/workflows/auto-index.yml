@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'MAIN/**'
+      - 'neurosec-research/**'
       - 'autodidact/**'
   workflow_dispatch:
     inputs:
@@ -42,15 +42,15 @@ jobs:
           echo "Generated on: $(date -u '+%Y-%m-%d %H:%M UTC')" >> structure.txt
           echo "" >> structure.txt
           echo '```' >> structure.txt
-          tree -L 3 --dirsfirst -I '__pycache__|*.pyc|.git|node_modules|dist|build|*.egg-info' MAIN/ >> structure.txt 2>/dev/null || find MAIN -type d -maxdepth 3 | head -50 >> structure.txt
+          tree -L 3 --dirsfirst -I '__pycache__|*.pyc|.git|node_modules|dist|build|*.egg-info' neurosec-research/ >> structure.txt 2>/dev/null || find MAIN -type d -maxdepth 3 | head -50 >> structure.txt
           echo '```' >> structure.txt
           echo "" >> structure.txt
 
           # List key files with first lines
           echo "## Key Files" >> structure.txt
-          for f in MAIN/*/README.md; do
+          for f in neurosec-research/*/README.md; do
             if [ -f "$f" ]; then
-              dir=$(dirname "$f" | sed 's|MAIN/||')
+              dir=$(dirname "$f" | sed 's|neurosec-research/||')
               firstline=$(head -1 "$f" | sed 's/^#* *//')
               echo "- **$dir**: $firstline" >> structure.txt
             fi
@@ -76,8 +76,8 @@ jobs:
 
           # Read current INDEX.md for context
           current_index = ""
-          if os.path.exists("MAIN/INDEX.md"):
-              with open("MAIN/INDEX.md", "r") as f:
+          if os.path.exists("neurosec-research/INDEX.md"):
+              with open("neurosec-research/INDEX.md", "r") as f:
                   current_index = f.read()[:2000]  # First 2000 chars for context
 
           prompt = f"""Based on this repository structure, generate a GLOSSARY.md file.

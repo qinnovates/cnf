@@ -5,8 +5,8 @@ on:
     branches: [main]
     paths:
       # Python packages
-      - 'MAIN/oni-framework/**/*.py'
-      - 'MAIN/tara-nsec-platform/**/*.py'
+      - 'neurosec-research/oni-framework/**/*.py'
+      - 'neurosec-research/tara-nsec-platform/**/*.py'
       - 'autodidact/oni-academy/**/*.py'
       # GitHub Pages (HTML/JS)
       - 'docs/**/*.html'
@@ -20,7 +20,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'MAIN/**/*.py'
+      - 'neurosec-research/**/*.py'
       - 'docs/**/*.html'
       - 'docs/**/*.js'
       - 'video/**/*.ts'
@@ -53,7 +53,7 @@ jobs:
 
       - name: Run Bandit on ONI Framework
         run: |
-          bandit -r MAIN/oni-framework/oni/ \
+          bandit -r neurosec-research/oni-framework/oni/ \
             -f json -o bandit-oni.json \
             --severity-level medium \
             --confidence-level medium \
@@ -61,7 +61,7 @@ jobs:
 
       - name: Run Bandit on TARA
         run: |
-          bandit -r MAIN/tara-nsec-platform/tara_mvp/ \
+          bandit -r neurosec-research/tara-nsec-platform/tara_mvp/ \
             -f json -o bandit-tara.json \
             --severity-level medium \
             --confidence-level medium \
@@ -70,7 +70,7 @@ jobs:
       - name: Display ONI Framework results
         run: |
           echo "=== ONI Framework Security Scan ==="
-          bandit -r MAIN/oni-framework/oni/ \
+          bandit -r neurosec-research/oni-framework/oni/ \
             --severity-level medium \
             --confidence-level medium \
             || true
@@ -78,7 +78,7 @@ jobs:
       - name: Display TARA results
         run: |
           echo "=== TARA Security Scan ==="
-          bandit -r MAIN/tara-nsec-platform/tara_mvp/ \
+          bandit -r neurosec-research/tara-nsec-platform/tara_mvp/ \
             --severity-level medium \
             --confidence-level medium \
             || true
@@ -109,8 +109,8 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          pip install -e MAIN/oni-framework
-          pip install -e MAIN/tara-nsec-platform
+          pip install -e neurosec-research/oni-framework
+          pip install -e neurosec-research/tara-nsec-platform
 
       - name: Run Safety check
         run: |

@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'MAIN/**'
+      - 'neurosec-research/**'
       - 'docs/**'
       - '.github/workflows/qa.yml'
   pull_request:
@@ -36,17 +36,17 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Validate JSON syntax
-          python -c "import json; json.load(open('MAIN/resources/brand/brand.json'))" || {
+          python -c "import json; json.load(open('neurosec-research/resources/brand/brand.json'))" || {
             echo "::error::brand.json has invalid JSON syntax"
             exit 1
           }
           echo "- JSON syntax: valid" >> $GITHUB_STEP_SUMMARY
 
           # Extract brand values
-          ONI_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['oni']['name'])")
-          TARA_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['tara']['name'])")
-          ONI_VERSION=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['oni']['version'])")
-          TARA_VERSION=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['tara']['version'])")
+          ONI_NAME=$(python -c "import json; print(json.load(open('neurosec-research/resources/brand/brand.json'))['oni']['name'])")
+          TARA_NAME=$(python -c "import json; print(json.load(open('neurosec-research/resources/brand/brand.json'))['tara']['name'])")
+          ONI_VERSION=$(python -c "import json; print(json.load(open('neurosec-research/resources/brand/brand.json'))['oni']['version'])")
+          TARA_VERSION=$(python -c "import json; print(json.load(open('neurosec-research/resources/brand/brand.json'))['tara']['version'])")
 
           echo "- ONI name: $ONI_NAME" >> $GITHUB_STEP_SUMMARY
           echo "- TARA name: $TARA_NAME" >> $GITHUB_STEP_SUMMARY
@@ -59,8 +59,8 @@ jobs:
           echo "### Python Package Brand Loading" >> $GITHUB_STEP_SUMMARY
 
           # Install packages
-          pip install -e MAIN/oni-framework -q
-          pip install -e MAIN/tara-nsec-platform -q
+          pip install -e neurosec-research/oni-framework -q
+          pip install -e neurosec-research/tara-nsec-platform -q
           pip install -e autodidact/oni-academy -q
 
           # Test oni-framework brand loading
@@ -96,11 +96,11 @@ jobs:
           echo "### Stale Brand Reference Check" >> $GITHUB_STEP_SUMMARY
 
           # Get current TARA name from brand.json
-          TARA_NAME=$(python -c "import json; print(json.load(open('MAIN/resources/brand/brand.json'))['tara']['name'])")
+          TARA_NAME=$(python -c "import json; print(json.load(open('neurosec-research/resources/brand/brand.json'))['tara']['name'])")
 
           # Check for old "TARA Platform" if current name is different
           if [ "$TARA_NAME" != "TARA Platform" ]; then
-            OLD_REFS=$(grep -rn "TARA Platform" --include="*.py" --include="*.md" --include="*.html" --include="*.tsx" --include="*.ts" MAIN/ docs/ video/ 2>/dev/null | grep -v "_brand.py" | grep -v "OBSIDIAN" || true)
+            OLD_REFS=$(grep -rn "TARA Platform" --include="*.py" --include="*.md" --include="*.html" --include="*.tsx" --include="*.ts" neurosec-research/ docs/ video/ 2>/dev/null | grep -v "_brand.py" | grep -v "OBSIDIAN" || true)
             if [ -n "$OLD_REFS" ]; then
               echo "::warning::Found stale 'TARA Platform' references:"
               echo "$OLD_REFS"
@@ -126,8 +126,8 @@ jobs:
 
       - name: Install all packages
         run: |
-          pip install -e MAIN/oni-framework
-          pip install -e MAIN/tara-nsec-platform
+          pip install -e neurosec-research/oni-framework
+          pip install -e neurosec-research/tara-nsec-platform
           pip install -e autodidact/oni-academy
 
       - name: Validate core imports
@@ -184,7 +184,7 @@ jobs:
 
           # Check for legacy Coherence formula notation (Cₛ with weighted sum)
           # Note: Pₛ (Privacy Score) legitimately uses weighted sums, so we only check for Cₛ
-          LEGACY=$(grep -rn "Cₛ.*=.*Σ" --include="*.md" --include="*.py" MAIN/ 2>/dev/null | grep -v "TRANSPARENCY.md" | grep -v "Legacy" || true)
+          LEGACY=$(grep -rn "Cₛ.*=.*Σ" --include="*.md" --include="*.py" neurosec-research/ 2>/dev/null | grep -v "TRANSPARENCY.md" | grep -v "Legacy" || true)
           if [ -n "$LEGACY" ]; then
             echo "::warning::Found potential legacy Coherence formula notation:"
             echo "$LEGACY"
@@ -194,7 +194,7 @@ jobs:
           fi
 
           # Verify exponential form exists in key files
-          if grep -q "e\^.*σ²" MAIN/oni-framework/README.md 2>/dev/null || grep -q "exp.*variance" MAIN/oni-framework/oni/coherence.py 2>/dev/null; then
+          if grep -q "e\^.*σ²" neurosec-research/oni-framework/README.md 2>/dev/null || grep -q "exp.*variance" neurosec-research/oni-framework/oni/coherence.py 2>/dev/null; then
             echo "- Exponential form verified in source" >> $GITHUB_STEP_SUMMARY
           fi
 
@@ -202,7 +202,7 @@ jobs:
           echo "### Scale-Frequency Invariant (f × S ≈ k)" >> $GITHUB_STEP_SUMMARY
 
           # Check scale-frequency formula exists
-          if grep -rq "f × S" --include="*.md" MAIN/ 2>/dev/null; then
+          if grep -rq "f × S" --include="*.md" neurosec-research/ 2>/dev/null; then
             echo "- Scale-frequency formula found" >> $GITHUB_STEP_SUMMARY
           else
             echo "- Scale-frequency formula not found in docs" >> $GITHUB_STEP_SUMMARY
@@ -223,7 +223,7 @@ jobs:
           BROKEN=0
 
           # Check markdown links in key files
-          for file in MAIN/INDEX.md MAIN/oni-framework/README.md MAIN/tara-nsec-platform/README.md; do
+          for file in neurosec-research/INDEX.md neurosec-research/oni-framework/README.md neurosec-research/tara-nsec-platform/README.md; do
             if [ -f "$file" ]; then
               # Extract relative links and check if files exist
               LINKS=$(grep -oE '\[.*?\]\(([^)]+)\)' "$file" | grep -oE '\(([^)]+)\)' | tr -d '()' | grep -v '^http' | grep -v '^#' || true)
