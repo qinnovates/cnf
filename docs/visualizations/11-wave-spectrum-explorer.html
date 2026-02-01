@@ -825,6 +825,103 @@ WAVES.forEach((wave) => {
 });
 
 // ============================================================
+// WAVEFORM RENDERING (sine waves showing relative wavelength)
+// ============================================================
+waveMeshes.forEach(mesh => {
+  const wave = waveData[mesh.userData.waveId];
+  const logWl = Math.log10(wave.wavelength_m);
+  // Map log wavelength to visual wave period: short wavelength = tight oscillations, long = wide
+  // Normalize to 0-1 range across the spectrum
+  const norm = (logWl - wlMin) / (wlMax - wlMin);
+  const visualPeriod = 0.15 + norm * 1.5; // visual period from 0.15 to 1.65 units
+  const numCycles = 3;
+  const totalLen = numCycles * visualPeriod;
+  const segments = 60;
+  const amplitude = 0.35 + norm * 0.25; // slight amplitude variation
+  const pts = [];
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments;
+    const lx = (t - 0.5) * totalLen;
+    const ly = Math.sin(t * numCycles * Math.PI * 2) * amplitude;
+    pts.push(new THREE.Vector3(
+      mesh.position.x + lx,
+      mesh.position.y - 0.8 + ly,
+      mesh.position.z
+    ));
+  }
+  const waveGeo = new THREE.BufferGeometry().setFromPoints(pts);
+  const color = CATEGORY_COLORS[wave.category] || 0xffffff;
+  const waveMat = new THREE.LineBasicMaterial({
+    color: color,
+    transparent: true,
+    opacity: 0.25
+  });
+  const waveLine = new THREE.Line(waveGeo, waveMat);
+  scene.add(waveLine);
+  mesh.userData.waveformLine = waveLine;
+});
+
+// ============================================================
+// REFERENCE OBJECTS (familiar size markers along the axis)
+// ============================================================
+const referenceObjects = [
+  { size_m: 1e-15, label: 'Proton', icon: '\u26AA' },
+  { size_m: 1e-10, label: 'Atom', icon: '\u269B' },
+  { size_m: 2e-9,  label: 'DNA width', icon: '\uD83E\uDDEC' },
+  { size_m: 1e-7,  label: 'Virus', icon: '\uD83E\uDDA0' },
+  { size_m: 1e-5,  label: 'Cell', icon: '\uD83E\uDDB4' },
+  { size_m: 5e-4,  label: 'Grain of sand', icon: '\u25CF' },
+  { size_m: 1.7,   label: 'Human', icon: '\uD83E\uDDCD' },
+  { size_m: 1.27e7, label: 'Earth', icon: '\uD83C\uDF0D' },
+  { size_m: 1.39e9, label: 'Sun', icon: '\u2600' },
+  { size_m: 9e12,  label: 'Solar System', icon: '\u2609' },
+  { size_m: 9.5e20, label: 'Milky Way', icon: '\uD83C\uDF0C' },
+  { size_m: 8.8e26, label: 'Observable Universe', icon: '\u2728' }
+];
+
+const refY = -28.5; // position between axis and wave spheres
+
+referenceObjects.forEach(ref => {
+  const logSize = Math.log10(ref.size_m);
+  if (logSize < wlMin - 1 || logSize > wlMax + 1) return;
+  const x = wlToX(logSize);
+
+  // Diamond marker
+  const dSize = 0.3;
+  const diamondGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(x, refY + dSize, 0),
+    new THREE.Vector3(x + dSize * 0.6, refY, 0),
+    new THREE.Vector3(x, refY - dSize, 0),
+    new THREE.Vector3(x - dSize * 0.6, refY, 0),
+    new THREE.Vector3(x, refY + dSize, 0)
+  ]);
+  scene.add(new THREE.Line(diamondGeo, new THREE.LineBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.5 })));
+
+  // Vertical dashed line connecting to axis
+  const dashGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(x, refY - dSize, 0),
+    new THREE.Vector3(x, -31.5, 0)
+  ]);
+  scene.add(new THREE.Line(dashGeo, new THREE.LineBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.15 })));
+
+  // Label
+  const refTex = createLabelTexture(ref.label, '#f59e0b');
+  const refMat = new THREE.SpriteMaterial({ map: refTex, transparent: true, opacity: 0.65, depthTest: false });
+  const refSpr = new THREE.Sprite(refMat);
+  refSpr.scale.set(6, 0.8, 1);
+  refSpr.position.set(x, refY + 1.2, 0);
+  scene.add(refSpr);
+});
+
+// Reference objects legend label
+const refLegendTex = createLabelTexture('\u25C6 Familiar size references', '#f59e0b');
+const refLegendMat = new THREE.SpriteMaterial({ map: refLegendTex, transparent: true, opacity: 0.5, depthTest: false });
+const refLegendSpr = new THREE.Sprite(refLegendMat);
+refLegendSpr.scale.set(10, 1.2, 1);
+refLegendSpr.position.set(-xScale/2 + 5, refY + 2.8, 0);
+scene.add(refLegendSpr);
+
+// ============================================================
 // WAVELENGTH AXIS / GRID
 // ============================================================
 // Axis line
@@ -1114,6 +1211,7 @@ function applyFilters() {
     mesh.visible = visible;
     if (mesh.userData.glow) mesh.userData.glow.visible = visible;
     if (mesh.userData.label) mesh.userData.label.visible = visible;
+    if (mesh.userData.waveformLine) mesh.userData.waveformLine.visible = visible;
     if (visible) visibleCount++;
   });
   waveCountEl.textContent = visibleCount + ' wave' + (visibleCount !== 1 ? 's' : '') + ' shown';
