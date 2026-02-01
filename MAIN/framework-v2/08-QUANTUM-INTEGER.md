@@ -1818,6 +1818,171 @@ OVERALL TREND:
   The funnel model maps where each solution lives.
 ```
 
+### ⚖️ Ethical Dilemmas Mapped to the Funnel
+
+> Each position in the funnel raises distinct ethical questions.
+> These aren't hypothetical — they follow directly from the
+> demonstrated attacks above and the capabilities documented
+> in 03-BCI-CAPABILITIES.md.
+
+```
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                      ║
+║  OUTER RIM — Abstract Intent (Quantum-like, Pre-conscious)           ║
+║  ─────────────────────────────────────────────────────────            ║
+║                                                                      ║
+║  The Outer Rim is where true, uncollapsed intentions reside.         ║
+║  If a BCI can decode the complex QI integers of pre-conscious        ║
+║  thought BEFORE you act on them:                                     ║
+║                                                                      ║
+║  🧠 MENTAL PRIVACY                                                   ║
+║     Can the government or corporations access pre-conscious          ║
+║     thought? If a BCI reads intent before you act on it,             ║
+║     is an unacted-upon intention a crime?                            ║
+║                                                                      ║
+║     This is not science fiction. ERP-based PIN inference              ║
+║     (Yale, demonstrated) already reads REACTIVE intent.              ║
+║     The distance from "reactive intent" to "proactive intent"        ║
+║     is a measurement resolution problem, not a physics barrier.      ║
+║                                                                      ║
+║  🗽 COGNITIVE LIBERTY                                                 ║
+║     Do individuals have the right to keep their Outer Rim            ║
+║     thoughts private — free from monitoring OR external              ║
+║     modification?                                                    ║
+║                                                                      ║
+║     Current law: no established legal framework for "thought         ║
+║     privacy" distinct from speech/expression. The funnel model       ║
+║     shows WHY this gap matters — the Rim exists BEFORE expression.   ║
+║                                                                      ║
+║     See: MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md               ║
+║     See: MAIN/governance/DATA_POLICY_FAQ.md                          ║
+║                                                                      ║
+╠════════════════════════════════════════════════════════════════════════╣
+║                                                                      ║
+║  THE NECK — BCI / Josephson Junction (Phase Boundary)                ║
+║  ─────────────────────────────────────────────────────                ║
+║                                                                      ║
+║  The BCI sits at the critical juncture where quantum potential       ║
+║  becomes classical action.                                           ║
+║                                                                      ║
+║  🤖 AUTONOMY AND FREE WILL                                           ║
+║     If an external algorithm (sitting on the BCI's "Observation      ║
+║     Deck") detects a "toxic" QI integer and "corrects" it            ║
+║     BEFORE you choose to act — e.g., stopping a dopamine surge,     ║
+║     suppressing an impulse, redirecting a motor command —            ║
+║     has your free will been compromised?                             ║
+║                                                                      ║
+║     This is the DBS (Deep Brain Stimulation) dilemma TODAY:          ║
+║     Parkinson's patients report personality changes after DBS.       ║
+║     "Am I still me?" is already a clinical question.                 ║
+║     The funnel makes it a STRUCTURAL question.                       ║
+║                                                                      ║
+║  📏 DEFINING "NORMAL"                                                 ║
+║     Who decides what a "healthy" QI integer or neural balance is?    ║
+║     If the BCI enforces "equilibrium," WHOSE equilibrium is it?     ║
+║                                                                      ║
+║     The ferritin-dopamine model has a measurable equilibrium.        ║
+║     But what about mood? Attention? Creativity?                      ║
+║     There is no universal "correct" QI integer for thought.          ║
+║     Enforcing one is not security — it's control.                    ║
+║                                                                      ║
+║     See: MAIN/governance/NEUROETHICS_ALIGNMENT.md                    ║
+║     See: MAIN/governance/POST_DEPLOYMENT_ETHICS.md                   ║
+║                                                                      ║
+╠════════════════════════════════════════════════════════════════════════╣
+║                                                                      ║
+║  MIRRORED SIDE — Physical Reflection (Classical Output)              ║
+║  ──────────────────────────────────────────────────────               ║
+║                                                                      ║
+║  This is where actions manifest in the physical world.               ║
+║                                                                      ║
+║  ⚖️ LIABILITY AND AGENCY                                              ║
+║     If a BCI system makes an error during the "tunneling event"      ║
+║     and causes harm on the mirrored side (e.g., robotic arm          ║
+║     malfunction, wrong stimulation pulse, failed ferritin gate       ║
+║     correction), who is legally responsible?                         ║
+║                                                                      ║
+║     • The user? (they didn't choose the error)                       ║
+║     • The manufacturer? (hardware worked as designed)                ║
+║     • The algorithm developer? (software made the decision)          ║
+║     • The physician? (they implanted the device)                     ║
+║     • The AI training data provider? (backdoor attack source)        ║
+║                                                                      ║
+║     Current legal frameworks have NO answer.                         ║
+║     The funnel shows WHY: the error could originate at ANY           ║
+║     position — Rim (misread intent), Neck (bad tunneling gate),      ║
+║     or Mirrored Side (output corruption). Liability depends on       ║
+║     WHERE in the funnel the failure occurred.                        ║
+║                                                                      ║
+║  🪪 DIGITAL IDENTITY                                                  ║
+║     As you connect your brain to the Mirrored Side, your digital     ║
+║     footprint becomes indistinguishable from your biological self.   ║
+║     This raises fundamental questions:                               ║
+║                                                                      ║
+║     • Who owns the data on the Mirrored Side?                        ║
+║       (it came from YOUR brain, through THEIR device)                ║
+║     • Is your BCI output "you" or "your device"?                     ║
+║     • If your neural data is stolen from the Mirrored Side,          ║
+║       is it identity theft or medical data breach — or both?         ║
+║     • Can your Mirrored Side output be subpoenaed?                   ║
+║                                                                      ║
+║     See: MAIN/governance/REGULATORY_COMPLIANCE.md                    ║
+║     See: MAIN/governance/DATA_POLICY_FAQ.md                          ║
+║                                                                      ║
+╚════════════════════════════════════════════════════════════════════════╝
+```
+
+### 🪞 The Meta-Ethical Question
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                                                                        │
+│  Kevin Qi arrived at these ethical dilemmas by prompting Google         │
+│  Gemini with the funnel model and asking it to reason about            │
+│  consequences.                                                         │
+│                                                                        │
+│  This raises its own question:                                         │
+│                                                                        │
+│  "If I drew these conclusions using Google Gemini,                     │
+│   then whose ethical questions are these — mine or theirs?"            │
+│                                                                        │
+│                                              — Kevin Qi                │
+│                                                                        │
+│  This is not a throwaway observation. It IS the ethics:                │
+│                                                                        │
+│  • If an AI helps you IDENTIFY an ethical problem,                     │
+│    who is responsible for SOLVING it?                                  │
+│                                                                        │
+│  • If the framework (human-created) + the reasoning (AI-generated)    │
+│    + the judgment (human-reviewed) produces a novel ethical insight,   │
+│    what is the intellectual provenance?                                │
+│                                                                        │
+│  • The ONI Framework's answer: DOCUMENT IT TRANSPARENTLY.              │
+│    The funnel model is Kevin Qi's. The ethical reasoning was           │
+│    generated by Gemini in response to Kevin Qi's prompts.             │
+│    The selection, verification, and integration is Kevin Qi's.        │
+│    The verification tables are Claude's.                              │
+│    ALL of this is documented.                                         │
+│                                                                        │
+│  This is the same transparency principle that governs the             │
+│  entire framework-v2:                                                  │
+│    → 07-QUANTUM-BIOLOGY.md has Gemini vs Claude vs Reality tables     │
+│    → MAIN/governance/TRANSPARENCY.md has the full audit trail          │
+│    → Every AI contribution is labeled, not hidden                      │
+│                                                                        │
+│  The meta-ethical question — "whose ethics are these?" —               │
+│  is itself an ethical question that the framework must answer.         │
+│  And the answer is: they belong to whoever takes                       │
+│  RESPONSIBILITY for them. That's Kevin Qi.                             │
+│                                                                        │
+│  The AI generated options. The human chose which ones matter.          │
+│  That choice IS the ethics.                                            │
+│                                                                        │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ### 🧭 Why Ethics and Governance Come First
 
 ```
