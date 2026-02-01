@@ -661,6 +661,54 @@
             line-height: 1;
         }
 
+        /* Spring art overlay */
+        #spring-art-overlay {
+            position: fixed;
+            pointer-events: none;
+            z-index: 15;
+            opacity: 0;
+            font-family: 'Inter', Arial, sans-serif;
+            color: rgba(255, 255, 255, 0.88);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.25), 0 0 50px rgba(255, 255, 255, 0.08);
+            white-space: nowrap;
+            text-align: center;
+            transform: translate(-50%, 0);
+            line-height: 1.5;
+        }
+        .spring-art-title {
+            font-weight: 200;
+            font-size: 1.5rem;
+            letter-spacing: 0.12em;
+        }
+        .spring-art-type {
+            font-weight: 400;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.35rem;
+        }
+        .spring-art-artist {
+            font-weight: 400;
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.15rem;
+        }
+
+        /* Spring egg */
+        #spring-egg {
+            position: fixed;
+            pointer-events: none;
+            z-index: 16;
+            font-size: 0;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+            transition: none;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 30px rgba(255, 200, 100, 0.3));
+        }
+
         /* Floating layer label HUD */
         .layer-hud {
             position: fixed;
@@ -1334,6 +1382,14 @@
             font-size: 0.8rem;
         }
 
+        #scene-tunnel {
+            position: relative;
+            z-index: 1;
+        }
+        .tunnel-scroll-space {
+            height: 300vh;
+        }
+
         /* ============================================
            RESPONSIVE
            ============================================ */
@@ -1421,7 +1477,54 @@
          SCENE 1: HERO
          ============================================= -->
     <section id="scene-hero" class="scene">
-        <div class="hero-content">
+        <div style="position: relative; z-index: 2; text-align: center; width: 100%; padding-top: 72vh;">
+            <p style="font-family: 'Inter', sans-serif; font-size: 1.1rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin: 0;">The OSI of Mind</p>
+        </div>
+        <div class="hero-scroll-indicator" id="scroll-indicator">
+            <span class="hero-scroll-text">Scroll to explore the framework</span>
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+    </section>
+
+    <!-- OSI extension blurb — fades in as layers reveal on scroll -->
+    <div id="osi-blurb" style="
+        position: fixed;
+        top: 50%;
+        right: 6vw;
+        transform: translateY(-50%);
+        z-index: 3;
+        text-align: left;
+        max-width: 520px;
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: none;
+    ">
+        <p style="
+            font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            color: rgba(255,255,255,0.95);
+            letter-spacing: -0.02em;
+            margin: 0;
+        ">Extending the classical OSI model into the bio-digital landscape.</p>
+        <p style="
+            font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 0;
+            margin: 1.2rem 0 0 0;
+        ">A unified standard built with <span style="color: #8b5cf6;">neurosecurity</span> and <span style="color: #06b6d4;">neuroethics</span> as its foundation.</p>
+    </div>
+
+    <!-- =============================================
+         SCENE 2: THE PROBLEM
+         ============================================= -->
+    <section id="scene-problem" class="scene">
+        <div class="hero-content" style="margin-bottom: 3rem;">
             <div class="hero-label" id="hero-label">NEUROSECURITY STANDARDS FOR BRAIN-COMPUTER INTERFACES</div>
             <h1 class="hero-title" id="hero-title"></h1>
             <p class="hero-subtitle" id="hero-subtitle">No standards. No ethics. No security. <strong>Until now.</strong></p>
@@ -1430,16 +1533,6 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>
-        <div class="hero-scroll-indicator" id="scroll-indicator">
-            <span class="hero-scroll-text">Scroll to explore the framework</span>
-            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-    </section>
-
-    <!-- =============================================
-         SCENE 2: THE PROBLEM
-         ============================================= -->
-    <section id="scene-problem" class="scene">
         <div class="scene-inner">
             <div class="problem-grid">
                 <div class="problem-text">
@@ -1510,6 +1603,16 @@
 
     <!-- ONI closing text: vector NI overlay -->
     <div id="oni-ni-overlay">NI</div>
+
+    <!-- Spring art mode: title + artist overlay -->
+    <div id="spring-art-overlay">
+        <div class="spring-art-title">&ldquo;Spatial Synesthesia&rdquo;</div>
+        <div class="spring-art-type">Digital Light Art</div>
+        <div class="spring-art-artist">Kevin L. Qi</div>
+    </div>
+
+    <!-- Spring egg: literal easter egg from L14 center -->
+    <div id="spring-egg">&#x1F95A;</div>
 
     <!-- Easter egg: heart + thank you message -->
     <div id="easter-egg-overlay" class="easter-egg-overlay">
@@ -1803,6 +1906,13 @@
     </section>
 
     <!-- =============================================
+         SCENE 8: TUNNEL / SLINKY INTO THE ABYSS
+         ============================================= -->
+    <section id="scene-tunnel">
+        <div class="tunnel-scroll-space"></div>
+    </section>
+
+    <!-- =============================================
          FOOTER
          ============================================= -->
     <footer>
@@ -1812,7 +1922,10 @@
             <a href="https://pypi.org/project/oni-framework/" target="_blank" rel="noopener">PyPI</a>
             <a href="https://medium.com/@qikevinl" target="_blank" rel="noopener">Medium</a>
         </div>
-        <p class="footer-copy">&copy; 2026 Kevin Qi. Apache 2.0.</p>
+        <p class="footer-copy">&copy; 2026 Kevin Qi &amp; Qinnovate LLC. All rights reserved.</p>
+        <p class="footer-copy" style="margin-top: 0.4rem; font-size: 0.7rem; color: var(--text-dim);">
+            Website design, animations, and visual assets are proprietary. The ONI Framework research is licensed under Apache 2.0.
+        </p>
     </footer>
 
     <!-- =============================================
@@ -1892,16 +2005,16 @@
         gsap.to('#hero-cta', { opacity: 1, duration: 0.8, delay: 2.2 });
         gsap.to('#scroll-indicator', { opacity: 1, duration: 0.8, delay: 2.8 });
 
-        // Fade out hero on scroll
-        gsap.to('.hero-content', {
+        // Fade in hero content as user scrolls to problem section
+        gsap.from('.hero-content', {
             scrollTrigger: {
-                trigger: '#scene-hero',
-                start: 'top top',
-                end: '80% top',
+                trigger: '#scene-problem',
+                start: 'top 80%',
+                end: 'top 30%',
                 scrub: 1
             },
             opacity: 0,
-            y: -60
+            y: 40
         });
 
         gsap.to('#scroll-indicator', {
@@ -1913,6 +2026,8 @@
             },
             opacity: 0
         });
+
+        // OSI blurb: driven by rawMorph in animation loop (see osiBlurbEl below)
 
         // =============================================
         // FADE-UP ANIMATIONS (GSAP ScrollTrigger)
@@ -2014,6 +2129,7 @@
         function initHero3D() {
             var isMobile = window.innerWidth <= 768;
             var isTablet = window.innerWidth <= 1024;
+            var osiBlurbEl = document.getElementById('osi-blurb');
 
             // Renderer
             var renderer = new THREE.WebGLRenderer({
@@ -2032,7 +2148,7 @@
             var scene = new THREE.Scene();
             scene.fog = new THREE.FogExp2(0x050a14, 0.035);
             var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
-            camera.position.set(0, 0.3, 7);
+            camera.position.set(0, 2.2, 7);
 
             // Groups
             var autoRotateGroup = new THREE.Group();
@@ -2051,7 +2167,7 @@
             var rimLight = new THREE.PointLight(0x06b6d4, 1.5, 20);
             rimLight.position.set(0, 1, -5);
             scene.add(rimLight);
-            var gatewayLight = new THREE.PointLight(0xf59e0b, 1.0, 12);
+            var gatewayLight = new THREE.PointLight(0x1a8cb3, 1.0, 12);
             gatewayLight.position.set(0, 0, 3);
             scene.add(gatewayLight);
 
@@ -2144,13 +2260,13 @@
                 { id:'L5',  r:2.22, c:[0.271,0.561,0.969], zone:'silicon',  fp:2.6 },
                 { id:'L6',  r:2.06, c:[0.310,0.612,0.976], zone:'silicon',  fp:2.5 },
                 { id:'L7',  r:1.90, c:[0.376,0.647,0.980], zone:'silicon',  fp:2.4 },
-                { id:'L8',  r:1.72, c:[0.961,0.620,0.043], zone:'gateway',  fp:2.0 },
+                { id:'L8',  r:1.72, c:[0.10,0.55,0.70], zone:'gateway',  fp:2.0 },
                 { id:'L9',  r:1.52, c:[0.063,0.725,0.506], zone:'biology',  fp:2.8 },
                 { id:'L10', r:1.38, c:[0.204,0.827,0.600], zone:'biology',  fp:2.6 },
                 { id:'L11', r:1.24, c:[0.431,0.906,0.718], zone:'biology',  fp:2.4 },
                 { id:'L12', r:1.10, c:[0.655,0.545,0.984], zone:'biology',  fp:2.3 },
                 { id:'L13', r:0.96, c:[0.753,0.518,0.988], zone:'biology',  fp:2.2 },
-                { id:'L14', r:0.82, c:[0.620,0.380,0.920], zone:'biology',  fp:2.0 },
+                { id:'L14', r:0.82, c:[0.90,0.30,0.30], zone:'biology',  fp:2.0 },
             ];
 
             var mobileIdx = [0,2,4,6,7,9,11,13];
@@ -2272,155 +2388,32 @@
             var niOpacity = 0; // lerped 0→1
             var niProjection = new THREE.Vector3(); // reusable for projection
 
-            // Wireframe overlays
-            var wireIndices = isMobile ? [0,3,5,7] : [0,3,6,7,10,13];
-            var wireGeo = new THREE.IcosahedronGeometry(1, 2);
-            wireIndices.forEach(function(idx) {
-                if (idx >= activeLayers.length) return;
-                var L = activeLayers[idx];
-                var wm = new THREE.MeshBasicMaterial({
-                    color: new THREE.Color(L.c[0], L.c[1], L.c[2]),
-                    wireframe: true, transparent: true,
-                    opacity: L.zone === 'gateway' ? 0.12 : 0.05,
-                    depthWrite: false,
-                });
-                var wMesh = new THREE.Mesh(wireGeo, wm);
-                wMesh.scale.setScalar(L.r * 1.002);
-                parallaxGroup.add(wMesh);
-            });
-
-            // Brain Core
-            var coreGeo = new THREE.SphereGeometry(0.55, isMobile ? 24 : 48, isMobile ? 18 : 36);
-            var cp = coreGeo.attributes.position;
-            for (var i = 0; i < cp.count; i++) {
-                var x = cp.getX(i), y = cp.getY(i), z = cp.getZ(i);
-                var n1 = Math.sin(x*6)*Math.cos(y*7)*Math.sin(z*5)*0.04;
-                var n2 = Math.sin(x*12+1)*Math.cos(y*11+2)*0.02;
-                var n3 = Math.cos(z*15+x*8)*0.012;
-                var len = Math.sqrt(x*x+y*y+z*z);
-                var s = (0.55+n1+n2+n3)/len;
-                cp.setXYZ(i, x*s, y*s*0.85, z*s);
-            }
-            coreGeo.computeVertexNormals();
-
-            var coreVert = [
-                'varying vec3 vNormal; varying vec3 vViewPos; varying vec3 vWP;',
-                'void main() {',
-                '  vNormal = normalize(normalMatrix * normal);',
-                '  vec4 mv = modelViewMatrix * vec4(position,1.0);',
-                '  vViewPos = -mv.xyz; vWP = position;',
-                '  gl_Position = projectionMatrix * mv;',
-                '}'
-            ].join('\n');
-
-            var coreFrag = [
-                'uniform float uTime;',
-                'varying vec3 vNormal; varying vec3 vViewPos; varying vec3 vWP;',
-                'void main() {',
-                '  vec3 vd = normalize(vViewPos);',
-                '  float fresnel = pow(1.0-abs(dot(vd,vNormal)),2.0);',
-                '  float sss = pow(max(0.0,dot(vd,-vNormal)),1.5)*0.4;',
-                '  float wave = sin(vWP.x*8.0+uTime*2.5)*sin(vWP.z*8.0+uTime*1.8);',
-                '  wave = wave*0.5+0.5;',
-                '  vec3 base = vec3(0.85,0.2,0.45);',
-                '  vec3 glow = vec3(0.5,0.15,0.65);',
-                '  vec3 col = mix(base,glow,fresnel);',
-                '  col += vec3(0.3,0.1,0.4)*sss;',
-                '  col += vec3(0.2,0.05,0.3)*wave*0.3;',
-                '  gl_FragColor = vec4(col, 0.7+fresnel*0.3);',
-                '}'
-            ].join('\n');
-
-            var coreU = { uTime:{value:0} };
-            var coreMat = new THREE.ShaderMaterial({
-                uniforms: coreU,
-                vertexShader: coreVert,
-                fragmentShader: coreFrag,
-                transparent: true, depthWrite: true,
-            });
-            var coreMesh = new THREE.Mesh(coreGeo, coreMat);
-            coreMesh.renderOrder = 5; // render above shells so dissipation is visible
-            parallaxGroup.add(coreMesh);
-
-            // Inner glow
-            var glowMat = new THREE.MeshBasicMaterial({
-                color: 0xec4899, transparent: true, opacity: 0.15,
-                depthWrite: false, blending: THREE.AdditiveBlending,
-            });
-            var glowMesh = new THREE.Mesh(new THREE.SphereGeometry(0.45,24,16), glowMat);
-            glowMesh.renderOrder = 5;
-            parallaxGroup.add(glowMesh);
-
-            // Neural Nodes
-            var nodeCount = isMobile ? 40 : 100;
-            var nPos = new Float32Array(nodeCount*3);
-            var nSizes = new Float32Array(nodeCount);
-            for (var i=0; i<nodeCount; i++) {
-                var theta = Math.random()*Math.PI*2;
-                var phi = Math.acos(2*Math.random()-1);
-                var r = 0.50+Math.random()*0.06;
-                nPos[i*3]   = r*Math.sin(phi)*Math.cos(theta);
-                nPos[i*3+1] = r*Math.sin(phi)*Math.sin(theta)*0.85;
-                nPos[i*3+2] = r*Math.cos(phi);
-                nSizes[i] = 0.02+Math.random()*0.03;
-            }
-            var nodeGeo = new THREE.BufferGeometry();
-            nodeGeo.setAttribute('position', new THREE.BufferAttribute(nPos,3));
-            nodeGeo.setAttribute('size', new THREE.BufferAttribute(nSizes,1));
-
-            var nodeVert = [
-                'attribute float size; uniform float uTime; varying float vAlpha;',
-                'void main() {',
-                '  vec4 mv = modelViewMatrix * vec4(position,1.0);',
-                '  float flicker = 0.5+0.5*sin(uTime*3.0+position.x*20.0+position.z*15.0);',
-                '  vAlpha = flicker;',
-                '  gl_PointSize = size * 300.0 / -mv.z * flicker;',
-                '  gl_Position = projectionMatrix * mv;',
-                '}'
-            ].join('\n');
-
-            var nodeFrag = [
-                'varying float vAlpha;',
-                'void main() {',
-                '  float d = length(gl_PointCoord-vec2(0.5));',
-                '  if(d>0.5) discard;',
-                '  float glow = exp(-d*6.0);',
-                '  vec3 col = mix(vec3(1.0,0.6,0.8),vec3(0.8,0.9,1.0),d);',
-                '  gl_FragColor = vec4(col, glow*vAlpha*0.9);',
-                '}'
-            ].join('\n');
-
-            var nodeU = { uTime:{value:0} };
-            var nodeMat = new THREE.ShaderMaterial({
-                uniforms: nodeU, vertexShader: nodeVert, fragmentShader: nodeFrag,
-                transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-            });
-            var nodeCloud = new THREE.Points(nodeGeo, nodeMat);
-            parallaxGroup.add(nodeCloud);
-
-            // Synapse Lines
-            var linePos = [];
-            var lc = 0, maxD = 0.35;
-            for (var i=0; i<nodeCount && lc<60; i++) {
-                for (var j=i+1; j<nodeCount && lc<60; j++) {
-                    var dx=nPos[i*3]-nPos[j*3], dy=nPos[i*3+1]-nPos[j*3+1], dz=nPos[i*3+2]-nPos[j*3+2];
-                    if (Math.sqrt(dx*dx+dy*dy+dz*dz) < maxD) {
-                        linePos.push(nPos[i*3],nPos[i*3+1],nPos[i*3+2]);
-                        linePos.push(nPos[j*3],nPos[j*3+1],nPos[j*3+2]);
-                        lc++;
-                    }
+            // Spring art overlay
+            var springArtOverlay = document.getElementById('spring-art-overlay');
+            var springEggEl = document.getElementById('spring-egg');
+            springEggEl.addEventListener('click', function() {
+                if (springEggActive) {
+                    window.location.href = 'mai' + 'lto:' + _demail();
                 }
-            }
+            });
+
+            // Wireframe overlays removed
+            var wireMeshes = [];
+
+            // Brain removed — stub variables to prevent reference errors
+            var noop = function(){};
+            var stubPos = { x:0, y:0, z:0, copy:noop, set:noop };
+            var stubScale = { x:1, y:1, z:1, set:noop, setScalar:noop };
+            var stubRot = { x:0, y:0, z:0, copy:noop, set:noop };
+            var coreMesh = { visible:false, position:stubPos, scale:stubScale, rotation:stubRot, material:{ opacity:0 } };
+            var glowMesh = { visible:false, position:{ x:0,y:0,z:0 }, scale:{ x:1,y:1,z:1, set:noop, setScalar:noop } };
+            var glowMat = { color:{ setRGB:noop }, opacity:0 };
+            var nodeCloud = { visible:false, position:{ x:0,y:0,z:0 }, scale:{ set:noop } };
             var synapseLines = null;
-            if (linePos.length > 0) {
-                var lineGeo = new THREE.BufferGeometry();
-                lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos,3));
-                synapseLines = new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({
-                    color: 0xec4899, transparent: true, opacity: 0.15,
-                    depthWrite: false, blending: THREE.AdditiveBlending,
-                }));
-                parallaxGroup.add(synapseLines);
-            }
+            var ghostL8Mesh = { visible:false, position:{ copy:noop }, scale:{ set:noop }, rotation:{ copy:noop } };
+            var ghostL8Uniforms = { uColor:{ value:{ x:0,y:0,z:0, copy:noop, set:noop } }, uOpacity:{ value:0 }, uTime:{ value:0 }, uGlowIntensity:{ value:0 } };
+            var coreU = { uTime:{ value:0 } };
+            var nodeU = { uTime:{ value:0 } };
 
             // Ambient Dust
             var dustCount = isMobile ? 80 : 200;
@@ -2438,13 +2431,45 @@
             }));
             scene.add(dustCloud);
 
-            // Mouse parallax
+            // Mouse parallax + gyroscope for mobile/tablet
             var mouseX = 0, mouseY = 0;
-            if (!isMobile) {
+            if (!isMobile && !isTablet) {
                 document.addEventListener('mousemove', function(e) {
                     mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
                     mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
                 });
+            }
+
+            // Gyroscope: map device tilt to mouseX/mouseY on phones & tablets
+            var gyroAvailable = false;
+            var gyroBeta = 0, gyroGamma = 0; // beta = front/back tilt, gamma = left/right
+            function handleOrientation(e) {
+                if (e.beta === null || e.gamma === null) return;
+                gyroAvailable = true;
+                // beta: -180→180 (front/back). Neutral ~45° when held in hand. Map 0→90 to -1→1
+                gyroBeta = Math.max(-1, Math.min(1, (e.beta - 45) / 45));
+                // gamma: -90→90 (left/right). Map -45→45 to -1→1
+                gyroGamma = Math.max(-1, Math.min(1, e.gamma / 45));
+            }
+            if (isMobile || isTablet) {
+                // iOS 13+ requires permission request
+                if (typeof DeviceOrientationEvent !== 'undefined' &&
+                    typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    // Request on first user interaction
+                    var gyroRequested = false;
+                    document.addEventListener('touchstart', function() {
+                        if (gyroRequested) return;
+                        gyroRequested = true;
+                        DeviceOrientationEvent.requestPermission().then(function(state) {
+                            if (state === 'granted') {
+                                window.addEventListener('deviceorientation', handleOrientation);
+                            }
+                        }).catch(function() {});
+                    }, { once: false });
+                } else {
+                    // Android and non-iOS: just listen
+                    window.addEventListener('deviceorientation', handleOrientation);
+                }
             }
 
             // Visibility observer
@@ -2608,10 +2633,24 @@
             // Like a tension spring — L14 moves most, L9 barely, L8 anchored
             var springCompress = 0; // 0 = normal, 1 = fully compressed
             var springTarget = 0;
+            var rippleWavePos = 0; // cumulative wave position — advances on each scroll impulse
+            var rippleIntensity = 0; // current ripple brightness — spikes on scroll, decays per frame
+            // Spring egg: appears from L14 center at extreme compression
+            var springEggActive = false;
+            // Obfuscated email — assembled at runtime, never in plaintext
+            var _eparts = [107,101,118,105,110,113,105,99,111,100,101,64,103,109,97,105,108,46,99,111,109];
+            function _demail() { return _eparts.map(function(c){return String.fromCharCode(c)}).join(''); }
             window.addEventListener('wheel', function(e) {
                 if (window.scrollY < 10 && e.deltaY < 0 && introProgress.value > 0.9) {
-                    // Scrolling up at top of page — compress spring
-                    springTarget = Math.min(1, springTarget + Math.abs(e.deltaY) * 0.008);
+                    // Progressive resistance: hard to start, eases as you push further
+                    var t01 = springTarget / 2.0;
+                    var scrollRate = 0.002 + t01 * t01 * 0.006;
+                    springTarget = Math.min(2.0, springTarget + Math.abs(e.deltaY) * scrollRate);
+                    // Feed ripple wave on every scroll event during spring
+                    if (springTarget > 0.3) {
+                        rippleWavePos += Math.abs(e.deltaY) * 0.008;
+                        rippleIntensity = Math.min(1, rippleIntensity + Math.abs(e.deltaY) * 0.015);
+                    }
                 } else if (e.deltaY > 0) {
                     // Scrolling down — release spring
                     springTarget = Math.max(0, springTarget - Math.abs(e.deltaY) * 0.006);
@@ -2626,24 +2665,24 @@
                 var dy = e.touches[0].clientY - touchStartY;
                 touchStartY = e.touches[0].clientY;
                 if (window.scrollY < 10 && dy > 0 && introProgress.value > 0.9) {
-                    springTarget = Math.min(1, springTarget + dy * 0.008);
+                    var t01t = springTarget / 2.0;
+                    var touchRate = 0.002 + t01t * t01t * 0.006;
+                    springTarget = Math.min(2.0, springTarget + dy * touchRate);
+                    if (springTarget > 0.3) {
+                        rippleWavePos += dy * 0.008;
+                        rippleIntensity = Math.min(1, rippleIntensity + dy * 0.015);
+                    }
                 } else if (dy < 0) {
                     springTarget = Math.max(0, springTarget + dy * 0.006);
                 }
             }, { passive: true });
 
-            // Intro expand: reverse-collapse animation
-            // 0.02 = flat circle (all layers merged at top, facing camera)
-            // 1 = fully expanded stack
-            // Start at 0.02 (not 0) so effectiveMorph = morphCap from first frame
-            var introProgress = { value: 0.02 };
+            // Track peak spring compression for progressive layer reveal (L7→L1)
+            // Once revealed, layers stay visible even when spring releases
+            var springRevealLevel = 0;
 
-            gsap.to(introProgress, {
-                value: 1,
-                duration: 2.8,
-                delay: 0.6,
-                ease: 'power2.out'
-            });
+            // Intro: stack is fully expanded from first frame (no peel animation)
+            var introProgress = { value: 1 };
 
             // =============================================
             // SPHERE → STACK MORPH (GSAP ScrollTrigger)
@@ -2663,8 +2702,11 @@
                 ease: 'none'
             });
 
+            // centerTilt disabled (end scene removed)
+            var centerTilt = { value: 0 };
+
             // Foundations transition: layers face camera, then canvas fades
-            var closingShrink = { value: 0 }; // 0 = stack discs, 1 = 2D circles + shrunk
+            var closingShrink = { value: 0 }; // 0 = stack discs, 1 = compressed + shrunk
             gsap.to(closingShrink, {
                 value: 1,
                 scrollTrigger: {
@@ -2692,6 +2734,31 @@
                 end: 'bottom top',
                 onEnter: function() { threeContainer.style.opacity = '1'; },
                 onEnterBack: function() { threeContainer.style.opacity = '1'; }
+            });
+
+            // =============================================
+            // TUNNEL / SLINKY SCROLL TRIGGER
+            // =============================================
+            var tunnelProgress = { value: 0 };
+            gsap.to(tunnelProgress, {
+                value: 1,
+                scrollTrigger: {
+                    trigger: '#scene-tunnel',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    scrub: 1
+                },
+                ease: 'none'
+            });
+            // Fade canvas back in for tunnel
+            gsap.to(threeContainer, {
+                scrollTrigger: {
+                    trigger: '#scene-tunnel',
+                    start: 'top 90%',
+                    end: 'top 50%',
+                    scrub: 1
+                },
+                opacity: 1
             });
 
             // =============================================
@@ -2862,6 +2929,19 @@
                 var morphCap = 0.874;
                 var clampedMorph = Math.min(rawMorph, morphCap);
 
+                // OSI blurb: visible when L7 starts appearing (0.05), fades out when L1 appears (0.65)
+                if (osiBlurbEl) {
+                    var blurbIn = Math.max(0, Math.min(1, (rawMorph - 0.03) / 0.08)); // fade in 0.03→0.11
+                    var blurbOut = Math.max(0, Math.min(1, (rawMorph - 0.55) / 0.10)); // fade out 0.55→0.65
+                    var blurbOpacity = blurbIn * (1 - blurbOut);
+                    osiBlurbEl.style.opacity = blurbOpacity;
+                    osiBlurbEl.style.transform = 'translateY(' + ((1 - blurbIn) * 30 - blurbOut * 30) + 'px)';
+                }
+
+                // Scroll-driven cascade compression: after L1 appears (rawMorph > 0.65),
+                // L1→L7 compress upward into L8 like tension spring
+                var cascadeCompress = Math.max(0, Math.min(1, (rawMorph - 0.65) / 0.22)); // 0→1 over 0.65→0.87
+
                 // Effective morph: force full stack (morphCap) whenever intro is active or done
                 // introVal goes 0→1 and stays at 1. Scroll morph also goes 0→morphCap.
                 // Use max so whichever is higher wins — intro keeps stack visible even before scroll.
@@ -2888,12 +2968,23 @@
                     autoRotateGroup.rotation.x *= (1 - resetLerp);
                 }
 
-                // Mouse parallax (near-zero when layer pulled out)
-                if (!isMobile) {
+                // Mouse / gyroscope parallax (near-zero when layer pulled out)
+                // Desktop: mouse position drives tilt
+                // Mobile/tablet: device gyroscope drives tilt
+                var pxInput = mouseX, pyInput = mouseY;
+                if ((isMobile || isTablet) && gyroAvailable) {
+                    pxInput = gyroGamma; // left/right tilt
+                    pyInput = gyroBeta;  // front/back tilt
+                }
+                {
                     var parallaxStr = (1 - effectiveMorph * 0.7) * pullDampen;
-                    parallaxGroup.rotation.x += (mouseY*0.2*parallaxStr - parallaxGroup.rotation.x)*0.04;
-                    parallaxGroup.rotation.y += (mouseX*0.3*parallaxStr - parallaxGroup.rotation.y)*0.04;
-                    // Also reset parallax rotation when pulled out
+                    // Tunnel: reduce parallax to subtle
+                    if (tunnelProgress.value > 0.01) {
+                        parallaxStr *= (1 - tunnelProgress.value * 0.85);
+                    }
+                    parallaxGroup.rotation.x += (pyInput*1.8*parallaxStr - parallaxGroup.rotation.x)*0.06;
+                    parallaxGroup.rotation.y += (pxInput*0.08*parallaxStr - parallaxGroup.rotation.y)*0.04;
+                    // Reset parallax rotation when pulled out
                     if (maxFace > 0.3) {
                         parallaxGroup.rotation.x *= (1 - maxFace * 0.1);
                         parallaxGroup.rotation.y *= (1 - maxFace * 0.1);
@@ -2929,7 +3020,14 @@
                 var bangProgress = introVal;
                 var coreFade = Math.max(0, Math.min(1, (introVal - 0.7) / 0.3)); // fades in last 30% of intro
 
-                if (easterEggPhase > 0.01) {
+                if (springCompress < 0.01 && easterEggPhase < 0.01) {
+                    // No spring tension — hide brain entirely
+                    coreMesh.visible = false;
+                    glowMesh.visible = false;
+                    nodeCloud.visible = false;
+                    if (synapseLines) synapseLines.visible = false;
+                    ghostL8Mesh.visible = false;
+                } else if (easterEggPhase > 0.01) {
                     // Cone bloom: brain glows ONI Teal, pulses with the bloom
                     var bloomPulse = 1 + Math.sin(t * 3.0) * 0.05 * easterEggPhase;
                     coreMesh.scale.setScalar(pulse * Math.max(coreFade, 0.3) * bloomPulse);
@@ -2944,31 +3042,77 @@
                         0.600 + (0.553 - 0.600) * tealBlend
                     );
                     glowMat.opacity = (0.2 + easterEggPhase * 0.25) * darkenMult;
-                    // Nodes stay visible but shift teal
                     var nodeFade = Math.max(0, Math.min(1, (introVal - 0.6) / 0.4));
                     var nodeScale = pulse * Math.max(nodeFade, 0.5);
+                    nodeCloud.visible = true;
                     nodeCloud.scale.set(nodeScale, nodeScale*0.85, nodeScale);
                     if (synapseLines) {
+                        synapseLines.visible = true;
                         synapseLines.scale.set(nodeScale, nodeScale*0.85, nodeScale);
                         synapseLines.material.opacity = (0.15 + easterEggPhase * 0.1) * darkenMult;
                     }
                 } else {
-                    coreMesh.scale.setScalar(pulse * Math.max(coreFade, 0.01));
-                    coreMesh.visible = coreFade > 0.01;
-                    coreMesh.material.opacity = coreFade * 0.9 * darkenMult;
+                    // Spring compression active: brain appears then morphs into L8 clone
+                    var springFadeIn = Math.min(1, springCompress * 5); // quick fade in over first 20% compression
+                    var morphPhase = Math.min(1, springCompress * 2.5);
+                    var brainAlive = 1 - morphPhase;
+                    var ghostIn = morphPhase;
+                    var ghostOut = Math.max(0, Math.min(1, (springCompress - 0.4) / 0.3));
+                    var ghostOpacity = ghostIn * (1 - ghostOut);
 
-                    // Nodes and synapses fade in with brain
-                    var nodeFade = Math.max(0, Math.min(1, (introVal - 0.6) / 0.4));
-                    var nodeScale = pulse * nodeFade;
-                    nodeCloud.scale.set(nodeScale, nodeScale*0.85, nodeScale);
-                    if (synapseLines) {
-                        synapseLines.scale.set(nodeScale, nodeScale*0.85, nodeScale);
-                        synapseLines.material.opacity = 0.15 * nodeFade * darkenMult;
+                    // Brain: fade in, then flatten and fade
+                    var brainBaseScale = pulse * springFadeIn;
+                    var brainScaleXZ = brainBaseScale * (1 + morphPhase * 0.6);
+                    var brainScaleY = brainBaseScale * (1 - morphPhase * 0.92);
+                    coreMesh.scale.set(brainScaleXZ, brainScaleY, brainScaleXZ);
+                    coreMesh.visible = brainAlive > 0.02 && springFadeIn > 0.01;
+                    coreMesh.material.opacity = 0.9 * springFadeIn * brainAlive * darkenMult;
+
+                    // Ghost L8 clone: appears at brain position matching L8's look
+                    ghostL8Mesh.visible = ghostOpacity > 0.01;
+                    if (ghostL8Mesh.visible) {
+                        // Start as L8's color, turn white as it fully flattens
+                        var toWhite = morphPhase * morphPhase; // accelerate toward white
+                        if (gwIdx >= 0) {
+                            var l8Col = shellUniforms[gwIdx].uColor.value;
+                            ghostL8Uniforms.uColor.value.set(
+                                l8Col.x + (1.0 - l8Col.x) * toWhite,
+                                l8Col.y + (1.0 - l8Col.y) * toWhite,
+                                l8Col.z + (1.0 - l8Col.z) * toWhite
+                            );
+                        }
+                        ghostL8Uniforms.uOpacity.value = 0.7 * ghostOpacity;
+                        ghostL8Uniforms.uTime.value = t;
+                        ghostL8Uniforms.uGlowIntensity.value = 2.5;
+                        // Scale: start at brain size, grow to match L8 radius
+                        var l8R = gwIdx >= 0 ? originalRadii[gwIdx] : 1.72;
+                        var ghostScaleXZ = brainBaseScale + (l8R - brainBaseScale) * morphPhase;
+                        var ghostScaleY = ghostScaleXZ * (1 - mp * 0.92); // flatten like L8 disc
+                        ghostL8Mesh.scale.set(ghostScaleXZ, ghostScaleY, ghostScaleXZ);
+                        ghostL8Mesh.position.copy(coreMesh.position);
+                        ghostL8Mesh.rotation.copy(shellMeshes[gwIdx >= 0 ? gwIdx : 0].rotation);
                     }
-                    glowMesh.visible = coreFade > 0.02;
-                    glowMesh.scale.setScalar(pulse * 0.8 * Math.max(coreFade, 0.01));
+
+                    // Nodes and synapses: appear with spring, fade with brain
+                    var nodeAlive = springFadeIn * brainAlive;
+                    var nodeScale = pulse * nodeAlive;
+                    var nodeScaleY = nodeScale * (1 - morphPhase * 0.9);
+                    nodeCloud.visible = nodeAlive > 0.01;
+                    nodeCloud.scale.set(nodeScale, nodeScaleY * 0.85, nodeScale);
+                    if (synapseLines) {
+                        synapseLines.visible = nodeAlive > 0.01;
+                        synapseLines.scale.set(nodeScale, nodeScaleY * 0.85, nodeScale);
+                        synapseLines.material.opacity = 0.15 * nodeAlive * darkenMult;
+                    }
+                    glowMesh.visible = springFadeIn > 0.02 && brainAlive > 0.02;
+                    var glowBaseScale = pulse * 0.8 * springFadeIn;
+                    glowMesh.scale.set(
+                        glowBaseScale * (1 + morphPhase * 0.5),
+                        glowBaseScale * (1 - morphPhase * 0.9),
+                        glowBaseScale * (1 + morphPhase * 0.5)
+                    );
                     glowMat.color.setRGB(0.925, 0.282, 0.600);
-                    glowMat.opacity = (0.12 + Math.sin(t*1.8)*0.05) * coreFade * darkenMult;
+                    glowMat.opacity = (0.12 + Math.sin(t*1.8)*0.05) * springFadeIn * brainAlive * darkenMult;
                 }
 
                 // Stack offset: shift left when in stack mode (interactive), back to center otherwise
@@ -2981,6 +3125,10 @@
                     var wantStackLeft = (rawMorph > 0.15 && canvasInteractive);
                     stackXTarget = wantStackLeft ? -2.0 : 0;
                 }
+                // Tunnel: blend group position toward center
+                if (tunnelProgress.value > 0.01) {
+                    stackXTarget += (0 - stackXTarget) * tunnelProgress.value;
+                }
                 autoRotateGroup.position.x += (stackXTarget - autoRotateGroup.position.x) * 0.06;
 
                 // Spring coil: lerp toward target with damped spring feel
@@ -2990,6 +3138,12 @@
                 var springDecay = easterEggActive ? 0.997 : 0.992;
                 springTarget *= springDecay;
                 springCompress += (springTarget - springCompress) * 0.08; // damped lerp
+                // Ripple wave: decay intensity when not scrolling
+                rippleIntensity *= 0.93;
+                if (springCompress < 0.2) { rippleWavePos = 0; rippleIntensity = 0; }
+                springEggActive = springCompress > 1.95;
+                // Track peak spring for progressive L7→L1 reveal
+                springRevealLevel = Math.max(springRevealLevel, springCompress);
 
                 // Easter egg: activated by tapping red L14 when spring compressed
                 // Once triggered, track how much MORE the user keeps pulling
@@ -3023,7 +3177,7 @@
                 }
 
                 // Deactivate active layer when scrolling past framework section
-                if (closingShrink.value > 0.05 && activeLayerIndex >= 0) {
+                if ((closingShrink.value > 0.05 || tunnelProgress.value > 0.05) && activeLayerIndex >= 0) {
                     activeLayerIndex = -1;
                     activeZone = 'all';
                     updateHud(null);
@@ -3035,6 +3189,21 @@
                     var layer = activeLayers[i];
                     var isGW = layer.zone === 'gateway';
                     var breathing = 1 + Math.sin(t*0.6+i*0.5)*0.006;
+
+                    // Progressive reveal: L1-L7 hidden on load
+                    // Appear via scroll-down (rawMorph) OR spring tension (springCompress)
+                    // L7 first, then L6, L5... L1 last
+                    var layerRevealed = true;
+                    if (gwIdx >= 0 && i < gwIdx) {
+                        var stepsBelow = gwIdx - 1 - i; // 0=L7, 6=L1
+                        // Scroll-down reveal: spread across rawMorph 0.05→0.75
+                        var scrollThreshold = 0.05 + stepsBelow * 0.10;
+                        // Spring tension reveal: same stagger on springCompress
+                        var springThreshold = 0.08 + stepsBelow * 0.12;
+                        layerRevealed = rawMorph >= scrollThreshold || springCompress >= springThreshold;
+                    }
+                    mesh.visible = layerRevealed;
+                    if (!layerRevealed) return; // skip all processing for hidden layers
 
                     // Compute targets for this shell
                     var scaleTarget = 1.0;
@@ -3118,8 +3287,6 @@
                     var introTilt = 0; // 1 = face camera (flat), 0 = stack orientation
                     if (introActive) {
                         // Reverse the collapse: expand top-down
-                        // At introVal=0, all layers at topY, fully tilted
-                        // As introVal increases, layers peel away from top down to their stack positions
                         var topY = ((totalLayers - 1) - (totalLayers - 1) / 2) * stackSpacing;
                         if (gwIdx >= 0 && (totalLayers - 1) > gwIdx) topY += 0.15;
 
@@ -3129,24 +3296,17 @@
                             if (i > gwIdx) ownY += 0.15;
                         }
 
-                        // Stagger: L14 (top) separates first, L1 (bottom) last
-                        // Each layer gets a window within introVal to animate
-                        var layerIdx = totalLayers - 1 - i; // 0=L14, 13=L1
-                        var staggerStart = layerIdx * 0.06; // L14 starts at 0, L1 at 0.78
-                        var staggerEnd = staggerStart + 0.4; // each layer takes 0.4 of introVal to settle
+                        var layerIdx = totalLayers - 1 - i;
+                        var staggerStart = layerIdx * 0.06;
+                        var staggerEnd = staggerStart + 0.4;
                         var layerExpand = Math.max(0, Math.min(1, (introVal - staggerStart) / (staggerEnd - staggerStart)));
-                        // Ease: cubic out for smooth deceleration
                         layerExpand = 1 - Math.pow(1 - layerExpand, 3);
 
-                        // Y: lerp from topY to own stack position
                         introYTarget = topY + (ownY - topY) * layerExpand;
 
-                        // Tilt: face camera when collapsed, un-tilt as layers expand
-                        // Global tilt recedes as intro progresses
-                        introTilt = Math.max(0, 1 - introVal * 1.5); // 1→0 over first 67% of intro
-                        introTilt = introTilt * introTilt; // quadratic ease
+                        introTilt = Math.max(0, 1 - introVal * 1.5);
+                        introTilt = introTilt * introTilt;
 
-                        // Opacity: scale by expansion progress — layers brighten as they separate
                         targetOpacity *= Math.max(0.15, layerExpand);
                     }
 
@@ -3214,19 +3374,47 @@
                             if (i > gwIdx) stackY += 0.15;
                         }
 
-                        // Spring coil: compress L9-L14 downward toward L8 on scroll-up at top
-                        // L8 (gateway) is the anchor — doesn't move
-                        // Spring ratio: layers further from L8 compress more (quadratic)
-                        if (springCompress > 0.001 && gwIdx >= 0 && i > gwIdx) {
-                            var stepsAboveGW = i - gwIdx; // 1=L9, 2=L10, ... 6=L14
-                            var maxSteps = totalLayers - 1 - gwIdx; // 6
+                        // Spring coil: compress L8-L14 downward toward L7 on scroll-up at top
+                        // L7 is the anchor — doesn't move
+                        // Spring ratio: layers further from L7 compress more (quadratic)
+                        if (springCompress > 0.001 && gwIdx >= 0 && i >= gwIdx) {
+                            var stepsAboveAnchor = i - (gwIdx - 1); // L8=1, L9=2, ... L14=7
+                            var maxSteps = totalLayers - gwIdx; // 7
                             // Quadratic spring: top layers compress proportionally more
-                            var springRatio = (stepsAboveGW / maxSteps);
+                            var springRatio = (stepsAboveAnchor / maxSteps);
                             springRatio = springRatio * springRatio; // quadratic — L14 moves most
-                            // Pull layer Y toward L8's Y position
-                            var gwY = (gwIdx - (totalLayers - 1) / 2) * stackSpacing + 0.15;
-                            var pullAmount = (stackY - gwY) * springRatio * springCompress;
+                            // Pull layer Y toward L7's Y position (one below gateway)
+                            var anchorY = ((gwIdx - 1) - (totalLayers - 1) / 2) * stackSpacing;
+                            var pullAmount = (stackY - anchorY) * springRatio * springCompress;
                             stackY -= pullAmount;
+                        }
+
+                        // Tunnel perspective: all layers grow during compression,
+                        // L14 grows most (closest), L1 grows least (farthest)
+                        if (springCompress > 0.01) {
+                            var depthRatio = i / (totalLayers - 1); // L1=0, L14=1
+                            var baseGrow = 0.25; // minimum growth for L1
+                            var extraGrow = 0.45; // additional growth for L14
+                            var tunnelScale = 1 + springCompress * (baseGrow + depthRatio * extraGrow);
+                            scaleTarget *= tunnelScale;
+                        }
+
+                        // Cascade collapse: L1 moves up to L2, then both move to L3, etc.
+                        // Bottom-up: L1 starts first, accumulates layers as they reach L8
+                        if (cascadeCompress > 0.001 && gwIdx >= 0 && i < gwIdx) {
+                            // L8 target Y
+                            var gwTargetY = (gwIdx - (totalLayers - 1) / 2) * stackSpacing;
+                            // Step from bottom: L1=0 (moves first), L7=6 (moves last)
+                            var stepFromBottom = i;
+                            var totalSteps = gwIdx; // 7
+                            var sliceSize = 1.0 / totalSteps;
+                            // L1 starts at 0, L2 starts after L1's slice, etc.
+                            var snapStart = stepFromBottom * sliceSize;
+                            var snapProgress = Math.max(0, Math.min(1, (cascadeCompress - snapStart) / (1.0 - snapStart)));
+                            // Cubic ease for snappy collapse
+                            snapProgress = snapProgress * snapProgress * (3 - 2 * snapProgress);
+                            // Move toward L8's Y
+                            stackY = stackY + (gwTargetY - stackY) * snapProgress;
                         }
 
                         // Scroll compression: as user scrolls down toward Foundations,
@@ -3289,30 +3477,173 @@
                         mesh.position.y = baseY + shellYOffsets[i];
                         mesh.position.z = shellZOffsets[i];
 
-                        // L14 visible spectrum: maps spring pull distance to full spectrum
-                        // 0% = Violet (380nm, resting purple) → Red (700nm, fully compressed)
-                        // Ratio: color position = pull distance / max pull distance
-                        if (i === totalLayers - 1) {
-                            var s = springCompress; // 0→1 maps to violet→red (380nm→700nm)
-                            // 7 stops across the visible spectrum
-                            var spectrum = [
-                                [0.580, 0.300, 0.950],  // 0.000 — Violet  (~380nm)
-                                [0.220, 0.340, 0.980],  // 0.167 — Blue    (~470nm)
-                                [0.150, 0.800, 0.920],  // 0.333 — Cyan    (~490nm)
-                                [0.200, 0.900, 0.350],  // 0.500 — Green   (~530nm)
-                                [0.950, 0.920, 0.200],  // 0.667 — Yellow  (~570nm)
-                                [0.960, 0.550, 0.120],  // 0.833 — Orange  (~600nm)
-                                [0.950, 0.180, 0.150]   // 1.000 — Red     (~700nm)
+                        // === SPHERE FORMATION at peak compression ===
+                        // Kicks in at high compression (>60%), fully spherical at 100%
+                        if (springCompress > 0.6) {
+                            var sphereBlend = Math.min(1, (springCompress - 0.6) / 0.4); // 0→1 over 60%→100%
+                            sphereBlend = sphereBlend * sphereBlend; // quadratic ease-in
+
+                            // Y convergence: all layers toward center Y (L8 area)
+                            var centerY = 0; // center of stack in group-local
+                            mesh.position.y += (centerY - mesh.position.y) * sphereBlend;
+
+                            // X/Z convergence: pull toward center
+                            mesh.position.x *= (1 - sphereBlend * 0.8);
+                            mesh.position.z *= (1 - sphereBlend * 0.8);
+
+                            // Shape: disc → sphere (scaleY grows to match scaleXZ)
+                            var currentXZ = mesh.scale.x;
+                            var currentY = mesh.scale.y;
+                            mesh.scale.y = currentY + (currentXZ - currentY) * sphereBlend;
+
+                            // Scale equalization: all layers blend toward original concentric radii
+                            // (undo the stack flattening, return to natural sphere shell sizes)
+                            var sphereR = origR * breathing;
+                            mesh.scale.x += (sphereR - mesh.scale.x) * sphereBlend * 0.7;
+                            mesh.scale.y += (sphereR - mesh.scale.y) * sphereBlend * 0.7;
+                            mesh.scale.z += (sphereR - mesh.scale.z) * sphereBlend * 0.7;
+
+                            // Remove face-camera tilt — return to sphere orientation
+                            mesh.rotation.x *= (1 - sphereBlend);
+                            mesh.rotation.y *= (1 - sphereBlend);
+
+                        }
+
+                        // === WHITE RIPPLE WAVE: scroll-driven color pulse through layers ===
+                        // Each scroll burst sends a white wave rippling from inner (L14) to outer (L1)
+                        if (rippleIntensity > 0.01 && springCompress > 0.3 && shellUniforms[i] && layer.zone !== 'silicon') {
+                            // Layer position: 0 = L14 (innermost), 1 = L1 (outermost)
+                            var layerPos = (totalLayers - 1 - i) / (totalLayers - 1);
+                            // Wave front: wraps so repeated scrolling sends repeated waves
+                            var waveFront = (rippleWavePos * 0.8) % 1.4;
+                            var dist = Math.abs(layerPos - waveFront);
+                            // Also check wrapped distance for smooth looping
+                            dist = Math.min(dist, Math.abs(layerPos - waveFront + 1.4));
+                            dist = Math.min(dist, Math.abs(layerPos - waveFront - 1.4));
+                            // Sharp gaussian-like peak
+                            var wave = Math.exp(-dist * dist * 40) * rippleIntensity;
+
+                            // Blend color toward white at wave peak
+                            var c = shellUniforms[i].uColor.value;
+                            c.x += (1.0 - c.x) * wave * 0.7;
+                            c.y += (1.0 - c.y) * wave * 0.7;
+                            c.z += (1.0 - c.z) * wave * 0.7;
+                            // Boost glow and opacity at wave peak
+                            shellUniforms[i].uGlowIntensity.value += wave * 4.0;
+                            shellUniforms[i].uOpacity.value += wave * 0.3;
+                        }
+
+                        // === TUNNEL / SLINKY ANIMATION ===
+                        if (tunnelProgress.value > 0.001) {
+                            var tp = tunnelProgress.value;
+                            // Stagger: L14 (i=13) enters first, L1 (i=0) enters last
+                            var layerDelay = (totalLayers - 1 - i) * 0.055;
+                            var lp = Math.max(0, Math.min(1, (tp - layerDelay) / 0.22));
+                            lp = lp * lp * (3 - 2 * lp); // smoothstep
+
+                            if (lp > 0.001) {
+                                mesh.visible = true;
+                                // Depth: L14=0 (entrance, center), L1=1 (deepest, far right)
+                                var depth = (totalLayers - 1 - i) / (totalLayers - 1);
+                                // Slinky path in group-local coords
+                                var slinkyX = Math.pow(depth, 1.3) * 8;
+                                var slinkyY = Math.sin(depth * Math.PI * 2.5) * 2.0;
+                                var slinkyZ = -depth * 18;
+                                // Scale: entrance is large, end is small
+                                var tunnelR = origR * (2.5 - depth * 1.6);
+                                // Blend position toward slinky target
+                                mesh.position.x += (slinkyX - mesh.position.x) * lp;
+                                mesh.position.y += (slinkyY - mesh.position.y) * lp;
+                                mesh.position.z += (slinkyZ - mesh.position.z) * lp;
+                                // Full circle (uniform scale)
+                                var ts = tunnelR;
+                                mesh.scale.set(
+                                    mesh.scale.x + (ts - mesh.scale.x) * lp,
+                                    mesh.scale.y + (ts - mesh.scale.y) * lp,
+                                    mesh.scale.z + (ts - mesh.scale.z) * lp
+                                );
+                                // Face camera (tilt 90 degrees on X)
+                                mesh.rotation.x += (Math.PI * 0.5 - mesh.rotation.x) * lp;
+                                mesh.rotation.y *= (1 - lp);
+                                // Opacity
+                                shellUniforms[i].uOpacity.value = Math.max(shellUniforms[i].uOpacity.value, lp * 0.9);
+                            }
+                        }
+
+                        // L14→L9: magenta/teal cycling driven by compression + time
+                        // Shared spectrum for all biology layers (L8 has its own)
+                        if (gwIdx >= 0 && i > gwIdx) {
+                            var mtSpectrum = [
+                                [0.90, 0.15, 0.75],  // magenta
+                                [0.15, 0.85, 0.85],  // teal
+                                [0.95, 0.20, 0.90],  // hot magenta
+                                [0.10, 0.75, 0.70],  // deep teal
+                                [0.80, 0.25, 0.80],  // purple-magenta
+                                [0.20, 0.90, 0.90],  // bright teal
+                                [0.90, 0.15, 0.75]   // magenta (loop)
                             ];
-                            var seg = s * 6; // 6 segments between 7 stops
-                            var idx = Math.min(5, Math.floor(seg));
-                            var frac = seg - idx;
-                            var c0 = spectrum[idx], c1 = spectrum[idx + 1];
+                            // Each layer offsets in the cycle so they're not all the same color
+                            var stepsFromL14 = (totalLayers - 1) - i; // L14=0, L13=1, ... L9=5
+                            var maxSteps = (totalLayers - 1) - gwIdx; // 6
+                            var layerPhase = stepsFromL14 / maxSteps * 0.35;
+                            // Position: compression + time drift + per-layer offset
+                            var mtPos = (springCompress * 0.6 + t * 0.25 + layerPhase) % 1.0;
+                            var mtSeg = mtPos * 6;
+                            var mtIdx = Math.min(5, Math.floor(mtSeg));
+                            var mtFrac = mtSeg - mtIdx;
+                            mtFrac = mtFrac * mtFrac * (3 - 2 * mtFrac); // smoothstep
+                            var m0 = mtSpectrum[mtIdx], m1 = mtSpectrum[mtIdx + 1];
+                            var mtR = m0[0] + (m1[0] - m0[0]) * mtFrac;
+                            var mtG = m0[1] + (m1[1] - m0[1]) * mtFrac;
+                            var mtB = m0[2] + (m1[2] - m0[2]) * mtFrac;
+                            var bc = activeLayers[i].c;
+                            var blend = Math.min(1, springCompress * 1.5);
                             shellUniforms[i].uColor.value.set(
-                                c0[0] + (c1[0] - c0[0]) * frac,
-                                c0[1] + (c1[1] - c0[1]) * frac,
-                                c0[2] + (c1[2] - c0[2]) * frac
+                                bc[0] + (mtR - bc[0]) * blend,
+                                bc[1] + (mtG - bc[1]) * blend,
+                                bc[2] + (mtB - bc[2]) * blend
                             );
+                        }
+
+                        // L8 spring: scale up toward perfect circle + cycling spectrum
+                        if (isGW && springCompress > 0.01) {
+                            // Scale grows with compression — larger the more you scroll
+                            var l8SpringGrow = 1 + springCompress * 0.35;
+                            mesh.scale.x *= l8SpringGrow;
+                            mesh.scale.z *= l8SpringGrow;
+                            // Y scale: blend toward matching X/Z so disc becomes perfect circle
+                            var targetY = mesh.scale.x; // match width for circle
+                            mesh.scale.y += (targetY - mesh.scale.y) * springCompress;
+                            // Full spectrum cycle: compression sets base position, time adds drift
+                            // 8 vibrant stops that loop — always moving, never static
+                            var l8Spectrum = [
+                                [0.90, 0.15, 0.75],  // magenta
+                                [0.15, 0.85, 0.85],  // teal
+                                [0.95, 0.20, 0.90],  // hot magenta
+                                [0.10, 0.75, 0.70],  // deep teal
+                                [0.80, 0.25, 0.80],  // purple-magenta
+                                [0.20, 0.90, 0.90],  // bright teal
+                                [0.90, 0.15, 0.75]   // magenta (loop)
+                            ];
+                            // Position driven by compression + slow time drift
+                            var l8Pos = (springCompress * 0.7 + t * 0.3) % 1.0;
+                            var l8Seg = l8Pos * 6; // 6 segments between 7 stops
+                            var l8Idx = Math.min(5, Math.floor(l8Seg));
+                            var l8Frac = l8Seg - l8Idx;
+                            // Smooth interpolation
+                            l8Frac = l8Frac * l8Frac * (3 - 2 * l8Frac);
+                            var s0 = l8Spectrum[l8Idx], s1 = l8Spectrum[l8Idx + 1];
+                            var sr = s0[0] + (s1[0] - s0[0]) * l8Frac;
+                            var sg = s0[1] + (s1[1] - s0[1]) * l8Frac;
+                            var sb = s0[2] + (s1[2] - s0[2]) * l8Frac;
+                            var baseC = activeLayers[i].c;
+                            var blend = Math.min(1, springCompress * 1.5);
+                            shellUniforms[i].uColor.value.set(
+                                baseC[0] + (sr - baseC[0]) * blend,
+                                baseC[1] + (sg - baseC[1]) * blend,
+                                baseC[2] + (sb - baseC[2]) * blend
+                            );
+                            shellUniforms[i].uGlowIntensity.value = 2.5 + springCompress * 2.0;
                         }
 
                         // Easter egg: all layers except L14 scale up exponentially
@@ -3335,6 +3666,29 @@
                             mesh.rotation.set(0, 0, 0);
                         }
 
+                        // L8 spin: X-axis rotation only after sphere fully forms
+                        if (isGW && springCompress > 1.0) {
+                            var spinAmt = Math.min(1, (springCompress - 1.0) / 0.3);
+                            mesh.rotation.x = t * 0.4 * spinAmt;
+                        }
+
+                        // Progressive reveal opacity: L7→L1 — use whichever is stronger (scroll or spring)
+                        var revealOpacity = 1.0;
+                        if (gwIdx >= 0 && i < gwIdx) {
+                            var stepsBelow = gwIdx - 1 - i; // 0=L7, 6=L1
+                            // Scroll-down fade
+                            var scrollStart = 0.05 + stepsBelow * 0.10;
+                            var scrollEnd = scrollStart + 0.12;
+                            var scrollReveal = Math.max(0, Math.min(1, (rawMorph - scrollStart) / (scrollEnd - scrollStart)));
+                            // Spring tension fade
+                            var springStart = 0.08 + stepsBelow * 0.12;
+                            var springEnd = springStart + 0.10;
+                            var springReveal = Math.max(0, Math.min(1, (springCompress - springStart) / (springEnd - springStart)));
+                            // Use whichever reveals more
+                            revealOpacity = Math.max(scrollReveal, springReveal);
+                            revealOpacity = revealOpacity * revealOpacity * (3 - 2 * revealOpacity);
+                        }
+
                         // Per-layer brightness: scrollBrightness cascades L14→L1
                         // stepsFromTop: 0=L14 (restores first), 13=L1 (restores last)
                         var lastIdx = activeLayers.length - 1;
@@ -3342,11 +3696,48 @@
                         // How bright is this layer? scrollBrightness counts layers restored
                         var layerBright = Math.min(1, Math.max(0, scrollBrightness - stepsFromTop));
                         // Start at 50% opacity, ramp to full. Boost targetOpacity for restored layers.
-                        var dimmedOpacity = targetOpacity * (0.5 + layerBright * 0.5) + layerBright * 0.3;
+                        var dimmedOpacity = targetOpacity * revealOpacity * (0.5 + layerBright * 0.5) + layerBright * 0.3 * revealOpacity;
                         // Also boost glow intensity as layer restores
                         var scrollGlowBoost = layerBright * 0.4;
                         shellUniforms[i].uOpacity.value +=
                             (dimmedOpacity - shellUniforms[i].uOpacity.value) * 0.2;
+
+                        // L8: blue/teal base with white glow pulse
+                        if (isGW && springCompress < 0.01) {
+                            // Slow sine pulse 0→1→0 for white glow
+                            var glowPulse = (Math.sin(t * 1.2) + 1) * 0.5; // 0→1, ~5.2s cycle
+                            glowPulse = glowPulse * glowPulse; // sharpen: mostly blue/teal, brief white
+                            var btr = 0.10, btg = 0.55, btb = 0.70; // blue-teal base
+                            shellUniforms[i].uColor.value.set(
+                                btr + (1.0 - btr) * glowPulse,
+                                btg + (1.0 - btg) * glowPulse,
+                                btb + (1.0 - btb) * glowPulse
+                            );
+                        }
+
+                        // L14: slow rainbow cycle
+                        if (i === activeLayers.length - 1) {
+                            var rbw = [
+                                [1.0, 0.2, 0.2],   // red
+                                [1.0, 0.5, 0.1],   // orange
+                                [1.0, 0.9, 0.2],   // yellow
+                                [0.2, 0.9, 0.3],   // green
+                                [0.1, 0.7, 0.9],   // cyan
+                                [0.3, 0.3, 1.0],   // blue
+                                [0.6, 0.2, 0.9]    // violet
+                            ];
+                            var rbwT = (t * 0.15) % 1.0; // slow: full cycle ~6.7s
+                            var rbwSeg = rbwT * rbw.length;
+                            var rbwI = Math.floor(rbwSeg) % rbw.length;
+                            var rbwF = rbwSeg - Math.floor(rbwSeg);
+                            var rbwN = (rbwI + 1) % rbw.length;
+                            var rc0 = rbw[rbwI], rc1 = rbw[rbwN];
+                            shellUniforms[i].uColor.value.set(
+                                rc0[0] + (rc1[0] - rc0[0]) * rbwF,
+                                rc0[1] + (rc1[1] - rc0[1]) * rbwF,
+                                rc0[2] + (rc1[2] - rc0[2]) * rbwF
+                            );
+                        }
 
                         // Active/hover glow lerp
                         var glowTarget;
@@ -3434,6 +3825,19 @@
                                 (glowTarget - shellUniforms[i].uActiveGlow.value) * glowLerp;
                         }
 
+                        // Spring egg: L14 glows red and pulses at extreme compression
+                        if (springEggActive && i === activeLayers.length - 1) {
+                            var eggBlend = Math.min(1, (springCompress - 1.95) / 0.05);
+                            var eggPulse = 0.5 + 0.5 * Math.sin(t * 5.0);
+                            var ec = shellUniforms[i].uColor.value;
+                            // Push toward bright red
+                            ec.x += (1.0 - ec.x) * eggBlend * 0.7;
+                            ec.y *= (1.0 - eggBlend * 0.8);
+                            ec.z *= (1.0 - eggBlend * 0.8);
+                            shellUniforms[i].uGlowIntensity.value = Math.min(shellUniforms[i].uGlowIntensity.value + eggBlend * eggPulse * 1.2, 4.0);
+                            shellUniforms[i].uOpacity.value = Math.min(shellUniforms[i].uOpacity.value + eggBlend * 0.08, 1.0);
+                        }
+
                         // Position laser-etched label to match disc
                         var lm = labelMeshes[i];
                         lm.position.x = mesh.position.x;
@@ -3461,7 +3865,7 @@
                 });
 
                 // Hover: subtle glow/expand + tooltip (click triggers full pull-out)
-                if (canvasInteractive && rawMorph > 0.15 && introProgress.value > 0.95 && activeGroupMode !== 'closing' && closingShrink.value < 0.05) {
+                if (canvasInteractive && rawMorph > 0.15 && introProgress.value > 0.95 && activeGroupMode !== 'closing' && closingShrink.value < 0.05 && tunnelProgress.value < 0.05) {
                     raycaster.setFromCamera(rayMouse, camera);
                     var hoverHits = raycaster.intersectObjects(shellMeshes);
                     hoveredShellIndex = (hoverHits.length > 0) ? shellMeshes.indexOf(hoverHits[0].object) : -1;
@@ -3494,7 +3898,7 @@
                 }
 
                 // Click hint: only visible when full stack is showing and not collapsing
-                var showHint = canvasInteractive && !hasInteracted && rawMorph > 0.25 && closingShrink.value < 0.05 && activeLayerIndex === -1 && activeGroupMode !== 'closing';
+                var showHint = canvasInteractive && !hasInteracted && rawMorph > 0.25 && closingShrink.value < 0.05 && tunnelProgress.value < 0.05 && activeLayerIndex === -1 && activeGroupMode !== 'closing';
                 if (showHint) {
                     clickHint.classList.add('visible');
                 } else {
@@ -3507,6 +3911,12 @@
                 // ONI shrink: scale down AFTER face-tilt is mostly done (delayed start)
                 var shrinkVal = Math.max(0, (closingShrink.value - 0.5) / 0.5); // 0 until 50% tilt, then ramps to 1
                 var closingShrinkScale = 1 - shrinkVal * 0.6; // 1.0 → 0.4
+                // Tunnel + hero slinky: restore scale back toward 1
+                // Tunnel: restore scale back toward 1
+                if (tunnelProgress.value > 0.01) {
+                    closingShrinkScale += (1 - closingShrinkScale) * tunnelProgress.value;
+                    stackFitScale += (1 - stackFitScale) * tunnelProgress.value;
+                }
                 var finalGroupScale = stackFitScale * closingShrinkScale;
                 autoRotateGroup.scale.setScalar(finalGroupScale);
 
@@ -3553,6 +3963,53 @@
                     niOverlay.style.opacity = niOpacity;
                 }
 
+                // Spring art overlay: fades in above L8 sphere at high compression
+                if (springCompress > 1.1) {
+                    var artBlendRaw = Math.min(1, (springCompress - 1.1) / 0.3); // 0→1 over 1.1→1.4
+                    var artBlend = artBlendRaw * artBlendRaw * (3 - 2 * artBlendRaw);
+                    springArtOverlay.style.left = (window.innerWidth * 0.5) + 'px';
+                    springArtOverlay.style.top = (window.innerHeight * 0.1) + 'px';
+                    springArtOverlay.style.opacity = artBlend;
+                } else {
+                    var curOp = parseFloat(springArtOverlay.style.opacity || 0);
+                    springArtOverlay.style.opacity = Math.max(0, curOp * 0.88);
+                }
+
+                // Spring egg: white dot → egg emoji from L14 center
+                if (springEggActive) {
+                    // 0→1 over springCompress 1.45→1.9
+                    var eggBlend = Math.min(1, (springCompress - 1.95) / 0.05);
+                    var eggSmooth = eggBlend * eggBlend * (3 - 2 * eggBlend);
+                    // Project L14 mesh position to screen
+                    var l14m = shellMeshes[activeLayers.length - 1];
+                    var eggPos = new THREE.Vector3().copy(l14m.position);
+                    eggPos.project(camera);
+                    var eggX = (eggPos.x * 0.5 + 0.5) * window.innerWidth;
+                    var eggY = (-eggPos.y * 0.5 + 0.5) * window.innerHeight;
+                    springEggEl.style.left = eggX + 'px';
+                    springEggEl.style.top = eggY + 'px';
+                    // Start as tiny white dot (0.2rem), grow to small egg (1.6rem max)
+                    var eggSize = 0.2 + eggSmooth * 1.4;
+                    springEggEl.style.fontSize = eggSize + 'rem';
+                    springEggEl.style.opacity = 0.3 + eggSmooth * 0.7;
+                    springEggEl.style.transform = 'translate(-50%, -50%) scale(' + (0.15 + eggSmooth * 0.85) + ')';
+                    // Early phase: white dot via CSS filter brightness boost
+                    var dotPhase = Math.max(0, 1 - eggBlend * 3); // 1→0 over first third
+                    springEggEl.style.filter = 'drop-shadow(0 0 12px rgba(255,255,255,0.6)) drop-shadow(0 0 30px rgba(255,200,100,0.3)) brightness(' + (1 + dotPhase * 8) + ')';
+                    springEggEl.style.pointerEvents = 'auto';
+                    springEggEl.style.cursor = 'pointer';
+                } else {
+                    springEggEl.style.pointerEvents = 'none';
+                    springEggEl.style.cursor = '';
+                    var eggCurOp = parseFloat(springEggEl.style.opacity || 0);
+                    if (eggCurOp > 0.01) {
+                        springEggEl.style.opacity = Math.max(0, eggCurOp * 0.85);
+                        var eggCurSize = parseFloat(springEggEl.style.fontSize || 0);
+                        springEggEl.style.fontSize = Math.max(0, eggCurSize * 0.85) + 'rem';
+                        springEggEl.style.transform = 'translate(-50%, -50%) scale(' + (eggCurOp * 0.85) + ')';
+                    }
+                }
+
                 // Camera: pull back when a layer is pulled out, L8 extra dramatic
                 var l8CameraZoom = 0;
                 var isGWActive = activeLayerIndex >= 0 && activeLayers[activeLayerIndex] && activeLayers[activeLayerIndex].zone === 'gateway';
@@ -3562,6 +4019,12 @@
                 var pullOutCamOffset = (activeLayerIndex >= 0) ? ((isGWActive ? 2.5 : 1.5) * Math.min(1, Math.max(0, (rawMorph - 0.15) / 0.35))) : 0;
                 var targetCamY = 0.3 + mp * 0.5;
                 var targetCamZ = 7 + mp * 1 + l8CameraZoom + pullOutCamOffset;
+                // Tunnel: reposition camera to view the slinky
+                if (tunnelProgress.value > 0.01) {
+                    var tt = tunnelProgress.value;
+                    targetCamY += (1.0 - targetCamY) * tt;
+                    targetCamZ += (10 - targetCamZ) * tt;
+                }
                 camera.position.y += (targetCamY - camera.position.y) * 0.03;
                 camera.position.z += (targetCamZ - camera.position.z) * 0.03;
 
@@ -3575,6 +4038,17 @@
                     niOverlay.style.transform = 'translate(0, -50%)';
                     niOverlay.style.transformOrigin = 'left center';
                 }
+
+                // Sync brain position to L8's actual mesh position (follows spring compression)
+                if (gwIdxGlobal >= 0 && gwIdxGlobal < shellMeshes.length) {
+                    var l8Mesh = shellMeshes[gwIdxGlobal];
+                    coreMesh.position.y = l8Mesh.position.y;
+                    glowMesh.position.y = l8Mesh.position.y;
+                    nodeCloud.position.y = l8Mesh.position.y;
+                    if (synapseLines) synapseLines.position.y = l8Mesh.position.y;
+                }
+
+                // (Wireframe overlays removed)
 
                 // Gateway light — extra flamboyant when L8 is active
                 var gwLightBase = 0.8;
