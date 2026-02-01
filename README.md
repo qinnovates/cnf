@@ -4,8 +4,8 @@
 
 *Life's most important connections deserve the most thought.*
 
-[![Tests](https://github.com/qikevinl/qinnovate/actions/workflows/tests.yml/badge.svg)](https://github.com/qikevinl/qinnovate/actions/workflows/tests.yml)
-[![Security](https://github.com/qikevinl/qinnovate/actions/workflows/security.yml/badge.svg)](https://github.com/qikevinl/qinnovate/actions/workflows/security.yml)
+[![Tests](https://github.com/qinnovates/qinnovate/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/qinnovate/actions/workflows/tests.yml)
+[![Security](https://github.com/qinnovates/qinnovate/actions/workflows/security.yml/badge.svg)](https://github.com/qinnovates/qinnovate/actions/workflows/security.yml)
 
 ---
 

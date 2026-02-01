@@ -265,9 +265,9 @@ oni-academy ui
 ```
 
 **Web Tools (no install):**
-- [Coherence Metric Playground](https://qikevinl.github.io/ONI/visualizations/01-coherence-metric-playground.html)
-- [ONI Layer Explorer](https://qikevinl.github.io/ONI/visualizations/02-oni-layer-explorer.html)
-- [NSAM Checkpoint Simulator](https://qikevinl.github.io/ONI/visualizations/04-nsam-checkpoint-simulator.html)
+- [Coherence Metric Playground](https://qinnovates.github.io/ONI/visualizations/01-coherence-metric-playground.html)
+- [ONI Layer Explorer](https://qinnovates.github.io/ONI/visualizations/02-oni-layer-explorer.html)
+- [NSAM Checkpoint Simulator](https://qinnovates.github.io/ONI/visualizations/04-nsam-checkpoint-simulator.html)
 
 ---
 
@@ -458,7 +458,7 @@ oni-academy list
 oni-academy ui
 ```
 
-Or just use the [web tools](https://qikevinl.github.io/ONI/visualizations/) — no installation required.
+Or just use the [web tools](https://qinnovates.github.io/ONI/visualizations/) — no installation required.
 
 ### For Creating Visualizations
 
@@ -499,7 +499,7 @@ Traditional education assumes everyone learns the same way. Autodidact rejects t
 
 - [ONI Framework](../MAIN/) — The security framework that protects neural interfaces
 - [TARA Platform](../MAIN/tara-nsec-platform/) — Security monitoring & simulation
-- [GitHub Pages](https://qikevinl.github.io/ONI/) — Live interactive tools
+- [GitHub Pages](https://qinnovates.github.io/ONI/) — Live interactive tools
 - [Autodidactive Demo](https://frontend-phi-seven-64.vercel.app) — Interactive learning platform
 
 ---

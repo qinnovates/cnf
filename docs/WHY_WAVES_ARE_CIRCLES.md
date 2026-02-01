@@ -314,9 +314,9 @@ From a triangle drawn in sand to a firewall protecting your thoughts. Same found
 - [Mathematical Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) — Rigorous audit of every mathematical claim in this document
 - [Corrected Mathematical Foundations](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md) — Empirically accurate physics with expansion stubs
 - [ONI Signal Visualization Design Rationale](SIGNAL_VISUALIZATION_DESIGN.md) — Why wavefronts were chosen and the physical basis
-- [ONI 14-Layer Model](https://github.com/qikevinl/qinnovate/blob/main/MAIN/oni-framework/ONI_LAYERS.md) — The full layer specification
-- [Coherence Metric](https://github.com/qikevinl/qinnovate/blob/main/MAIN/publications/coherence-metric/) — The variance-based anomaly detection system
-- [Scale-Frequency Invariant](https://github.com/qikevinl/qinnovate/blob/main/MAIN/publications/scale-frequency/) — f × S ≈ k in neural signal processing
+- [ONI 14-Layer Model](https://github.com/qinnovates/qinnovate/blob/main/MAIN/oni-framework/ONI_LAYERS.md) — The full layer specification
+- [Coherence Metric](https://github.com/qinnovates/qinnovate/blob/main/MAIN/publications/coherence-metric/) — The variance-based anomaly detection system
+- [Scale-Frequency Invariant](https://github.com/qinnovates/qinnovate/blob/main/MAIN/publications/scale-frequency/) — f × S ≈ k in neural signal processing
 - Fourier, J. (1822). *Theorie analytique de la chaleur* — The original work decomposing functions into sine series
 - [From Stars to Waves — Underground Mathematics](https://undergroundmathematics.org/trigonometry-triangles-to-functions/from-stars-to-waves) — Triangles to trigonometric functions
 - [Wave Mathematics — Visionlearning](https://www.visionlearning.com/en/library/Math-in-Science/62/Wave-Mathematics/131) — Mathematical foundations of waves
@@ -326,5 +326,5 @@ From a triangle drawn in sand to a firewall protecting your thoughts. Same found
 
 *Document created: 2026-01-29*
 *Author: Kevin Qi + Claude (QI Collaboration)*
-*For: ONI Framework — qikevinl/qinnovate*
+*For: ONI Framework — qinnovates/qinnovate*
 *Location: docs/WHY_WAVES_ARE_CIRCLES.md*

@@ -260,8 +260,8 @@ The author wishes to acknowledge the support of colleagues and mentors in the de
 
 ## Interactive Visualizations
 
-- **[ONI Framework 3D Visualization](https://qikevinl.github.io/ONI/visualizations/08-oni-framework-viz.html)** — All 46 techniques mapped to 14 layers with interactive 3D exploration
-- **[ONI Threat Matrix](https://qikevinl.github.io/ONI/visualizations/06-oni-threat-matrix.html)** — 10 tactics × 29 techniques in MITRE-style matrix view
+- **[ONI Framework 3D Visualization](https://qinnovates.github.io/ONI/visualizations/08-oni-framework-viz.html)** — All 46 techniques mapped to 14 layers with interactive 3D exploration
+- **[ONI Threat Matrix](https://qinnovates.github.io/ONI/visualizations/06-oni-threat-matrix.html)** — 10 tactics × 29 techniques in MITRE-style matrix view
 
 ---
 

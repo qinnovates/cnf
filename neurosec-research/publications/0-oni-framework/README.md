@@ -44,7 +44,7 @@ By providing a common vocabulary across neuroscience, security engineering, and 
 
 | Type | Document | Description |
 |------|----------|-------------|
-| **Whitepaper** | [**ONI_Whitepaper.md**](ONI_Whitepaper.md) | **Flagship document** — complete framework overview with market analysis, 8 figures, and regulatory alignment ([Web version](https://qikevinl.github.io/ONI/whitepaper/)) |
+| **Whitepaper** | [**ONI_Whitepaper.md**](ONI_Whitepaper.md) | **Flagship document** — complete framework overview with market analysis, 8 figures, and regulatory alignment ([Web version](https://qinnovates.github.io/ONI/whitepaper/)) |
 | Blog | [Blog-ONI_Framework.md](Blog-ONI_Framework.md) | Accessible introduction with real-world context ([Original on Medium](https://medium.com/@qikevinl/the-osi-of-mind-securing-human-ai-interfaces-3ca381b95c29)) |
 | TechDoc | [TechDoc-ONI_Framework.md](TechDoc-ONI_Framework.md) | Complete layer specifications and academic methodology |
 

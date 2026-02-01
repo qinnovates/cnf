@@ -283,7 +283,7 @@ The ONI layer model could be physically implemented using existing and near-term
 
 ## References
 
-- Qi, K. (2026). *ONI Framework: Open Neurosecurity Interoperability*. https://github.com/qikevinl/qinnovate
+- Qi, K. (2026). *ONI Framework: Open Neurosecurity Interoperability*. https://github.com/qinnovates/qinnovate
 - Qi, K. (2026). *Mathematical Audit of the ONI Framework*. ONI Publications. [TechDoc-Mathematical_Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md)
 - Qi, K. (2026). *Corrected Mathematical Foundations*. ONI Publications. [TechDoc-Mathematical_Foundations](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md)
 - Qi, K. (2026). *The Coherence Metric: Variance-Based Neural Signal Verification*. ONI Publications.
@@ -298,4 +298,4 @@ The ONI layer model could be physically implemented using existing and near-term
 
 *Document created: 2026-01-29*
 *Author: Kevin Qi + Claude (QI Collaboration)*
-*For: ONI Framework — qikevinl/qinnovate*
+*For: ONI Framework — qinnovates/qinnovate*

@@ -852,4 +852,4 @@ SecurityDecision.EMERGENCY_SHUTOFF
 
 *Generated for oni-framework v0.2.6*
 *License: Apache 2.0*
-*https://github.com/qikevinl/qinnovate*
+*https://github.com/qinnovates/qinnovate*

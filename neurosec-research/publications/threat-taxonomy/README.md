@@ -33,8 +33,8 @@ The first comprehensive BCI threat taxonomy that extends beyond device-level and
 
 ## Interactive Visualizations
 
-- [ONI Framework 3D Viz](https://qikevinl.github.io/ONI/visualizations/08-oni-framework-viz.html) — All 46 techniques in interactive 3D
-- [ONI Threat Matrix](https://qikevinl.github.io/ONI/visualizations/06-oni-threat-matrix.html) — MITRE-style matrix view
+- [ONI Framework 3D Viz](https://qinnovates.github.io/ONI/visualizations/08-oni-framework-viz.html) — All 46 techniques in interactive 3D
+- [ONI Threat Matrix](https://qinnovates.github.io/ONI/visualizations/06-oni-threat-matrix.html) — MITRE-style matrix view
 
 ---
 

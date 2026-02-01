@@ -92,14 +92,14 @@ Five interactive HTML applications for education and demonstration:
 
 #### GitHub Pages Live Demo
 
-All visualizations are hosted at **[https://qikevinl.github.io/ONI/](https://qikevinl.github.io/ONI/)** for immediate exploration without downloading.
+All visualizations are hosted at **[https://qinnovates.github.io/ONI/](https://qinnovates.github.io/ONI/)** for immediate exploration without downloading.
 
 | App | Live Link | Description |
 |-----|-----------|-------------|
-| Coherence Playground | [Launch](https://qikevinl.github.io/ONI/visualizations/01-coherence-metric-playground.html) | Interactive Cₛ calculation |
-| Layer Explorer | [Launch](https://qikevinl.github.io/ONI/visualizations/02-oni-layer-explorer.html) | 14-layer navigation (updated labels) |
-| Academic Alignment | [Launch](https://qikevinl.github.io/ONI/visualizations/03-academic-alignment.html) | **NEW** — 15 researchers, 12 universities |
-| Remotion Project | [View](https://qikevinl.github.io/ONI/oni-visualizations/) | **NEW** — Programmatic video generation |
+| Coherence Playground | [Launch](https://qinnovates.github.io/ONI/visualizations/01-coherence-metric-playground.html) | Interactive Cₛ calculation |
+| Layer Explorer | [Launch](https://qinnovates.github.io/ONI/visualizations/02-oni-layer-explorer.html) | 14-layer navigation (updated labels) |
+| Academic Alignment | [Launch](https://qinnovates.github.io/ONI/visualizations/03-academic-alignment.html) | **NEW** — 15 researchers, 12 universities |
+| Remotion Project | [View](https://qinnovates.github.io/ONI/oni-visualizations/) | **NEW** — Programmatic video generation |
 
 #### MOABB Integration (External Datasets)
 
@@ -328,7 +328,7 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 | [video/demo/CLAUDE.md](../video/demo/CLAUDE.md) | **Video production pipeline** — frame timing, voiceover sync, audio layering |
 | [ONI_VIDEO_SOUND_DESIGN.md](resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md) | **Sound design documentation** — audio psychology, voice configs, harmonic theory |
 | [video/demo/SESSION_NOTES.md](../video/demo/SESSION_NOTES.md) | Production session history and voice settings reference |
-| **[Watch Demo Video](https://qikevinl.github.io/ONI/video/ONI-Demo-720p.mp4)** | **3:56 overview video** — the complete ONI story |
+| **[Watch Demo Video](https://qinnovates.github.io/ONI/video/ONI-Demo-720p.mp4)** | **3:56 overview video** — the complete ONI story |
 
 **Video Tech Stack:** Remotion (React) + ElevenLabs (voices) + psychology-backed sound design
 

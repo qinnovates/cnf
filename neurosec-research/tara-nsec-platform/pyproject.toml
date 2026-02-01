@@ -91,10 +91,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/qikevinl/qinnovate"
-Documentation = "https://github.com/qikevinl/qinnovate/tree/main/MAIN/tara-nsec-platform"
-Repository = "https://github.com/qikevinl/qinnovate"
-Issues = "https://github.com/qikevinl/qinnovate/issues"
+Homepage = "https://github.com/qinnovates/qinnovate"
+Documentation = "https://github.com/qinnovates/qinnovate/tree/main/MAIN/tara-nsec-platform"
+Repository = "https://github.com/qinnovates/qinnovate"
+Issues = "https://github.com/qinnovates/qinnovate/issues"
 
 [project.scripts]
 tara = "tara_mvp.cli:main"

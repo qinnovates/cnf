@@ -6,7 +6,7 @@
 
 > **Educational Platform for Neurosecurity** - Learn brain-computer interface security concepts through interactive modules and tutorials.
 
-> **Status:** Alpha. The core framework and [interactive web tools](https://qikevinl.github.io/ONI/visualizations/) are functional. Learning module content is a work-in-progress and will expand with future iterations. Contributions welcome.
+> **Status:** Alpha. The core framework and [interactive web tools](https://qinnovates.github.io/ONI/visualizations/) are functional. Learning module content is a work-in-progress and will expand with future iterations. Contributions welcome.
 
 ---
 
@@ -16,7 +16,7 @@ ONI Academy is the educational arm of the ONI Framework project. It provides str
 
 **Why ONI Academy exists:** Neurosecurity concepts are not accessible. While building the ONI Framework, we identified a critical gap — the knowledge needed to secure BCIs is fragmented across academic papers and proprietary training. ONI Academy bridges that gap.
 
-For the full vision and detailed documentation, see [ONI_ACADEMY.md](https://github.com/qikevinl/qinnovate/blob/main/learning/oni-academy/ONI_ACADEMY.md).
+For the full vision and detailed documentation, see [ONI_ACADEMY.md](https://github.com/qinnovates/qinnovate/blob/main/learning/oni-academy/ONI_ACADEMY.md).
 
 ---
 
@@ -131,11 +131,11 @@ oni-academy visualize "synaptic transmission" --render --narration
 
 No installation required — explore these in your browser:
 
-- [Coherence Metric Playground](https://qikevinl.github.io/ONI/visualizations/01-coherence-metric-playground.html)
-- [ONI Layer Explorer](https://qikevinl.github.io/ONI/visualizations/02-oni-layer-explorer.html)
-- [NSAM Checkpoint Simulator](https://qikevinl.github.io/ONI/visualizations/04-nsam-checkpoint-simulator.html)
-- [Scale-Frequency Navigator](https://qikevinl.github.io/ONI/visualizations/05-scale-frequency-navigator.html)
-- [ONI Threat Matrix](https://qikevinl.github.io/ONI/visualizations/06-oni-threat-matrix.html)
+- [Coherence Metric Playground](https://qinnovates.github.io/ONI/visualizations/01-coherence-metric-playground.html)
+- [ONI Layer Explorer](https://qinnovates.github.io/ONI/visualizations/02-oni-layer-explorer.html)
+- [NSAM Checkpoint Simulator](https://qinnovates.github.io/ONI/visualizations/04-nsam-checkpoint-simulator.html)
+- [Scale-Frequency Navigator](https://qinnovates.github.io/ONI/visualizations/05-scale-frequency-navigator.html)
+- [ONI Threat Matrix](https://qinnovates.github.io/ONI/visualizations/06-oni-threat-matrix.html)
 
 ---
 
@@ -145,9 +145,9 @@ No installation required — explore these in your browser:
 
 | Resource | Description |
 |----------|-------------|
-| [ONI Academy Guide](https://github.com/qikevinl/qinnovate/blob/main/learning/oni-academy/ONI_ACADEMY.md) | Complete installation, learning paths, architecture |
-| [ONI Framework Wiki](https://github.com/qikevinl/qinnovate/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
-| [Interactive Demos](https://qikevinl.github.io/ONI/visualizations/) | Browser-based learning tools (no install required) |
+| [ONI Academy Guide](https://github.com/qinnovates/qinnovate/blob/main/learning/oni-academy/ONI_ACADEMY.md) | Complete installation, learning paths, architecture |
+| [ONI Framework Wiki](https://github.com/qinnovates/qinnovate/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
+| [Interactive Demos](https://qinnovates.github.io/ONI/visualizations/) | Browser-based learning tools (no install required) |
 
 **Related packages:**
 

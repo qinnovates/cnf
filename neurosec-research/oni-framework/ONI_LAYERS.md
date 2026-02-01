@@ -67,7 +67,7 @@ The framework provides security without requiring surveillance. Signal integrity
 
 ## Complete 14-Layer Model
 See all detailed layers here: 
-[https://github.com/qikevinl/qinnovate/edit/main/MAIN/oni-framework/ONI_LAYERS.md](https://qikevinl.github.io/ONI/visualizations/08-oni-framework-viz.html)
+[https://github.com/qinnovates/qinnovate/edit/main/MAIN/oni-framework/ONI_LAYERS.md](https://qinnovates.github.io/ONI/visualizations/08-oni-framework-viz.html)
 
 ### OSI Stack — Classical Networking (L1-L7)
 

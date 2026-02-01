@@ -55,7 +55,7 @@ ONI Academy provides structured learning paths covering the full neurosecurity s
 
 ### Interactive Tools (Online)
 
-These web-based visualizations are available immediately at [qikevinl.github.io/ONI/visualizations](https://qikevinl.github.io/ONI/visualizations/):
+These web-based visualizations are available immediately at [qinnovates.github.io/ONI/visualizations](https://qinnovates.github.io/ONI/visualizations/):
 
 | Tool | Purpose | What You'll Learn |
 |------|---------|-------------------|
@@ -131,7 +131,7 @@ tara ui                   # Opens at http://localhost:8501
 ### Step 5: Explore the Interactive Tools
 
 **Web-based (no installation required):**
-Visit [qikevinl.github.io/ONI/visualizations](https://qikevinl.github.io/ONI/visualizations/)
+Visit [qinnovates.github.io/ONI/visualizations](https://qinnovates.github.io/ONI/visualizations/)
 
 **TARA Stack pages:**
 
@@ -296,7 +296,7 @@ Browser-based tools requiring no installation:
 
 *For anyone interested in the future of neural security*
 
-1. Watch the demo video on the [main site](https://qikevinl.github.io/ONI/)
+1. Watch the demo video on the [main site](https://qinnovates.github.io/ONI/)
 2. Play with the **NSAM Checkpoint Simulator** — become the firewall
 3. Explore the **Scale-Frequency Navigator** to understand neural timescales
 4. Read the [INDEX.md](../INDEX.md) for the full documentation map

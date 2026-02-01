@@ -38,7 +38,7 @@ CLI Usage:
     $ tara monitor --input signals.json --realtime
 
 License: Apache 2.0
-Repository: https://github.com/qikevinl/qinnovate
+Repository: https://github.com/qinnovates/qinnovate
 """
 
 __author__ = "Kevin L. Qi"

@@ -279,8 +279,8 @@ print(TARA.tagline)  # "Protection for the neural frontier"
 2. **JavaScript fetches** `brand.json` from GitHub raw URL
 3. **Manual stats** (threat signatures, layers, portals) update from `brand.json`
 4. **Auto stats** fetch from GitHub API:
-   - Commits: `api.github.com/repos/qikevinl/qinnovate/commits`
-   - Tools: `api.github.com/repos/qikevinl/qinnovate/contents/docs/visualizations`
+   - Commits: `api.github.com/repos/qinnovates/qinnovate/commits`
+   - Tools: `api.github.com/repos/qinnovates/qinnovate/contents/docs/visualizations`
 
 ### Updating Manual Stats
 

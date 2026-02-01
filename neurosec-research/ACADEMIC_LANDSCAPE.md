@@ -5,7 +5,7 @@
 **Last Updated:** 2026-01-25
 **Purpose:** Academic positioning, collaboration opportunities, graduate program alignment
 
-🎯 **[Explore Interactive Visualization →](https://qikevinl.github.io/ONI/visualizations/03-academic-alignment.html)** — See research alignments, gaps, and ONI solutions in an interactive format.
+🎯 **[Explore Interactive Visualization →](https://qinnovates.github.io/ONI/visualizations/03-academic-alignment.html)** — See research alignments, gaps, and ONI solutions in an interactive format.
 
 ---
 
@@ -454,7 +454,7 @@ First bidirectional BCI integrating EEG decoding with focused ultrasound stimula
 
 ## Research Gaps ONI Addresses
 
-> 🎯 **[View Interactive Gap Analysis →](https://qikevinl.github.io/ONI/visualizations/03-academic-alignment.html)** — Visualize how ONI bridges existing research gaps.
+> 🎯 **[View Interactive Gap Analysis →](https://qinnovates.github.io/ONI/visualizations/03-academic-alignment.html)** — Visualize how ONI bridges existing research gaps.
 
 | Gap in Current Research | ONI's Contribution |
 |-------------------------|-------------------|
