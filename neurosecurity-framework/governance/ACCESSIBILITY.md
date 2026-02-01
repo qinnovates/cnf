@@ -255,7 +255,7 @@ WCAG 2.2 organizes requirements under four principles: **Perceivable, Operable, 
 
 ## 3. GitHub Pages Site Requirements
 
-The GitHub Pages site at `qikevinl.github.io/ONI/` hosts 12+ interactive visualizations, a whitepaper, and documentation. These are self-contained HTML files with inline CSS/JS, WebGL (Three.js), and SVG animations.
+The GitHub Pages site at `qinnovates.github.io/ONI/` hosts 12+ interactive visualizations, a whitepaper, and documentation. These are self-contained HTML files with inline CSS/JS, WebGL (Three.js), and SVG animations.
 
 ### 3.1 Current Gaps
 
@@ -457,7 +457,7 @@ BCI Mode should be implemented **after all visualization pages are finalized** t
 ### 6.1 Site Architecture
 
 ```
-qikevinl.github.io/ONI/accessible/
+qinnovates.github.io/ONI/accessible/
 ├── index.html          # Accessible landing page
 ├── layers.html         # 14-layer model (text + static diagrams)
 ├── threats.html        # Attack taxonomy (searchable table)
@@ -576,7 +576,7 @@ These changes are low-effort and should be applied to all pages immediately:
 
 ```bash
 # Run Lighthouse accessibility audit
-npx lighthouse https://qikevinl.github.io/ONI/ --only-categories=accessibility --output=json
+npx lighthouse https://qinnovates.github.io/ONI/ --only-categories=accessibility --output=json
 ```
 
 Target: >= 95 score on all pages.
@@ -588,7 +588,7 @@ Target: >= 95 score on all pages.
 npm install -g @axe-core/cli
 
 # Scan a page
-axe https://qikevinl.github.io/ONI/visualizations/index.html
+axe https://qinnovates.github.io/ONI/visualizations/index.html
 ```
 
 Target: 0 critical and serious violations.
@@ -733,7 +733,7 @@ on:
 We welcome feedback on the accessibility of ONI Framework interfaces.
 
 Please report accessibility issues:
-- **GitHub Issues:** https://github.com/qikevinl/qinnovate/issues
+- **GitHub Issues:** https://github.com/qinnovates/qinnovate/issues
 - **Label:** `accessibility`
 - **Include:** Page URL, assistive technology used, description of barrier
 

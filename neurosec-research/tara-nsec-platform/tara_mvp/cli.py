@@ -20,7 +20,7 @@ def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="tara",
         description="TARA - Telemetry Analysis & Response Automation for neural security",
-        epilog="For more information, visit: https://github.com/qikevinl/qinnovate",
+        epilog="For more information, visit: https://github.com/qinnovates/qinnovate",
     )
 
     parser.add_argument(

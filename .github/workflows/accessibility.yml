@@ -48,7 +48,7 @@ jobs:
       - name: Run accessibility checker
         id: a11y-check
         run: |
-          cd MAIN/governance/scripts
+          cd neurosecurity-framework/governance/scripts
           if [ "${{ github.event.inputs.strict }}" == "true" ]; then
             python check_accessibility.py --verbose --strict
           else
@@ -73,7 +73,7 @@ jobs:
         with:
           name: accessibility-report
           path: |
-            MAIN/governance/scripts/*.log
+            neurosecurity-framework/governance/scripts/*.log
           retention-days: 30
         continue-on-error: true
 

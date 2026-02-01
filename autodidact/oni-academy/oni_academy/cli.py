@@ -28,7 +28,7 @@ Examples:
   oni-academy ui
 
 Web Tools (no installation required):
-  https://qikevinl.github.io/ONI/visualizations/
+  https://qinnovates.github.io/ONI/visualizations/
         """
     )
 

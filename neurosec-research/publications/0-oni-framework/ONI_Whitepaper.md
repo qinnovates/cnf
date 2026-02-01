@@ -808,7 +808,7 @@ This roadmap is aspirational, not guaranteed. But the pattern is clear: every tr
 **Kevin L. Qi** is an independent researcher focused on neurosecurity — the intersection of brain-computer interface technology and cybersecurity. He created the ONI Framework to provide a universal, open standard for securing the bio-digital boundary.
 
 - **GitHub:** [github.com/qikevinl](https://github.com/qikevinl)
-- **Website:** [qikevinl.github.io/ONI](https://qikevinl.github.io/ONI)
+- **Website:** [qinnovates.github.io/ONI](https://qinnovates.github.io/ONI)
 
 ---
 

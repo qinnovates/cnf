@@ -1,9 +1,3 @@
-### Brand configuration for the Convergent Neurosecurity Framework (formerly ONI) ###
-### Referenced by the landing page, Python packages, and video assets. ###
-### All PR requests for this file require explicit approval. ###
-### To check how many files reference this, see "_meta.consumers" ###
-###########################################################################################################################################################################
-
 {
   "framework": {
     "full_name": "The Convergent Neurosecurity Framework",
