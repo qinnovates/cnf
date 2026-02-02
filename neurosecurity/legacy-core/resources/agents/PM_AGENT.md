@@ -8,11 +8,11 @@
 
 | Resource | Location | Purpose |
 |----------|----------|---------|
-| **This Agent** | `MAIN/resources/agents/PM_AGENT.md` | Project management workflows |
-| **prd.json** | `MAIN/project/prd.json` | Task tracking with exit conditions |
+| **This Agent** | `neurosecurity/legacy-core/resources/agents/PM_AGENT.md` | Project management workflows |
+| **prd.json** | `neurosecurity/legacy-core/project/prd.json` | Task tracking with exit conditions |
 | **AGENTS.md** | `/AGENTS.md` | Cross-session learnings |
-| **PROCESS_IMPROVEMENTS.md** | `MAIN/project/processes/` | Process improvement log |
-| **Editor Agent** | `MAIN/resources/editor/EDITOR_AGENT.md` | Documentation consistency |
+| **PROCESS_IMPROVEMENTS.md** | `neurosecurity/legacy-core/project/processes/` | Process improvement log |
+| **Editor Agent** | `neurosecurity/legacy-core/resources/editor/EDITOR_AGENT.md` | Documentation consistency |
 
 ---
 
@@ -185,11 +185,11 @@ How to implement (if applicable).
 ### Version Synchronization
 
 Files that must have matching versions:
-- `MAIN/tara-nsec-platform/pyproject.toml` → `version`
-- `MAIN/tara-nsec-platform/tara/__init__.py` → `__version__`
-- `MAIN/tara-nsec-platform/README.md` → Changelog header
-- `MAIN/oni-framework/pyproject.toml` → `version`
-- `MAIN/oni-framework/oni/__init__.py` → `__version__`
+- `neurosecurity/legacy-core/tara-nsec-platform/pyproject.toml` → `version`
+- `neurosecurity/legacy-core/tara-nsec-platform/tara/__init__.py` → `__version__`
+- `neurosecurity/legacy-core/tara-nsec-platform/README.md` → Changelog header
+- `neurosecurity/legacy-core/oni-framework/pyproject.toml` → `version`
+- `neurosecurity/legacy-core/oni-framework/oni/__init__.py` → `__version__`
 
 ### ONI Layer Consistency
 
@@ -218,8 +218,8 @@ ONI Extension (L8-L14): Neural & Cognitive Systems
 ### Cross-Reference Validation
 
 Check these files reference each other correctly:
-- Main `README.md` → `MAIN/INDEX.md`
-- `MAIN/INDEX.md` → All topic READMEs
+- Main `README.md` → `neurosecurity/legacy-core/INDEX.md`
+- `neurosecurity/legacy-core/INDEX.md` → All topic READMEs
 - Topic READMEs → Parent `INDEX.md`
 - TARA docs → ONI Framework docs
 - Code docstrings → README examples
@@ -341,7 +341,7 @@ PM: release       - Run release checklist
 
 ## Notes on Agent File Placement
 
-**Recommendation:** Keep agent files in `MAIN/resources/agents/` rather than a hidden `.agents` folder because:
+**Recommendation:** Keep agent files in `neurosecurity/legacy-core/resources/agents/` rather than a hidden `.agents` folder because:
 
 1. GitHub renders markdown in `resources/` making it browsable
 2. Hidden folders may be missed by contributors
@@ -349,7 +349,7 @@ PM: release       - Run release checklist
 4. `CLAUDE.md` must stay at root for auto-discovery
 
 **File locations:**
-- `prd.json` → `MAIN/project/prd.json` (project management)
+- `prd.json` → `neurosecurity/legacy-core/project/prd.json` (project management)
 - `AGENTS.md` → root (cross-session learnings, needs root for auto-discovery)
 - `.gitignore` → `.github/.gitignore` (keeps root clean)
 

@@ -134,8 +134,8 @@
 ---
 
 ### Historical Reference - Files to Check for Threshold Values
-- `/oni/MAIN/oni-framework/COHERENCE.md`
-- `/oni/MAIN/oni-framework/ONI_LAYERS.md`
+- `/oni/neurosecurity/legacy-core/oni-framework/COHERENCE.md`
+- `/oni/neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md`
 - `/oni/autodidact/oni-academy/` (course materials)
 - `/oni/docs/` (GitHub Pages source)
 - `/oni/README.md`
@@ -363,7 +363,7 @@ git push origin main
 - `src/scenes/CreditsScene.tsx` - Finale with voice-reactive waves
 - `src/data/oni-theme.ts` - Extended to 3:56 (7080 frames)
 - `src/data/script.ts` - Full script with frame timing
-- `MAIN/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md` - Complete docs
+- `neurosecurity/legacy-core/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md` - Complete docs
 - `video/demo/CLAUDE.md` - Video production instructions (NEW)
 - `video/demo/SESSION_NOTES.md` - This file
 

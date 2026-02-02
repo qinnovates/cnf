@@ -641,7 +641,7 @@ This creates seamless continuity while the character of the sound subtly shifts 
 | `reactor-hum.mp3` | `video/demo/public/audio/` | ~~Spaceship reactor ambient~~ (DEPRECATED - not used) |
 | `energy-pulse.mp3` | `video/demo/public/audio/` | ~~Energy pulse~~ (DEPRECATED - not used) |
 | `vo-finale-cta.mp3` | `video/demo/public/audio/` | Final call to action (Lily voice) |
-| This documentation | `MAIN/resources/sound-engineering/` | Reference |
+| This documentation | `neurosecurity/legacy-core/resources/sound-engineering/` | Reference |
 
 ### Voiceovers
 

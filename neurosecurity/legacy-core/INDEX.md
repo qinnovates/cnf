@@ -353,7 +353,7 @@ When expanding the framework, follow this process:
 
 ### 1. Create Topic Folder
 ```bash
-mkdir MAIN/publications/[topic-name]/
+mkdir neurosecurity/legacy-core/publications/[topic-name]/
 ```
 
 ### 2. Create Topic README.md
@@ -445,7 +445,7 @@ To move ONI from research to implementation, we're pursuing four parallel tracks
 ## Folder Structure
 
 ```
-MAIN/
+neurosecurity/legacy-core/
 ├── INDEX.md                    # This file (central hub)
 ├── CONTRIBUTING.md             # Contribution guidelines
 ├── RELATED_WORK.md             # Prior BCI security research

@@ -48,7 +48,7 @@
 ## Repository File Tree
 
 ```
-oni/                                    # Local folder (remote: github.com/qinnovates/qif)
+mindloft/                               # Local folder (remote: github.com/qinnovates/mindloft)
 ├── README.md                           # Public entry point
 ├── CLAUDE.md                           # Claude AI instructions (this file)
 ├── AGENTS.md                           # Ralph Loop learnings (read at session start)

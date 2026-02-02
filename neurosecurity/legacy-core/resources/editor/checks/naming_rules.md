@@ -97,18 +97,18 @@
 
 | File Type | Allowed Location |
 |-----------|-----------------|
-| `Blog-*.md` | `MAIN/publications/[topic]/` |
-| `TechDoc-*.md` | `MAIN/publications/[topic]/` |
-| Topic `README.md` | `MAIN/publications/[topic]/` |
+| `Blog-*.md` | `neurosecurity/legacy-core/publications/[topic]/` |
+| `TechDoc-*.md` | `neurosecurity/legacy-core/publications/[topic]/` |
+| Topic `README.md` | `neurosecurity/legacy-core/publications/[topic]/` |
 
 ### Infrastructure Files (resources/ only)
 
 | File Type | Allowed Location |
 |-----------|-----------------|
-| `*_TEMPLATE*.md` | `MAIN/resources/templates/` |
-| Process docs | `MAIN/resources/processes/` |
-| Scripts | `MAIN/resources/pipeline/scripts/` |
-| Editor files | `MAIN/resources/editor/` |
+| `*_TEMPLATE*.md` | `neurosecurity/legacy-core/resources/templates/` |
+| Process docs | `neurosecurity/legacy-core/resources/processes/` |
+| Scripts | `neurosecurity/legacy-core/resources/pipeline/scripts/` |
+| Editor files | `neurosecurity/legacy-core/resources/editor/` |
 
 ### Root Level Files
 
@@ -117,7 +117,7 @@
 | `README.md` | Repository root |
 | `CLAUDE.md` | Repository root |
 | `TRANSPARENCY.md` | Repository root |
-| `INDEX.md` | `MAIN/` only |
+| `INDEX.md` | `neurosecurity/legacy-core/` only |
 
 ---
 
@@ -126,28 +126,28 @@
 ### Check 1: Folder Names
 ```bash
 # Find incorrectly named folders
-find MAIN/publications -type d | grep -E "[A-Z]|_"
+find neurosecurity/legacy-core/publications -type d | grep -E "[A-Z]|_"
 ```
 
 ### Check 2: Blog File Names
 ```bash
 # Find incorrectly named blogs
-find MAIN/publications -name "Blog-*.md" | grep -vE "Blog-[A-Z][a-zA-Z_]+\.md"
+find neurosecurity/legacy-core/publications -name "Blog-*.md" | grep -vE "Blog-[A-Z][a-zA-Z_]+\.md"
 ```
 
 ### Check 3: TechDoc File Names
 ```bash
 # Find incorrectly named techdocs
-find MAIN/publications -name "TechDoc-*.md" | grep -vE "TechDoc-[A-Z][a-zA-Z_]+\.md"
+find neurosecurity/legacy-core/publications -name "TechDoc-*.md" | grep -vE "TechDoc-[A-Z][a-zA-Z_]+\.md"
 ```
 
 ### Check 4: Misplaced Files
 ```bash
 # Templates in wrong location
-find MAIN/publications -name "*TEMPLATE*"
+find neurosecurity/legacy-core/publications -name "*TEMPLATE*"
 
 # Content in wrong location
-find MAIN/resources -name "Blog-*" -o -name "TechDoc-*"
+find neurosecurity/legacy-core/resources -name "Blog-*" -o -name "TechDoc-*"
 ```
 
 ---

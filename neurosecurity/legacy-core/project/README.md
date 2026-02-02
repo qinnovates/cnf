@@ -156,7 +156,7 @@ Follow [processes/PUBLISHING_INSTRUCTIONS.md](processes/PUBLISHING_INSTRUCTIONS.
 |----------|----------|---------|
 | [AGENTS.md](../../AGENTS.md) | Repo root | Ralph Loop learnings |
 | [CLAUDE.md](../../CLAUDE.md) | Repo root | AI assistant instructions |
-| [INDEX.md](../INDEX.md) | MAIN/ | Central wiki navigation |
+| [INDEX.md](../INDEX.md) | neurosecurity/legacy-core/ | Central wiki navigation |
 | [TRANSPARENCY.md](../governance/TRANSPARENCY.md) | governance/ | Human-AI collaboration audit |
 
 ---

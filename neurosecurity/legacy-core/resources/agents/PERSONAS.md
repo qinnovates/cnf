@@ -293,7 +293,7 @@ Action: Correct to femtoseconds with citation.
 - Links aren't broken
 - Naming conventions are followed
 
-See: `MAIN/resources/editor/EDITOR_AGENT.md`
+See: `neurosecurity/legacy-core/resources/editor/EDITOR_AGENT.md`
 
 ---
 

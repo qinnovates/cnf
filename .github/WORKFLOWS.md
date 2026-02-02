@@ -17,7 +17,7 @@
 | [Publish to PyPI](#publish-to-pypi) | Release | Build and publish packages |
 | [Accessibility](#accessibility-check) | After publish | WCAG 2.1 AA compliance |
 | [Sync Brand](#sync-brand-to-docs) | brand.json change | Sync brand values to README |
-| [Auto Index](#auto-generate-index) | MAIN/ changes | Generate GLOSSARY.md via AI |
+| [Auto Index](#auto-generate-index) | neurosecurity/legacy-core/ changes | Generate GLOSSARY.md via AI |
 | [Dependabot Auto-Merge](#dependabot-auto-merge) | Dependabot PRs | Auto-merge patch/minor updates |
 
 ---
@@ -144,7 +144,7 @@ Syncs brand.json values to README.md.
 
 | Setting | Value |
 |---------|-------|
-| **Trigger** | Push to `main` when `MAIN/resources/brand.json` changes |
+| **Trigger** | Push to `main` when `neurosecurity/legacy-core/resources/brand.json` changes |
 | **Script** | `scripts/sync_brand.py` |
 
 **Note:** This workflow pushes directly to main. May need PR-based approach if branch protection blocks it.
@@ -158,7 +158,7 @@ Generates `GLOSSARY.md` using AI based on repository structure.
 
 | Setting | Value |
 |---------|-------|
-| **Trigger** | Push to `main` (MAIN/** or autodidact/** changes), manual |
+| **Trigger** | Push to `main` (neurosecurity/legacy-core/** or autodidact/** changes), manual |
 | **AI Model** | gpt-4o-mini via GitHub Models |
 | **Output** | `GLOSSARY.md` |
 

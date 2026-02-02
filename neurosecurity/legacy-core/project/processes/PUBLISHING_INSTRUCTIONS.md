@@ -6,7 +6,7 @@ This document provides standardized instructions for Claude to follow when extra
 
 **Important:**
 - The `publications/` folder is for **content only**
-- All templates, processes, and scripts live in `MAIN/resources/`
+- All templates, processes, and scripts live in `neurosecurity/legacy-core/resources/`
 
 ---
 
@@ -25,7 +25,7 @@ ONI/
 │   ├── workflows/                      # CI/CD pipelines
 │   └── security-audit/                 # Security scanning
 │
-└── MAIN/
+└── neurosecurity/legacy-core/
     ├── INDEX.md                        # Central hub
     ├── CONTRIBUTING.md                 # Contribution guidelines
     ├── RELATED_WORK.md                 # Prior BCI security research
@@ -103,8 +103,8 @@ ONI/
 ## Content Types
 
 ### 1. Blog Posts (`Blog-*.md`)
-**Location:** `MAIN/publications/[topic]/`
-**Template:** `MAIN/resources/templates/BLOG_TEMPLATE.md`
+**Location:** `neurosecurity/legacy-core/publications/[topic]/`
+**Template:** `neurosecurity/legacy-core/resources/templates/BLOG_TEMPLATE.md`
 
 **Characteristics:**
 - Conversational tone
@@ -134,8 +134,8 @@ tags: ['tag1', 'tag2', 'tag3']
 **Note:** Use `date_posted` (not `date`) in front matter. Use `Sub-Tags:` (not `Tags:`) for the hashtag line at the bottom. Include original Medium URL if the post was originally published there.
 
 ### 2. Technical Documents (`*_TechDoc.md`)
-**Location:** `MAIN/publications/[topic]/`
-**Template:** `MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md`
+**Location:** `neurosecurity/legacy-core/publications/[topic]/`
+**Template:** `neurosecurity/legacy-core/resources/templates/TECHDOC_TEMPLATE_APA.md`
 
 **Characteristics:**
 - Formal academic tone
@@ -172,7 +172,7 @@ After creating a new publication, extract keywords in these categories:
 
 ### Step 2: Update keywords.json
 
-Add keywords to `MAIN/resources/pipeline/scripts/keywords.json`:
+Add keywords to `neurosecurity/legacy-core/resources/pipeline/scripts/keywords.json`:
 
 ```json
 {
@@ -218,10 +218,10 @@ When extracting content from a new source:
 ### Step 2: Formatting
 
 **For Blog Posts:**
-- Reference: `MAIN/resources/templates/BLOG_TEMPLATE.md`
+- Reference: `neurosecurity/legacy-core/resources/templates/BLOG_TEMPLATE.md`
 
 **For Technical Documents:**
-- Reference: `MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md`
+- Reference: `neurosecurity/legacy-core/resources/templates/TECHDOC_TEMPLATE_APA.md`
 - Use bold table numbers: `**Table 1**`
 - Use italic table titles: `*Table Title*`
 - Include standard acknowledgments
@@ -232,7 +232,7 @@ When extracting content from a new source:
 
 1. Read the complete publication
 2. Extract keywords by category
-3. Update `MAIN/resources/pipeline/scripts/keywords.json`
+3. Update `neurosecurity/legacy-core/resources/pipeline/scripts/keywords.json`
 4. This ensures the research monitor finds relevant new papers
 
 ### Step 4: Quality Checks
@@ -294,7 +294,7 @@ The research monitor script uses keywords from publications to find relevant new
 ### Running the Monitor
 
 ```bash
-cd MAIN/resources/pipeline/scripts
+cd neurosecurity/legacy-core/resources/pipeline/scripts
 python research_monitor.py --days 7 --sources all
 ```
 
@@ -318,7 +318,7 @@ python research_monitor.py --days 7 --sources all
 
 ### Adding a New Topic
 
-1. Create folder: `MAIN/publications/[topic-name]/`
+1. Create folder: `neurosecurity/legacy-core/publications/[topic-name]/`
 2. Add blog post: `Blog-[Topic_Name].md` (include original Medium URL if applicable)
 3. Add technical document: `TechDoc-[Topic_Name].md`
 4. **Extract keywords and update keywords.json**
@@ -326,10 +326,10 @@ python research_monitor.py --days 7 --sources all
 
 ### Processing Pipeline Incoming Research
 
-1. Review files in `MAIN/resources/pipeline/incoming/`
+1. Review files in `neurosecurity/legacy-core/resources/pipeline/incoming/`
 2. Determine relevance to ONI Framework
 3. If relevant: Extract key findings, create summary
-4. Move processed file to `MAIN/resources/pipeline/processed/`
+4. Move processed file to `neurosecurity/legacy-core/resources/pipeline/processed/`
 5. Update publications if new content warranted
 
 ### Updating Existing Content
@@ -397,7 +397,7 @@ Update `TRANSPARENCY.md` (repository root) whenever:
 
 ### NEUROETHICS_ALIGNMENT.md Updates
 
-Update `MAIN/NEUROETHICS_ALIGNMENT.md` when:
+Update `neurosecurity/qif/governance/NEUROETHICS_ALIGNMENT.md` when:
 
 - New framework components are added
 - Security features are modified

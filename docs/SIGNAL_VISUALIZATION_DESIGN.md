@@ -2,7 +2,7 @@
 
 > Why wavefront propagation was chosen as a pedagogical model to depict BCI signal traversal through the ONI 14-layer model.
 >
-> **Accuracy Note:** The wavefront visualization is a pedagogical model, not literal electromagnetic wave propagation. At BCI frequencies, electric fields are quasi-static (volume conduction). See the [Mathematical Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) for the rigorous physical analysis.
+> **Accuracy Note:** The wavefront visualization is a pedagogical model, not literal electromagnetic wave propagation. At BCI frequencies, electric fields are quasi-static (volume conduction). See the [Mathematical Audit](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) for the rigorous physical analysis.
 
 ---
 
@@ -37,7 +37,7 @@ A **wavefront** is a surface of constant phase in a propagating wave. We chose t
 
 The alternative — animating quasi-static volume conduction with anisotropic conductivity tensors — would be physically accurate but visually incomprehensible to non-specialists.
 
-> **For the physically accurate model**, see [TechDoc-Mathematical_Foundations](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md), Section 2.
+> **For the physically accurate model**, see [TechDoc-Mathematical_Foundations](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md), Section 2.
 
 ---
 
@@ -63,7 +63,7 @@ A **Fourier Transform** decomposes any neural signal into a sum of these circula
 
 The ONI Coherence Metric (Cₛ) measures the stability of these Fourier components across consecutive time windows. An injected signal must simultaneously match *all three properties* across *all frequency components* of the patient's neural baseline — and the exponential form means even small mismatches compound into rapid coherence collapse.
 
-> **Design note:** Cₛ = e^(−(σ²φ + σ²τ + σ²γ)) is *designed using* Fourier analysis — it is not mathematically *derived from* it. The exponential form is one of several valid choices. See [Mathematical Audit, Finding 5](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md).
+> **Design note:** Cₛ = e^(−(σ²φ + σ²τ + σ²γ)) is *designed using* Fourier analysis — it is not mathematically *derived from* it. The exponential form is one of several valid choices. See [Mathematical Audit, Finding 5](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md).
 
 ### Destructive Interference: Active Signal Cancellation
 
@@ -184,7 +184,7 @@ This qualitative relationship is empirically well-documented in neuroscience (Bu
 - Low-frequency signals (delta, <4 Hz) involve large spatial scales (whole-brain regions)
 - This follows from neural circuit anatomy: larger circuits have longer conduction delays and thus slower oscillation frequencies
 
-> **Accuracy note:** The original claim derived f × S ≈ k from the wave equation v = fλ with constant v. However, neural tissue is **dispersive** — dielectric properties are frequency-dependent (Cole-Cole model), so v(f) varies with frequency and f × S is not strictly constant. The qualitative scaling holds, but the quantitative invariant requires a dispersion-corrected formulation. See [Mathematical Audit, Finding 4](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md).
+> **Accuracy note:** The original claim derived f × S ≈ k from the wave equation v = fλ with constant v. However, neural tissue is **dispersive** — dielectric properties are frequency-dependent (Cole-Cole model), so v(f) varies with frequency and f × S is not strictly constant. The qualitative scaling holds, but the quantitative invariant requires a dispersion-corrected formulation. See [Mathematical Audit, Finding 4](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md).
 
 In the visualization, this manifests as:
 - **Outer shells (silicon)**: Process high-frequency, small-scale digital signals
@@ -209,9 +209,9 @@ Each concentric shell in the 3D model represents a different spatial scale S. Th
 | Shell brightness on crossing | Per-layer w(f, S) contribution to the total score |
 | Signal color (blue/red/green) | Signal type determines variance profile (σ²φ, σ²τ, σ²γ) |
 
-The physical chain underpinning this metric — Maxwell (quasi-static) → Boltzmann → Nernst-Planck → Einstein diffusion → Hodgkin-Huxley → Cole-Cole → Fourier → Cₛ(S) — is documented in [TechDoc-Equations_Reference](../MAIN/publications/mathematical-foundations/TechDoc-Equations_Reference.md).
+The physical chain underpinning this metric — Maxwell (quasi-static) → Boltzmann → Nernst-Planck → Einstein diffusion → Hodgkin-Huxley → Cole-Cole → Fourier → Cₛ(S) — is documented in [TechDoc-Equations_Reference](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Equations_Reference.md).
 
-> **Note:** Cₛ(S) is a proposed theoretical framework. The base components are established; the unification is the contribution. See the [ONI Whitepaper, Section 8](../MAIN/publications/0-oni-framework/ONI_Whitepaper.md) for the full formulation.
+> **Note:** Cₛ(S) is a proposed theoretical framework. The base components are established; the unification is the contribution. See the [ONI Whitepaper, Section 8](../neurosecurity/legacy-core/publications/0-oni-framework/ONI_Whitepaper.md) for the full formulation.
 
 ---
 
@@ -283,9 +283,9 @@ The ONI layer model could be physically implemented using existing and near-term
 
 ## References
 
-- Qi, K. (2026). *ONI Framework: Open Neurosecurity Interoperability*. https://github.com/qinnovates/qif
-- Qi, K. (2026). *Mathematical Audit of the ONI Framework*. ONI Publications. [TechDoc-Mathematical_Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md)
-- Qi, K. (2026). *Corrected Mathematical Foundations*. ONI Publications. [TechDoc-Mathematical_Foundations](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md)
+- Qi, K. (2026). *ONI Framework: Open Neurosecurity Interoperability*. https://github.com/qinnovates/mindloft
+- Qi, K. (2026). *Mathematical Audit of the ONI Framework*. ONI Publications. [TechDoc-Mathematical_Audit](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md)
+- Qi, K. (2026). *Corrected Mathematical Foundations*. ONI Publications. [TechDoc-Mathematical_Foundations](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md)
 - Qi, K. (2026). *The Coherence Metric: Variance-Based Neural Signal Verification*. ONI Publications.
 - Qi, K. (2026). *Scale-Frequency Relationship: f × S ≈ k in Neural Signal Processing*. ONI Publications.
 - Buzsáki, G., & Draguhn, A. (2004). Neuronal oscillations in cortical networks. *Science*, 304(5679), 1926–1929.
@@ -298,4 +298,4 @@ The ONI layer model could be physically implemented using existing and near-term
 
 *Document created: 2026-01-29*
 *Author: Kevin Qi + Claude (QI Collaboration)*
-*For: ONI Framework — qinnovates/qif*
+*For: ONI Framework — qinnovates/mindloft*

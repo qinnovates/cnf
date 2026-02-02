@@ -597,9 +597,9 @@ Target: 0 critical and serious violations.
 
 ```bash
 # Existing accessibility checker for Python packages
-python MAIN/governance/scripts/check_accessibility.py
-python MAIN/governance/scripts/check_accessibility.py --verbose
-python MAIN/governance/scripts/check_accessibility.py --strict
+python neurosecurity/qif/governance/scripts/check_accessibility.py
+python neurosecurity/qif/governance/scripts/check_accessibility.py --verbose
+python neurosecurity/qif/governance/scripts/check_accessibility.py --strict
 ```
 
 #### GitHub Action
@@ -733,7 +733,7 @@ on:
 We welcome feedback on the accessibility of ONI Framework interfaces.
 
 Please report accessibility issues:
-- **GitHub Issues:** https://github.com/qinnovates/qif/issues
+- **GitHub Issues:** https://github.com/qinnovates/mindloft/issues
 - **Label:** `accessibility`
 - **Include:** Page URL, assistive technology used, description of barrier
 

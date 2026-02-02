@@ -10,7 +10,7 @@ Quick Start:
     >>> intro = get_course("introduction")
 
 License: Apache 2.0
-Repository: https://github.com/qinnovates/qif
+Repository: https://github.com/qinnovates/mindloft
 """
 
 __author__ = "Kevin L. Qi"

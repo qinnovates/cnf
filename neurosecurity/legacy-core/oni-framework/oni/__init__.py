@@ -236,5 +236,5 @@ QUICK START
   >>> print(da.required_cofactors)  # ['Fe²⁺', 'BH4', 'O₂']
 
 DOCUMENTATION
-  https://github.com/qinnovates/qif
+  https://github.com/qinnovates/mindloft
 """)

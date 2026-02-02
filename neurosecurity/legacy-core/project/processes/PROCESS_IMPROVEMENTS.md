@@ -3,11 +3,11 @@
 ## Current State Analysis
 
 ### What's Working
-1. **Clear folder structure** - Topic-based organization with `MAIN/publications/` and `MAIN/resources/` separation
+1. **Clear folder structure** - Topic-based organization with `neurosecurity/legacy-core/publications/` and `neurosecurity/legacy-core/resources/` separation
 2. **Naming conventions** - Consistent `Blog-*` and `TechDoc-*` patterns across all 14 publications
 3. **Templates exist** - APA TechDoc, Blog, and INDEX templates provide comprehensive formatting guidance
 4. **CLAUDE.md** - Comprehensive AI instructions with file trees, workflows, and quality checklists
-5. **MAIN/INDEX.md** - Cross-reference registry with dependency maps, publication matrix, and metrics
+5. **neurosecurity/legacy-core/INDEX.md** - Cross-reference registry with dependency maps, publication matrix, and metrics
 6. **Research Pipeline** - Automated research monitoring via `keywords.json` and `research_monitor.py`
 7. **YAML front-matter** - Implemented on all publications with title, date, URL, and tags
 8. **Topic INDEX.md files** - All 8 topic folders have INDEX.md with dependencies, key concepts, and future work
@@ -17,7 +17,7 @@
 1. ~~No automated validation of file naming~~ → **RESOLVED: Editor Agent with naming_rules.md**
 2. ~~README.md updates are manual and error-prone~~ → **RESOLVED: Editor Agent auto-syncs**
 3. ~~No version tracking for individual documents~~ → Partial (front-matter on publications)
-4. ~~Cross-references between papers not systematically maintained~~ → **RESOLVED: MAIN/INDEX.md + Editor sync_rules.md**
+4. ~~Cross-references between papers not systematically maintained~~ → **RESOLVED: neurosecurity/legacy-core/INDEX.md + Editor sync_rules.md**
 5. ~~INDEX.md only deployed to 1 of 5 topic folders~~ → **RESOLVED: All 8 folders have INDEX.md**
 6. ~~No consistency checking between documents~~ → **RESOLVED: Editor Agent layer_validation.md**
 7. No content calendar or publishing schedule tracking
@@ -41,7 +41,7 @@ The Editor Agent provides automated quality assurance with a hybrid approach:
 
 **Files Created:**
 ```
-MAIN/resources/editor/
+neurosecurity/legacy-core/resources/editor/
 ├── EDITOR_AGENT.md           # Main orchestrator instructions
 └── checks/
     ├── layer_validation.md   # 14-layer model accuracy (CRITICAL)
@@ -81,11 +81,11 @@ Now handled by Editor Agent. Legacy checklist for reference:
 - [ ] Related Articles section included (Blog posts)
 
 ### Repository Updates
-- [ ] MAIN/INDEX.md Quick Navigation updated
-- [ ] MAIN/INDEX.md Reading Order updated
-- [ ] MAIN/INDEX.md Dependency Map updated
-- [ ] MAIN/INDEX.md Cross-Reference Matrix updated
-- [ ] MAIN/INDEX.md Metrics updated
+- [ ] neurosecurity/legacy-core/INDEX.md Quick Navigation updated
+- [ ] neurosecurity/legacy-core/INDEX.md Reading Order updated
+- [ ] neurosecurity/legacy-core/INDEX.md Dependency Map updated
+- [ ] neurosecurity/legacy-core/INDEX.md Cross-Reference Matrix updated
+- [ ] neurosecurity/legacy-core/INDEX.md Metrics updated
 - [ ] Topic INDEX.md created/updated
 - [ ] docx files regenerated via pandoc
 ```
@@ -116,7 +116,7 @@ abstract: ""
 
 ### 3. Cross-Reference Registry
 
-Maintained in MAIN/INDEX.md. Current state (as of January 2026):
+Maintained in neurosecurity/legacy-core/INDEX.md. Current state (as of January 2026):
 
 | Document | References | Referenced By |
 |----------|------------|---------------|
@@ -141,17 +141,17 @@ Create `CHANGELOG.md` at repository root:
 - Quantum Security TechDoc
 
 ### Changed
-- Updated MAIN/INDEX.md with new publication (metrics now 7 topics, 13 docs)
+- Updated neurosecurity/legacy-core/INDEX.md with new publication (metrics now 7 topics, 13 docs)
 - Cross-reference matrix expanded to include TTT
 
 ## [2026-01-21]
 ### Added
-- MAIN/INDEX.md as central navigation hub
+- neurosecurity/legacy-core/INDEX.md as central navigation hub
 - INDEX_TEMPLATE.md for topic folders
 - Quantum Security Blog post
 
 ### Changed
-- Reorganized into MAIN/publications structure
+- Reorganized into neurosecurity/legacy-core/publications structure
 - Renamed files from Medium-* to Blog-* convention
 - Updated all topic INDEX.md files
 
@@ -180,10 +180,10 @@ For each document, track:
 ### Current Templates
 | Template | Purpose | Location | Status |
 |----------|---------|----------|--------|
-| TECHDOC_TEMPLATE_APA.md | Technical papers (APA 7th) | MAIN/resources/templates/ | Active |
-| BLOG_TEMPLATE.md | Blog posts (Medium-optimized) | MAIN/resources/templates/ | Active |
-| INDEX_TEMPLATE.md | Topic folder indexes | MAIN/resources/templates/ | Active |
-| PUBLISHING_INSTRUCTIONS.md | Workflow guide | MAIN/resources/processes/ | Active |
+| TECHDOC_TEMPLATE_APA.md | Technical papers (APA 7th) | neurosecurity/legacy-core/resources/templates/ | Active |
+| BLOG_TEMPLATE.md | Blog posts (Medium-optimized) | neurosecurity/legacy-core/resources/templates/ | Active |
+| INDEX_TEMPLATE.md | Topic folder indexes | neurosecurity/legacy-core/resources/templates/ | Active |
+| PUBLISHING_INSTRUCTIONS.md | Workflow guide | neurosecurity/legacy-core/resources/processes/ | Active |
 
 ### Deprecated Templates
 | Template | Reason | Replaced By |
@@ -222,7 +222,7 @@ For shorter, less formal research notes that may become papers later:
 ```
 
 #### 2. Topic Index Template — IMPLEMENTED
-Template exists at `MAIN/resources/templates/INDEX_TEMPLATE.md`. **Deployed to all 7 topic folders.**
+Template exists at `neurosecurity/legacy-core/resources/templates/INDEX_TEMPLATE.md`. **Deployed to all 7 topic folders.**
 
 ---
 
@@ -232,9 +232,9 @@ Template exists at `MAIN/resources/templates/INDEX_TEMPLATE.md`. **Deployed to a
 
 Logic for Claude to follow after each content addition:
 
-1. Scan `MAIN/publications/*/` for all markdown files
+1. Scan `neurosecurity/legacy-core/publications/*/` for all markdown files
 2. Count total documents (Blog + TechDoc per folder)
-3. Update MAIN/INDEX.md metrics section
+3. Update neurosecurity/legacy-core/INDEX.md metrics section
 4. Verify all links in Quick Navigation section are valid
 5. Update dependency map if new topic added
 
@@ -259,7 +259,7 @@ After editing any paper:
 
 After each markdown update:
 ```bash
-cd MAIN/publications/[topic]/
+cd neurosecurity/legacy-core/publications/[topic]/
 pandoc Blog-*.md -o Blog-*.docx
 pandoc TechDoc-*.md -o TechDoc-*.docx
 ```
@@ -277,7 +277,7 @@ ONI/
 ├── CONTRIBUTING.md
 ├── LICENSE
 │
-└── MAIN/
+└── neurosecurity/legacy-core/
     ├── INDEX.md                     # Central navigation hub
     │
     ├── resources/
@@ -351,7 +351,7 @@ ONI/
 - [x] Update all file trees in documentation
 - [x] Create INDEX_TEMPLATE.md
 - [x] Deploy INDEX.md to all topic folders (8 of 8 complete)
-- [x] Create MAIN/INDEX.md with dependency map and cross-reference matrix
+- [x] Create neurosecurity/legacy-core/INDEX.md with dependency map and cross-reference matrix
 
 ### Phase 2 (Next Session) — IN PROGRESS
 - [ ] Create CHANGELOG.md at repository root
@@ -361,7 +361,7 @@ ONI/
 - [x] **Editor Agent implementation** → **COMPLETE v1.0**
 
 ### Phase 3 (Future)
-- [x] Build cross-reference registry → **MAIN/INDEX.md**
+- [x] Build cross-reference registry → **neurosecurity/legacy-core/INDEX.md**
 - [x] Document pre-commit checklist → **In CLAUDE.md**
 - [x] Automate pre-commit validation → **Editor Agent (CLAUDE.md v6.0)**
 - [x] Add document metadata to publications → **YAML front-matter on all 14 publications**
@@ -398,7 +398,7 @@ ONI/
 3. ~~**Implement Editor Agent**~~ → **COMPLETE v1.0**
 
 ### Short-Term
-4. **Create Research Note template** as `MAIN/resources/templates/RESEARCH_NOTE_TEMPLATE.md`
+4. **Create Research Note template** as `neurosecurity/legacy-core/resources/templates/RESEARCH_NOTE_TEMPLATE.md`
 5. **Add YAML metadata** to all infrastructure files in `resources/`
 6. **Generate docx files** for all publications using pandoc
 7. **Extend Editor Agent** with additional checks:
@@ -454,14 +454,14 @@ ONI/
 ### 2026-01-22 (Editor Agent & Content Fix)
 
 **Editor Agent v1.0 Implemented:**
-- Created `MAIN/resources/editor/EDITOR_AGENT.md` — Main orchestrator with hybrid auto-fix/approval model
+- Created `neurosecurity/legacy-core/resources/editor/EDITOR_AGENT.md` — Main orchestrator with hybrid auto-fix/approval model
 - Created 4 sub-instruction check files:
   - `checks/layer_validation.md` — 14-layer model accuracy (CRITICAL)
   - `checks/sync_rules.md` — Cross-reference cascade rules
   - `checks/naming_rules.md` — File/folder naming patterns
   - `checks/format_rules.md` — Template compliance
 - Updated `CLAUDE.md` to v6.0 with Editor Agent integration
-- Updated `MAIN/INDEX.md` with Editor Agent resources section
+- Updated `neurosecurity/legacy-core/INDEX.md` with Editor Agent resources section
 - Updated `README.md` file tree with editor folder
 
 **Critical Content Fix:**
@@ -494,7 +494,7 @@ ONI/
   - GitHub Actions CI/CD for tests and publishing
 - **All documentation updated:**
   - README.md: Added Python Library section with quick start
-  - MAIN/INDEX.md: Added oni-framework section with module table
+  - neurosecurity/legacy-core/INDEX.md: Added oni-framework section with module table
   - CLAUDE.md: Updated file tree with oni-framework structure
   - Repository structure diagrams updated throughout
 
@@ -503,7 +503,7 @@ ONI/
   - Blog post converted from .pages file (Nobel Prize QKD topic)
   - INDEX.md with dependencies, key concepts, timeline projections
   - Keywords extracted and added to keywords.json
-- **MAIN/INDEX.md** updated with:
+- **neurosecurity/legacy-core/INDEX.md** updated with:
   - Quantum Keys entry in Quick Navigation
   - Step 8 in Reading Order
   - Expanded Dependency Map (QKeys alongside TTT under Quantum Security)
@@ -523,7 +523,7 @@ ONI/
   - Blog post with template-compliant structure
   - INDEX.md with dependencies, key concepts, threat model
   - docx files generated for both documents
-- **MAIN/INDEX.md** updated with:
+- **neurosecurity/legacy-core/INDEX.md** updated with:
   - New entry in Quick Navigation
   - Step 7 in Reading Order
   - Expanded Dependency Map (TTT under Quantum Security)
@@ -654,7 +654,7 @@ Priority 5: Root README.md (public overview)
 ```
 TechDoc-ONI_Framework.md changes
     → publications/0-oni-framework/README.md [layers table]
-    → MAIN/INDEX.md [layer references]
+    → neurosecurity/legacy-core/INDEX.md [layer references]
     → oni-framework/oni/layers.py [verify code]
 
 Any TechDoc-*.md changes

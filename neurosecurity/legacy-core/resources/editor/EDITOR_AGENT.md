@@ -110,7 +110,7 @@ When a file changes, these files may need updates:
 ```
 TechDoc-ONI_Framework.md (authoritative)
 ├── publications/0-oni-framework/README.md [SYNC layers table]
-├── MAIN/INDEX.md [SYNC layer references]
+├── neurosecurity/legacy-core/INDEX.md [SYNC layer references]
 ├── Root README.md [SYNC if layer summary exists]
 └── oni-framework/oni/layers.py [VERIFY code matches]
 

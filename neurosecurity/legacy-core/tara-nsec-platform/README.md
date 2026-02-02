@@ -3,8 +3,8 @@
 **Telemetry Analysis & Response Automation**
 
 [![PyPI version](https://badge.fury.io/py/oni-tara.svg)](https://badge.fury.io/py/oni-tara)
-[![Tests](https://github.com/qinnovates/qif/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/qif/actions/workflows/tests.yml)
-[![Security](https://github.com/qinnovates/qif/actions/workflows/security.yml/badge.svg)](https://github.com/qinnovates/qif/actions/workflows/security.yml)
+[![Tests](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml)
+[![Security](https://github.com/qinnovates/mindloft/actions/workflows/security.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/security.yml)
 
 TARA is a comprehensive neural security platform for brain-computer interfaces (BCIs). It combines neural network simulation, attack modeling, real-time security monitoring, and interactive visualization in a unified framework aligned with the ONI 14-layer model.
 
@@ -48,7 +48,7 @@ pip install oni-tara[moabb]
 pip install oni-tara[full]
 
 # Development installation (from source)
-cd MAIN/tara-nsec-platform
+cd neurosecurity/legacy-core/tara-nsec-platform
 pip install -e ".[full,dev]"
 ```
 
@@ -839,10 +839,10 @@ See `CLAUDE.md` for development conventions and update procedures.
 
 | Resource | Description |
 |----------|-------------|
-| [ONI Framework Wiki](https://github.com/qinnovates/qif/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
-| [TARA Developer Guide](https://github.com/qinnovates/qif/blob/main/MAIN/tara-nsec-platform/CLAUDE.md) | Development conventions, architecture details |
-| [14-Layer Model Reference](https://github.com/qinnovates/qif/blob/main/MAIN/oni-framework/ONI_LAYERS.md) | Complete ONI layer specification |
-| [Academic Landscape](https://github.com/qinnovates/qif/blob/main/MAIN/ACADEMIC_LANDSCAPE.md) | Research foundation, key papers |
+| [ONI Framework Wiki](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/INDEX.md) | Central hub — navigation, dependencies, roadmap |
+| [TARA Developer Guide](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/tara-nsec-platform/CLAUDE.md) | Development conventions, architecture details |
+| [14-Layer Model Reference](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md) | Complete ONI layer specification |
+| [Academic Landscape](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/ACADEMIC_LANDSCAPE.md) | Research foundation, key papers |
 | [Interactive Demos](https://qinnovates.github.io/ONI/visualizations/) | Browser-based learning tools |
 
 **Related packages:**
@@ -869,7 +869,7 @@ If you use TARA in your research, please cite:
   title={TARA: Telemetry Analysis & Response Automation},
   author={Qi, Kevin L.},
   year={2026},
-  url={https://github.com/qinnovates/qif}
+  url={https://github.com/qinnovates/mindloft}
 }
 ```
 

@@ -9,13 +9,20 @@
 ## Repository Structure
 
 ```
-MAIN/
-├── governance
-├── oni-framework
-├── project
-├── publications
-├── resources
-└── tara-nsec-platform
+mindloft/
+├── neurosecurity/
+│   ├── qif/                  # Quantum Indeterminacy Framework
+│   │   ├── framework/        # 9 research documents
+│   │   └── governance/       # 9 ethics/compliance documents
+│   ├── legacy-core/          # ONI Foundation (v1)
+│   │   ├── oni-framework/    # Python package
+│   │   ├── tara-nsec-platform/
+│   │   ├── publications/     # 31 papers
+│   │   ├── project/          # Project management
+│   │   └── resources/        # Templates, brand, pipeline
+│   └── autodidact/           # Educational content
+├── docs/                     # GitHub Pages website
+└── video/                    # Video production
 ```
 
 ---

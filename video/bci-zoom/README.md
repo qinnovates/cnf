@@ -325,4 +325,4 @@ bci-zoom/
 - RCSB PDB: https://rcsb.org
 - PubChem 3D: https://pubchem.ncbi.nlm.nih.gov
 - Molecular Nodes (Blender): https://github.com/BradyAJohnston/MolecularNodes
-- ONI Layers Reference: /MAIN/oni-framework/ONI_LAYERS.md
+- ONI Layers Reference: /neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md

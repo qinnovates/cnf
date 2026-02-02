@@ -45,7 +45,7 @@ ONI follows the same principle. There are unknowns in neuroscience today — and
 > *"The universe is change; our life is what our thoughts make it."*
 > — Marcus Aurelius, *Meditations* 4.3
 
-This is why I want to expand this work — collaborating with academics, researchers, and neuroscientists to refine the ONI layers and establish ethical guidelines for where technology should and shouldn't intervene, for medical and safety reasons. The framework now includes [9 governance documents](MAIN/governance/) mapping technical controls to neuroethics principles, the UNESCO Recommendation on the Ethics of Neurotechnology (2025), and regulatory requirements across US federal, state, and international jurisdictions. This is a conversation I cannot have alone.
+This is why I want to expand this work — collaborating with academics, researchers, and neuroscientists to refine the ONI layers and establish ethical guidelines for where technology should and shouldn't intervene, for medical and safety reasons. The framework now includes [9 governance documents](neurosecurity/qif/governance/) mapping technical controls to neuroethics principles, the UNESCO Recommendation on the Ethics of Neurotechnology (2025), and regulatory requirements across US federal, state, and international jurisdictions. This is a conversation I cannot have alone.
 
 ## Bigger Than Me
 

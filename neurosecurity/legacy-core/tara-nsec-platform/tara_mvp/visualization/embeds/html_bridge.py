@@ -148,7 +148,7 @@ class ONIVisualizationEmbed:
                 <p style="margin-top: 20px;"><strong>To enable visualizations:</strong></p>
                 <ol style="text-align: left; max-width: 500px; margin: 20px auto;">
                     <li>Clone the repository: <code>git clone https://github.com/qikevinl/oni</code></li>
-                    <li>Navigate to: <code>cd oni/MAIN/tara-nsec-platform</code></li>
+                    <li>Navigate to: <code>cd neurosecurity/legacy-core/tara-nsec-platform</code></li>
                     <li>Install locally: <code>pip install -e .</code></li>
                     <li>Run: <code>tara ui</code></li>
                 </ol>

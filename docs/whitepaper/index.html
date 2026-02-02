@@ -401,7 +401,7 @@
     <div class="nav-links">
         <a href="../">Home</a>
         <a href="../visualizations/">Interactive Demos</a>
-        <a href="https://github.com/qinnovates/qif" class="btn-sm">GitHub</a>
+        <a href="https://github.com/qinnovates/mindloft" class="btn-sm">GitHub</a>
     </div>
 </nav>
 
@@ -667,7 +667,7 @@ WRITE PATH: Cloud → Wireless RX → Validation → Electrical Stimulation → 
 
         <p><strong>Key principle:</strong> No neural data crosses without policy, trust, and security validation. This is not a metaphor — it's an enforcement point.</p>
 
-        <blockquote><p><strong>Deep dive:</strong> See the full 14-layer specification in the <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/0-oni-framework/TechDoc-ONI_Framework.md">Technical Document</a>.</p></blockquote>
+        <blockquote><p><strong>Deep dive:</strong> See the full 14-layer specification in the <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/0-oni-framework/TechDoc-ONI_Framework.md">Technical Document</a>.</p></blockquote>
     </section>
 
     <!-- Section 5 -->
@@ -733,7 +733,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
             <li><strong>Sharp threshold behavior:</strong> The exponential creates rapid decay — C<sub>s</sub> ≈ 1 when total variance is low, but collapses rapidly past a critical variance. This models biological all-or-nothing gating.</li>
             <li><strong>Bounded range:</strong> C<sub>s</sub> ∈ (0, 1], with C<sub>s</sub> = 1 when all variances are zero (perfect coherence) and C<sub>s</sub> → 0 as variance increases.</li>
         </ol>
-        <p><strong>Note:</strong> The exponent is a sum of variances, not Shannon entropy. Variance (σ² = E[(X − μ)²]) and entropy (H = −Σ p(x) log p(x)) are distinct quantities. See the <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md">Mathematical Audit</a> for the full analysis.</p>
+        <p><strong>Note:</strong> The exponent is a sum of variances, not Shannon entropy. Variance (σ² = E[(X − μ)²]) and entropy (H = −Σ p(x) log p(x)) are distinct quantities. See the <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md">Mathematical Audit</a> for the full analysis.</p>
 
         <h3>6.5 BCI vs. Existing Systems</h3>
 
@@ -752,7 +752,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
             <figcaption>Figure 6. Left: Coherence Metric exponential decay curve with accept/flag/reject zones. Right: Variance component breakdown across signal types — from healthy (C<sub>s</sub> = 0.96) to random noise (C<sub>s</sub> = 0.05).</figcaption>
         </figure>
 
-        <blockquote><p><strong>Deep dive:</strong> See the full mathematical derivation in the <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md">Coherence Metric Technical Document</a>.</p></blockquote>
+        <blockquote><p><strong>Deep dive:</strong> See the full mathematical derivation in the <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md">Coherence Metric Technical Document</a>.</p></blockquote>
     </section>
 
     <!-- Section 7 -->
@@ -807,7 +807,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
 
         <p><strong>Dispersion caveat:</strong> This derivation assumes constant signal velocity. In practice, neural tissue is <strong>dispersive</strong> — its dielectric properties are frequency-dependent, following the Cole-Cole model (Cole &amp; Cole, 1941; Gabriel et al., 1996). This means v(f) varies with frequency, and the product f × S is not strictly constant. The qualitative scaling — higher frequencies at smaller spatial scales — is well-supported by neuroscience (Buzsáki &amp; Draguhn, 2004), but quantitative use requires dispersion-corrected velocity. Defining layer-specific k(f) ranges is identified as open research.</p>
 
-        <blockquote><p><strong>Deep dive:</strong> See the full empirical analysis in the <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/scale-frequency/TechDoc-Scale_Frequency.md">Scale-Frequency Technical Document</a> and the <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md">Mathematical Audit, Finding 4</a>.</p></blockquote>
+        <blockquote><p><strong>Deep dive:</strong> See the full empirical analysis in the <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/scale-frequency/TechDoc-Scale_Frequency.md">Scale-Frequency Technical Document</a> and the <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md">Mathematical Audit, Finding 4</a>.</p></blockquote>
     </section>
 
     <!-- Section 8 -->
@@ -886,7 +886,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
             <li>Profile real-time C<sub>s</sub>(S) computation to verify it fits within the ≤370 μs latency budget</li>
         </ol>
 
-        <blockquote><p><strong>Deep dive:</strong> See the complete equations reference in <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/mathematical-foundations/TechDoc-Equations_Reference.md">TechDoc-Equations_Reference</a> and the <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md">Mathematical Audit</a>.</p></blockquote>
+        <blockquote><p><strong>Deep dive:</strong> See the complete equations reference in <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Equations_Reference.md">TechDoc-Equations_Reference</a> and the <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md">Mathematical Audit</a>.</p></blockquote>
     </section>
 
     <!-- Section 9 -->
@@ -944,7 +944,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
             <figcaption>Figure 8. Neural Firewall architecture blueprint. Three security zones with bidirectional signal flow. Total power budget: 2.8 mW, well within implant constraints.</figcaption>
         </figure>
 
-        <blockquote><p><strong>Deep dive:</strong> See the complete hardware architecture in the <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md">Neural Firewall Technical Document</a>.</p></blockquote>
+        <blockquote><p><strong>Deep dive:</strong> See the complete hardware architecture in the <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/neural-firewall/TechDoc-Neural_Firewall_Architecture.md">Neural Firewall Technical Document</a>.</p></blockquote>
     </section>
 
     <!-- Section 9 -->
@@ -986,7 +986,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
         </table>
 
         <blockquote><p><strong>Note:</strong> TARA is a research prototype demonstrating that ONI's mathematical foundations are technically implementable. Production deployment would require clinical validation, real BCI hardware testing, and regulatory review.</p></blockquote>
-        <blockquote><p><strong>Try it:</strong> Install with <code>pip install oni-framework oni-tara</code> or explore the <a href="https://github.com/qinnovates/qif/tree/main/MAIN/tara-nsec-platform">TARA platform</a>.</p></blockquote>
+        <blockquote><p><strong>Try it:</strong> Install with <code>pip install oni-framework oni-tara</code> or explore the <a href="https://github.com/qinnovates/mindloft/tree/main/neurosecurity/legacy-core/tara-nsec-platform">TARA platform</a>.</p></blockquote>
     </section>
 
     <!-- Section 10 -->
@@ -1039,7 +1039,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
             </tbody>
         </table>
 
-        <blockquote><p><strong>Deep dive:</strong> See the full quantum analysis in the <a href="https://github.com/qinnovates/qif/blob/main/MAIN/publications/quantum-encryption/TechDoc-Quantum_Encryption.md">Quantum Encryption Technical Document</a>.</p></blockquote>
+        <blockquote><p><strong>Deep dive:</strong> See the full quantum analysis in the <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/quantum-encryption/TechDoc-Quantum_Encryption.md">Quantum Encryption Technical Document</a>.</p></blockquote>
     </section>
 
     <!-- Section 12 -->
@@ -1157,7 +1157,7 @@ Threshold for acceptance: C<sub>s</sub> &gt; 0.6 (with valid authentication)</pr
     <footer class="wp-footer">
         <p>&copy; 2026 Kevin Qi. ONI Neuroassurance Stack &middot; Open source under Apache 2.0 License</p>
         <p style="margin-top: 0.5rem; font-style: italic; color: var(--text-muted);">"Intelligence — biological or artificial — fails not when signals disappear, but when structure fails."</p>
-        <p style="margin-top: 1rem;"><a href="../">Back to ONI Home</a> &middot; <a href="https://github.com/qinnovates/qif">View on GitHub</a></p>
+        <p style="margin-top: 1rem;"><a href="../">Back to ONI Home</a> &middot; <a href="https://github.com/qinnovates/mindloft">View on GitHub</a></p>
     </footer>
 
 </main>
@@ -1192,6 +1192,6 @@ sections.forEach(section => {
 });
 </script>
 
-<!-- Canonical source: MAIN/publications/0-oni-framework/ONI_Whitepaper.md -->
+<!-- Canonical source: neurosecurity/legacy-core/publications/0-oni-framework/ONI_Whitepaper.md -->
 </body>
 </html>

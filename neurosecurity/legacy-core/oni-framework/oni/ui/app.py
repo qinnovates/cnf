@@ -143,7 +143,7 @@ def render_sidebar():
         <div style="text-align: center; font-size: 0.7rem; color: #94a3b8;">
             <div>v{version}</div>
             <div style="margin-top: 0.5rem;">
-                <a href="https://github.com/qinnovates/qif" style="color: #64748b; text-decoration: none;">GitHub</a> ·
+                <a href="https://github.com/qinnovates/mindloft" style="color: #64748b; text-decoration: none;">GitHub</a> ·
                 <a href="https://pypi.org/project/oni-framework/" style="color: #64748b; text-decoration: none;">PyPI</a>
             </div>
         </div>

@@ -72,10 +72,10 @@ all = [
 
 [project.urls]
 Homepage = "https://qinnovates.github.io/ONI/"
-Documentation = "https://github.com/qinnovates/qif/tree/main/MAIN/oni-framework"
-Repository = "https://github.com/qinnovates/qif"
-Issues = "https://github.com/qinnovates/qif/issues"
-Changelog = "https://github.com/qinnovates/qif/blob/main/MAIN/oni-framework/CHANGELOG.md"
+Documentation = "https://github.com/qinnovates/mindloft/tree/main/neurosecurity/legacy-core/oni-framework"
+Repository = "https://github.com/qinnovates/mindloft"
+Issues = "https://github.com/qinnovates/mindloft/issues"
+Changelog = "https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/oni-framework/CHANGELOG.md"
 
 [project.scripts]
 oni = "oni.cli:main"

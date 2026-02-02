@@ -770,7 +770,7 @@ Coordinated attack on standardized BCI systems affecting millions simultaneously
 
 To propose new techniques or modifications:
 
-1. Open an issue on the [ONI GitHub repository](https://github.com/qinnovates/qif)
+1. Open an issue on the [ONI GitHub repository](https://github.com/qinnovates/mindloft)
 2. Use the technique template format shown above
 3. Include academic references where available
 4. Map to existing frameworks (MITRE, Kohno, Yale) where applicable
@@ -797,4 +797,4 @@ To propose new techniques or modifications:
 
 ---
 
-*ONI Threat Matrix is part of the [ONI Framework](https://github.com/qinnovates/qif) — Open Neural Interface Security*
+*ONI Threat Matrix is part of the [ONI Framework](https://github.com/qinnovates/mindloft) — Open Neural Interface Security*

@@ -12,7 +12,7 @@
 | **Main Video Component** | `src/ONIDemoVideo.tsx` | Video composition with all scenes and audio |
 | **Scene Timestamps** | `src/data/oni-theme.ts` | Frame timing for all scenes |
 | **Script Data** | `src/data/script.ts` | Voiceover text synced to frames |
-| **Sound Design Doc** | `MAIN/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md` | Audio psychology and specs |
+| **Sound Design Doc** | `neurosecurity/legacy-core/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md` | Audio psychology and specs |
 | **Audio Files** | `public/audio/` | All voiceovers and sound effects |
 | **Scene Components** | `src/scenes/` | Individual scene React components |
 

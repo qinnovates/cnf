@@ -278,7 +278,7 @@ See [PEDIATRIC_CONSIDERATIONS.md](PEDIATRIC_CONSIDERATIONS.md).
 #### Q: How do I report security vulnerabilities?
 **A:** Please report security issues responsibly:
 - Email: [security contact to be established]
-- GitHub Security Advisories: [ONI Repository](https://github.com/qinnovates/qif/security)
+- GitHub Security Advisories: [ONI Repository](https://github.com/qinnovates/mindloft/security)
 - Do NOT disclose publicly until patched
 
 ---

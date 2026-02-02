@@ -601,10 +601,10 @@ Tasks
 
 | Document | Path | Purpose |
 |----------|------|---------|
-| This file | `MAIN/project/PROJECT_MANAGEMENT.md` | Master PM doc |
-| Kanban Board | `MAIN/project/KANBAN.md` | Visual task board |
-| Task Tracker | `MAIN/project/prd.json` | Machine-readable tasks |
-| Process Improvements | `MAIN/project/processes/PROCESS_IMPROVEMENTS.md` | Workflow docs |
+| This file | `neurosecurity/legacy-core/project/PROJECT_MANAGEMENT.md` | Master PM doc |
+| Kanban Board | `neurosecurity/legacy-core/project/KANBAN.md` | Visual task board |
+| Task Tracker | `neurosecurity/legacy-core/project/prd.json` | Machine-readable tasks |
+| Process Improvements | `neurosecurity/legacy-core/project/processes/PROCESS_IMPROVEMENTS.md` | Workflow docs |
 | Learnings | `AGENTS.md` | Ralph Loop knowledge |
 
 ### Update Schedule

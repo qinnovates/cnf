@@ -352,7 +352,7 @@ At the end of each blog post, include:
 
 ---
 
-*Follow my work and research. Collaborate and contribute on [GitHub](https://github.com/qinnovates/qif/).*
+*Follow my work and research. Collaborate and contribute on [GitHub](https://github.com/qinnovates/mindloft/).*
 
 *Originally published on [Medium](URL) on [Month Day, Year] at [HH:MM:SS GMT]*
 ```

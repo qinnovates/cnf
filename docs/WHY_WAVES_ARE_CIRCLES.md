@@ -14,7 +14,7 @@ Right Triangle → Unit Circle → Sine Wave → Circular Wavefront → Fourier 
 
 Every link in this chain is the same math, viewed from a different angle. By the end of this document, you'll see why we represent neural signals as expanding circular wavefronts in the ONI visualization — and how the underlying trigonometry connects directly to the ONI coherence metric and scale-frequency invariant.
 
-> **Accuracy Note:** This document is a pedagogical primer. The circular wavefront visualization is a teaching model — not literal BCI physics. At BCI-relevant frequencies, electric fields are quasi-static (volume conduction), not propagating waves. See the [Mathematical Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) for the full rigorous analysis and the [Corrected Foundations](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md) for empirically accurate physics.
+> **Accuracy Note:** This document is a pedagogical primer. The circular wavefront visualization is a teaching model — not literal BCI physics. At BCI-relevant frequencies, electric fields are quasi-static (volume conduction), not propagating waves. See the [Mathematical Audit](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) for the full rigorous analysis and the [Corrected Foundations](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md) for empirically accurate physics.
 
 ---
 
@@ -132,7 +132,7 @@ This is why:
 >
 > Additionally, neural tissue is **anisotropic** — conductivity differs by direction (~10:1 ratio along vs. across white matter fibers). Even in a volume conduction model, equipotential surfaces are ellipsoidal or irregular, not spherical.
 >
-> **The circular wavefront in the ONI visualization is a pedagogical model** representing how a signal's influence spreads through the ONI layer stack. It is not literal electromagnetic wave propagation. The mathematical chain (triangle → circle → wave → Fourier) is exact; the application to BCI electrode fields as "wavefronts" is a useful simplification. See the [Mathematical Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) for full details.
+> **The circular wavefront in the ONI visualization is a pedagogical model** representing how a signal's influence spreads through the ONI layer stack. It is not literal electromagnetic wave propagation. The mathematical chain (triangle → circle → wave → Fourier) is exact; the application to BCI electrode fields as "wavefronts" is a useful simplification. See the [Mathematical Audit](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) for full details.
 
 Despite this distinction, the wavefront visualization captures a correct intuition: a signal originating at one point influences surrounding tissue, and each ONI layer it encounters (L14 biology → L13 → ... → L8 gateway → ... → L1 silicon) interacts with the signal differently — filtering, transforming, or blocking it.
 
@@ -240,7 +240,7 @@ where v = propagation speed
 
 If v were constant, then f × λ = constant, and since spatial scale S relates to wavelength: f × S ≈ k.
 
-> **Accuracy note:** In neural tissue, v is **not** constant across frequencies — tissue is dispersive, with frequency-dependent dielectric properties described by the Cole-Cole model (Cole & Cole, 1941; Gabriel et al., 1996). This means f × S is not strictly constant. However, the **qualitative** relationship holds well: higher-frequency neural oscillations (gamma, >30 Hz) involve smaller neural circuits (cortical columns, ~1mm), while lower-frequency oscillations (delta, <4 Hz) involve larger brain regions. This is empirically well-documented (Buzsáki & Draguhn, 2004) and follows from neural circuit anatomy — larger circuits have longer conduction delays and thus slower oscillation frequencies. The invariant should be understood as an approximate scaling law, not an exact constant. See the [Mathematical Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) for details.
+> **Accuracy note:** In neural tissue, v is **not** constant across frequencies — tissue is dispersive, with frequency-dependent dielectric properties described by the Cole-Cole model (Cole & Cole, 1941; Gabriel et al., 1996). This means f × S is not strictly constant. However, the **qualitative** relationship holds well: higher-frequency neural oscillations (gamma, >30 Hz) involve smaller neural circuits (cortical columns, ~1mm), while lower-frequency oscillations (delta, <4 Hz) involve larger brain regions. This is empirically well-documented (Buzsáki & Draguhn, 2004) and follows from neural circuit anatomy — larger circuits have longer conduction delays and thus slower oscillation frequencies. The invariant should be understood as an approximate scaling law, not an exact constant. See the [Mathematical Audit](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) for details.
 
 This is why:
 - **Outer shells (L1–L7 silicon)** handle high-frequency digital signals — small, fast circles
@@ -305,18 +305,18 @@ From a triangle drawn in sand to a firewall protecting your thoughts. Same found
 > - Triangle → circle → sine wave → Fourier decomposition: **established mathematics**
 > - Cₛ formula and f × S ≈ k: **ONI design choices** that use this math but are not derived from it
 > - Circular wavefront visualization: **pedagogical model**, not literal BCI physics
-> - For the full rigorous analysis, see [Mathematical Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md)
+> - For the full rigorous analysis, see [Mathematical Audit](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md)
 
 ---
 
 ## Further Reading
 
-- [Mathematical Audit](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) — Rigorous audit of every mathematical claim in this document
-- [Corrected Mathematical Foundations](../MAIN/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md) — Empirically accurate physics with expansion stubs
+- [Mathematical Audit](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Audit.md) — Rigorous audit of every mathematical claim in this document
+- [Corrected Mathematical Foundations](../neurosecurity/legacy-core/publications/mathematical-foundations/TechDoc-Mathematical_Foundations.md) — Empirically accurate physics with expansion stubs
 - [ONI Signal Visualization Design Rationale](SIGNAL_VISUALIZATION_DESIGN.md) — Why wavefronts were chosen and the physical basis
-- [ONI 14-Layer Model](https://github.com/qinnovates/qif/blob/main/MAIN/oni-framework/ONI_LAYERS.md) — The full layer specification
-- [Coherence Metric](https://github.com/qinnovates/qif/blob/main/MAIN/publications/coherence-metric/) — The variance-based anomaly detection system
-- [Scale-Frequency Invariant](https://github.com/qinnovates/qif/blob/main/MAIN/publications/scale-frequency/) — f × S ≈ k in neural signal processing
+- [ONI 14-Layer Model](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md) — The full layer specification
+- [Coherence Metric](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/coherence-metric/) — The variance-based anomaly detection system
+- [Scale-Frequency Invariant](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/scale-frequency/) — f × S ≈ k in neural signal processing
 - Fourier, J. (1822). *Theorie analytique de la chaleur* — The original work decomposing functions into sine series
 - [From Stars to Waves — Underground Mathematics](https://undergroundmathematics.org/trigonometry-triangles-to-functions/from-stars-to-waves) — Triangles to trigonometric functions
 - [Wave Mathematics — Visionlearning](https://www.visionlearning.com/en/library/Math-in-Science/62/Wave-Mathematics/131) — Mathematical foundations of waves
@@ -326,5 +326,5 @@ From a triangle drawn in sand to a firewall protecting your thoughts. Same found
 
 *Document created: 2026-01-29*
 *Author: Kevin Qi + Claude (QI Collaboration)*
-*For: ONI Framework — qinnovates/qif*
+*For: ONI Framework — qinnovates/mindloft*
 *Location: docs/WHY_WAVES_ARE_CIRCLES.md*

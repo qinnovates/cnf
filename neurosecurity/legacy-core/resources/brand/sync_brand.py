@@ -3,7 +3,7 @@
 Sync brand.json values into README.md and other documentation.
 
 Usage:
-    python MAIN/resources/brand/sync_brand.py
+    python neurosecurity/legacy-core/resources/brand/sync_brand.py
 
 This script updates documentation files to match brand.json,
 ensuring consistency across the repository.
@@ -15,7 +15,7 @@ from pathlib import Path
 
 
 def load_brand() -> dict:
-    """Load brand.json from MAIN/resources/brand/."""
+    """Load brand.json from neurosecurity/legacy-core/resources/brand/."""
     brand_path = Path(__file__).parent / "brand.json"
     with open(brand_path) as f:
         return json.load(f)

@@ -98,7 +98,7 @@ The ONI Framework makes claims about neuroscience, physics, quantum mechanics, a
 ### Folder Structure
 
 ```
-MAIN/resources/pipeline/
+neurosecurity/legacy-core/resources/pipeline/
 ├── sources/                    # RAW SOURCES (authoritative documents)
 │   ├── papers/                 # Peer-reviewed papers (PDF, BibTeX)
 │   │   └── kohno-2009.pdf
@@ -349,7 +349,7 @@ When documenting AI corrections (Example 3, etc.), use this format:
 
 ### Connection to Editor Agent
 
-The Editor Agent (`MAIN/resources/editor/EDITOR_AGENT.md`) handles:
+The Editor Agent (`neurosecurity/legacy-core/resources/editor/EDITOR_AGENT.md`) handles:
 - Cross-reference validation (layer names, formulas)
 - Sync between TechDocs and README.md
 - Date/count accuracy
@@ -372,7 +372,7 @@ The Research Verification Protocol handles:
 
 ## Verified Claims Template
 
-Create files in `MAIN/resources/pipeline/verified/`:
+Create files in `neurosecurity/legacy-core/resources/pipeline/verified/`:
 
 ```markdown
 # [Topic] — Verified Claims

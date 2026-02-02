@@ -141,7 +141,7 @@ NEURAL/COGNITIVE (L9-L14):
 - **OSI (L1-L7)** answers: *How does data move?*
 - **ONI (L8-L14)** answers: *Should it move, can it be trusted, and what does it mean?*
 
-**Authoritative Reference:** See `MAIN/oni-framework/ONI_LAYERS.md` for complete definitions.
+**Authoritative Reference:** See `neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md` for complete definitions.
 
 ### Brain Regions → ONI Layer Mapping
 

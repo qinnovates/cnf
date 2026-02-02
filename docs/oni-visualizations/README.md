@@ -62,7 +62,7 @@ All visualizations are constrained by documented research values:
 - **Gain Variance (σ²γ):** 0.02 - 0.1
 - **Thresholds:** Accept > 0.75, Flag 0.5-0.75, Reject ≤ 0.5
 
-See `MAIN/publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md` for derivations.
+See `neurosecurity/legacy-core/publications/coherence-metric/TechDoc-Coherence_Metric_Detailed.md` for derivations.
 
 ## Animation Principles
 
@@ -108,8 +108,8 @@ Rendered videos can be embedded in the ONI documentation:
 ## References
 
 - [Remotion Documentation](https://remotion.dev/docs)
-- [ONI VISUALIZATION_AS_CODE_STRATEGY.md](../../MAIN/resources/workflows/VISUALIZATION_AS_CODE_STRATEGY.md)
-- [ONI Coherence Metric TechDoc](../../MAIN/publications/coherence-metric/)
+- [ONI VISUALIZATION_AS_CODE_STRATEGY.md](../../neurosecurity/legacy-core/resources/workflows/VISUALIZATION_AS_CODE_STRATEGY.md)
+- [ONI Coherence Metric TechDoc](../../neurosecurity/legacy-core/publications/coherence-metric/)
 
 ---
 

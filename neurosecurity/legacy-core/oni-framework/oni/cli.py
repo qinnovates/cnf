@@ -30,7 +30,7 @@ Examples:
   oni demo            Run a quick demonstration
   oni version         Show version number
 
-Documentation: https://github.com/qinnovates/qif
+Documentation: https://github.com/qinnovates/mindloft
         """,
     )
 

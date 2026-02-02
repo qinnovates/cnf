@@ -354,7 +354,7 @@ class SecurityAuditor:
                     "driver": {
                         "name": "Security Audit Pipeline",
                         "version": "1.0.0",
-                        "informationUri": "https://github.com/qinnovates/qif/security-audit-pipeline",
+                        "informationUri": "https://github.com/qinnovates/mindloft/security-audit-pipeline",
                         "rules": []
                     }
                 },

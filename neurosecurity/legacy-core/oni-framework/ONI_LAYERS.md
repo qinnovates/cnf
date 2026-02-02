@@ -67,7 +67,7 @@ The framework provides security without requiring surveillance. Signal integrity
 
 ## Complete 14-Layer Model
 See all detailed layers here: 
-[https://github.com/qinnovates/qif/edit/main/MAIN/oni-framework/ONI_LAYERS.md](https://qinnovates.github.io/ONI/visualizations/08-oni-framework-viz.html)
+[https://github.com/qinnovates/mindloft/edit/main/neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md](https://qinnovates.github.io/ONI/visualizations/08-oni-framework-viz.html)
 
 ### OSI Stack — Classical Networking (L1-L7)
 
@@ -279,7 +279,7 @@ ONI can adopt existing standards:
 - L8-L10: Medical device standards (IEC 62443, FDA guidance)
 - L11-L14: Emerging neuroethics frameworks
 
-> **⚠️ Future Work (L11-L14):** Unlike the mature standards for L1-L10, no established international standards currently exist for cognitive and identity-layer security. Standards development for L11-L14 requires collaboration with subject matter experts (neuroethicists, cognitive scientists, BCI researchers) and governing agencies (FDA, EU MDR, IEEE, UNESCO, OECD). See `MAIN/governance/POST_DEPLOYMENT_ETHICS.md` and `prd.json` item `future-l11-l14-standards-development` for tracking.
+> **⚠️ Future Work (L11-L14):** Unlike the mature standards for L1-L10, no established international standards currently exist for cognitive and identity-layer security. Standards development for L11-L14 requires collaboration with subject matter experts (neuroethicists, cognitive scientists, BCI researchers) and governing agencies (FDA, EU MDR, IEEE, UNESCO, OECD). See `neurosecurity/qif/governance/POST_DEPLOYMENT_ETHICS.md` and `prd.json` item `future-l11-l14-standards-development` for tracking.
 
 ### 5. Scalability
 The model works for:
@@ -653,8 +653,8 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 
 | Priority | File | Purpose | Update When |
 |----------|------|---------|-------------|
-| **1** | `MAIN/oni-framework/ONI_LAYERS.md` | Authoritative reference | Layer definitions change |
-| **2** | `MAIN/resources/brand/brand.json` | Machine-readable source | Any layer name/zone change |
+| **1** | `neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md` | Authoritative reference | Layer definitions change |
+| **2** | `neurosecurity/legacy-core/resources/brand/brand.json` | Machine-readable source | Any layer name/zone change |
 
 ### Consumer Files (Must Match Source of Truth)
 
@@ -664,9 +664,9 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 | `video/demo/src/components/LayerStack.tsx` | React/Remotion | Demo video layer stack component |
 | `video/demo/src/data/oni-theme.ts` | TypeScript | Video theme colors and layer comments |
 | `video/motion/src/theme.ts` | TypeScript | Motion Canvas video theme |
-| `MAIN/tara-nsec-platform/tara_mvp/visualization/themes/oni_theme.py` | Python | TARA dashboard visualization |
-| `MAIN/resources/editor/checks/layer_validation.md` | Markdown | Editor Agent validation rules |
-| `MAIN/oni-framework/oni/layers.py` | Python | ONI Framework Python API |
+| `neurosecurity/legacy-core/tara-nsec-platform/tara_mvp/visualization/themes/oni_theme.py` | Python | TARA dashboard visualization |
+| `neurosecurity/legacy-core/resources/editor/checks/layer_validation.md` | Markdown | Editor Agent validation rules |
+| `neurosecurity/legacy-core/oni-framework/oni/layers.py` | Python | ONI Framework Python API |
 
 ### Current Layer Mapping (v3.0)
 
@@ -708,8 +708,8 @@ When layer definitions change:
 2. **Update brand.json** with machine-readable changes
 3. **Run verification:**
    ```bash
-   grep -rn "L9.*Signal Processing\|L10.*Neural Protocol" MAIN/
-   grep -rn "L9.*Ion Channel\|L10.*Spike Train" MAIN/  # Should return 0 results
+   grep -rn "L9.*Signal Processing\|L10.*Neural Protocol" neurosecurity/legacy-core/
+   grep -rn "L9.*Ion Channel\|L10.*Spike Train" neurosecurity/legacy-core/  # Should return 0 results
    ```
 4. **Update all consumer files** listed above
 5. **Update CLAUDE.md** instructions if workflow changes
@@ -753,7 +753,7 @@ These implementations render the 14-layer model and must stay synchronized with 
 
 | Implementation | Location | Purpose |
 |----------------|----------|---------|
-| **brand.json** | [`MAIN/resources/brand/brand.json`](../resources/brand/brand.json) | Single source of truth for layer data (names, colors, zones) |
+| **brand.json** | [`neurosecurity/legacy-core/resources/brand/brand.json`](../resources/brand/brand.json) | Single source of truth for layer data (names, colors, zones) |
 | **Video Animation** | [`video/demo/src/components/LayerStack.tsx`](../../video/demo/src/components/LayerStack.tsx) | Remotion video layer stack with cascade animation |
 | **GitHub Pages** | [`docs/index.html`](../../docs/index.html) | Website scroll-reveal animation with L8 expansion effect |
 | **Python API - Layers** | [`oni/layers.py`](oni/layers.py) | Programmatic layer access, attack surfaces, defenses |

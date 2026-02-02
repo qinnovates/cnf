@@ -219,7 +219,7 @@ Already set up in `video/demo/` - can reuse infrastructure.
 
 - [Research-BCI_Mouse_Movement.md](../../autodidact/neuroscience-bci/brain-regions/cerebral-cortex/motor-cortex/Research-BCI_Mouse_Movement.md) — Electrode specs, neural decoding
 - [scales.json](../../autodidact/neuroscience-bci/visualizing-the-mind/2D-mindmapper/manim/bci-zoom/data/scales.json) — Scientific scale data
-- [KANBAN.md](../../MAIN/project/KANBAN.md) — Backlog item: `bci-macro-to-micro-visualization`
+- [KANBAN.md](../../neurosecurity/legacy-core/project/KANBAN.md) — Backlog item: `bci-macro-to-micro-visualization`
 
 ---
 

@@ -22,7 +22,7 @@ L9-L14: Biology (Neural/cognitive - brain side)
 
 ## Authoritative Definition
 
-**Source:** `MAIN/publications/0-oni-framework/TechDoc-ONI_Framework.md`
+**Source:** `neurosecurity/legacy-core/publications/0-oni-framework/TechDoc-ONI_Framework.md`
 
 ### The 14 ONI Layers (Canonical)
 
@@ -89,7 +89,7 @@ These files contain layer references:
 |------|----------|----------|
 | `publications/0-oni-framework/README.md` | Full 14-layer table | CRITICAL |
 | `publications/0-oni-framework/Blog-ONI_Framework.md` | Layer descriptions | HIGH |
-| `MAIN/INDEX.md` | Layer references | HIGH |
+| `neurosecurity/legacy-core/INDEX.md` | Layer references | HIGH |
 | `oni-framework/oni/layers.py` | Code implementation | CRITICAL |
 | Root `README.md` | May contain summary | MEDIUM |
 
@@ -155,7 +155,7 @@ After fixing, verify all layer tables match:
 
 ```bash
 # Find all layer tables
-grep -rn "14 Layers\|L1.*L14\|Layer.*Silicon\|Layer.*Biology" MAIN/
+grep -rn "14 Layers\|L1.*L14\|Layer.*Silicon\|Layer.*Biology" neurosecurity/legacy-core/
 
 # Compare against authoritative source
 diff <(grep "L[0-9]" TechDoc-ONI_Framework.md) <(grep "L[0-9]" README.md)

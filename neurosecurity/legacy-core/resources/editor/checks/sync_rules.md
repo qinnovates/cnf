@@ -136,20 +136,20 @@ Action: Generate update plan, require approval
 
 ### Find Layer References
 ```bash
-grep -rn "L[0-9]\{1,2\}" MAIN/publications/ --include="*.md"
-grep -rn "14.*[Ll]ayer" MAIN/ --include="*.md"
+grep -rn "L[0-9]\{1,2\}" neurosecurity/legacy-core/publications/ --include="*.md"
+grep -rn "14.*[Ll]ayer" neurosecurity/legacy-core/ --include="*.md"
 ```
 
 ### Find Formula References
 ```bash
-grep -rn "Cₛ\|C_s\|coherence.*score" MAIN/ --include="*.md"
-grep -rn "f.*×.*S\|f \* S\|frequency.*scale" MAIN/ --include="*.md"
+grep -rn "Cₛ\|C_s\|coherence.*score" neurosecurity/legacy-core/ --include="*.md"
+grep -rn "f.*×.*S\|f \* S\|frequency.*scale" neurosecurity/legacy-core/ --include="*.md"
 ```
 
 ### Find Broken Links
 ```bash
 # Extract all markdown links and verify targets exist
-grep -oE "\[.*\]\(.*\.md\)" MAIN/ --include="*.md" -r
+grep -oE "\[.*\]\(.*\.md\)" neurosecurity/legacy-core/ --include="*.md" -r
 ```
 
 ### Find Stale Dates

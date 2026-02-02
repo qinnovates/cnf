@@ -740,7 +740,7 @@ def main():
 
         #### Part of ONI Academy
 
-        LearnViz is the visualization engine for [ONI Academy](https://github.com/qinnovates/qif) —
+        LearnViz is the visualization engine for [ONI Academy](https://github.com/qinnovates/mindloft) —
         an adaptive learning platform for neurosecurity education.
         """)
 
@@ -762,7 +762,7 @@ def main():
     # Footer
     st.markdown("""
     <div class="footer">
-        <p><strong>LearnViz</strong> • Part of <a href="https://github.com/qinnovates/qif">ONI Academy</a></p>
+        <p><strong>LearnViz</strong> • Part of <a href="https://github.com/qinnovates/mindloft">ONI Academy</a></p>
         <p>🔒 100% Local — Your data never leaves your machine</p>
     </div>
     """, unsafe_allow_html=True)

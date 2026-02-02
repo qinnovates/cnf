@@ -497,8 +497,8 @@ Traditional education assumes everyone learns the same way. Autodidact rejects t
 
 ## Related
 
-- [ONI Framework](../MAIN/) — The security framework that protects neural interfaces
-- [TARA Platform](../MAIN/tara-nsec-platform/) — Security monitoring & simulation
+- [ONI Framework](../) — The security framework that protects neural interfaces
+- [TARA Platform](../neurosecurity/legacy-core/tara-nsec-platform/) — Security monitoring & simulation
 - [GitHub Pages](https://qinnovates.github.io/ONI/) — Live interactive tools
 - [Autodidactive Demo](https://frontend-phi-seven-64.vercel.app) — Interactive learning platform
 

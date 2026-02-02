@@ -30,10 +30,10 @@ class ProjectBrand:
 
 
 def _load_brand_json() -> dict:
-    """Load brand.json from MAIN/resources/brand/."""
+    """Load brand.json from neurosecurity/legacy-core/resources/brand/."""
     # Try multiple paths for different installation contexts
     possible_paths = [
-        Path(__file__).parent.parent.parent / "resources" / "brand" / "brand.json",  # oni/brand.py -> oni-framework -> MAIN/resources/brand
+        Path(__file__).parent.parent.parent / "resources" / "brand" / "brand.json",  # oni/brand.py -> oni-framework -> neurosecurity/legacy-core/resources/brand
         Path(__file__).parent.parent.parent.parent.parent / "MAIN" / "resources" / "brand" / "brand.json",  # From repo root
         Path(__file__).parent.parent / "resources" / "brand" / "brand.json",  # If installed as package
     ]

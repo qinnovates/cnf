@@ -1854,8 +1854,8 @@ OVERALL TREND:
 ║     privacy" distinct from speech/expression. The funnel model       ║
 ║     shows WHY this gap matters — the Rim exists BEFORE expression.   ║
 ║                                                                      ║
-║     See: MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md               ║
-║     See: MAIN/governance/DATA_POLICY_FAQ.md                          ║
+║     See: neurosecurity/qif/governance/INFORMED_CONSENT_FRAMEWORK.md               ║
+║     See: neurosecurity/qif/governance/DATA_POLICY_FAQ.md                          ║
 ║                                                                      ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║                                                                      ║
@@ -1886,8 +1886,8 @@ OVERALL TREND:
 ║     There is no universal "correct" QI integer for thought.          ║
 ║     Enforcing one is not security — it's control.                    ║
 ║                                                                      ║
-║     See: MAIN/governance/NEUROETHICS_ALIGNMENT.md                    ║
-║     See: MAIN/governance/POST_DEPLOYMENT_ETHICS.md                   ║
+║     See: neurosecurity/qif/governance/NEUROETHICS_ALIGNMENT.md                    ║
+║     See: neurosecurity/qif/governance/POST_DEPLOYMENT_ETHICS.md                   ║
 ║                                                                      ║
 ╠════════════════════════════════════════════════════════════════════════╣
 ║                                                                      ║
@@ -1926,8 +1926,8 @@ OVERALL TREND:
 ║       is it identity theft or medical data breach — or both?         ║
 ║     • Can your Mirrored Side output be subpoenaed?                   ║
 ║                                                                      ║
-║     See: MAIN/governance/REGULATORY_COMPLIANCE.md                    ║
-║     See: MAIN/governance/DATA_POLICY_FAQ.md                          ║
+║     See: neurosecurity/qif/governance/REGULATORY_COMPLIANCE.md                    ║
+║     See: neurosecurity/qif/governance/DATA_POLICY_FAQ.md                          ║
 ║                                                                      ║
 ╚════════════════════════════════════════════════════════════════════════╝
 ```
@@ -1967,7 +1967,7 @@ OVERALL TREND:
 │  This is the same transparency principle that governs the             │
 │  entire framework-v2:                                                  │
 │    → 07-QUANTUM-BIOLOGY.md has Gemini vs Claude vs Reality tables     │
-│    → MAIN/governance/TRANSPARENCY.md has the full audit trail          │
+│    → neurosecurity/qif/governance/TRANSPARENCY.md has the full audit trail          │
 │    → Every AI contribution is labeled, not hidden                      │
 │                                                                        │
 │  The meta-ethical question — "whose ethics are these?" —               │
@@ -2011,7 +2011,7 @@ OVERALL TREND:
 │     → These aren't engineering questions. They're governance           │
 │       questions. TARA can implement whatever rules exist,              │
 │       but someone has to WRITE the rules first.                        │
-│       See: MAIN/governance/ (9 documents addressing this)              │
+│       See: neurosecurity/qif/governance/ (9 documents addressing this)              │
 │                                                                        │
 │  3. THE MEASUREMENT WALL MEANS WE'D BE GUESSING                       │
 │     ──────────────────────────────────────────────                     │
@@ -2088,7 +2088,7 @@ WHAT TO DO, IN ORDER:
   ✅ DONE    4. Define Q and the Josephson-Funnel (08 — this document)
 
   🔄 NOW     5. Ethics and governance
-                (MAIN/governance/ — 9 documents, actively maintained)
+                (neurosecurity/qif/governance/ — 9 documents, actively maintained)
                 Who owns neural data?
                 What are the consent requirements?
                 What regulations exist/are needed?

@@ -30,7 +30,7 @@
       "id": "pm-agent-implementation",
       "description": "PM Agent for task tracking and process improvement",
       "status": "complete",
-      "exit_condition": "PM_AGENT.md exists in MAIN/resources/agents/",
+      "exit_condition": "PM_AGENT.md exists in neurosecurity/legacy-core/resources/agents/",
       "completed_at": "2026-01-22",
       "learnings": "PM Agent provides structure for documentation alignment checks"
     },
@@ -47,7 +47,7 @@
       "id": "siem-to-nsam-rename",
       "description": "Rename 'siem' directory to 'nsam' in TARA codebase",
       "status": "complete",
-      "exit_condition": "No directory named 'siem' exists in MAIN/tara/",
+      "exit_condition": "No directory named 'siem' exists in neurosecurity/legacy-core/tara/",
       "completed_at": "2026-01-22",
       "priority": "high",
       "learnings": "Updated imports in __init__.py, cli.py, README.md, CLAUDE.md"
@@ -56,7 +56,7 @@
       "id": "oni-layers-reference",
       "description": "Create ONI_LAYERS.md as authoritative layer reference",
       "status": "complete",
-      "exit_condition": "MAIN/ONI_LAYERS.md exists with complete 14-layer definitions",
+      "exit_condition": "neurosecurity/legacy-core/ONI_LAYERS.md exists with complete 14-layer definitions",
       "completed_at": "2026-01-22",
       "priority": "high",
       "learnings": "Comprehensive reference with visual diagram, threat landscape, coherence score, external physical threats"
@@ -72,7 +72,7 @@
     },
     {
       "id": "images-organization",
-      "description": "Copy images to MAIN/resources/images/ and reference in READMEs",
+      "description": "Copy images to neurosecurity/legacy-core/resources/images/ and reference in READMEs",
       "status": "complete",
       "exit_condition": "Images exist in git and are displayed in README",
       "completed_at": "2026-01-22",
@@ -95,13 +95,13 @@
       "exit_condition": "Prompt text documented for user to generate diagram",
       "completed_at": "2026-01-22",
       "priority": "low",
-      "learnings": "Created MAIN/resources/images/CHATGPT_HOURGLASS_PROMPT.md with detailed prompts for image generation"
+      "learnings": "Created neurosecurity/legacy-core/resources/images/CHATGPT_HOURGLASS_PROMPT.md with detailed prompts for image generation"
     },
     {
       "id": "related-work-documentation",
       "description": "Create RELATED_WORK.md documenting prior BCI security research and positioning ONI's contribution",
       "status": "complete",
-      "exit_condition": "MAIN/RELATED_WORK.md exists with references; no 'first' or 'only' claims in existing docs",
+      "exit_condition": "neurosecurity/legacy-core/RELATED_WORK.md exists with references; no 'first' or 'only' claims in existing docs",
       "completed_at": "2026-01-23",
       "priority": "high",
       "learnings": "Fixed claims in TechDoc-ONI_Framework.md and Blog-Neural_Firewall.md. Acknowledged Kohno 2009, IEEE standards, BCI Anonymizer, etc. ONI differs via OSI extension architecture, Coherence Metric, implementation focus."
@@ -110,7 +110,7 @@
       "id": "lazaro-munoz-consent-framework",
       "description": "Create INFORMED_CONSENT_FRAMEWORK.md based on Lázaro-Muñoz research",
       "status": "complete",
-      "exit_condition": "MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md exists with consent requirements",
+      "exit_condition": "neurosecurity/qif/governance/INFORMED_CONSENT_FRAMEWORK.md exists with consent requirements",
       "completed_at": "2026-01-24",
       "priority": "high",
       "learnings": "Integrated 8 ethical themes from aDBS research (91% privacy concerns, 74% consent, 57% autonomy). Continuous consent model required for adaptive devices."
@@ -119,7 +119,7 @@
       "id": "lazaro-munoz-post-deployment",
       "description": "Create POST_DEPLOYMENT_ETHICS.md for device lifecycle management",
       "status": "complete",
-      "exit_condition": "MAIN/governance/POST_DEPLOYMENT_ETHICS.md exists with lifecycle framework",
+      "exit_condition": "neurosecurity/qif/governance/POST_DEPLOYMENT_ETHICS.md exists with lifecycle framework",
       "completed_at": "2026-01-24",
       "priority": "high",
       "learnings": "Post-trial access is ethically problematic when no alternatives exist. Device maintenance costs $10K+/year. No US requirements for post-trial services."
@@ -128,7 +128,7 @@
       "id": "lazaro-munoz-pediatric",
       "description": "Create PEDIATRIC_CONSIDERATIONS.md for minors and incapacity",
       "status": "complete",
-      "exit_condition": "MAIN/governance/PEDIATRIC_CONSIDERATIONS.md exists with tri-level authorization model",
+      "exit_condition": "neurosecurity/qif/governance/PEDIATRIC_CONSIDERATIONS.md exists with tri-level authorization model",
       "completed_at": "2026-01-24",
       "priority": "high",
       "learnings": "Don't treat minors as small adults. 4 pressing concerns: uncertainty (72%), decision-making roles (52%), information scarcity (52%), regulatory status (24%). Assent capacity concerns at 80%."
@@ -249,7 +249,7 @@
       "id": "pm-hub-readme",
       "description": "Create centralized README.md dashboard for project/ folder with status tracking, quick links, and navigation",
       "status": "complete",
-      "exit_condition": "MAIN/project/README.md exists with status dashboard, metrics, milestone overview, and links to all PM documents",
+      "exit_condition": "neurosecurity/legacy-core/project/README.md exists with status dashboard, metrics, milestone overview, and links to all PM documents",
       "completed_at": "2026-01-26",
       "priority": "medium",
       "learnings": "Consolidated PM navigation into single dashboard. Progress bars and metrics at top for quick status. Links to detailed docs (KANBAN, prd.json, PROJECT_MANAGEMENT) for drill-down."
@@ -312,7 +312,7 @@
       "id": "external-tools-reference",
       "description": "Create EXTERNAL_TOOLS.md — central catalog of all external tools, libraries, datasets, and standards used by ONI (BrainFlow, Neuromore, MNE-Python, MOABB, SciPy, Three.js, etc.).",
       "status": "complete",
-      "exit_condition": "MAIN/resources/EXTERNAL_TOOLS.md exists with 10 sections covering signal processing, benchmarking, visualization, security, ML, physics references, CI/CD, hardware targets, standards",
+      "exit_condition": "neurosecurity/legacy-core/resources/EXTERNAL_TOOLS.md exists with 10 sections covering signal processing, benchmarking, visualization, security, ML, physics references, CI/CD, hardware targets, standards",
       "completed_at": "2026-01-29",
       "priority": "medium",
       "learnings": "Centralizing tool references prevents fragmentation across documentation. Integration status tracking (Integrated/Planned/Evaluated/Reference) clarifies development roadmap."
@@ -464,10 +464,10 @@
       "title": "Update Existing Blogs and Papers",
       "description": "Go back and update all existing blog posts and technical papers with corrected ONI layer model",
       "documents_to_update": [
-        "MAIN/publications/0-oni-framework/",
-        "MAIN/publications/coherence-metric/",
-        "MAIN/publications/neural-firewall/",
-        "MAIN/publications/neural-ransomware/",
+        "neurosecurity/legacy-core/publications/0-oni-framework/",
+        "neurosecurity/legacy-core/publications/coherence-metric/",
+        "neurosecurity/legacy-core/publications/neural-firewall/",
+        "neurosecurity/legacy-core/publications/neural-ransomware/",
         "Medium blog posts (external)"
       ],
       "feasibility": "practical",
@@ -561,14 +561,14 @@
           "id": "blog-problem-with-bcis",
           "type": "blog",
           "title": "The Problem with BCIs: Why Your Brain Implant Can't See Everything",
-          "template": "MAIN/resources/templates/BLOG_TEMPLATE.md",
+          "template": "neurosecurity/legacy-core/resources/templates/BLOG_TEMPLATE.md",
           "status": "backlog"
         },
         {
           "id": "techdoc-bci-blind-spots",
           "type": "techdoc",
           "title": "BCI Blind Spots: Attack Surfaces Beyond Electrical Monitoring",
-          "template": "MAIN/resources/templates/TECHDOC_TEMPLATE_APA.md",
+          "template": "neurosecurity/legacy-core/resources/templates/TECHDOC_TEMPLATE_APA.md",
           "status": "backlog"
         }
       ],

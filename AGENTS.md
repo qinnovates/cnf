@@ -47,7 +47,7 @@
 - Implemented voice-reactive waves in credits scene
 - Created video production CLAUDE.md with sync guidelines
 - Documented all audio files and voice configurations
-- Key files: `video/demo/CLAUDE.md`, `video/demo/SESSION_NOTES.md`, `MAIN/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md`
+- Key files: `video/demo/CLAUDE.md`, `video/demo/SESSION_NOTES.md`, `neurosecurity/legacy-core/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md`
 
 **2026-01-28 Session:**
 - Fixed oni-academy imports (LEARNVIZ_AVAILABLE = True when installed from PyPI)
@@ -87,7 +87,7 @@
 | 2026-01-25 | **Dependabot configured for automated security updates** | Weekly updates for: pip (oni-framework, oni-tara), npm (oni-demo-video), GitHub Actions. Groups minor/patch updates. |
 | 2026-01-25 | **GitHub Pages made dynamic with CDN-based animations** | AOS.js for scroll animations, CSS keyframes for hero effects, neural network background, counter animations. No build step required — CDN libraries auto-update. |
 | 2026-01-26 | **Brand sync script enhanced** | Now syncs: full_name, tagline, slogan (ONI) + full_name (TARA) to README.md; mission to docs/index.html. Generic regex patterns allow any slogan value. |
-| 2026-01-26 | **brand.json moved to MAIN/resources/** | Centralized with other resources. All brand loaders updated with new paths. GitHub workflow trigger path updated. docs/index.html fetch URL updated. |
+| 2026-01-26 | **brand.json moved to neurosecurity/legacy-core/resources/** | Centralized with other resources. All brand loaders updated with new paths. GitHub workflow trigger path updated. docs/index.html fetch URL updated. |
 | 2026-01-26 | **Slogan changed to singular form** | "Our minds. Our rules. Our future." — Updated across 6 files: brand.json, README.md, CLAUDE.md, and 3 _brand.py fallbacks. |
 | 2026-01-26 | **.gitignore consolidated to repo root** | Removed duplicate .github/.gitignore. Standard location is repo root, not .github/. Added node_modules/, .vite/ for JavaScript projects. |
 | 2026-01-26 | **Removed .vite cache from git tracking** | Build artifacts should never be committed. Used `git rm --cached` to untrack without deleting local files. |
@@ -176,7 +176,7 @@ Publication      → Only verified content
 ### Folder Structure for Verification
 
 ```
-MAIN/resources/pipeline/
+neurosecurity/legacy-core/resources/pipeline/
 ├── sources/                    # Authoritative documents
 │   ├── papers/                 # Peer-reviewed
 │   ├── patents/                # Patents
@@ -377,9 +377,9 @@ L14: Identity & Ethics         (Biology)
 
 | Component | File | Purpose |
 |-----------|------|---------|
-| **PROJECT_MANAGEMENT.md** | `MAIN/project/` | Master doc: scope, risks, priorities, milestones, metrics |
-| **KANBAN.md** | `MAIN/project/` | Visual board: Backlog → To Do → In Progress → In Review → Done |
-| **prd.json** | `MAIN/project/` | Machine-readable task data with exit conditions |
+| **PROJECT_MANAGEMENT.md** | `neurosecurity/legacy-core/project/` | Master doc: scope, risks, priorities, milestones, metrics |
+| **KANBAN.md** | `neurosecurity/legacy-core/project/` | Visual board: Backlog → To Do → In Progress → In Review → Done |
+| **prd.json** | `neurosecurity/legacy-core/project/` | Machine-readable task data with exit conditions |
 
 ### Risk Impact Assessment (RIA)
 
@@ -477,13 +477,13 @@ L14: Identity & Ethics         (Biology)
 ### Architecture
 
 ```
-MAIN/resources/brand/brand.json      ← Single source of truth
+neurosecurity/legacy-core/resources/brand/brand.json      ← Single source of truth
     │
     ├── oni/brand.py           ← Python API for ONI Framework
     ├── tara_mvp/_brand.py     ← Python API for TARA (no oni dependency)
     ├── oni_academy/_brand.py  ← Python API for ONI Academy
     │
-    ├── MAIN/resources/brand/sync_brand.py  ← Syncs to README.md, docs/index.html
+    ├── neurosecurity/legacy-core/resources/brand/sync_brand.py  ← Syncs to README.md, docs/index.html
     │
     └── docs/index.html        ← JavaScript fetches from GitHub raw URL
 ```
@@ -502,8 +502,8 @@ MAIN/resources/brand/brand.json      ← Single source of truth
 
 | Trigger | How |
 |---------|-----|
-| **Automatic** | GitHub Action on push to `main` when `MAIN/resources/brand/brand.json` changes |
-| **Manual** | `python MAIN/resources/brand/sync_brand.py` |
+| **Automatic** | GitHub Action on push to `main` when `neurosecurity/legacy-core/resources/brand/brand.json` changes |
+| **Manual** | `python neurosecurity/legacy-core/resources/brand/sync_brand.py` |
 | **Dynamic** | docs/index.html fetches from raw.githubusercontent.com at runtime |
 
 ### Key Patterns

@@ -16,7 +16,7 @@ ONI Academy is the educational arm of the ONI Framework project. It provides str
 
 **Why ONI Academy exists:** Neurosecurity concepts are not accessible. While building the ONI Framework, we identified a critical gap — the knowledge needed to secure BCIs is fragmented across academic papers and proprietary training. ONI Academy bridges that gap.
 
-For the full vision and detailed documentation, see [ONI_ACADEMY.md](https://github.com/qinnovates/qif/blob/main/learning/oni-academy/ONI_ACADEMY.md).
+For the full vision and detailed documentation, see [ONI_ACADEMY.md](https://github.com/qinnovates/mindloft/blob/main/learning/oni-academy/ONI_ACADEMY.md).
 
 ---
 
@@ -145,8 +145,8 @@ No installation required — explore these in your browser:
 
 | Resource | Description |
 |----------|-------------|
-| [ONI Academy Guide](https://github.com/qinnovates/qif/blob/main/learning/oni-academy/ONI_ACADEMY.md) | Complete installation, learning paths, architecture |
-| [ONI Framework Wiki](https://github.com/qinnovates/qif/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
+| [ONI Academy Guide](https://github.com/qinnovates/mindloft/blob/main/learning/oni-academy/ONI_ACADEMY.md) | Complete installation, learning paths, architecture |
+| [ONI Framework Wiki](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/INDEX.md) | Central hub — navigation, dependencies, roadmap |
 | [Interactive Demos](https://qinnovates.github.io/ONI/visualizations/) | Browser-based learning tools (no install required) |
 
 **Related packages:**

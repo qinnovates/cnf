@@ -5,7 +5,7 @@
 [![PyPI version](https://badge.fury.io/py/oni-framework.svg)](https://badge.fury.io/py/oni-framework)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Tests](https://github.com/qinnovates/qif/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/qif/actions/workflows/tests.yml)
+[![Tests](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml)
 
 ---
 
@@ -84,7 +84,7 @@ print(da.required_cofactors)  # ['Fe²⁺', 'BH4', 'O₂']
 
 ## Package Architecture
 
-> **This package is the core API library.** For educational content and interactive learning, see [ONI Academy](https://github.com/qinnovates/qif/blob/main/learning/oni-academy/ONI_ACADEMY.md) (`pip install oni-academy`).
+> **This package is the core API library.** For educational content and interactive learning, see [ONI Academy](https://github.com/qinnovates/mindloft/blob/main/learning/oni-academy/ONI_ACADEMY.md) (`pip install oni-academy`).
 
 ```
 oni-framework (pip install oni-framework)
@@ -123,8 +123,8 @@ pip install oni-framework
 pip install oni-framework[viz]
 
 # From source (for development)
-git clone https://github.com/qinnovates/qif.git
-cd ONI/MAIN/oni-framework
+git clone https://github.com/qinnovates/mindloft.git
+cd neurosecurity/legacy-core/oni-framework
 pip install -e ".[dev]"
 ```
 
@@ -481,13 +481,13 @@ oni-framework/
 | Resource | Description |
 |----------|-------------|
 | [API Reference](API.md) | **Complete API documentation** — all classes, methods, parameters, examples |
-| [ONI Framework Wiki](https://github.com/qinnovates/qif/blob/main/MAIN/INDEX.md) | Central hub — navigation, dependencies, roadmap |
-| [14-Layer Model Reference](https://github.com/qinnovates/qif/blob/main/MAIN/oni-framework/ONI_LAYERS.md) | Complete layer specification with attack surfaces |
-| [Biological Foundation](https://github.com/qinnovates/qif/blob/main/MAIN/oni-framework/ONI_LAYERS.md#biological-foundation-what-l8-encapsulates) | Research on what L8 encapsulates (neurotransmitter pathways, cofactors, time-scales) |
-| [Neuroscience Mappings API](https://github.com/qinnovates/qif/blob/main/MAIN/oni-framework/ONI_LAYERS.md#python-api-neuroscience-mappings) | Brain regions, neurotransmitters, functions mapped to layers with citations |
-| [Coherence Metric](https://github.com/qinnovates/qif/tree/main/MAIN/publications/coherence-metric/) | Technical document on Cₛ calculation |
-| [Neural Firewall](https://github.com/qinnovates/qif/tree/main/MAIN/publications/neural-firewall/) | Firewall architecture and decision matrix |
-| [Scale-Frequency Invariant](https://github.com/qinnovates/qif/tree/main/MAIN/publications/scale-frequency/) | The f × S ≈ k constraint |
+| [ONI Framework Wiki](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/INDEX.md) | Central hub — navigation, dependencies, roadmap |
+| [14-Layer Model Reference](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md) | Complete layer specification with attack surfaces |
+| [Biological Foundation](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md#biological-foundation-what-l8-encapsulates) | Research on what L8 encapsulates (neurotransmitter pathways, cofactors, time-scales) |
+| [Neuroscience Mappings API](https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md#python-api-neuroscience-mappings) | Brain regions, neurotransmitters, functions mapped to layers with citations |
+| [Coherence Metric](https://github.com/qinnovates/mindloft/tree/main/neurosecurity/legacy-core/publications/coherence-metric/) | Technical document on Cₛ calculation |
+| [Neural Firewall](https://github.com/qinnovates/mindloft/tree/main/neurosecurity/legacy-core/publications/neural-firewall/) | Firewall architecture and decision matrix |
+| [Scale-Frequency Invariant](https://github.com/qinnovates/mindloft/tree/main/neurosecurity/legacy-core/publications/scale-frequency/) | The f × S ≈ k constraint |
 | [Interactive Demos](https://qinnovates.github.io/ONI/visualizations/) | Browser-based learning tools |
 
 **Related packages:**
@@ -519,6 +519,6 @@ If you use this library in research, please cite:
   author = {Qi, Kevin L.},
   title = {ONI Framework: Security Library for Brain-Computer Interfaces},
   year = {2026},
-  url = {https://github.com/qinnovates/qif}
+  url = {https://github.com/qinnovates/mindloft}
 }
 ```

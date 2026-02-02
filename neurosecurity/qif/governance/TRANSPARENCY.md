@@ -349,7 +349,7 @@ Update log maintained in git history.
 For questions about this transparency statement or the human-AI collaboration methodology:
 
 **Author**: Kevin L. Qi
-**Repository**: https://github.com/qinnovates/qif
+**Repository**: https://github.com/qinnovates/mindloft
 
 ---
 
