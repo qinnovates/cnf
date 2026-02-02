@@ -1,12 +1,12 @@
 # Neurosecurity Research
 
-> The foundational research that led to the Convergent Neurosecurity Framework.
+> The foundational research that led to the QIF (Quantum Indeterministic Framework for Neural Security).
 
 ---
 
 ## What This Is
 
-This folder contains the original ONI (Open Neurosecurity Interoperability) research — publications, Python packages, interactive tools, and the analytical foundation that informed the [Convergent Neurosecurity Framework](../neurosecurity-framework/).
+This folder contains the original ONI (Open Neurosecurity Interoperability) research — publications, Python packages, interactive tools, and the analytical foundation that informed the [QIF (Quantum Indeterministic Framework for Neural Security)](../neurosecurity-framework/).
 
 ---
 
@@ -52,7 +52,7 @@ This folder contains the original ONI (Open Neurosecurity Interoperability) rese
 
 ## Relationship to the New Framework
 
-The Convergent Neurosecurity Framework (v2) was built by identifying what was wrong with this original model and rebuilding from neuroscience constraints. Key learnings:
+The QIF (Quantum Indeterministic Framework for Neural Security) (v2) was built by identifying what was wrong with this original model and rebuilding from neuroscience constraints. Key learnings:
 
 1. **BCIs are physical hardware** — they belong at OSI Layer 1, not Layer 8
 2. **The brain is a cycle, not a stack** — the funnel model replaced the linear layer model

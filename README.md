@@ -1,4 +1,6 @@
-# The Convergent Neurosecurity Framework
+# QIF — Quantum Indeterministic Framework for Neural Security
+
+> **QIF** is pronounced **"CHIEF"**
 
 ### A Model for Quantum Neural Interfaces
 
@@ -166,7 +168,7 @@ The more I learn, the more I realize how much I don't know. A framework built on
 
 ```
 qinnovate/
-├── neurosecurity-framework/     # The Convergent Neurosecurity Framework
+├── neurosecurity-framework/     # QIF — Quantum Indeterministic Framework
 │   ├── framework/               # 9 architectural documents (v2)
 │   └── governance/              # 9 neuroethics and compliance documents
 │

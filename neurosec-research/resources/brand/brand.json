@@ -1,8 +1,10 @@
 {
   "framework": {
-    "full_name": "The Convergent Neurosecurity Framework",
+    "full_name": "The Quantum Indeterministic Framework for Neural Security",
+    "short_name": "QIF",
+    "pronunciation": "CHIEF",
     "subtitle": "A Model for Quantum Neural Interfaces",
-    "name": "Convergent Neurosecurity Framework",
+    "name": "QIF — Quantum Indeterministic Framework for Neural Security",
     "tagline": "Life's most important connections deserve the most thought.",
     "mission": "Brain-computer interfaces are here — and they have no universal security standard. This framework provides the shared language that makes an entire industry of neural security possible.",
     "description": "A ground-up architectural redesign of BCI security, built from neuroscience constraints. The funnel model, quantum integer, and defense-in-depth rings for quantum neural interfaces.",
