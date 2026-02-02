@@ -64,12 +64,16 @@ Cₛ = e^(−(σ²ᵩ + σ²τ + σ²ᵧ))
 
 | Component | Symbol | Definition | Formal |
 |-----------|--------|------------|--------|
-| Phase variance | σ²ᵩ | Timing jitter relative to reference oscillation | (1/n)Σᵢ(φᵢ − φ̄)² |
-| Transport variance | σ²τ | Pathway integrity / transmission reliability | −Σᵢ ln(pᵢ) |
+| Phase variance | σ²ᵩ | Circular phase variance, π²-scaled | (1 − R)·π² where R = \|mean(e^(iφ))\| |
+| Transport entropy | Hτ | Pathway integrity / transmission reliability | −Σᵢ ln(pᵢ) |
 | Gain variance | σ²ᵧ | Amplitude stability relative to baseline | (1/n)Σᵢ((Aᵢ − Ā)/Ā)² |
 
 **Status:** Proposed (QIF contribution). Form is valid as Gaussian likelihood / Boltzmann factor design.
-**NOT Shannon entropy** — this was a documented error in earlier versions.
+
+**Implementation notes:**
+- Phase uses circular variance (handles 2π wraparound correctly), scaled by π² to match the linear variance range for small angles. Range: [0, π²].
+- Transport is Shannon surprise (entropy), NOT a statistical variance. Named Hτ to avoid confusion; σ²τ notation is deprecated.
+- The three terms have different natural scales. Transport entropy scales with the number of channels (sum, not mean). Weighting coefficients may be needed for balanced contribution — this is an open calibration question.
 
 **Decision thresholds:**
 
@@ -156,19 +160,28 @@ Where v = axonal conduction velocity (NOT a universal constant k).
 ### 4.1 Candidate 1 — Additive/Engineering Form
 
 ```
-QI(t) = α·Cclass + β·(1 − ΓD(t))·[Qi + δ·Qentangle] − γ·Qtunnel
+QI(t) = α·Ĉclass + β·(1 − ΓD(t))·[Q̂i + δ·Q̂entangle] − γ·Q̂tunnel
 ```
 
-Where:
-- **Cclass** = Classical BCI security (coherence + anomaly detection + tissue modeling)
-- **Qi** = Quantum indeterminacy term (Robertson-Schrödinger uncertainty, Von Neumann entropy)
-- **Qtunnel** = Tunneling vulnerability (T ≈ e^(−2κd))
-- **Qentangle** = Entanglement-based security (Bell state fidelity, E91 QKD)
-- **ΓD(t)** = Decoherence factor = 1 − e^(−t/τD)
-- α, β, γ, δ = scaling coefficients (require experimental calibration)
+**CRITICAL: All input terms MUST be normalized to [0, 1] before addition.**
+The hat notation (Ĉ, Q̂) denotes normalized quantities. This resolves the dimensional
+inconsistency of the original formulation where terms had incompatible units.
 
-**Strengths:** Modular, intuitive, each term independently computable
-**Weaknesses:** Dimensional matching requires manual scaling, ad hoc structure
+| Term | Raw quantity | Normalization | Normalized range |
+|------|-------------|---------------|-----------------|
+| Ĉclass | Coherence metric Cs | Already [0,1] | [0, 1] |
+| Q̂i | SvN(ρ) + ΔRS(A,B) | SvN/ln(d); ΔRS/ΔRS_max | [0, 1] |
+| Q̂entangle | Entanglement entropy E(ρAB) | E/ln(d) | [0, 1] |
+| Q̂tunnel | Tunneling coefficient T | Already [0,1] | [0, 1] |
+
+Where:
+- **ΓD(t)** = Decoherence factor = 1 − e^(−t/τD)
+- **d** = Hilbert space dimension (for entropy normalization)
+- α, β, γ, δ = dimensionless scaling coefficients (require experimental calibration)
+
+**Strengths:** Modular, intuitive, each term independently computable, dimensionally consistent
+**Weaknesses:** Normalization constants must be defined per-system, ad hoc structure
+**Previous issue (RESOLVED):** Original formulation mixed bits, nats, and dimensionless scores without normalization
 
 ### 4.2 Candidate 2 — Tensor/Theoretical Form
 

@@ -216,6 +216,7 @@ def test_deterministic():
     """Same inputs must always produce same outputs (equation is deterministic)."""
     print("\nTest: Deterministic output (same inputs → same outputs)...")
 
+    baseline_coherence = None
     for _ in range(10):
         result = full_qi_assessment(
             phases=np.array([0.01, -0.02, 0.03, 0.01, -0.01, 0.02, -0.03, 0.01]),
@@ -224,8 +225,11 @@ def test_deterministic():
             t=1e-6,
             tau_d=1e-5,
         )
-        # All runs should give identical results
-        assert abs(result.coherence - 0.9414) < 0.01 or True  # First run establishes baseline
+        if baseline_coherence is None:
+            baseline_coherence = result.coherence
+        else:
+            assert result.coherence == baseline_coherence, \
+                f"Coherence not deterministic across runs: {result.coherence} != {baseline_coherence}"
 
     # Run twice with exact same inputs
     r1 = full_qi_assessment(

@@ -9,6 +9,13 @@ This module implements:
 - Tunneling coefficient T
 
 All equations match QIF-TRUTH.md (canonical source).
+
+Changelog:
+- 2026-02-02: transport_variance changed from mean to sum (matches truth doc)
+- 2026-02-02: phase_variance changed to circular variance with π² scaling
+- 2026-02-02: σ²τ renamed to Hτ (it's entropy, not variance)
+- 2026-02-02: Candidate 1 inputs now require [0,1] normalization
+- 2026-02-02: Added input validation (negative variances, negative time)
 """
 
 import numpy as np
@@ -21,33 +28,43 @@ from typing import Optional
 # ──────────────────────────────────────────────
 
 def phase_variance(phases: np.ndarray) -> float:
-    """σ²ᵩ — Phase variance relative to mean phase.
+    """σ²ᵩ — Phase variance (circular).
+
+    Uses circular variance (1 − R) scaled by π² to approximate the
+    linear variance for small phase offsets while correctly handling
+    wraparound at 2π. R is the mean resultant length.
+
+    Range: 0 (perfectly locked) to π² ≈ 9.87 (uniformly random).
 
     Args:
         phases: Array of phase values (radians) from neural signals.
 
     Returns:
-        Circular variance of phases (0 = perfect sync, higher = more jitter).
+        Scaled circular phase variance.
     """
-    # Use circular variance for phase data (handles wraparound)
     mean_vector = np.abs(np.mean(np.exp(1j * phases)))
-    return 1.0 - mean_vector  # 0 = perfectly locked, 1 = random
+    return (1.0 - mean_vector) * (np.pi ** 2)
 
 
 def transport_variance(probabilities: np.ndarray) -> float:
-    """σ²τ — Transport variance (pathway integrity).
+    """Hτ — Transport entropy (pathway integrity).
 
-    Based on negative log-likelihood of transmission probabilities.
+    Negative log-likelihood sum of transmission probabilities.
+    Note: This is Shannon surprise (entropy), not a statistical variance.
+    Named Hτ in the canonical formulation; σ²τ is retained in the
+    coherence metric interface for backwards compatibility.
+
+    Canonical formula (QIF-TRUTH.md S3.1): −Σᵢ ln(pᵢ)
 
     Args:
         probabilities: Array of transmission success probabilities (0-1).
 
     Returns:
-        Transport variance (0 = perfect transmission, higher = degraded).
+        Transport entropy (0 = perfect transmission, higher = degraded).
     """
     # Clip to avoid log(0)
     p = np.clip(probabilities, 1e-10, 1.0)
-    return -np.mean(np.log(p))
+    return -np.sum(np.log(p))
 
 
 def gain_variance(amplitudes: np.ndarray) -> float:
@@ -68,18 +85,26 @@ def gain_variance(amplitudes: np.ndarray) -> float:
 
 
 def coherence_metric(sigma_phi: float, sigma_tau: float, sigma_gamma: float) -> float:
-    """Cₛ = e^(−(σ²ᵩ + σ²τ + σ²ᵧ))
+    """Cₛ = e^(−(σ²ᵩ + Hτ + σ²ᵧ))
 
     The QIF coherence metric. Scores signal trustworthiness from 0 to 1.
 
     Args:
-        sigma_phi: Phase variance
-        sigma_tau: Transport variance
-        sigma_gamma: Gain variance
+        sigma_phi: Phase variance (circular, π²-scaled)
+        sigma_tau: Transport entropy Hτ (negative log-likelihood sum)
+        sigma_gamma: Gain variance (normalized)
 
     Returns:
         Coherence score (0 to 1). >0.6 = high, 0.3-0.6 = medium, <0.3 = low.
+
+    Raises:
+        ValueError: If any variance/entropy term is negative.
     """
+    if sigma_phi < 0 or sigma_tau < 0 or sigma_gamma < 0:
+        raise ValueError(
+            f"Variance/entropy terms must be non-negative: "
+            f"σ²ᵩ={sigma_phi}, Hτ={sigma_tau}, σ²ᵧ={sigma_gamma}"
+        )
     total_variance = sigma_phi + sigma_tau + sigma_gamma
     return np.exp(-total_variance)
 
@@ -115,6 +140,8 @@ def decoherence_factor(t: float, tau_d: float) -> float:
     """
     if tau_d <= 0:
         return 1.0  # Instant decoherence
+    if t < 0:
+        raise ValueError(f"Time must be non-negative: t={t}")
     return 1.0 - np.exp(-t / tau_d)
 
 
@@ -166,12 +193,32 @@ def tunneling_coefficient(V0: float, E: float, d: float, m: float = M_E) -> floa
 
 @dataclass
 class QICandidate1Params:
-    """Parameters for Candidate 1: QI(t) = α·Cclass + β·(1−ΓD)·[Qi + δ·Qentangle] − γ·Qtunnel"""
+    """Parameters for Candidate 1: QI(t) = α·Ĉclass + β·(1−ΓD)·[Q̂i + δ·Q̂entangle] − γ·Q̂tunnel
+
+    All input terms MUST be normalized to [0, 1] before use.
+    The hat notation (Ĉ, Q̂) denotes normalized quantities.
+    Scaling coefficients α, β, γ, δ are dimensionless weights.
+
+    WARNING: Coefficients are uncalibrated placeholders. Experimental
+    calibration against real BCI data is required before production use.
+    """
     alpha: float = 1.0      # Classical weight
     beta: float = 1.0       # Quantum weight
     gamma: float = 0.5      # Tunneling vulnerability weight
     delta: float = 0.5      # Entanglement weight
     tau_d: float = 1e-5     # Decoherence time (seconds) — tunable
+
+
+def _clip_normalized(value: float, name: str) -> float:
+    """Clip value to [0, 1] with a warning if out of range."""
+    if value < 0.0 or value > 1.0:
+        import warnings
+        warnings.warn(
+            f"QI input '{name}' = {value:.4f} is outside [0, 1]. "
+            f"All QI Candidate 1 inputs must be normalized. Clipping.",
+            stacklevel=3,
+        )
+    return np.clip(value, 0.0, 1.0)
 
 
 def qi_candidate1(
@@ -182,23 +229,37 @@ def qi_candidate1(
     t: float,
     params: Optional[QICandidate1Params] = None,
 ) -> float:
-    """QI(t) = α·Cclass + β·(1 − ΓD(t))·[Qi + δ·Qentangle] − γ·Qtunnel
+    """QI(t) = α·Ĉclass + β·(1 − ΓD(t))·[Q̂i + δ·Q̂entangle] − γ·Q̂tunnel
 
     Candidate 1: Additive/Engineering form of the QI equation.
 
+    DIMENSIONAL CONSTRAINT: All input terms must be normalized to [0, 1]
+    before being passed to this function. This ensures the additive
+    combination is dimensionally consistent. Normalization:
+      - Ĉclass: Coherence metric Cs is already [0,1]
+      - Q̂i: SvN(ρ)/ln(d) where d = Hilbert space dimension
+      - Q̂entangle: E(ρAB)/ln(d) normalized entanglement entropy
+      - Q̂tunnel: Tunneling coefficient T is already [0,1]
+
     Args:
-        c_class: Classical security score (from coherence metric + anomaly detection)
-        qi_indeterminacy: Quantum indeterminacy term (Robertson-Schrödinger + Von Neumann)
-        q_entangle: Entanglement-based security term
-        q_tunnel: Tunneling vulnerability term
+        c_class: Normalized classical security score [0, 1]
+        qi_indeterminacy: Normalized quantum indeterminacy [0, 1]
+        q_entangle: Normalized entanglement security [0, 1]
+        q_tunnel: Normalized tunneling vulnerability [0, 1]
         t: Time elapsed since quantum state preparation (seconds)
         params: Scaling coefficients and decoherence time
 
     Returns:
-        QI score. Higher = more secure.
+        QI score. Higher = more secure. Range depends on weights.
     """
     if params is None:
         params = QICandidate1Params()
+
+    # Enforce normalization
+    c_class = _clip_normalized(c_class, "c_class")
+    qi_indeterminacy = _clip_normalized(qi_indeterminacy, "qi_indeterminacy")
+    q_entangle = _clip_normalized(q_entangle, "q_entangle")
+    q_tunnel = _clip_normalized(q_tunnel, "q_tunnel")
 
     gate = quantum_gate(t, params.tau_d)
 
