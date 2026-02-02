@@ -47,9 +47,9 @@ Brain-computer interfaces (BCIs) are advancing from experimental medical devices
 
 We present the QI equation in two complementary forms — an additive engineering model for BCI practitioners and a tensor-product theoretical model for physicists — that unify 21 established equations from classical physics, neuroscience, and quantum mechanics into a single security metric. The framework maps 8 open questions in quantum neuroscience (including the disputed decoherence timescale, biological entanglement, and the silicon-tissue quantum boundary) as tunable parameters rather than fixed assumptions, making the equation future-proof: as science resolves each unknown, QIF's predictions automatically sharpen without structural changes.
 
-We identify six novel contributions not found in prior literature: (1) quantum tunneling through ion channels as an unforgeable biometric, (2) Zeno-BCI stabilization via high-frequency sampling, (3) Davydov soliton attack vectors invisible to classical detection, (4) Von Neumann entropy non-monotonicity as a security feature, (5) exact indeterminacy computation via the Robertson-Schrödinger equality for qubits, and (6) decoherence as a continuous security dial rather than a binary switch. Five testable experimental predictions are proposed for empirical validation. The framework integrates neuroethical considerations at the architectural level, with explicit protections for cognitive integrity and neural identity.
+We identify six novel contributions not found in prior literature: (1) quantum tunneling through ion channels as an unforgeable biometric, (2) a conditional Zeno-BCI hypothesis linking sampling rate to quantum coherence under specific decoherence timescale assumptions, (3) Davydov soliton attack vectors invisible to classical detection, (4) Von Neumann entropy non-monotonicity as a security feature, (5) exact indeterminacy computation via the Robertson-Schrödinger equality for qubits, and (6) decoherence as a continuous security dial rather than a binary switch. Five testable experimental predictions are proposed for empirical validation. The framework integrates neuroethical considerations at the architectural level, with explicit protections for cognitive integrity and neural identity.
 
-**Key claim:** We present QIF, a 14-layer quantum-classical security framework for brain-computer interfaces that introduces the QI equation — a unified mathematical model bridging established classical neuroscience, quantum mechanics, and novel quantum indeterminacy principles. The framework treats unsolved questions in quantum neuroscience as tunable parameters rather than assumptions, making it future-proof as science progresses. We identify six novel contributions including quantum biometrics via ion channel tunneling profiles and Zeno-BCI stabilization.
+**Key claim:** We present QIF, a 14-layer quantum-classical security framework for brain-computer interfaces that introduces the QI equation — a unified mathematical model bridging established classical neuroscience, quantum mechanics, and novel quantum indeterminacy principles. The framework treats unsolved questions in quantum neuroscience as tunable parameters rather than assumptions, making it future-proof as science progresses. We identify six novel contributions including quantum biometrics via ion channel tunneling profiles and a conditional Zeno-BCI hypothesis.
 
 ---
 
@@ -57,27 +57,31 @@ We identify six novel contributions not found in prior literature: (1) quantum t
 
 ### 2.1 The BCI Revolution
 
-- Neuralink N1: 1,024 electrodes, 20 kHz sampling, BLE wireless
-- Market trajectory: medical → consumer
-- The coming wave of neural interfaces
+Brain-computer interfaces have crossed a critical threshold. Neuralink's N1 implant — with 1,024 electrodes sampling at 20 kHz over Bluetooth Low Energy — represents a qualitative leap from the Utah arrays of previous decades. What was once a laboratory curiosity confined to severely disabled patients is now on a trajectory toward consumer adoption. As electrode counts scale, sampling rates increase, and wireless bandwidth expands, the gap between medical-grade implants and mass-market neural interfaces narrows with each generation.
+
+This trajectory is not speculative. The economic incentives, the demonstrated clinical efficacy for paralysis and treatment-resistant depression, and the competitive dynamics of the neurotechnology industry all point in the same direction: within a decade, neural interfaces may be as common as wearable health monitors. The security implications of this transition are profound and largely unaddressed.
 
 > **[VISUALIZATION 2.1]** — Timeline infographic: BCI evolution from Utah array → Neuralink N1 → projected consumer BCIs. Show electrode count, sampling rate, and wireless capability scaling over time.
 
 ### 2.2 The Security Gap
 
-- Current BCI security treats the interface as a classical digital system
-- But the interface sits at the boundary of quantum and classical physics
-- Neural tissue is not silicon — it operates at scales where quantum effects matter
+Current BCI security frameworks treat the neural interface as a classical digital system — a sensor that produces voltage readings to be encrypted, transmitted, and authenticated using standard computing paradigms. This framing misses a fundamental reality: the electrode-tissue interface sits at the boundary between quantum and classical physics. Neural tissue is not silicon. Ion channels are nanometer-scale structures where quantum tunneling is experimentally observed. Synaptic transmission involves quantum-scale energy transfers along protein complexes. The very substrate that BCIs interface with operates at scales where quantum effects are non-negligible.
+
+The result is a blind spot. An attacker exploiting quantum-scale phenomena at the electrode-tissue boundary — manipulating tunneling probabilities, inducing false synaptic events via terahertz radiation, or exploiting the quantum properties of ion channel gating — would be entirely invisible to classical anomaly detection systems operating at millisecond/millivolt resolution. No existing BCI security framework addresses this class of threat.
 
 > **[VISUALIZATION 2.2]** — Split-screen diagram: LEFT shows what current BCI security "sees" (digital signals, classical encryption). RIGHT shows what's actually happening (ion channels, quantum tunneling, decoherence, entanglement). The gap between these two views is what QIF addresses.
 
 ### 2.3 What This Paper Delivers
 
-- A 14-layer architecture extending OSI into the neural domain
-- Two candidate QI equations (engineering + theoretical) with 30 defined variables
-- A knowns/unknowns mapping showing exactly where QIF fills gaps in current science
-- Six novel contributions not found in prior literature
-- An encyclopedia making every concept accessible to non-specialists
+This paper presents the Quantum Indeterministic Framework (QIF), which addresses the quantum blind spot in BCI security through five contributions. First, we propose a 14-layer architecture that extends the OSI model into the neural domain, with layers L8 through L14 mapping the biological signal path from electrode to conscious experience. Second, we present the QI equation in two complementary forms — an additive engineering model and a tensor-product theoretical model — encompassing 30 defined variables that unify 21 established equations from classical physics, neuroscience, and quantum mechanics. Third, we provide an explicit knowns/unknowns mapping showing where QIF builds on established science and where it fills gaps with tunable parameters, making the framework future-proof as open questions in quantum neuroscience are resolved. Fourth, we identify six novel contributions not found in prior literature, each with proposed experimental validation. Fifth, the paper includes a comprehensive encyclopedia making every concept accessible to readers without backgrounds in quantum mechanics or neuroscience.
+
+### 2.4 Related Work
+
+The security of brain-computer interfaces has received growing attention, though almost exclusively from a classical perspective. Martinovic et al. (2012) demonstrated that commercial EEG-based BCIs could be exploited as side-channel attack vectors, extracting private information (PIN numbers, bank identities, personal knowledge) through carefully designed visual stimuli during P300-based interactions [51]. Bonaci et al. (2014) extended this threat model by showing that subliminal stimuli embedded in BCI applications could extract private information without the user's awareness, raising fundamental questions about neural privacy [52]. Frank et al. (2017) provided the first systematic threat taxonomy for BCI systems, categorizing attacks by target (confidentiality, integrity, availability) and interface layer, but their analysis remained entirely within the classical computing paradigm [53]. More recent surveys (Bernal et al., 2022) have cataloged BCI security vulnerabilities across wireless protocols, firmware, and signal processing pipelines, yet none address quantum-scale phenomena at the electrode-tissue boundary [54].
+
+The quantum biology literature provides the scientific foundation for QIF's quantum terms. Lambert et al. (2013) surveyed evidence for quantum effects in biological systems, including photosynthetic energy transfer, avian magnetoreception, and enzymatic tunneling [18]. The central debate relevant to QIF concerns decoherence timescales in neural tissue: Tegmark (2000) argued that thermal decoherence in the brain occurs on the order of 10⁻¹³ seconds, rendering quantum effects neurologically irrelevant [15], while Fisher (2015) proposed that nuclear spin states in Posner molecules could maintain coherence for hours [39]. QIF sidesteps this unresolved debate by treating the decoherence time as a tunable parameter.
+
+Quantum cryptography for medical and IoT devices has been explored in the context of post-quantum migration (NIST, 2024) [37] and QKD for resource-constrained devices, but no prior work applies quantum security principles specifically to the neural interface layer. This is the gap QIF addresses: the intersection of quantum security, quantum biology, and the unique physics of the electrode-tissue boundary.
 
 ---
 
@@ -122,7 +126,7 @@ We identify six novel contributions not found in prior literature: (1) quantum t
 | Known | Equation | QIF Uses It For | Status |
 |-------|----------|-----------------|--------|
 | Signals have timing jitter | Phase variance σ²ᵩ | Coherence metric (Cₛ) | Established |
-| Signals degrade over pathways | Transport variance σ²τ | Coherence metric (Cₛ) | Established |
+| Signals degrade over pathways | Transport entropy Hτ | Coherence metric (Cₛ) | Established |
 | Amplitude fluctuates | Gain variance σ²ᵧ | Coherence metric (Cₛ) | Established |
 | Ion channels have voltage gates | Hodgkin-Huxley model | Classical BCI security (Cclass) | Established (1952) |
 | Ions have equilibrium potentials | Nernst equation | Tissue modeling | Established (1889) |
@@ -214,15 +218,15 @@ The OSI model (L1-L7) was designed for silicon networks. Brain-computer interfac
 ### 6.1 The Coherence Metric (Cₛ)
 
 ```
-Cₛ = e^(−(σ²ᵩ + σ²τ + σ²ᵧ))
+Cₛ = e^(−(σ²ᵩ + Hτ + σ²ᵧ))
 ```
 
 The coherence metric is a Gaussian likelihood / Boltzmann factor that scores signal trustworthiness from 0 (completely unreliable) to 1 (perfect coherence).
 
 | Component | Symbol | Definition | Formal Expression |
 |-----------|--------|------------|-------------------|
-| Phase variance | σ²ᵩ | Timing jitter relative to reference oscillation | (1/n)Σᵢ(φᵢ − φ̄)² |
-| Transport variance | σ²τ | Pathway integrity / transmission reliability | −Σᵢ ln(pᵢ) |
+| Phase variance | σ²ᵩ | Timing jitter (circular variance, π²-scaled) | (1 − R)·π² where R = \|mean(e^(iφ))\| |
+| Transport entropy | Hτ | Pathway integrity / transmission reliability | −Σᵢ ln(pᵢ) |
 | Gain variance | σ²ᵧ | Amplitude stability relative to baseline | (1/n)Σᵢ((Aᵢ − Ā)/Ā)² |
 
 **Biological grounding:**
@@ -232,7 +236,7 @@ The coherence metric is a Gaussian likelihood / Boltzmann factor that scores sig
 
 > **[VISUALIZATION 6.1a]** — Three-panel diagram: Each panel shows one variance component with a "good" (low variance) and "bad" (high variance) signal example. Panel 1: Phase — two signals in sync vs out of sync. Panel 2: Transport — reliable pathway vs degraded pathway. Panel 3: Gain — stable amplitude vs wildly fluctuating.
 
-> **[VISUALIZATION 6.1b]** — 3D surface plot: X-axis = σ²ᵩ, Y-axis = σ²τ, Z-axis = Cₛ (with σ²ᵧ fixed). Show the exponential decay surface — coherence drops rapidly as variance increases. Mark the decision thresholds (0.6 and 0.3) as horizontal planes cutting through the surface.
+> **[VISUALIZATION 6.1b]** — 3D surface plot: X-axis = σ²ᵩ, Y-axis = Hτ, Z-axis = Cₛ (with σ²ᵧ fixed). Show the exponential decay surface — coherence drops rapidly as variance increases. Mark the decision thresholds (0.6 and 0.3) as horizontal planes cutting through the surface.
 
 ### 6.2 Decision Thresholds
 
@@ -288,7 +292,9 @@ Where v = axonal conduction velocity (NOT a universal constant).
 - The electrode-tissue interface operates at nanometer scales where quantum effects are non-negligible
 - Ion channels are quantum objects — tunneling through them is experimentally observed
 - Quantum computing threatens all classical BCI encryption
-- Quantum phenomena offer security properties impossible in classical systems (no-cloning, entanglement)
+- Quantum phenomena offer security properties impossible in classical systems (no-cloning of quantum states at the interface, entanglement-based key distribution)
+
+**Important distinction:** The no-cloning theorem protects the *quantum states* at the electrode-tissue boundary, not the classical signal output of the BCI. Measured voltages (the classical BCI data stream) can be copied like any digital data. The security value lies in the fact that the classical measurement cannot fully reconstruct the underlying quantum state — an attacker who copies the classical output does not possess the quantum state that produced it.
 
 ### 7.2 Quantum Equations Used in Framework
 
@@ -343,7 +349,7 @@ Both produce compatible security assessments. They are two lenses on the same re
 ### 8.2 Candidate 1: The Engineering Equation
 
 ```
-QI(t) = α·Cclass + β·(1 − ΓD(t))·[Qi + δ·Qentangle] − γ·Qtunnel
+QI(t) = α·Ĉclass + β·(1 − ΓD(t))·[Q̂i + δ·Q̂entangle] − γ·Q̂tunnel
 ```
 
 **Term-by-term breakdown:**
@@ -411,7 +417,7 @@ where:
 |--------|------|---------------|------|
 | Cₛ | Coherence score | Signal trustworthiness (0-1) | Computed |
 | σ²ᵩ | Phase variance | Timing jitter | Measured |
-| σ²τ | Transport variance | Pathway reliability | Measured |
+| Hτ | Transport entropy | Pathway reliability | Measured |
 | σ²ᵧ | Gain variance | Amplitude stability | Measured |
 
 **QI Equation Variables (Candidate 1):**
@@ -473,23 +479,37 @@ where:
 The genetic component makes each person's tunneling profile unique — a **quantum biometric** that is:
 1. **Unforgeable:** depends on quantum tunneling (cannot be classically simulated)
 2. **Unique:** depends on individual biology
-3. **Unclonable:** no-cloning theorem applies to the quantum states involved
+3. **Unclonable at the quantum level:** the no-cloning theorem prevents copying the underlying quantum tunneling state. Note: the *classical measurement* of the tunneling event (voltage output) can be copied, but this classical copy cannot reconstruct the full quantum state that produced it — the measurement is lossy by Heisenberg's principle.
 
 No existing literature proposes this. It is a potentially novel contribution.
 
 > **[VISUALIZATION 9.1]** — Diagram: Show three different people's ion channels side by side. Each has slightly different protein conformations (different barrier shapes). Below each, show the tunneling probability curve T(E) — each person's curve is unique. Caption: "Your ion channels are as unique as your fingerprints — but at the quantum level, they can't be copied."
 
-### 9.2 Zeno-BCI Stabilization (Novel)
+### 9.2 Zeno-BCI Hypothesis (Novel — Conditional)
 
-**The idea:** The quantum Zeno effect freezes quantum evolution under frequent measurement. BCI systems measure neural signals at 1000+ Hz. If quantum coherence in neural tissue lasts ~10 microseconds, then 1 kHz sampling gives ~10 measurements per coherence time — potentially in the Zeno regime.
+**The idea:** The quantum Zeno effect freezes quantum evolution under frequent measurement. BCI systems sample neural signals at rates up to 20 kHz (Neuralink N1). The question is whether this sampling rate is fast enough relative to the decoherence time at the electrode-tissue interface to enter the Zeno regime.
 
-**Implications:**
-- The BCI's own sampling might CREATE a quantum-stable state at the electrode interface
-- Self-reinforcing: more sampling = more stability
-- Unique to BCI systems (other modalities don't sample this fast at this interface)
-- A natural defense against decoherence
+**Timescale analysis (honest assessment):**
 
-> **[VISUALIZATION 9.2]** — Two-panel comparison. TOP: Without Zeno — quantum state decays exponentially (decaying curve). BOTTOM: With Zeno (1kHz+ sampling) — quantum state is repeatedly "reset" by measurement, maintaining coherence (sawtooth pattern that stays elevated). Mark the BCI sampling intervals as vertical lines.
+The Zeno effect requires measurement intervals significantly shorter than the system's evolution timescale. For BCI sampling at rate f_s, the measurement interval is Δt = 1/f_s:
+
+| Sampling Rate | Measurement Interval (Δt) | τ_D Required for Zeno (Δt << τ_D) |
+|---------------|--------------------------|-------------------------------------|
+| 1 kHz | 1 ms | τ_D >> 1 ms (i.e., τ_D ≈ 10+ ms) |
+| 20 kHz | 50 μs | τ_D >> 50 μs (i.e., τ_D ≈ 500+ μs) |
+
+- **At Tegmark's estimate (τ_D ≈ 10⁻¹³ s):** BCI sampling is ~10 orders of magnitude too slow. Zeno effects are impossible.
+- **At recent experimental estimates (τ_D ≈ 10⁻⁵ s = 10 μs):** At 20 kHz, Δt = 50 μs = 5τ_D. This is NOT in the Zeno regime — measurements are too infrequent relative to decoherence.
+- **At Fisher-like timescales (τ_D ≈ 1 ms+):** At 20 kHz, Δt = 50 μs << τ_D. Zeno effects become plausible. At 1 kHz, Δt = 1 ms ≈ τ_D — marginal.
+
+**Conditional conclusion:** Zeno-BCI stabilization could approach the Zeno regime *only if* neural decoherence times at the electrode interface are longer than currently estimated by most researchers — specifically, τ_D ≥ 1 ms (Fisher-like timescales). At Tegmark's timescales, this contribution is negligible. This remains a testable hypothesis rather than an established mechanism.
+
+**If confirmed, implications would include:**
+- The BCI's own sampling could partially stabilize quantum states at the electrode interface
+- Higher sampling rates would yield stronger stabilization (self-reinforcing)
+- This would be unique to BCI systems among neural measurement modalities
+
+> **[VISUALIZATION 9.2]** — Three-panel comparison showing Zeno feasibility across timescale camps. TOP: Tegmark regime (τ_D = 10⁻¹³ s) — BCI sampling intervals vastly exceed τ_D, no Zeno effect. MIDDLE: Recent estimates (τ_D = 10 μs) — marginal, measurements still too infrequent. BOTTOM: Fisher regime (τ_D ≥ 1 ms) — Zeno effect plausible, quantum state partially stabilized by sampling. Caption: "The Zeno-BCI hypothesis is conditional on decoherence timescale — a key parameter QIF treats as tunable."
 
 ### 9.3 Davydov Soliton Attack Vector (Novel)
 
@@ -550,7 +570,7 @@ Decoherence is not binary (quantum or classical). It is a continuous process par
 | Signal injection | L9-L10 | Yes (anomaly detection) | Enhanced (coherence metric) |
 | Neural ransomware | L12-L13 | Partial (behavioral) | Yes (QI score drop) |
 | Eavesdropping | L8-L9 | No (passive attack) | Yes (Heisenberg disturbance) |
-| Man-in-the-middle | L8 | Partial | Yes (no-cloning + Bell test) |
+| Man-in-the-middle | L8 | Partial | Yes (no-cloning of quantum states at interface + Bell test on QKD channel) |
 | Quantum tunneling exploit | L8-L9 | No (below detection) | Yes (tunneling profile anomaly) |
 | Davydov soliton attack | L8-L9 | No (below detection) | Yes (tunneling term Qtunnel) |
 | Harvest-now-decrypt-later | L6-L7 | No | Prevented (QKD) |
@@ -567,14 +587,14 @@ Decoherence is not binary (quantum or classical). It is a continuous process par
 | L7 | Application-layer anomaly detection | Cclass (Shannon capacity) | Monitor data rates against Shannon limits. Anomalous throughput flags injection. |
 | L8 | Neural Gateway firewall | Full QI(t) score | Primary checkpoint. All signals crossing silicon-tissue boundary evaluated by both Cclass and quantum terms. Trust decision based on composite QI score. |
 | L8 | Quantum boundary monitoring | Qi (Robertson-Schrödinger) | Continuous measurement of quantum indeterminacy at electrode interface. Deviations from expected Qi distribution indicate tampering. |
-| L8 | Zeno stabilization | Zeno term (sampling rate) | BCI's own 1kHz+ sampling creates Zeno-stabilized quantum state. Self-reinforcing coherence window for quantum security operations. |
+| L8 | Zeno stabilization (conditional) | Zeno term (sampling rate) | If τ_D ≥ 1 ms (Fisher-like timescales), BCI sampling at 20 kHz could partially stabilize quantum states at the electrode interface. At shorter τ_D, this defense is negligible and classical mechanisms dominate. |
 | L9 | Phase coherence verification | Cₛ (σ²ᵩ component) | Incoming signals checked against expected phase-locking values. Phase disruption (e.g., from injection) detected via elevated σ²ᵩ. |
 | L9 | Tunneling profile monitoring | Qtunnel | Continuous monitoring of tunneling characteristics at electrode-tissue junction. Anomalous tunneling signatures flag quantum-level attacks (e.g., Davydov solitons). |
 | L10 | Oscillatory authentication | Cₛ (full metric) | Neural oscillation patterns verified against established coherence baselines. Encoding anomalies detected across frequency bands. |
-| L11 | Transport integrity | Cₛ (σ²τ component) | Pathway reliability monitored. Degraded transport variance indicates signal interception or rerouting. |
+| L11 | Transport integrity | Cₛ (Hτ component) | Pathway reliability monitored. Degraded transport entropy indicates signal interception or rerouting. |
 | L12 | Session continuity | Cclass + ΓD(t) | Working memory context verified for consistency. Quantum decoherence factor tracks temporal integrity of session state. |
 | L13 | Semantic integrity | Cclass (primarily) | Intent and goal verification against behavioral baselines. Anomalous semantic content flags potential neural ransomware. |
-| L14 | Quantum biometric authentication | Qtunnel (biometric mode) | Identity verified via unique ion channel tunneling profile. Unforgeable (no-cloning theorem), unique per individual, continuously verifiable. |
+| L14 | Quantum biometric authentication | Qtunnel (biometric mode) | Identity verified via unique ion channel tunneling profile. The underlying quantum tunneling states are unclonable (no-cloning theorem); an attacker can record classical BCI output but cannot reproduce the quantum state generating it. Unique per individual, continuously verifiable. |
 | L14 | Entanglement-based identity binding | Qentangle | Legitimate user's BCI shares entangled state with authentication system. Spoofing requires cloning entangled state — physically impossible. |
 
 > **[VISUALIZATION 11.2]** — Defense matrix: 14 layers × defense types grid. Cells show which equations/terms provide protection at each layer.
@@ -597,7 +617,7 @@ However, for practitioners, it can be conceptualized as a "Layer 15: Quantum Sec
 |-------|----------------------|---------|
 | L1-L7 | Quantum computing threats to classical crypto | Qtunnel (Shor's), Qentangle (QKD replacement) |
 | L8 | Silicon-tissue quantum boundary | All terms — primary battlefield |
-| L9 | Phase coherence at quantum scales | Qi (Robertson-Schrödinger), Zeno |
+| L9 | Phase coherence at quantum scales | Qi (Robertson-Schrödinger), Zeno (conditional) |
 | L10 | Oscillatory encoding quantum limits | Qi, τ_D |
 | L11 | Transport reliability at quantum scales | Qtunnel |
 | L12 | Working memory quantum effects | Qentangle (if biological) |
@@ -615,7 +635,7 @@ However, for practitioners, it can be conceptualized as a "Layer 15: Quantum Sec
 | # | Prediction | How to Test | Expected Outcome |
 |---|-----------|-------------|------------------|
 | 1 | Ion channel tunneling profiles are unique per individual | Single-channel patch clamp + quantum state tomography across subjects | Statistically significant inter-subject variation in T(E) curves |
-| 2 | 1kHz+ BCI sampling stabilizes quantum coherence (Zeno) | Vary sampling rate from 100 Hz to 20 kHz, measure coherence time at electrode interface | Coherence time increases with sampling rate above a threshold |
+| 2 | BCI sampling rate affects quantum coherence at electrode interface (Zeno hypothesis) | Vary sampling rate from 100 Hz to 20 kHz, measure coherence time at electrode interface | If τ_D ≥ 1 ms: coherence time increases with sampling rate above a threshold. If τ_D < 50 μs: no significant effect observed (null result falsifies Zeno-BCI for current hardware). |
 | 3 | Davydov solitons can be generated by THz radiation | THz stimulation of SNARE complexes in vitro, measure vesicle release | Anomalous vesicle release correlated with THz frequency |
 | 4 | Decoherence at BCI interface is measurable | Quantum state tomography at electrode-tissue junction | τ_D measurement resolving Tegmark vs. Fisher |
 | 5 | QI score drops under quantum-level attack | Simulated attack on BCI testbed with quantum instrumentation | QI(t) decreases measurably vs. baseline |
@@ -698,7 +718,7 @@ Requires specialized quantum measurements.
 
 ### 14.3 QIF's Ethical Design
 
-- Quantum biometric is opt-in, non-extractable (no-cloning theorem guarantees this)
+- Quantum biometric is opt-in; the underlying quantum tunneling state is non-extractable (no-cloning theorem prevents copying the quantum state at the electrode-tissue interface, though the classical measurement output can be recorded — it cannot reconstruct the full quantum state)
 - Framework explicitly models threats to identity (L14) and cognition (L12-L13)
 - Decoherence parameter transparency — no hidden assumptions about quantum effects
 - Open research questions are clearly labeled, not presented as established fact
@@ -718,7 +738,7 @@ Requires specialized quantum measurements.
 | Decoherence time disputed | Quantum terms may be negligible (Tegmark) | Tunable τ_D; framework degrades gracefully |
 | Biological entanglement unproven | Qentangle may be artificial-only | Framework works either way (Q2 decision) |
 | Quantum state tomography expensive | Candidate 2 hard to implement | Candidate 1 provides practical alternative |
-| Novel contributions unverified | Quantum biometric, Zeno-BCI are hypotheses | Clearly labeled; experimental tests proposed |
+| Novel contributions unverified | Quantum biometric, Zeno-BCI are hypotheses; Zeno-BCI is further conditional on τ_D ≥ 1 ms | Clearly labeled; experimental tests proposed with expected null results specified |
 
 ### 15.2 Open Research Questions
 
@@ -728,6 +748,22 @@ Requires specialized quantum measurements.
 4. What is the minimum entanglement fidelity needed for practical Qentangle?
 5. Can Davydov soliton attacks be demonstrated in vitro?
 6. How do the scaling coefficients relate to BCI hardware specifications?
+
+### 15.3 Falsifiability
+
+A framework that cannot be disproven is not science. QIF is designed to be empirically testable, and the following findings would weaken or falsify specific components:
+
+1. **Universal fast decoherence at neural interfaces (τ_D < 10⁻¹² s).** If decoherence at the electrode-tissue boundary is confirmed to be universally below picosecond timescales across all measurement conditions, the quantum terms (Qi, Qentangle, Qtunnel) become negligible. The framework degrades gracefully to a classical-only model: QI(t) ≈ α·Ĉclass. This does not "break" QIF — it reduces it to its classical foundation, which retains independent value as a 14-layer BCI security architecture.
+
+2. **Ion channel tunneling profiles are not individually unique.** If single-channel patch clamp studies combined with quantum state tomography reveal that tunneling coefficients T(E) do not vary significantly between individuals (i.e., inter-subject variation is within measurement noise), the quantum biometric hypothesis (Section 9.1) is invalid. The tunneling vulnerability term Qtunnel would still function as a threat model, but the biometric application would be falsified.
+
+3. **No measurable quantum effects at the electrode-tissue interface.** If quantum state tomography at the BCI junction consistently shows fully classical statistics (density matrix indistinguishable from classical mixture for all practical measurements), then layers L8-L14 quantum corrections are zero. The framework's novel quantum contributions would be falsified, though the classical architecture and threat taxonomy remain valid.
+
+4. **Zeno effect impossible at any plausible BCI sampling rate.** If theoretical or experimental work demonstrates that Zeno stabilization requires measurement rates exceeding 10⁹ Hz at the electrode interface (far beyond any foreseeable BCI technology), the Zeno-BCI hypothesis (Section 9.2) is removed as a contribution. As noted in Section 9.2, this contribution is already framed as conditional on decoherence timescale.
+
+5. **Davydov solitons cannot be artificially generated at synapses.** If in vitro experiments show that terahertz radiation cannot generate Davydov solitons in SNARE protein complexes, or that such solitons cannot influence vesicle release, the novel attack vector (Section 3.2) is falsified as a practical threat.
+
+**Note on graceful degradation:** QIF's parameterized design means that most falsification scenarios reduce the framework's scope rather than destroying it. If all quantum terms are zero, QIF becomes a classical 14-layer BCI security model — still novel, still useful. The "worst case" for QIF is the "current assumption" of most BCI security researchers: that quantum effects don't matter. The framework is designed so that this assumption is testable, not axiomatic.
 
 ---
 
@@ -748,7 +784,7 @@ The trajectory of brain-computer interfaces is clear: from medical devices resto
 
 QIF is designed for the world that is coming, not the one that exists today. When the decoherence time at the electrode-tissue interface is finally measured, the τ_D parameter will be filled in — and the framework will sharpen without structural change. When biological entanglement is confirmed or ruled out, the Qentangle term will be calibrated accordingly — and the framework will still stand. When quantum computers capable of breaking RSA-2048 arrive (current estimates: within 10-15 years), QIF's quantum key distribution layer will already be in place.
 
-The six novel contributions presented here — quantum biometrics, Zeno-BCI stabilization, Davydov soliton threat modeling, entropy non-monotonicity as security, exact qubit indeterminacy, and the decoherence spectrum — are not speculative flourishes. They are testable hypotheses with proposed experimental protocols. Each one represents a door that, once opened by empirical validation, leads to an entirely new dimension of neural security.
+The six novel contributions presented here — quantum biometrics, the conditional Zeno-BCI hypothesis, Davydov soliton threat modeling, entropy non-monotonicity as security, exact qubit indeterminacy, and the decoherence spectrum — are testable hypotheses with proposed experimental protocols. Some, like the Zeno-BCI hypothesis, are explicitly conditional on decoherence timescales that remain unresolved. Each one represents a door that, once opened (or closed) by empirical validation, sharpens the framework's predictions without requiring structural changes.
 
 We envision a future where:
 - Every BCI ships with quantum-aware security as a baseline, not an afterthought
@@ -776,15 +812,15 @@ QI is not a constant. The equation is deterministic — same inputs produce the 
 
 ### Quantum Indeterminacy and Uncertainty Relations
 
-1. Heisenberg, W. (1927). Über den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik. *Zeitschrift für Physik*, 43(3-4), 172-198.
+1. Heisenberg, W. (1927). Über den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik. *Zeitschrift für Physik*, 43(3-4), 172-198. DOI: 10.1007/BF01397280
 
-2. Robertson, H. P. (1929). The uncertainty principle. *Physical Review*, 34(1), 163-164.
+2. Robertson, H. P. (1929). The uncertainty principle. *Physical Review*, 34(1), 163-164. DOI: 10.1103/PhysRev.34.163
 
 3. Schrödinger, E. (1930). Zum Heisenbergschen Unschärfeprinzip. *Sitzungsberichte der Preussischen Akademie der Wissenschaften*, 296-303.
 
 4. Kimura, G., Endo, S., & Fujii, K. (2025). Beyond Robertson-Schrödinger: A general uncertainty relation with genuinely quantum trade-off terms. *arXiv preprint*, arXiv:2504.20404.
 
-5. Maccone, L., & Pati, A. K. (2014). Stronger uncertainty relations for all incompatible observables. *Physical Review Letters*, 113(26), 260401.
+5. Maccone, L., & Pati, A. K. (2014). Stronger uncertainty relations for all incompatible observables. *Physical Review Letters*, 113(26), 260401. DOI: 10.1103/PhysRevLett.113.260401
 
 6. Kochen, S., & Specker, E. P. (1967). The problem of hidden variables in quantum mechanics. *Journal of Mathematics and Mechanics*, 17(1), 59-87.
 
@@ -796,22 +832,22 @@ QI is not a constant. The equation is deterministic — same inputs produce the 
 
 ### Born Rule
 
-9. Born, M. (1926). Zur Quantenmechanik der Stoßvorgänge. *Zeitschrift für Physik*, 37(12), 863-867.
+9. Born, M. (1926). Zur Quantenmechanik der Stoßvorgänge. *Zeitschrift für Physik*, 37(12), 863-867. DOI: 10.1007/BF01397477
 
 10. Masanes, L., Galley, T. D., & Müller, M. P. (2019). The measurement postulates of quantum mechanics are operationally redundant. *Nature Communications*, 10(1), 1361.
 
 ### Quantum Tunneling in Neural Systems
 
-11. Qaswal, A. B. (2019). Quantum tunneling of ions through the closed voltage-gated channels of the biological membrane: A mathematical model and implications. *Quantum Reports*, 1(2), 219-225.
+11. Qaswal, A. B. (2019). Quantum tunneling of ions through the closed voltage-gated channels of the biological membrane: A mathematical model and implications. *Quantum Reports*, 1(2), 219-225. DOI: 10.3390/quantum1020019
 12. Georgiev, D. D., & Glazebrook, J. F. (2018). The quantum physics of synaptic communication via the SNARE protein complex. *Progress in Biophysics and Molecular Biology*, 135, 16-29.
 
 13. Walker, E. H. (1977). Quantum mechanical tunneling in synaptic and ephaptic transmission. *International Journal of Quantum Chemistry*, 11(1), 103-127.
 
-14. Summhammer, J., Salari, V., & Bernroider, G. (2012). A quantum-mechanical description of ion motion within the confining potentials of voltage-gated ion channels. *Journal of Integrative Neuroscience*, 11(2), 123-135.
+14. Summhammer, J., Salari, V., & Bernroider, G. (2012). A quantum-mechanical description of ion motion within the confining potentials of voltage-gated ion channels. *Journal of Integrative Neuroscience*, 11(2), 123-135. DOI: 10.1142/S0219635212500094
 
 ### Decoherence in Neural Tissue
 
-15. Tegmark, M. (2000). Importance of quantum decoherence in brain processes. *Physical Review E*, 61(4), 4194-4206.
+15. Tegmark, M. (2000). Importance of quantum decoherence in brain processes. *Physical Review E*, 61(4), 4194-4206. DOI: 10.1103/PhysRevE.61.4194
 
 16. Jedlicka, P. (2017). Revisiting the quantum brain hypothesis: Toward quantum (neuro)biology? *Frontiers in Molecular Neuroscience*, 10, 366.
 
@@ -837,9 +873,9 @@ QI is not a constant. The equation is deterministic — same inputs produce the 
 
 ### Neuroscience
 
-25. Fries, P. (2005). A mechanism for cognitive dynamics: Neuronal communication through neuronal coherence. *Trends in Cognitive Sciences*, 9(10), 474-480.
+25. Fries, P. (2005). A mechanism for cognitive dynamics: Neuronal communication through neuronal coherence. *Trends in Cognitive Sciences*, 9(10), 474-480. DOI: 10.1016/j.tics.2005.08.011
 
-26. Fries, P. (2015). Rhythms for cognition: Communication through coherence. *Neuron*, 88(1), 220-235.
+26. Fries, P. (2015). Rhythms for cognition: Communication through coherence. *Neuron*, 88(1), 220-235. DOI: 10.1016/j.neuron.2015.09.034
 
 27. Markram, H., Lübke, J., Frotscher, M., & Bhatt, G. K. (1997). Regulation of synaptic efficacy by coincidence of postsynaptic APs and EPSPs. *Science*, 275(5297), 213-215.
 
@@ -849,9 +885,9 @@ QI is not a constant. The equation is deterministic — same inputs produce the 
 
 30. Buzsáki, G., & Draguhn, A. (2004). Neuronal oscillations in cortical networks. *Science*, 304(5679), 1926-1929.
 
-31. Hodgkin, A. L., & Huxley, A. F. (1952). A quantitative description of membrane current and its application to conduction and excitation in nerve. *Journal of Physiology*, 117(4), 500-544.
+31. Hodgkin, A. L., & Huxley, A. F. (1952). A quantitative description of membrane current and its application to conduction and excitation in nerve. *Journal of Physiology*, 117(4), 500-544. DOI: 10.1113/jphysiol.1952.sp004764
 
-32. Shannon, C. E. (1948). A mathematical theory of communication. *Bell System Technical Journal*, 27(3), 379-423.
+32. Shannon, C. E. (1948). A mathematical theory of communication. *Bell System Technical Journal*, 27(3), 379-423. DOI: 10.1002/j.1538-7305.1948.tb01338.x
 
 ### Quantum Computing Threats
 
@@ -893,9 +929,19 @@ QI is not a constant. The equation is deterministic — same inputs produce the 
 
 ### Neuroethics
 
-49. Yuste, R., Goering, S., Arcas, B. A. Y., et al. (2017). Four ethical priorities for neurotechnologies and AI. *Nature*, 551(7679), 159-163.
+49. Yuste, R., Goering, S., Arcas, B. A. Y., et al. (2017). Four ethical priorities for neurotechnologies and AI. *Nature*, 551(7679), 159-163. DOI: 10.1038/551159a
 
-50. Ienca, M., & Andorno, R. (2017). Towards new human rights in the age of neuroscience and neurotechnology. *Life Sciences, Society and Policy*, 13(1), 5.
+50. Ienca, M., & Andorno, R. (2017). Towards new human rights in the age of neuroscience and neurotechnology. *Life Sciences, Society and Policy*, 13(1), 5. DOI: 10.1186/s40504-017-0050-1
+
+### BCI Security
+
+51. Martinovic, I., Davies, D., Frank, M., Perito, D., Ros, T., & Song, D. (2012). On the feasibility of side-channel attacks with brain-computer interfaces. *Proceedings of the 21st USENIX Security Symposium*, 143-158.
+
+52. Bonaci, T., Calo, R., & Chizeck, H. J. (2014). App stores for the brain: Privacy and security in brain-computer interfaces. *IEEE Technology and Society Magazine*, 34(2), 32-39. DOI: 10.1109/MTS.2015.2425551
+
+53. Frank, M., Hwu, T., Jain, S., Knight, R. T., Martinovic, I., Mittal, P., Perito, D., Sluganovic, I., & Song, D. (2017). Using EEG-based BCI devices to subliminally probe for private information. *Proceedings on Privacy Enhancing Technologies*, 2017(3), 133-152.
+
+54. Bernal, S. L., Celdrán, A. H., Pérez, G. M., Barros, M. T., & Balasubramaniam, S. (2022). Security in brain-computer interfaces: State-of-the-art, opportunities, and future challenges. *ACM Computing Surveys*, 54(1), 1-35. DOI: 10.1145/3427376
 
 ---
 
@@ -1048,7 +1094,9 @@ Describes how ions move (flux) based on both concentration gradients and electri
 The most critical layer in QIF. L8 is the trust boundary between silicon (the BCI hardware) and biology (the brain). This is where digital signals become neural signals (or vice versa). No existing framework addresses this boundary at the quantum level. L8 is where the QI equation operates most directly.
 
 #### No-Cloning Theorem
-A fundamental result of quantum mechanics (1982): it is impossible to create an identical copy of an arbitrary unknown quantum state. This is not a technological limitation — it's a law of physics. In QIF, this guarantees that quantum-secured neural signals cannot be intercepted and replicated. An attacker cannot copy what they cannot clone.
+A fundamental result of quantum mechanics (1982): it is impossible to create an identical copy of an arbitrary unknown quantum state. This is not a technological limitation — it's a law of physics.
+
+**QIF-specific note:** In the BCI context, no-cloning protects the *quantum states* at the electrode-tissue interface (e.g., ion channel tunneling states, entangled pairs in QKD). It does NOT protect the *classical signal output* of the BCI — measured voltages are classical data and can be copied freely. The security value is that the classical measurement is an incomplete projection of the quantum state: an attacker who copies the classical output cannot reconstruct the quantum state that produced it, and therefore cannot forge a quantum biometric or break QKD.
 
 ---
 
