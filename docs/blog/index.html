@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNPBK7CRGG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XNPBK7CRGG');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Mindloft / ONI — Neurosecurity Writing</title>
+    <meta name="description" content="Essays exploring the intersection of brain-computer interfaces, quantum security, and neuroethics — from academic frameworks to the questions that keep us up at night.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog | Mindloft / ONI — Neurosecurity Writing">
+    <meta property="og:description" content="Essays exploring the intersection of brain-computer interfaces, quantum security, and neuroethics — from academic frameworks to the questions that keep us up at night.">
+    <meta property="og:url" content="https://qinnovate.com/mindloft/blog/">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* ============================================
+           CSS RESET & VARIABLES
+           ============================================ */
+        :root {
+            --bg-deep: #050a14;
+            --bg-primary: #0a0f1a;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --bg-card-hover: rgba(20, 30, 50, 0.85);
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --accent-pink: #ec4899;
+            --accent-emerald: #10b981;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --text-dim: #475569;
+            --border: rgba(30, 41, 59, 0.8);
+            --gradient-blue-purple: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --gradient-blue-cyan: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--bg-deep);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            background: rgba(5, 10, 20, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(30, 41, 59, 0.4);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(5, 10, 20, 0.95);
+            border-bottom-color: rgba(30, 41, 59, 0.7);
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            border-radius: 1px;
+        }
+
+        .nav-github {
+            display: flex;
+            align-items: center;
+            color: var(--text-muted) !important;
+            transition: color 0.2s;
+        }
+
+        .nav-github:hover { color: var(--text-primary) !important; }
+
+        .nav-github svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Mobile hamburger */
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-hamburger svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: rgba(5, 10, 20, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem 2rem;
+            border-bottom: 1px solid var(--border);
+            z-index: 999;
+        }
+
+        .nav-mobile-menu.open { display: flex; flex-direction: column; gap: 1rem; }
+
+        .nav-mobile-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: block; }
+        }
+
+        /* ============================================
+           PAGE HERO
+           ============================================ */
+        .page-hero {
+            padding: 140px 2rem 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-hero .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           BLOG SECTION
+           ============================================ */
+        .blog-section {
+            padding: 40px 2rem 80px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* Category filter tabs */
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .category-tab {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-tab:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            color: var(--text-primary);
+        }
+
+        .category-tab.active {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .category-tab .tab-count {
+            margin-left: 6px;
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        /* Blog post list */
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Blog card */
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 28px 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        /* Category color accents */
+        .blog-card[data-color="blue"]::before { background: var(--accent-blue); }
+        .blog-card[data-color="blue"]:hover { border-color: rgba(59, 130, 246, 0.3); box-shadow: 0 8px 30px rgba(59, 130, 246, 0.08), 0 4px 16px rgba(0,0,0,0.3); }
+
+        .blog-card[data-color="emerald"]::before { background: var(--accent-emerald); }
+        .blog-card[data-color="emerald"]:hover { border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 8px 30px rgba(16, 185, 129, 0.08), 0 4px 16px rgba(0,0,0,0.3); }
+
+        .blog-card[data-color="cyan"]::before { background: var(--accent-cyan); }
+        .blog-card[data-color="cyan"]:hover { border-color: rgba(6, 182, 212, 0.3); box-shadow: 0 8px 30px rgba(6, 182, 212, 0.08), 0 4px 16px rgba(0,0,0,0.3); }
+
+        .blog-card[data-color="pink"]::before { background: var(--accent-pink); }
+        .blog-card[data-color="pink"]:hover { border-color: rgba(236, 72, 153, 0.3); box-shadow: 0 8px 30px rgba(236, 72, 153, 0.08), 0 4px 16px rgba(0,0,0,0.3); }
+
+        .blog-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .blog-card-category {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .blog-card[data-color="blue"] .blog-card-category {
+            color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .blog-card[data-color="emerald"] .blog-card-category {
+            color: var(--accent-emerald);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .blog-card[data-color="cyan"] .blog-card-category {
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .blog-card[data-color="pink"] .blog-card-category {
+            color: var(--accent-pink);
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.2);
+        }
+
+        .blog-card-date {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            font-weight: 500;
+        }
+
+        .blog-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            line-height: 1.35;
+        }
+
+        .blog-card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .blog-card-title a:hover {
+            color: var(--accent-blue);
+        }
+
+        .blog-card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .blog-card-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: auto;
+        }
+
+        .blog-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .blog-card-link.primary {
+            color: var(--accent-blue);
+        }
+
+        .blog-card-link.primary:hover {
+            color: var(--text-primary);
+        }
+
+        .blog-card-link.secondary {
+            color: var(--text-muted);
+        }
+
+        .blog-card-link.secondary:hover {
+            color: var(--text-secondary);
+        }
+
+        .blog-card-link svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            transition: transform 0.2s;
+        }
+
+        .blog-card-link:hover svg {
+            transform: translateX(2px);
+        }
+
+        /* Hidden card for filtering */
+        .blog-card.hidden {
+            display: none;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 120px 1.5rem 40px;
+            }
+
+            .blog-section {
+                padding: 30px 1.5rem 60px;
+            }
+
+            .blog-card {
+                padding: 22px 20px 20px;
+            }
+
+            .blog-card-title {
+                font-size: 1.1rem;
+            }
+
+            .blog-card-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-tabs {
+                gap: 6px;
+            }
+
+            .category-tab {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+
+            .blog-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">ONI</a>
+            <ul class="nav-links">
+                <li><a href="../research/">Research</a></li>
+                <li><a href="../visualizations/">Visualizations</a></li>
+                <li><a href="../whitepaper/">Whitepaper</a></li>
+                <li><a href="../documentation/">Docs</a></li>
+                <li><a href="../about/">About</a></li>
+                <li><a href="#" class="active">Blog</a></li>
+                <li>
+                    <a href="https://github.com/qinnovates/mindloft" target="_blank" rel="noopener" class="nav-github" aria-label="GitHub">
+                        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    </a>
+                </li>
+            </ul>
+            <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+                <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+        </div>
+    </nav>
+    <div class="nav-mobile-menu" id="mobile-menu">
+        <a href="../research/">Research</a>
+        <a href="../visualizations/">Visualizations</a>
+        <a href="../whitepaper/">Whitepaper</a>
+        <a href="../documentation/">Docs</a>
+        <a href="../about/">About</a>
+        <a href="#">Blog</a>
+        <a href="https://github.com/qinnovates/mindloft" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <!-- =============================================
+         PAGE HERO
+         ============================================= -->
+    <section class="page-hero">
+        <div class="section-label">Blog</div>
+        <h1>Neurosecurity Writing</h1>
+        <p>Essays exploring the intersection of brain-computer interfaces, quantum security, and neuroethics &mdash; from academic frameworks to the questions that keep us up at night.</p>
+    </section>
+
+    <!-- =============================================
+         BLOG POSTS
+         ============================================= -->
+    <section class="blog-section">
+
+        <!-- Category filter tabs -->
+        <div class="category-tabs" id="category-tabs">
+            <button class="category-tab active" data-filter="all">All<span class="tab-count">8</span></button>
+            <button class="category-tab" data-filter="framework">Framework<span class="tab-count">1</span></button>
+            <button class="category-tab" data-filter="security">Security<span class="tab-count">2</span></button>
+            <button class="category-tab" data-filter="signal-processing">Signal Processing<span class="tab-count">2</span></button>
+            <button class="category-tab" data-filter="quantum">Quantum<span class="tab-count">3</span></button>
+        </div>
+
+        <!-- Blog post list -->
+        <div class="blog-list" id="blog-list">
+
+            <!-- Post 1: Quantum Keys -->
+            <article class="blog-card" data-category="quantum" data-color="pink">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">Quantum</span>
+                    <span class="blog-card-date">Jan 22, 2026</span>
+                </div>
+                <h2 class="blog-card-title">
+                    <a href="https://cybersecuritywriteups.com/from-macroscopic-quantum-tunneling-to-quantum-keys-how-the-nobel-prize-will-secure-bcis-300f943faea1" target="_blank" rel="noopener">From Macroscopic Quantum Tunneling to Quantum Keys: How the Nobel Prize Will Secure BCIs</a>
+                </h2>
+                <p class="blog-card-desc">From macroscopic quantum tunneling to quantum key distribution for neural interfaces.</p>
+                <div class="blog-card-links">
+                    <a href="https://cybersecuritywriteups.com/from-macroscopic-quantum-tunneling-to-quantum-keys-how-the-nobel-prize-will-secure-bcis-300f943faea1" target="_blank" rel="noopener" class="blog-card-link primary">
+                        Read on Cybersecurity Writeups <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/quantum-encryption/Blog-Quantum_Keys.md" target="_blank" rel="noopener" class="blog-card-link secondary">
+                        View Source <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post 2: Tunneling Traversal Time -->
+            <article class="blog-card" data-category="quantum" data-color="pink">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">Quantum</span>
+                    <span class="blog-card-date">Jan 22, 2026</span>
+                </div>
+                <h2 class="blog-card-title">
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/quantum-encryption/Blog-Tunneling_Traversal_Time.md" target="_blank" rel="noopener">The Liminal Phase: How Quantum Tunneling Time Could Secure Your Brain</a>
+                </h2>
+                <p class="blog-card-desc">The liminal phase &mdash; a quantum security primitive hiding in plain sight.</p>
+                <div class="blog-card-links">
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/quantum-encryption/Blog-Tunneling_Traversal_Time.md" target="_blank" rel="noopener" class="blog-card-link primary">
+                        View on GitHub <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post 3: Quantum Security -->
+            <article class="blog-card" data-category="quantum" data-color="pink">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">Quantum</span>
+                    <span class="blog-card-date">Jan 21, 2026</span>
+                </div>
+                <h2 class="blog-card-title">
+                    <a href="https://cybersecuritywriteups.com/can-hackers-attack-quantum-computers-across-time-and-space-the-truth-is-far-more-terrifying-d74e41a2223a" target="_blank" rel="noopener">Can Hackers Attack Quantum Computers Across Time and Space?</a>
+                </h2>
+                <p class="blog-card-desc">The real quantum threat isn't about transcending spacetime &mdash; it's about transcending computational complexity.</p>
+                <div class="blog-card-links">
+                    <a href="https://cybersecuritywriteups.com/can-hackers-attack-quantum-computers-across-time-and-space-the-truth-is-far-more-terrifying-d74e41a2223a" target="_blank" rel="noopener" class="blog-card-link primary">
+                        Read on Cybersecurity Writeups <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/quantum-encryption/Blog-Quantum_Security.md" target="_blank" rel="noopener" class="blog-card-link secondary">
+                        View Source <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post 4: Scale-Frequency -->
+            <article class="blog-card" data-category="signal-processing" data-color="cyan">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">Signal Processing</span>
+                    <span class="blog-card-date">Jan 20, 2026</span>
+                </div>
+                <h2 class="blog-card-title">
+                    <a href="https://medium.com/@qikevinl/the-hidden-equation-your-brain-runs-on-and-why-it-matters-5be5598eac1f" target="_blank" rel="noopener">The Hidden Equation Your Brain Runs On &mdash; And Why It Matters</a>
+                </h2>
+                <p class="blog-card-desc">From millisecond spikes to lifetime memories &mdash; the f &times; S &asymp; k invariant.</p>
+                <div class="blog-card-links">
+                    <a href="https://medium.com/@qikevinl/the-hidden-equation-your-brain-runs-on-and-why-it-matters-5be5598eac1f" target="_blank" rel="noopener" class="blog-card-link primary">
+                        Read on Medium <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/scale-frequency/Blog-Scale_Frequency.md" target="_blank" rel="noopener" class="blog-card-link secondary">
+                        View Source <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post 5: Neural Ransomware -->
+            <article class="blog-card" data-category="security" data-color="emerald">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">Security</span>
+                    <span class="blog-card-date">Jan 17, 2026</span>
+                </div>
+                <h2 class="blog-card-title">
+                    <a href="https://medium.com/@qikevinl/neural-ransomware-isnt-science-fiction-e3f9efe4ffb1" target="_blank" rel="noopener">Neural Ransomware Isn't Science Fiction</a>
+                </h2>
+                <p class="blog-card-desc">The technical threat model for holding a brain implant hostage.</p>
+                <div class="blog-card-links">
+                    <a href="https://medium.com/@qikevinl/neural-ransomware-isnt-science-fiction-e3f9efe4ffb1" target="_blank" rel="noopener" class="blog-card-link primary">
+                        Read on Medium <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/neural-ransomware/Blog-Neural_Ransomware.md" target="_blank" rel="noopener" class="blog-card-link secondary">
+                        View Source <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post 6: Coherence Metric -->
+            <article class="blog-card" data-category="signal-processing" data-color="cyan">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">Signal Processing</span>
+                    <span class="blog-card-date">Jan 16, 2026</span>
+                </div>
+                <h2 class="blog-card-title">
+                    <a href="https://medium.com/@qikevinl/your-brain-has-a-spam-filter-can-we-reverse-engineer-it-799da714238e" target="_blank" rel="noopener">Your Brain Has a Spam Filter. Can We Reverse-Engineer It?</a>
+                </h2>
+                <p class="blog-card-desc">Inside the math that could protect your mind from neural hackers.</p>
+                <div class="blog-card-links">
+                    <a href="https://medium.com/@qikevinl/your-brain-has-a-spam-filter-can-we-reverse-engineer-it-799da714238e" target="_blank" rel="noopener" class="blog-card-link primary">
+                        Read on Medium <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/coherence-metric/Blog-Coherence_Metric.md" target="_blank" rel="noopener" class="blog-card-link secondary">
+                        View Source <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post 7: Neural Firewall -->
+            <article class="blog-card" data-category="security" data-color="emerald">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">Security</span>
+                    <span class="blog-card-date">Jan 16, 2026</span>
+                </div>
+                <h2 class="blog-card-title">
+                    <a href="https://medium.com/@qikevinl/your-brain-needs-a-firewall-heres-what-it-would-look-like-87b46d292219" target="_blank" rel="noopener">Your Brain Needs a Firewall &mdash; Here's What It Would Look Like</a>
+                </h2>
+                <p class="blog-card-desc">The same security principles that protect your computer will soon need to protect your mind.</p>
+                <div class="blog-card-links">
+                    <a href="https://medium.com/@qikevinl/your-brain-needs-a-firewall-heres-what-it-would-look-like-87b46d292219" target="_blank" rel="noopener" class="blog-card-link primary">
+                        Read on Medium <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/neural-firewall/Blog-Neural_Firewall.md" target="_blank" rel="noopener" class="blog-card-link secondary">
+                        View Source <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post 8: ONI Framework -->
+            <article class="blog-card" data-category="framework" data-color="blue">
+                <div class="blog-card-header">
+                    <span class="blog-card-category">Framework</span>
+                    <span class="blog-card-date">Jan 15, 2026</span>
+                </div>
+                <h2 class="blog-card-title">
+                    <a href="https://medium.com/@qikevinl/the-osi-of-mind-securing-human-ai-interfaces-3ca381b95c29" target="_blank" rel="noopener">The OSI of Mind: Securing Human-AI Interfaces</a>
+                </h2>
+                <p class="blog-card-desc">If you've worked in IT, you know the OSI model. Now meet its neural counterpart.</p>
+                <div class="blog-card-links">
+                    <a href="https://medium.com/@qikevinl/the-osi-of-mind-securing-human-ai-interfaces-3ca381b95c29" target="_blank" rel="noopener" class="blog-card-link primary">
+                        Read on Medium <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="https://github.com/qinnovates/mindloft/blob/main/neurosecurity/legacy-core/publications/0-oni-framework/Blog-ONI_Framework.md" target="_blank" rel="noopener" class="blog-card-link secondary">
+                        View Source <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer>
+        <p>&copy; 2024&ndash;2026 Kevin Qi &middot; <a href="https://github.com/qinnovates/mindloft" target="_blank" rel="noopener">Mindloft on GitHub</a> &middot; Built with the Quantum Indeterministic Framework</p>
+    </footer>
+
+    <!-- =============================================
+         JAVASCRIPT
+         ============================================= -->
+    <script>
+    (function() {
+        'use strict';
+
+        /* ----------------------------------------
+           NAV: scroll effect + mobile menu
+           ---------------------------------------- */
+        var nav = document.getElementById('main-nav');
+        var mobileMenu = document.getElementById('mobile-menu');
+
+        window.addEventListener('scroll', function() {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        window.toggleMobileMenu = function() {
+            mobileMenu.classList.toggle('open');
+        };
+
+        window.closeMobileMenu = function() {
+            mobileMenu.classList.remove('open');
+        };
+
+        /* ----------------------------------------
+           CATEGORY FILTER
+           ---------------------------------------- */
+        var tabs = document.querySelectorAll('.category-tab');
+        var cards = document.querySelectorAll('.blog-card');
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var filter = this.getAttribute('data-filter');
+
+                // Update active tab
+                tabs.forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+
+                // Filter cards
+                cards.forEach(function(card) {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        /* ----------------------------------------
+           ENTRANCE ANIMATIONS (GSAP ScrollTrigger)
+           ---------------------------------------- */
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate blog cards on scroll
+        gsap.utils.toArray('.blog-card').forEach(function(card, i) {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 92%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.6,
+                delay: i * 0.08
+            });
+        });
+
+        // Animate hero
+        gsap.from('.page-hero .section-label', { opacity: 0, y: 20, duration: 0.6, delay: 0.1 });
+        gsap.from('.page-hero h1', { opacity: 0, y: 20, duration: 0.6, delay: 0.2 });
+        gsap.from('.page-hero p', { opacity: 0, y: 20, duration: 0.6, delay: 0.3 });
+
+        // Animate filter tabs
+        gsap.from('.category-tabs', { opacity: 0, y: 15, duration: 0.5, delay: 0.4 });
+
+    })();
+    </script>
+</body>
+</html>
