@@ -1,6 +1,6 @@
 {
   "project": "QIF Framework",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "last_updated": "2026-02-02",
   "loop_iteration": 15,
 
@@ -379,6 +379,60 @@
       "completed_at": "2026-02-02",
       "priority": "medium",
       "learnings": "README should emphasize the as-code principle — change equations, re-render, paper updates. 5 testable predictions are the best hook for experimentalists."
+    },
+    {
+      "id": "kokoro-tts-audio-narration",
+      "description": "Pre-generate per-section audio narration using Kokoro TTS (Apache 2.0, 82M params). 16 sections extracted from rendered HTML via BeautifulSoup, text cleaned (strips code, tables, math, figures), narrated with af_heart voice, output as MP3. Audio player UI with play/pause, progress bar, section title, scroll-linked auto-advance via IntersectionObserver.",
+      "status": "complete",
+      "exit_condition": "audio/ directory contains 16 MP3 files + manifest.json; audio player visible in whitepaper; scroll auto-advances to current section",
+      "completed_at": "2026-02-02",
+      "priority": "high",
+      "learnings": "Kokoro TTS (Apache 2.0) is the best open-source option for human-sounding speech — CPU-friendly, 82M params, sub-0.3s latency. generate_audio.py extracts text via BeautifulSoup clone+decompose pattern (safe, no innerHTML). WAV→MP3 via ffmpeg reduces 25MB to 8.4MB. Audio player uses HTML5 Audio API with IntersectionObserver for scroll-linked playback."
+    },
+    {
+      "id": "hourglass-scroll-effect",
+      "description": "Replace whole-page rotateY curved monitor effect with per-section hourglass perspective. Each section gets rotateX based on viewport position — content at top/bottom edges fans outward (±3deg max) while center stays flat. Quadratic easing, subtle scale (min 0.982), translateZ push-back (max -12px). Respects prefers-reduced-motion.",
+      "status": "complete",
+      "exit_condition": "Sections near viewport edges tilt outward; center sections stay flat; effect is subtle and legible; prefers-reduced-motion disables it",
+      "completed_at": "2026-02-02",
+      "priority": "medium",
+      "learnings": "Per-section transforms via getBoundingClientRect() + requestAnimationFrame give smooth performance. Quadratic easing (t*t) feels more natural than linear. Max ±3deg rotation keeps text legible while creating depth. The 'hourglass' metaphor (content fans outward at edges) is more comfortable than diagonal tilt."
+    },
+    {
+      "id": "collapsible-callouts",
+      "description": "Make all Quarto .callout boxes click-to-expand/collapse with visual hint labels. Callouts start collapsed showing only header. Click toggles smooth max-height animation. Arrow indicator rotates on expand. 'Click to expand/collapse' hint text updates dynamically.",
+      "status": "complete",
+      "exit_condition": "All .callout elements are collapsible; click toggles open/close; arrow rotates; hint text updates; AI Transparency Disclosure starts collapsed",
+      "completed_at": "2026-02-02",
+      "priority": "medium",
+      "learnings": "CSS max-height transitions with overflow:hidden create smooth expand/collapse. Using a large max-height value (2000px) for expanded state avoids needing to measure content. Arrow rotation via CSS transform: rotate(90deg) on .qif-collapse-arrow. classList.toggle is cleaner than manual add/remove."
+    },
+    {
+      "id": "qif-field-notes-journal",
+      "description": "Create QIF-FIELD-NOTES.md — first-person research journal for personal epiphanies, synesthesia observations, and neurodivergent experiences. Entry format with date, title, observation, internal state, QIF connection, and open questions. First entry documents synesthesia changes during QIF visualization work. Published to both drafts and main repo for public visibility.",
+      "status": "complete",
+      "exit_condition": "QIF-FIELD-NOTES.md exists in both drafts/ai-working/ and main/neurosecurity/qif/; Entry 001 documents synesthesia breakthrough; Claude reminder protocol added to CLAUDE.md",
+      "completed_at": "2026-02-02",
+      "priority": "high",
+      "learnings": "Field notes serve dual purpose: personal journal AND public research artifact. The 'When to Write' guide (7 signal types) helps identify capture-worthy moments. Adding a Claude reminder protocol ('Anything surprise you about your own thinking lately?') ensures the journal keeps growing across sessions."
+    },
+    {
+      "id": "dynamic-roadmap-github-pages",
+      "description": "Add dynamic progress tracker to GitHub Pages landing page that fetches prd.json from GitHub raw URL and renders: animated progress bar, 4 stat counters (total/complete/pending/rate), and 5 most recent completions. All DOM created via createElement (zero innerHTML). Graceful fallback if fetch fails.",
+      "status": "complete",
+      "exit_condition": "Progress bar visible on GitHub Pages; stats update from prd.json; recent completions listed; no innerHTML in implementation",
+      "completed_at": "2026-02-02",
+      "priority": "medium",
+      "learnings": "GitHub Pages can't run server-side code, but fetching raw JSON from GitHub API works for dynamic content. createElement-only DOM construction is safer than innerHTML. Progress bar CSS animation (width transition) gives polished feel. Fallback text prevents blank section if API rate-limited."
+    },
+    {
+      "id": "whitepaper-makefile-pipeline",
+      "description": "Create Makefile for one-command whitepaper build: render (quarto render .qmd), audio (generate_audio.py with Kokoro TTS), mp3 (ffmpeg WAV→MP3 conversion + manifest update), deploy (copy to GitHub Pages docs/). Voice configurable via VOICE= variable.",
+      "status": "complete",
+      "exit_condition": "make whitepaper runs full pipeline; make deploy copies to docs/whitepaper/; make clean removes generated files; VOICE= variable works",
+      "completed_at": "2026-02-02",
+      "priority": "medium",
+      "learnings": "Makefile targets with dependencies (audio: render) ensure correct ordering. Inline Python in Makefile (python3 -c) works for manifest JSON updates. ffmpeg -y flag prevents interactive prompts. The deploy target copies HTML + audio + manifest to the GitHub Pages directory."
     }
   ],
 
@@ -650,10 +704,10 @@
   ],
 
   "metrics": {
-    "total_tasks": 40,
-    "completed": 34,
+    "total_tasks": 46,
+    "completed": 40,
     "in_progress": 0,
     "pending": 6,
-    "completion_rate": "85%"
+    "completion_rate": "87%"
   }
 }

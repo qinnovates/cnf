@@ -33,10 +33,10 @@
 |                  |                  |                  |                  | [P1] ONI_LAYERS  |
 | [P2] MOABB       |                  |                  |                  | Reference        |
 | Benchmarks       |                  |                  |                  |                  |
-|                  |                  |                  |                  | ...+27 more      |
+|                  |                  |                  |                  | ...+33 more      |
 |                  |                  |                  |                  |                  |
 +------------------+------------------+------------------+------------------+------------------+
-     7 items            3 items           0 items           0 items           33 items
+     7 items            3 items           0 items           0 items           39 items
 ```
 
 ---
@@ -237,8 +237,14 @@
 | security-hardening-all-sites | CSP + SRI on whitepaper + both GitHub Pages | 2026-02-02 | P0 |
 | qif-neuroethics-document | 11 open ethics questions + regulatory analysis | 2026-02-02 | P1 |
 | qif-lab-readme | As-code whitepaper system documentation | 2026-02-02 | P2 |
+| kokoro-tts-audio-narration | Kokoro TTS audio narration (16 sections, 9.1 min) | 2026-02-02 | P1 |
+| hourglass-scroll-effect | Per-section hourglass perspective on scroll | 2026-02-02 | P2 |
+| collapsible-callouts | Click-to-expand/collapse callout boxes | 2026-02-02 | P2 |
+| qif-field-notes-journal | QIF Field Notes personal research journal | 2026-02-02 | P1 |
+| dynamic-roadmap-github-pages | Dynamic progress bar on GitHub Pages from prd.json | 2026-02-02 | P2 |
+| whitepaper-makefile-pipeline | One-command build: render + audio + mp3 | 2026-02-02 | P2 |
 
-**Total Completed:** 33 tasks
+**Total Completed:** 39 tasks
 
 ---
 
@@ -288,7 +294,18 @@ Backlog: bci-accessibility-layer, wcag-ada-compliance, accessible-landing-site
 ### Visualization & UX
 ```
 Done: hourglass-diagram-prompt, immersive-3d-whitepaper-ui, plotly-interactive-figures,
-      auto-dictation-engine
+      auto-dictation-engine, kokoro-tts-audio-narration, hourglass-scroll-effect,
+      collapsible-callouts, dynamic-roadmap-github-pages
+```
+
+### Build & Pipeline
+```
+Done: whitepaper-makefile-pipeline
+```
+
+### Research & Community
+```
+Done: qif-field-notes-journal
 ```
 
 ---
@@ -308,8 +325,8 @@ Done: hourglass-diagram-prompt, immersive-3d-whitepaper-ui, plotly-interactive-f
 
 | Metric | Value |
 |--------|-------|
-| Total Tasks | 42 |
-| Completed | 33 (79%) |
+| Total Tasks | 48 |
+| Completed | 39 (81%) |
 | In Progress | 0 |
 | Pending | 9 |
 | Blocked | 0 |
@@ -362,5 +379,5 @@ After moving tasks:
 
 ---
 
-*Synced with: `prd.json` v0.5.0*
-*Board Version: 1.2*
+*Synced with: `prd.json` v0.6.0*
+*Board Version: 1.3*
