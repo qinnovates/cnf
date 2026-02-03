@@ -1,0 +1,241 @@
+---
+title: "The QI Equation: Two Complementary Views"
+---
+
+```{python}
+#| label: setup
+#| include: false
+import sys, os
+sys.path.insert(0, '/Users/mac/Documents/PROJECTS/qinnovates/mindloft/drafts/ai-working/qif-lab')
+import numpy as np
+from src.config import DECOHERENCE_CAMPS, DEFAULT_C1_PARAMS
+from src.qif_equations import (
+    qi_candidate1, qi_candidate2, quantum_gate,
+    von_neumann_entropy, QICandidate1Params,
+    sensitivity_analysis_c1, sensitivity_heatmap_c1
+)
+```
+
+## Why Two Equations?
+
+The QI equation is presented in two complementary forms:
+
+- **Candidate 1 (Additive/Engineering):** Modular, intuitive, each term independently computable. For BCI engineers building real systems.
+- **Candidate 2 (Tensor/Theoretical):** Mathematically rigorous, entanglement natural, decoherence emergent. For physicists evaluating the framework.
+
+Both produce compatible security assessments. They are two lenses on the same reality.
+
+## Candidate 1: The Engineering Equation
+
+$$QI(t) = \alpha \cdot C_{class} + \beta \cdot (1 - \Gamma_D(t)) \cdot [Q_i + \delta \cdot Q_{entangle}] - \gamma \cdot Q_{tunnel}$$
+
+where $\Gamma_D(t) = 1 - e^{-t/\tau_D}$
+
+```{python}
+#| label: fig-qi-decoherence
+#| fig-cap: "QI score over time: quantum terms fade as decoherence progresses. The shaded region shows the quantum contribution — it's strongest when t << τ_D and vanishes as the system decoheres."
+
+import matplotlib.pyplot as plt
+
+tau_d = DEFAULT_C1_PARAMS['tau_d']
+times = np.logspace(-8, -2, 200)
+
+total_scores = []
+classical_scores = []
+
+for t in times:
+    params = QICandidate1Params(tau_d=tau_d)
+    total = qi_candidate1(c_class=0.8, qi_indeterminacy=0.5, q_entangle=0.3, q_tunnel=0.1, t=t, params=params)
+    params_c = QICandidate1Params(tau_d=1e-15)
+    classical = qi_candidate1(c_class=0.8, qi_indeterminacy=0.5, q_entangle=0.3, q_tunnel=0.1, t=t, params=params_c)
+    total_scores.append(total)
+    classical_scores.append(classical)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.fill_between(times, classical_scores, total_scores, alpha=0.3, color='#9b59b6', label='Quantum contribution')
+ax.plot(times, total_scores, color='#9b59b6', linewidth=2.5, label='QI(t) total')
+ax.plot(times, classical_scores, color='#3498db', linewidth=2, linestyle='--', label='Classical only')
+
+for camp in DECOHERENCE_CAMPS:
+    ax.axvline(x=camp['tau_d'], color='gray', linestyle=':', alpha=0.5)
+    ax.text(camp['tau_d'], max(total_scores)*0.95, camp['camp'].split('(')[0].strip(),
+            ha='center', va='top', fontsize=8, rotation=90, alpha=0.7)
+
+ax.set_xscale('log')
+ax.set_xlabel('Time (seconds)')
+ax.set_ylabel('QI Score')
+ax.set_title('QI Equation: Quantum Terms Fade with Decoherence')
+ax.legend(loc='center right')
+plt.tight_layout()
+plt.show()
+```
+
+### Live Computation Demo
+
+Change any input and the QI score updates:
+
+```{python}
+#| label: tbl-qi-demo
+#| tbl-cap: "QI Equation Output Across Decoherence Timescales"
+
+import pandas as pd
+
+results = []
+for camp in DECOHERENCE_CAMPS:
+    params = QICandidate1Params(tau_d=camp['tau_d'])
+    gate = quantum_gate(1e-6, camp['tau_d'])
+    qi_score = qi_candidate1(
+        c_class=0.8, qi_indeterminacy=0.5, q_entangle=0.3, q_tunnel=0.1,
+        t=1e-6, params=params
+    )
+    results.append({
+        'Camp': camp['camp'],
+        'τ_D': camp['label'],
+        'Quantum Gate': f'{gate:.4f}',
+        'QI Score': f'{qi_score:.4f}',
+    })
+
+pd.DataFrame(results)
+```
+
+## Candidate 2: The Theoretical Equation
+
+$$QI = C_{class} \otimes e^{-S_{quantum}}$$
+
+where $S_{quantum} = S_{vN}(\rho(t)) + \lambda \cdot \Phi_{tunnel} - \mu \cdot E(\rho_{AB})$
+
+The security metric is: $S_{QI} = \text{Tr}(\hat{QI} \cdot \rho_{total})$
+
+## Comparing the Two Candidates
+
+```{python}
+#| label: tbl-comparison
+#| tbl-cap: "Candidate Comparison"
+
+comparison = [
+    ["Audience", "BCI engineers", "Physicists, theorists"],
+    ["Structure", "Sum of terms", "Tensor product"],
+    ["Decoherence", "Explicit gate ΓD(t)", "Emerges from SvN(ρ(t))"],
+    ["Entanglement", "Added term (δ·Qentangle)", "Natural via E(ρAB)"],
+    ["Calibration params", "4 (α, β, γ, δ)", "2 (λ, μ)"],
+    ["Measurability", "Each term independent", "Requires state tomography"],
+    ["Computational cost", "Low", "High"],
+    ["Intuition", "High", "Low (requires QM background)"],
+]
+
+pd.DataFrame(comparison, columns=["Property", "Candidate 1 (Additive)", "Candidate 2 (Tensor)"])
+```
+
+## Sensitivity Analysis {#sec-sensitivity}
+
+Which parameters drive the QI score most? A one-at-a-time sensitivity analysis sweeps each parameter ±50% from baseline while holding all others constant.
+
+```{python}
+#| label: fig-tornado
+#| fig-cap: "Tornado plot: sensitivity of QI score to ±50% parameter variation. Longer bars indicate parameters that most strongly influence the security assessment."
+
+import matplotlib.pyplot as plt
+
+sa = sensitivity_analysis_c1()
+
+# Sort by total range (most sensitive first)
+ranges = [abs(h - l) for h, l in zip(sa['high'], sa['low'])]
+sorted_idx = np.argsort(ranges)
+
+param_labels = {
+    'c_class': 'Ĉ_class (classical)', 'qi_indeterminacy': 'Q̂_i (indeterminacy)',
+    'q_entangle': 'Q̂_entangle', 'q_tunnel': 'Q̂_tunnel',
+    'alpha': 'α (classical wt)', 'beta': 'β (quantum wt)',
+    'gamma': 'γ (tunnel wt)', 'delta': 'δ (entangle wt)', 'tau_d': 'τ_D (decoherence)',
+}
+
+fig, ax = plt.subplots(figsize=(10, 6))
+y_pos = np.arange(len(sorted_idx))
+
+for i, idx in enumerate(sorted_idx):
+    param = sa['params'][idx]
+    low_val = sa['low'][idx]
+    high_val = sa['high'][idx]
+    label = param_labels.get(param, param)
+
+    ax.barh(i, high_val - sa['baseline'], left=sa['baseline'],
+            color='#3fb950', alpha=0.7, height=0.6)
+    ax.barh(i, low_val - sa['baseline'], left=sa['baseline'],
+            color='#f85149', alpha=0.7, height=0.6)
+
+ax.axvline(x=sa['baseline'], color='white', linewidth=1.5, linestyle='-')
+ax.set_yticks(y_pos)
+ax.set_yticklabels([param_labels.get(sa['params'][i], sa['params'][i]) for i in sorted_idx])
+ax.set_xlabel('QI Score')
+ax.set_title(f'Parameter Sensitivity (baseline QI = {sa["baseline"]:.3f})')
+ax.legend(['Baseline', '+50%', '−50%'], loc='lower right')
+plt.tight_layout()
+plt.show()
+```
+
+### Decoherence Time vs Elapsed Time
+
+The core physics question — does quantum protection survive long enough to matter? This heatmap shows QI as a function of both τ_D (decoherence time) and t (elapsed time since state preparation).
+
+```{python}
+#| label: fig-heatmap-tau-t
+#| fig-cap: "Heatmap: QI score as a function of decoherence time (τ_D) and elapsed time (t). The diagonal where t ≈ τ_D marks the transition from quantum-protected (upper-left) to classical (lower-right)."
+
+hm = sensitivity_heatmap_c1(
+    param_x='tau_d', param_y='t',
+    x_range=(1e-15, 1e0),
+    y_range=(1e-9, 1e-3),
+    n_points=80,
+)
+
+fig, ax = plt.subplots(figsize=(10, 7))
+im = ax.pcolormesh(
+    hm['x_vals'], hm['y_vals'], hm['qi_grid'],
+    cmap='viridis', shading='auto',
+)
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlabel('Decoherence time τ_D (seconds)')
+ax.set_ylabel('Elapsed time t (seconds)')
+ax.set_title('QI Score: τ_D vs t')
+fig.colorbar(im, ax=ax, label='QI Score')
+
+# Mark the t = tau_d diagonal
+diag = np.logspace(-15, 0, 100)
+ax.plot(diag, diag, 'w--', alpha=0.5, linewidth=1, label='t = τ_D')
+ax.legend(loc='upper left')
+plt.tight_layout()
+plt.show()
+```
+
+### Classical vs Quantum Weight Trade-off
+
+```{python}
+#| label: fig-heatmap-alpha-beta
+#| fig-cap: "Heatmap: QI score as α (classical weight) and β (quantum weight) vary. The balance between classical and quantum contributions determines overall security posture."
+
+hm2 = sensitivity_heatmap_c1(
+    param_x='alpha', param_y='beta',
+    x_range=(0.1, 2.0),
+    y_range=(0.1, 2.0),
+    n_points=60,
+)
+
+fig, ax = plt.subplots(figsize=(8, 7))
+im = ax.pcolormesh(
+    hm2['x_vals'], hm2['y_vals'], hm2['qi_grid'],
+    cmap='viridis', shading='auto',
+)
+ax.set_xlabel('α (classical weight)')
+ax.set_ylabel('β (quantum weight)')
+ax.set_title('QI Score: α vs β')
+fig.colorbar(im, ax=ax, label='QI Score')
+ax.plot([1.0], [1.0], 'w*', markersize=15, label='Default (1.0, 1.0)')
+ax.legend()
+plt.tight_layout()
+plt.show()
+```
+
+::: {.callout-important title="Key Finding"}
+The QI score is most sensitive to **Ĉ_class** (the classical coherence metric) and **α** (its weight), confirming that classical signal integrity is the foundation of the framework. The quantum terms provide additional security margin when decoherence times are favorable, but the classical baseline dominates. **Experimental priority: determine τ_D in vivo** — this single measurement would most dramatically narrow the framework's uncertainty.
+:::
