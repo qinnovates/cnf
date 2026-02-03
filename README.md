@@ -37,13 +37,13 @@ Brain-computer interfaces are being implanted in humans today — with no univer
 - [Publications (31 papers)](MAIN/legacy-core/publications/) — coherence metric, neural firewall, quantum encryption
 - [Interactive Whitepaper](docs/whitepaper/)
 
-### [Autodidact](autodidact/) — Teach + Lead
+### [Signal](autodidact/) — Teach + Lead
 
 Making neuroscience and BCI security accessible through interactive tools, educational modules, and hands-on experiences.
 
 | Component | Description |
 |-----------|-------------|
-| [ONI Academy](autodidact/oni-academy/) | Educational modules — `pip install oni-academy` |
+| [Autodidact](autodidact/oni-academy/) | Educational modules — `pip install oni-academy` |
 | [Visualizations](docs/visualizations/) | 13+ interactive web-based framework demos |
 | [Neuroscience](autodidact/neuroscience/) | BCI fundamentals and neuroscience learning |
 | [Media](autodidact/) | BCI zoom animations, motion graphics, workflow tools |
@@ -52,7 +52,7 @@ Making neuroscience and BCI security accessible through interactive tools, educa
 ```bash
 pip install oni-framework   # 14-layer model, coherence metric, neural firewall
 pip install oni-tara        # TARA — real-time BCI security monitoring
-pip install oni-academy     # Educational modules
+pip install oni-academy     # Autodidact — educational modules
 ```
 
 ---
@@ -74,7 +74,7 @@ mindloft/
 │       ├── resources/                 # Brand, templates, pipeline, editor
 │       └── archive/                   # Website evolution (v1-v5)
 │
-├── autodidact/                        # AUTODIDACT: Teach + Lead
+├── autodidact/                        # SIGNAL: Teach + Lead
 │   ├── oni-academy/                   # Python: pip install oni-academy
 │   ├── neuroscience/                  # Neuroscience fundamentals
 │   ├── bci-zoom/                      # BCI zoom animation
