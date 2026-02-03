@@ -196,7 +196,7 @@ Translation: "The Hamiltonian tells the quantum state how to change over time."
 **Named after:** William Rowan Hamilton (1805–1865), Irish mathematician.
 
 **Related:** Entry QP-004 (quantum simulation), Entry QP-001 (Tegmark decoherence), QIF-TRUTH.md Section 3.4 + 4.3, Derivation Log Entry 18
-**Visualization:**
+**Visualization:** ![QP-005](../autodidact/learnviz/output/fieldjournal/qp-005_tunneling.png)
 
 ---
 
