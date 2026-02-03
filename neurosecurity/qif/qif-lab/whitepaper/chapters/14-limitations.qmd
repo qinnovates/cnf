@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 from src.config import (
     DECOHERENCE_CAMPS, DEFAULT_C1_PARAMS, UNCALIBRATED_PARAMS,
-    OPEN_QUESTIONS, SCOPE_LIMITATIONS, FRAMEWORK
+    OPEN_QUESTIONS, SCOPE_LIMITATIONS, FRAMEWORK, INTERFACE_TYPES
 )
 from src.qif_equations import qi_candidate1, QICandidate1Params
 ```
@@ -86,6 +86,17 @@ from IPython.display import Markdown
 
 bullets = "\n".join(f"- {s}" for s in SCOPE_LIMITATIONS)
 Markdown(bullets)
+```
+
+### Interface Extensibility
+
+The I0 band is not wedded to electrodes. As BCI technology evolves, the same hourglass architecture applies — only the physics at the bottleneck changes:
+
+```{python}
+#| label: tbl-interface-types
+#| tbl-cap: "How QIF's I0 Band Adapts to Different Interface Technologies"
+
+pd.DataFrame(INTERFACE_TYPES)[['type', 'i0_physics', 'quantum_mechanism', 'examples', 'status']]
 ```
 
 ## AI-Assisted Research Transparency {#sec-ai-transparency}

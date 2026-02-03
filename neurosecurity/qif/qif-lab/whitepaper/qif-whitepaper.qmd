@@ -55,6 +55,22 @@ We present the QI equation in two complementary forms — an additive engineerin
 `{python} FRAMEWORK['ai_transparency']['statement']` For methodology, contribution matrix, and documented corrections, see **[TRANSPARENCY.md](../../main/neurosecurity/qif/governance/TRANSPARENCY.md)**. For the complete timestamped audit trail — every derivation, AI contribution, validation result, and decision rationale — see **[`{python} FRAMEWORK['ai_transparency']['audit_trail']`](`{python} FRAMEWORK['ai_transparency']['audit_trail']`)**.
 :::
 
+::: {.callout-important title="Before You Read: What This Paper Is and Isn't"}
+
+**What QIF covers today:** Implanted brain-computer interfaces — devices like Neuralink and BrainGate that place electrodes *inside* the brain. These are the devices where the security gap is most dangerous: they read and write neural signals directly, a breach means someone hijacking a device inside your brain, and no existing security framework accounts for the physics at that boundary.
+
+**Why not EEG headsets?** Non-invasive devices (scalp EEG, consumer headbands) sit outside the skull. Centimeters of skin, bone, and fluid wash out any quantum-scale effects before signals reach the sensor. Standard security is enough for those. QIF solves a problem that doesn't arise for non-invasive devices.
+
+**But that line is moving.** Quantum sensors — optically pumped magnetometers, nitrogen-vacancy diamond centers, engineered proteins — are approaching single-neuron sensitivity *without touching the brain*. When non-invasive sensors can see the same physics that today only implanted electrodes can, QIF becomes relevant to those devices too. The framework is designed for this: only the physics at the interface bottleneck (I0 band) needs to change; the rest carries over.
+
+**This is a hypothesis, not a proof.** QIF is built on real physics and real neuroscience, but the quantum terms in the security equation have not been experimentally validated. The classical coherence metric (Cₛ) works today on real EEG data. The quantum terms require experiments that haven't been done yet — experiments that need academic researchers with access to implanted BCI patients, quantum measurement labs, and single-channel electrophysiology rigs. This paper lays out exactly what those experiments are (see Experimental Predictions) and what results would confirm or falsify the framework.
+
+**This is living research.** This framework emerged from my personal autodidactic exploration at the intersection of quantum physics, neuroscience, and cybersecurity — a space where very few people work. It will improve, change, and be corrected over time. Every derivation, correction, and AI contribution is logged with timestamps in [QIF-DERIVATION-LOG.md](QIF-DERIVATION-LOG.md). If you are a researcher in quantum biology, BCI engineering, neuroscience, or post-quantum cryptography and see something wrong, something missing, or something worth testing — that's the point. **This framework is an open invitation to collaborate.**
+
+> *"There is no shame in not knowing. The problem arises when irrational thought and attendant behavior fill the vacuum left by ignorance."*
+> — Neil deGrasse Tyson, *The Sky Is Not the Limit*
+:::
+
 ---
 
 # Introduction: The Quantum Blind Spot

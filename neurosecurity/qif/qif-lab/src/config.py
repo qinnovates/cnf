@@ -353,8 +353,22 @@ OPEN_QUESTIONS = [
 ]
 
 SCOPE_LIMITATIONS = [
-    "QIF targets implanted BCIs (intracortical, ECoG). Non-invasive EEG BCIs have fundamentally different interface physics.",
+    "QIF targets implanted BCIs only (e.g., Neuralink, BrainGate) — devices with electrodes physically inside the brain. Non-invasive EEG headsets don't need QIF because their electrodes sit on the scalp, separated from neurons by centimeters of skin, bone, and fluid. By the time brain signals reach a scalp electrode, any quantum-scale effects have long since been washed out. There is no direct electrode-tissue boundary to protect. Standard security frameworks are sufficient for non-invasive devices. We focus on implanted BCIs because that is where the security gap is most dangerous: these devices can read and write neural signals directly, the stakes of a breach are highest (think someone hijacking a device inside your brain), and no existing security framework accounts for the physics at that interface.",
     "The quantum adversary timeline depends on fault-tolerant quantum computing, estimated 2030-2040+ (Gidney 2025).",
-    "QIF assumes electrode-tissue interface physics; next-gen optical or magnetogenetic interfaces may require different models.",
+    "This boundary is not permanent. Quantum sensing technology is advancing rapidly — optically pumped magnetometers (OPMs), nitrogen-vacancy diamond centers, and engineered magnetosensitive proteins (MagLOV) are approaching single-neuron sensitivity without ever touching the brain. If non-invasive sensors eventually resolve quantum-scale neural activity through the skull, QIF's security model becomes relevant to those devices too. The real dividing line is not 'implanted vs non-invasive' — it is whether the sensor can see the physics. Today only implanted electrodes can. That may not be true for long.",
+    "QIF is designed to handle next-generation interfaces without redesigning the framework. The hourglass architecture is interface-agnostic: the neural domain (N1-N3) stays the same because brains are brains, and the silicon domain (S1-S3) stays the same because processing is processing. Only the I0 band — the bottleneck where biology meets technology — changes its physics depending on the interface type. For optical interfaces (optogenetics), I0 becomes the photon-tissue boundary. For magnetogenetic interfaces, I0 becomes the magnetic field-ion channel coupling. For quantum sensors, I0 becomes the sensor-neural field interaction. Swapping the I0 physics model is all that's needed — the rest of QIF carries over.",
     "Clinical validation requires IRB approval, neurosurgical collaboration, and access to implanted BCI patients.",
+]
+
+# ──────────────────────────────────────────────
+# Interface Types — I0 Band Physics by Technology
+# ──────────────────────────────────────────────
+# QIF's I0 band generalizes across interface types. The hourglass
+# architecture is interface-agnostic; only the bottleneck physics changes.
+
+INTERFACE_TYPES = [
+    {"type": "Electrode (current)",  "i0_physics": "Electrode-tissue ionic coupling",    "quantum_mechanism": "Ion channel tunneling, charge transfer at metal-tissue boundary",    "examples": "Neuralink N1, BrainGate Utah array, ECoG grids",          "status": "Current focus"},
+    {"type": "Optical",              "i0_physics": "Photon-tissue absorption/emission",  "quantum_mechanism": "Photon coherence, stimulated emission, photoelectric effects",      "examples": "Optogenetics, fiber photometry, two-photon imaging",       "status": "Near-term extension"},
+    {"type": "Magnetogenetic",       "i0_physics": "Magnetic field-ion channel spin coupling", "quantum_mechanism": "Spin dynamics, magnetic resonance at molecular scale",       "examples": "Magneto-thermal TRPV channels, DREADD variants",          "status": "Emerging"},
+    {"type": "Quantum sensor",       "i0_physics": "Quantum sensor-neural field coupling", "quantum_mechanism": "NV-center spin readout, OPM atomic coherence, SQUID flux quantization", "examples": "OPMs, NV-diamond magnetometry, MagLOV proteins", "status": "Future (may enable non-invasive QIF)"},
 ]
