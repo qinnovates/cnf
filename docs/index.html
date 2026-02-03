@@ -1519,8 +1519,8 @@
             outline: none;
         }
         #oni-anim-toggle:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 16px rgba(59, 130, 246, 0.25);
+            border-color: rgba(100, 116, 139, 0.7);
+            box-shadow: 0 0 16px rgba(100, 116, 139, 0.25);
         }
         #oni-anim-toggle:focus-visible {
             outline: 2px solid var(--accent-blue);
@@ -1530,26 +1530,31 @@
             width: 22px;
             height: 22px;
             fill: none;
-            stroke: var(--accent-blue);
+            stroke: var(--text-dim);
             stroke-width: 1.8;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-        #oni-anim-toggle[data-state="off"] svg {
-            stroke: var(--text-dim);
-        }
-        #oni-anim-toggle[data-state="off"] {
+
+        /* Default state (animations ON, BCI off): grey + subtle pulse to draw attention */
+        #oni-anim-toggle[data-state="on"] {
             border-color: rgba(71, 85, 105, 0.35);
-            animation: none;
+            animation: toggle-pulse 2s ease-in-out 3;
         }
 
-        /* Pulse flash to draw attention */
-        @keyframes toggle-pulse {
-            0%, 100% { box-shadow: 0 2px 12px rgba(0,0,0,0.4); border-color: rgba(59, 130, 246, 0.35); }
-            50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); border-color: rgba(59, 130, 246, 0.8); }
+        /* Active state (BCI mode ON, animations paused): blue */
+        #oni-anim-toggle[data-state="off"] {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
         }
-        #oni-anim-toggle[data-state="on"] {
-            animation: toggle-pulse 2s ease-in-out 3;
+        #oni-anim-toggle[data-state="off"] svg {
+            stroke: var(--accent-blue);
+        }
+
+        /* Pulse flash to draw attention on load */
+        @keyframes toggle-pulse {
+            0%, 100% { box-shadow: 0 2px 12px rgba(0,0,0,0.4); border-color: rgba(71, 85, 105, 0.35); }
+            50% { box-shadow: 0 0 16px rgba(100, 116, 139, 0.4); border-color: rgba(100, 116, 139, 0.7); }
         }
 
         /* Tooltip */
