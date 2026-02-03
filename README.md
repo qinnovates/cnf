@@ -43,7 +43,7 @@ Making neuroscience and BCI security accessible through interactive tools, educa
 
 | Component | Description |
 |-----------|-------------|
-| [Autodidact](autodidact/oni-academy/) | Educational modules — `pip install oni-academy` |
+| [Autodidactive](autodidact/oni-academy/) | Educational modules — `pip install oni-academy` |
 | [Visualizations](docs/visualizations/) | 13+ interactive web-based framework demos |
 | [Neuroscience](autodidact/neuroscience/) | BCI fundamentals and neuroscience learning |
 | [Media](autodidact/) | BCI zoom animations, motion graphics, workflow tools |
@@ -52,7 +52,7 @@ Making neuroscience and BCI security accessible through interactive tools, educa
 ```bash
 pip install oni-framework   # 14-layer model, coherence metric, neural firewall
 pip install oni-tara        # TARA — real-time BCI security monitoring
-pip install oni-academy     # Autodidact — educational modules
+pip install oni-academy     # Autodidactive — self-adaptive learning
 ```
 
 ---
