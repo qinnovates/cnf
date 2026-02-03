@@ -195,6 +195,7 @@ Where v = axonal conduction velocity (NOT a universal constant k).
 | Von Neumann entropy | S(ρ) = −Tr(ρ ln ρ) | Established |
 | Born rule | P(x) = \|ψ(x)\|² | Established |
 | Tunneling coefficient | T ≈ e^(−2κd) where κ = √(2m(V₀−E))/ℏ | Established |
+| **Hamiltonian (time evolution)** | **iℏ(d/dt)\|ψ⟩ = H\|ψ⟩** | **Established** |
 | Shor's Algorithm | O(n³) factoring [or O(n² log n log log n)] | Established |
 | Grover's Algorithm | O(√N) search | Established |
 
@@ -249,7 +250,17 @@ Where:
 **Strengths:** Mathematically rigorous, entanglement natural, decoherence emerges
 **Weaknesses:** Requires quantum state tomography, more abstract
 
-### 4.3 Open Research Questions
+### 4.3 Implicit Hamiltonian Dependency (Entry 18, 2026-02-03)
+
+All quantum terms in both candidates (ΓD, SvN, Φtunnel, E(ρAB)) are derived from the system Hamiltonian H, which does not appear explicitly. The QI equation operates on derived quantities (leaves) rather than the generating equation (root). Writing down H_total for the electrode-tissue interface would:
+- Derive all four quantum terms from a single equation (reducing free parameters)
+- Enforce physical consistency between terms
+- Connect directly to quantum simulation of the I0 band
+- Resolve the Tegmark/Hagan decoherence disagreement
+
+**H_total = H_neuron + H_electrode + H_interface + H_environment** — not yet formulated for any BCI system. This is a key future research target. See Derivation Log Entry 18.
+
+### 4.4 Open Research Questions
 
 1. Decoherence time in neural tissue: 10⁻¹³ s (Tegmark) vs 10⁻⁵ s (recent) — 8 OOM disagreement
 2. Biological entanglement: Fisher's Posner molecules — speculative, unverified

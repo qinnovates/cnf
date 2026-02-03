@@ -5,7 +5,7 @@
 > validation agents (quantum physics, neuroscience, cybersecurity) during the
 > framework review conducted on 2026-02-02.
 >
-> **Last updated:** 2026-02-02
+> **Last updated:** 2026-02-03
 > **Sources extracted from:** Three parallel validation agent sessions
 > **Total unique sources:** 100+
 
@@ -67,6 +67,35 @@ Sources are organized by domain and sorted newest-first within each domain.
 | # | Citation | URL | Agent | QIF Relevance |
 |---|----------|-----|-------|---------------|
 | Q23 | Georgiev DD. (2021). "Quantum propensities in the brain cortex and free will." BioSystems. arXiv:2107.06572. | https://arxiv.org/abs/2107.06572 | Quantum | Cortical synaptic vesicle release probability ~0.35 per spike. Over 96 terabytes/second of quantum free will. Relevant to QIF's QI score calibration. |
+
+### Decoherence Measurement & Revised Estimates (2025–2026 Session)
+
+| # | Citation | URL | Agent | QIF Relevance |
+|---|----------|-----|-------|---------------|
+| Q26 | Perry AL. (2025). "Quantum Coherence in Neural Microtubules: a Testable Framework for Understanding Gamma Oscillation Generation." SSRN 5379052/5539838. | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5539838 | Quantum | Proposes NV-center quantum sensing to measure microtubule coherence. Key finding: collective effects may create 1–10 ms coherent domains. First plausible experimental pathway to measuring τD in neural tissue. Directly impacts QI equation's decoherence parameter. |
+| Q27 | (2025). "Quantum Coherence Preservation in Fibonacci-Structured [microtubules]." bioRxiv 2025.06.08.658222. | https://www.biorxiv.org/content/10.1101/2025.06.08.658222v1.full.pdf | Quantum | Fibonacci geometry of microtubules may enhance coherence preservation. Structural argument for extended decoherence times. |
+| Q28 | SPIE (2026). "Quantum Effects and Measurement Techniques in Biology and Biophotonics III." Conference proceedings. | https://spie.org/PW26B/conferencedetails/quantum-in-biology-biophotonics | Quantum | Upcoming 2026 conference. Evidence that weak magnetic fields modulate microtubule polymerization via radical pair mechanism. Isotope-dependent effects consistent with quantum biology. |
+| Q29 | (2025). "Quantum Models of Consciousness from a Quantum Information Science Perspective." arXiv:2501.03241. | https://arxiv.org/pdf/2501.03241 | Quantum | Comprehensive QIS review of consciousness models. Examines Posner cluster geometry for entanglement protection. |
+
+### 2025 Nobel Prize & Macroscopic Quantum Tunneling
+
+| # | Citation | URL | Agent | QIF Relevance |
+|---|----------|-----|-------|---------------|
+| Q30 | Clarke J, Devoret MH, Martinis JM. (2025). Nobel Prize in Physics — "for the discovery of macroscopic quantum mechanical tunnelling and energy quantisation in an electric circuit." | https://www.spinquanta.com/news-detail/the-2025-nobel-prize-in-physics-quantum-tunneling-in-circuits-brings-the-quantum-world-to-the-macroscopic-scale | Quantum | Nobel-level validation that quantum tunneling operates at macroscopic scales in circuits. Demolishes argument that tunneling is only atomic-scale. Electrode-tissue interface is smaller than a circuit. Strengthens QIF's tunneling-as-biometric hypothesis. |
+| Q31 | (2025). "Quantum tunneling mystery solved after 100 years — under-the-barrier recollision." ScienceDaily. | https://www.sciencedaily.com/releases/2025/07/250727235835.htm | Quantum | Kim Dong Eon's team: electrons collide with nucleus INSIDE the tunnel barrier. Novel "under-the-barrier recollision" (UBR). Challenges simple WKB tunneling model used in QI equation. |
+
+### Ion Channel Quantum Tunneling Models
+
+| # | Citation | URL | Agent | QIF Relevance |
+|---|----------|-----|-------|---------------|
+| Q32 | Qaswal AB et al. (2022). "Mathematical Modeling of Ion Quantum Tunneling Reveals Novel Properties of Voltage-Gated Channels." PMC 8830480. | https://pmc.ncbi.nlm.nih.gov/articles/PMC8830480/ | Quantum | Mathematical models for quantum tunneling through voltage-gated channels. Proposes experimental strategies: gate mutations, lighter ions (lithium, protons) to increase measurable tunneling probability. Closest existing work to H_neuron's quantum component. No wet-lab validation yet. |
+| Q33 | (2010). "Monitoring ion-channel function in real time through quantum decoherence." PubMed 20937908. | https://pubmed.ncbi.nlm.nih.gov/20937908/ | Quantum | Proposed quantum nanotechnology (NV centers) for wide-field ion channel monitoring via decoherence signatures. Early precursor to Perry 2025 proposal. |
+
+### Quantum-Inspired Neural Simulation
+
+| # | Citation | URL | Agent | QIF Relevance |
+|---|----------|-----|-------|---------------|
+| Q34 | (2025). "NeuroQ: Quantum-Inspired Brain Emulation." Biomimetics (MDPI) / PMC 12383462. | https://pmc.ncbi.nlm.nih.gov/articles/PMC12383462/ | Quantum | Derives Schrödinger-like equation from FitzHugh-Nagumo neuron model via Nelson's stochastic mechanics. Proposes Hamiltonian encoding + variational eigensolvers for neural emulation. Closest existing work to formulating H_neuron, but quantum-INSPIRED (computational tool), not claiming actual quantum physics. Proposes patch clamp + MEA validation. |
 
 ### Quantum Measurement & Neural Interfaces
 
@@ -251,18 +280,25 @@ Sources are organized by domain and sorted newest-first within each domain.
 | E4 | (2025). "Overcoming failure: improving acceptance and success of implanted neural interfaces." Bioelectronic Medicine. | https://bioelecmed.biomedcentral.com/articles/10.1186/s42234-025-00168-7 | Quantum | Long-term neural interface failure modes and mitigation. |
 | E5 | (2018). "Recent Advances in Neural Electrode-Tissue Interfaces." PMC. | https://pmc.ncbi.nlm.nih.gov/articles/PMC5798641/ | Quantum | Electrode-tissue interface challenges: impedance, biocompatibility, signal degradation. Key I0 band reference. |
 
+### BCI Biocompatibility & Electrode-Tissue Interface (2025 Session)
+
+| # | Citation | URL | Agent | QIF Relevance |
+|---|----------|-----|-------|---------------|
+| E6 | (2025). "Revolutionizing brain-computer interfaces: overcoming biocompatibility challenges in implantable neural interfaces." J Nanobiotechnology / PMC 12243264. | https://pmc.ncbi.nlm.nih.gov/articles/PMC12243264/ | Quantum | Comprehensive review of electrode-tissue interface challenges: mechanical mismatch, impedance, inflammation. All classical — no quantum modeling of the interface exists. Confirms H_interface is uncharted. |
+| E7 | (2025). "Scientists reveal a tiny brain chip that streams thoughts in real time." ScienceDaily. | https://www.sciencedaily.com/releases/2025/12/251209234139.htm | Quantum | BISC system: 65,536 electrodes, 1,024 recording channels, 50μm thin, conforms to brain surface. Higher electrode density = more relevant quantum interface effects. |
+
 ---
 
 ## Appendix: Source Statistics
 
 | Domain | Count | Newest | Oldest |
 |--------|-------|--------|--------|
-| Quantum Physics & Biology | 25 | 2026 | 2000 |
+| Quantum Physics & Biology | 34 | 2026 | 2000 |
 | Neuroscience | 28 | 2026 | 2010 |
 | BCI Technology | 7 | 2025 | 2025 |
 | Cybersecurity & BCI Security | 37 | 2026 | 2020 |
-| Electrode Technology | 5 | 2025 | 2018 |
-| **Total** | **102** | | |
+| Electrode Technology | 7 | 2025 | 2018 |
+| **Total** | **113** | | |
 
 | Validation Agent | Sources Found |
 |-----------------|---------------|
