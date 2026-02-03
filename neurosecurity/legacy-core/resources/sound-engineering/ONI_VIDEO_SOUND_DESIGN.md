@@ -628,19 +628,19 @@ This creates seamless continuity while the character of the sound subtly shifts 
 
 | File | Location | Role |
 |------|----------|------|
-| `ambient-tech.mp3` | `video/demo/public/audio/` | Atmospheric foundation |
-| `original-pulse.mp3` | `video/demo/public/audio/` | Deep curiosity trigger |
-| `curiosity-pulse.mp3` | `video/demo/public/audio/` | Sustained anticipation |
-| `ding-tone.mp3` | `video/demo/public/audio/` | Perfect 4th (harmonic setup) |
-| `ding-tone-2.mp3` | `video/demo/public/audio/` | Perfect 5th (harmonic bridge) |
-| `boot-chime.mp3` | `video/demo/public/audio/` | Major resolution |
-| `wind-door-morning.mp3` | `video/demo/public/audio/` | Hopeful closing ambience |
-| `finale-ascend.mp3` | `video/demo/public/audio/` | Ascending chord (door opening) |
-| `finale-shimmer.mp3` | `video/demo/public/audio/` | Shimmering bells (layered texture) |
-| `finale-resolve.mp3` | `video/demo/public/audio/` | Perfect 5th resolution (completion) |
-| `reactor-hum.mp3` | `video/demo/public/audio/` | ~~Spaceship reactor ambient~~ (DEPRECATED - not used) |
-| `energy-pulse.mp3` | `video/demo/public/audio/` | ~~Energy pulse~~ (DEPRECATED - not used) |
-| `vo-finale-cta.mp3` | `video/demo/public/audio/` | Final call to action (Lily voice) |
+| `ambient-tech.mp3` | `content/videos/demo/public/audio/` | Atmospheric foundation |
+| `original-pulse.mp3` | `content/videos/demo/public/audio/` | Deep curiosity trigger |
+| `curiosity-pulse.mp3` | `content/videos/demo/public/audio/` | Sustained anticipation |
+| `ding-tone.mp3` | `content/videos/demo/public/audio/` | Perfect 4th (harmonic setup) |
+| `ding-tone-2.mp3` | `content/videos/demo/public/audio/` | Perfect 5th (harmonic bridge) |
+| `boot-chime.mp3` | `content/videos/demo/public/audio/` | Major resolution |
+| `wind-door-morning.mp3` | `content/videos/demo/public/audio/` | Hopeful closing ambience |
+| `finale-ascend.mp3` | `content/videos/demo/public/audio/` | Ascending chord (door opening) |
+| `finale-shimmer.mp3` | `content/videos/demo/public/audio/` | Shimmering bells (layered texture) |
+| `finale-resolve.mp3` | `content/videos/demo/public/audio/` | Perfect 5th resolution (completion) |
+| `reactor-hum.mp3` | `content/videos/demo/public/audio/` | ~~Spaceship reactor ambient~~ (DEPRECATED - not used) |
+| `energy-pulse.mp3` | `content/videos/demo/public/audio/` | ~~Energy pulse~~ (DEPRECATED - not used) |
+| `vo-finale-cta.mp3` | `content/videos/demo/public/audio/` | Final call to action (Lily voice) |
 | This documentation | `neurosecurity/legacy-core/resources/sound-engineering/` | Reference |
 
 ### Voiceovers

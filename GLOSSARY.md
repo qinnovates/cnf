@@ -22,7 +22,7 @@ mindloft/
 │   │   └── resources/        # Templates, brand, pipeline
 │   └── autodidact/           # Educational content
 ├── docs/                     # GitHub Pages website
-└── video/                    # Video production
+└── content/videos/           # Video production
 ```
 
 ---

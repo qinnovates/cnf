@@ -147,7 +147,7 @@ final.write_videofile("bci_zoom.mp4", fps=30)
 
 ### Option C: Remotion (React-based, version controlled)
 
-Already set up in `video/demo/` - can reuse infrastructure.
+Already set up in `content/videos/demo/` - can reuse infrastructure.
 
 ### Option D: Canva (Quick prototype)
 

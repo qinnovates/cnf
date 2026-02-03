@@ -67,7 +67,7 @@ mindloft/
 │   ├── documentation/                 # Documentation hub
 │   └── whitepaper/                    # Published whitepaper
 │
-├── video/                             # Video production
+├── content/videos/                     # Video production
 │
 └── [future pillars]                   # Room to grow
 ```

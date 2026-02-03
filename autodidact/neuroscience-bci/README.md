@@ -124,7 +124,7 @@ Each brain region folder is for documenting:
   - [3D-mindmapper/](./visualizing-the-mind/3D-mindmapper/) — Blender photorealistic rendering
   - [2D-mindmapper/](./visualizing-the-mind/2D-mindmapper/) — Manim scientific animations
 - **Backlog:** [bci-to-neuron-zoom-rendering](../docs/visualizations/pending/bci-to-neuron-zoom-rendering/) — GitHub Pages pending visualization
-- **Video Assets:** `video/bci-zoom/` — Video project files
+- **Video Assets:** `content/videos/bci-zoom/` — Video project files
 - **ONI_LAYERS.md:** Biological Foundation section — How this maps to L8-L14
 - **oni/neuromapping.py:** Python API for brain region → layer mappings
 

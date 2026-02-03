@@ -174,7 +174,7 @@ The product remains constant - a fingerprint of healthy neural activity.
 Run these commands to commit all changes:
 
 ```bash
-cd /Users/mac/Documents/PROJECTS/qinnovates/mindloft/main/video/demo
+cd /Users/mac/Documents/PROJECTS/qinnovates/mindloft/main/content/videos/demo
 
 git add src/scenes/TitleScene.tsx
 git add src/scenes/ProblemScene.tsx
@@ -364,12 +364,12 @@ git push origin main
 - `src/data/oni-theme.ts` - Extended to 3:56 (7080 frames)
 - `src/data/script.ts` - Full script with frame timing
 - `neurosecurity/legacy-core/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md` - Complete docs
-- `video/demo/CLAUDE.md` - Video production instructions (NEW)
-- `video/demo/SESSION_NOTES.md` - This file
+- `content/videos/demo/CLAUDE.md` - Video production instructions (NEW)
+- `content/videos/demo/SESSION_NOTES.md` - This file
 
 ### Video Production Pipeline (for future reference)
 
-See `video/demo/CLAUDE.md` for complete instructions including:
+See `content/videos/demo/CLAUDE.md` for complete instructions including:
 - Frame-based timing system
 - Voiceover sync strategy
 - Audio layering rules

@@ -326,7 +326,7 @@ const voiceIntensity = (() => {
 ## File Structure
 
 ```
-video/demo/
+content/videos/demo/
 ├── CLAUDE.md                 # This file
 ├── public/
 │   └── audio/                # All audio files

@@ -45,7 +45,7 @@
 | **Project Management** | `neurosecurity/legacy-core/project/PROJECT_MANAGEMENT.md` | **Master PM doc — scope, risks, priorities, metrics** |
 | **Kanban Board** | `neurosecurity/legacy-core/project/KANBAN.md` | **Visual task board — status at a glance** |
 | **prd.json** | `neurosecurity/legacy-core/project/prd.json` | **Task tracker with exit conditions** |
-| **Video Production** | `video/demo/CLAUDE.md` | **Remotion video production pipeline & audio sync** |
+| **Video Production** | `content/videos/demo/CLAUDE.md` | **Remotion video production pipeline & audio sync** |
 | **Sound Design** | `neurosecurity/legacy-core/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md` | **Audio psychology & specs** |
 | This File | `CLAUDE.md` | Claude-specific instructions |
 
@@ -112,7 +112,7 @@ mindloft/                               # Local folder (remote: github.com/qinno
 │   ├── oni-visualizations/             # Visualization source code
 │   └── images/                         # Site images
 │
-└── video/                              # Video production
+└── content/videos/                     # Video production
     ├── demo/                           # ONI Demo Video (Remotion)
     ├── bci-zoom/                       # BCI zoom animation
     └── motion/                         # Motion graphics

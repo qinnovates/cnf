@@ -13,7 +13,7 @@ Resources for audio design in ONI Framework videos and presentations.
 ### Audio Files Location
 All audio files for the ONI demo video are in:
 ```
-video/demo/public/audio/
+content/videos/demo/public/audio/
 ```
 
 ### Key Frequencies

@@ -47,7 +47,7 @@
 - Implemented voice-reactive waves in credits scene
 - Created video production CLAUDE.md with sync guidelines
 - Documented all audio files and voice configurations
-- Key files: `video/demo/CLAUDE.md`, `video/demo/SESSION_NOTES.md`, `neurosecurity/legacy-core/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md`
+- Key files: `content/videos/demo/CLAUDE.md`, `content/videos/demo/SESSION_NOTES.md`, `neurosecurity/legacy-core/resources/sound-engineering/ONI_VIDEO_SOUND_DESIGN.md`
 
 **2026-01-28 Session:**
 - Fixed oni-academy imports (LEARNVIZ_AVAILABLE = True when installed from PyPI)
@@ -103,7 +103,7 @@
 | 2026-01-26 | **Centralized PM hub created** | `project/README.md` dashboard with progress bars, metrics, quick links. Single entry point for all PM docs. |
 | 2026-01-26 | **TARA renamed: Platform → Stack** | "TARA Stack" aligns with monitoring/telemetry naming conventions (ELK Stack, TICK Stack). Updated brand.json + 14 files. QA pipeline now detects stale brand references. |
 | 2026-01-26 | **QA pipeline created** | `qa.yml` workflow validates: brand consistency, Python imports, formula notation, documentation links, HTML security (CSP/SRI). Runs on PRs, pushes, and weekly. |
-| 2026-01-29 | **Video production pipeline documented** | Complete CLAUDE.md for video work: frame-based timing, voiceover sync strategy, audio layering rules, visual-audio phase matching. See `video/demo/CLAUDE.md`. |
+| 2026-01-29 | **Video production pipeline documented** | Complete CLAUDE.md for video work: frame-based timing, voiceover sync strategy, audio layering rules, visual-audio phase matching. See `content/videos/demo/CLAUDE.md`. |
 | 2026-01-29 | **ElevenLabs voice settings learned** | Bold voice: low stability (0.35), high style (0.6). Encouraging: medium stability (0.45), medium style (0.5). Standard narration: stability 0.5, style 0.5. |
 | 2026-01-29 | **Audio bookend effect discovered** | Reusing intro sounds (ambient, pulse) at the end creates satisfying closure via musical "recapitulation" principle. |
 | 2026-01-29 | **Harmonic progression 4th→5th→Major** | Used at intro and closing. Creates tension-resolution arc. Ding (4th) = question, Ding2 (5th) = answer coming, Chime (Major) = resolution. |
