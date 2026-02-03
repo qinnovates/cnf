@@ -1,11 +1,11 @@
 # Mindloft
 
-> *"Let's Mind Our Way."*
->
-> **Qinnovate** — the engine. Where forward thinking begins.
-> **Mindloft** — the workshop. Where research is built, developed, and shared.
->
-> **Direct link:** [qinnovate.com/QIF](https://qinnovate.com/QIF)
+> *"The most important connections require the most thought."*
+
+**Qinnovate** — the engine. **Mindloft** — the workshop.
+Where we discover AND secure the frontier of mind — a Purple Team approach to neurosecurity.
+
+> *"Let's Mind Our Way."* — **Direct link:** [qinnovate.com/QIF](https://qinnovate.com/QIF)
 
 [![Tests](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml)
 [![Security](https://github.com/qinnovates/mindloft/actions/workflows/security.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/security.yml)
