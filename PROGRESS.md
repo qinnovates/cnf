@@ -1,0 +1,719 @@
+# Progress Log
+
+**Author:** Kevin Qi — all research, architecture, and implementation decisions originate from Kevin.
+AI assists with execution; every concept, direction, and framework choice is Kevin's.
+
+> Auto-generated from git history. Run `python3 MAIN/shared/generate_progress.py` to update.
+> Last generated: 2026-02-04
+
+## Summary
+- **Commits**: 649 | **Date range**: 2026-01-18 — 2026-02-04
+- **prd.json**: 40/46 tasks complete (87%)
+- **Future Work**: 2/7 initiatives complete
+
+## Timeline
+
+### 2026-02-04
+- `69fb1fa` Revert sphere colors to original: Classical=magenta bubble, Quantum=teal glow
+- `052abf7` Add STRIDE categories to all 34 techniques in shared threat matrix
+- `f1b106d` Add HITL validation, BCI testing, and BCI-enhanced website to Future Work
+
+### 2026-02-03
+- `883b8db` Trigger fresh deployment
+- `536bd97` Update Classical hero tagline to 'The OSI of Mind'
+- `a07f29b` Fix portal transition: use event listener instead of inline onclick
+- `6673287` Add portal tunnel transition when clicking Quantum Model
+- `2a468bd` Add interactive Bridge page with cross-site navigation
+- `e4cde72` Update header label to 'Home of Neurosecurity Standards'
+- `ab95fc8` Add cache-control headers to force browser reload
+- `a45559b` Swap sphere colors (teal=Classical, magenta=Quantum) + bubble effect on both
+- `d624562` Add Classical-Quantum Bridge: shared threat matrix as single source of truth
+- `807cdda` Remove ONI demo video embed from README
+- `9e7300d` Classical-Hourglass reconciliation, L14→Cognitive Sovereignty, governance restructure
+- `fb2e3a7` Restructure README around NIST CSF 2.0 functions
+- `7a2c0d4` Move Website Security Controls from TRANSPARENCY.md to SECURITY.md
+- `ec204be` Classical/Quantum restructure: dual-model architecture with neuroethics bridge
+- `56118c1` Fix pixelated Three.js spheres on mobile
+- `833506b` Add Purple Team narrative to repo messaging
+- `410e376` Propagate brand updates: Qinnovate/Mindloft identity, Autodidactive rename
+- `cc17d36` Rename educational module to Autodidactive (autodidact + adaptive)
+- `c005dc4` Rename second pillar to Signal, academy to Autodidact
+- `37227a3` Update brand identity: Qinnovate (engine) + Mindloft (workshop)
+- `8be890c` Update file trees in CLAUDE.md, README.md, GLOSSARY.md
+- `17ba106` Fix stale content/videos path references across 14 files
+- `e6d38df` Reorganize video content: demo → legacy-core, others → autodidact
+- `978a0a9` Remove "Qinnovate's future vision division" from README
+- `2b7412f` Rename neurosecurity/ → MAIN/ for clearer repo structure
+- `7113520` Fix MAIN/ → neurosecurity/ directory rename caused by iCloud sync
+- `afa3646` Restore field journal entries 002-004
+- `90c5b0c` Fix Field Journal blog card: use author's words, add Only Here badge
+- `04e0588` Add Field Journal to blog with GitHub Exclusive badge, entries 002-004
+- `69ccf63` Add QIF-WHITEPAPER.md to main, sync all QIF living documents from drafts
+- `f273504` Rename QIF-FIELD-NOTES → QIF-FIELD-JOURNAL, fix security audit + manifests
+- `be203a3` Rename autodidact/neuroscience-bci → autodidact/neuroscience
+- `9dc1d9d` Add Mindloft slogan and tagline to brand.json
+
+### 2026-02-02
+- `9d369c2` Document 6 missing work items in KANBAN + prd.json
+- `014c9d6` Update README and ABOUT with Qinnovate > Mindloft > QIF hierarchy
+- `41b0962` Add whitepaper Makefile (render + audio pipeline)
+- `4477c19` Add Kokoro TTS narration, hourglass effect, collapsible callouts
+- `f170116` Add QIF 3D interactive model to visualization suite
+- `4f5cddf` Add live site map to README with all pages and tools
+- `bfb8c99` Update autodidact README: ONI → QIF, rebrand for Mindloft
+- `679ddbb` Update whitepaper: The BCI "Neuro Revolution", hourglass effect, collapsible callouts
+- `e63f9fe` Update whitepaper: hourglass perspective, collapsible callouts
+- `33d5e3c` Sync immersive whitepaper and Plotly migrations from drafts to main
+- `47ebf24` Add immersive whitepaper UI, neuroethics, field notes, dynamic roadmap
+- `b00278c` Update whitepaper callout with personal voice and NDT quote
+- `41ffaee` Fix README live links to use GitHub Pages URLs instead of custom domain
+- `b4d8d06` Add project evolution timeline to README with links to all site versions
+- `cb9fafe` Promote QIF whitepaper and qif-lab from drafts to main
+- `43de87f` Move video/ to content/videos/, mandarin translation to demo/translated/
+- `34caafa` Add demo video embed to README
+- `903eb38` Update whitepaper: fix 3D scroll effect, add dynamic TTS voiceover, update transparency docs
+- `557c2f5` Consolidate to single BCI toggle with correct color states
+- `568c1da` Move ONI whitepaper to legacy, replace with QIF whitepaper shell
+- `c6122d4` Fix animation toggle: default to ON, fix broken if/else block
+- `e25a489` Add immersive interactive whitepaper with 3D scroll, voiceover, and BCI mode
+- `4f54579` Fix stale path references from directory reorganization
+- `0c03d71` Update BCI feedback modal with heartfelt message and contact options
+- `ca3aff9` Add BCI mode toggle with feedback modal and future device rendering roadmap
+- `6579fe9` Update landing page with story-driven narrative copy
+- `46e7ecc` Reorganize local paths to match GitHub remote hierarchy
+- `219aeb8` Add .nojekyll to fix GitHub Pages build failures
+- `67cdd70` Add Blog page and update nav across all pages
+- `de825a1` Add BCI animation toggle, viz meta tags, and content pipeline structure
+- `b8c1471` Add Research & About pages, fix broken links and nav across all pages
+- `2260c87` Add dynamic documentation registry with content-manifest.json
+- `e656dc7` Add: all legacy site versions (v1-v5) at /mindloft/legacy/
+- `8c5967e` Add: ONI v1 legacy site at /mindloft/legacy/
+- `e692d2a` Add: QIF Truth Propagation Protocol to CLAUDE.md and sync_rules.md
+- `c423434` Move autodidact/ to mindloft root (out of neurosecurity/)
+- `b7012e8` Update: CLAUDE.md repo URL qinnovates/qif → qinnovates/mindloft
+- `acde9a9` Restructure: qif → mindloft umbrella with neurosecurity pillar
+- `fb21b41` Update: CLAUDE.md file tree to reflect current repo structure
+- `88b7836` Rename: neurosecurity-framework/ → qif/, add model concept image
+- `6e0060b` Update: All repo URLs qinnovates/qinnovate → qinnovates/qif
+- `1d46ed1` Rename: CNF → QIF (Quantum Indeterministic Framework for Neural Security)
+
+### 2026-02-01
+- `06e0659` Delete CNAME
+- `ba94374` Add: Custom domain CNAME for qinnovate.com (#32)
+- `0249cfb` Update repo URLs: qikevinl → qinnovates org (#31)
+- `c7666a5` Update: Landing page branding — ONI → The Convergent Neurosecurity Framework
+- `5da816f` Redesign: README as guided tour for The Convergent Neurosecurity Framework
+- `d1248ac` Rebrand: ONI → The Convergent Neurosecurity Framework + update all URLs
+- `9173e7a` Reorganize: Portfolio structure (neurosecurity-framework + neurosec-research)
+- `6f13b34` Remove: Repository clutter and duplicates
+- `2ad57db` Add waveform rendering and reference object scale markers to Wave Spectrum Explorer
+- `2381d3c` Add: Untracked content + .gitignore update (pre-cleanup)
+- `e01e32e` Add Wave Spectrum Explorer — interactive 3D visualization of 67 wave types
+- `b8a503d` Add Framework v2 doc 09: Quantum Neurosecurity — bridges, DSKE, defense-in-depth, NIST CSF
+- `d9ea7a9` Add V2 construction banner to GitHub Pages landing
+- `0d8fde8` Add indeterministic path narrative and neuroethics-first reasoning
+- `bdeafca` Update README: neuroethics pivot as top priority, link Framework v2
+- `544fea8` Add ethical dilemmas mapped to funnel positions + meta-ethics of AI-assisted reasoning
+- `35d8291` Add Framework v2: full architectural redesign (01-08) + quantum biology + Q integer
+- `6b24dec` Site v5.1: hourglass formation with mirror meshes
+- `ce40772` Save site snapshot as v5
+- `a1337f7` Update Problem section: revert to BCI-specific, add OSI comparison
+- `ba6b8a2` Update "The Problem" section with verified, citable stats
+- `07479e5` Site v4.8: intro quote, scroll collapse, OSI layer emergence, UI polish
+- `8a0e4e2` Site v4.7: layer color identity, purple/white glow, mouse tilt, breathing
+- `c4246fa` Add comprehensive accessibility requirements (WCAG 2.2, ADA, Section 508)
+- `d9d9cfe` Add Attack & Defense Flow Visualizer (10-attack-defense-flow.html)
+
+### 2026-01-31
+- `c7e1e71` Site v4.6: intro slinky animation, per-layer parallax, silicon growth
+- `a5aa50c` Site v4.5: spring interaction polish, photosensitivity warning
+- `178811b` Site v4.4: spring sphere enhancements, art overlay, dynamic colors
+- `58991f0` Save current landing page as v3, add scroll compression animation
+- `1dd26cb` Site v4.3: visible spectrum L14, foundations face-tilt, version archives
+- `61345df` Site v4.2: intro expand, spring coil, easter egg, brand color
+- `c5aa80d` Update brand.json slogan and mission to match whitepaper
+- `2db1ec2` Update whitepaper quote: "Life's most important connections deserve the most thought."
+- `cb1d021` Fix stuck HUD text, adjust hero padding and problem section opacity
+- `c79087e` Add scroll-driven layer visualization with artistic ripple cascade
+- `282bce7` Add laser-etched labels, uniform disc sizing, and centered pull-out animation
+- `fa2fb85` Jenga pull-out animation, centered flat disc, layer detail overlay
+- `2b0ec95` Dissolve brain core early during sphere-to-stack morph
+- `dc2fa24` Increase layer scale contrast and responsiveness on scroll
+- `21435e8` Fix L10 layer skip: increase trigger heights and widen scroll detection
+- `eb48ec8` Add outer glow and electric pool shader effect to active layers
+- `f686c5a` Add Google Analytics (G-XNPBK7CRGG) to all GitHub Pages
+- `7058a31` Redesign framework section: scroll-driven 3D with floating layer HUD
+- `1dc1254` Header starts visible on view launch, hides after 4s with clear reveal tab
+- `07a4825` Update framework section: 50% problem bg, simplified layer panels
+- `50dde79` Update whitepaper quote to "The most important connections require the best thought."
+- `d2fae2e` Revert "Redesign framework section: full-width 3D with floating overlay panels"
+- `b691828` Redesign framework section: full-width 3D with floating overlay panels
+- `5248b43` Fact-check and validate whitepaper: fix errors, soften claims
+- `0a16253` Add intro stack→sphere animation, bold "Until Now"
+- `7e73f07` Add security-by-design argument, fix historical accuracy
+- `ba5b119` Add security-by-design emphasis to standardization section
+- `a9f459d` Update vision section: standardization parallel, roadmap, hero scroll hint
+- `b227e96` Add IEEE/ISO standardization roadmap to whitepaper
+- `85dbcf7` Update hero: single punchy subtitle, remove mission paragraph
+- `a8f6ca0` Redesign framework section: dynamic per-layer scroll, hero copy overhaul
+
+### 2026-01-30
+- `134d638` Fix header covering content — collapse instantly on view launch
+- `532714f` Add ONI Governance Stack visualization (09)
+- `1ba3c63` Add auto-hiding header with Layer Overview link
+- `1f788d6` Categorize visualization suite into 3 sections
+- `672bb8c` Update whitepaper: reframe TARA as proof-of-concept, fix fact-check issues
+- `355a63b` Update hero: gold label, brighter subtitle, black CTA button
+- `aa31608` Redesign site v3: cinematic scroll-driven single-page with Three.js sphere→stack morph
+- `8c91266` Fix stale data across all GitHub Pages docs for single source of truth
+- `902a5b0` Add versioned site snapshots for external review
+- `1177a3f` Update hero CTA to "Explore" linking ONI Explorer, rename to Neurosecurity Research
+- `f4e4dea` Update project tracking and layer explorer naming
+- `317ca89` Update nav logo to "ONI Neurosecurity Standards for BCIs"
+- `f92031d` Add terminology note to whitepaper markdown (mirrors HTML version)
+- `d9a7661` Add terminology note to whitepaper introduction
+- `db88fb6` Restore "BCI security" for cited research, add terminology note
+- `ce7c43a` Replace "BCI security" with "neurosecurity" across all docs pages
+- `2bc140c` Update visualizations index: remove prototype badge, fix Layer Explorer link
+- `41965b4` Add three-tier landing: Layer Overview, Interactive Explorer, 3D Signal Simulator
+- `75e9688` Redesign viz for admissions officers, BCI researchers, and security engineers
+- `6e0f47c` Change nav logo to "Neurosecurity & Ethics"
+- `552e612` Update landing page: hero rewrite, audience entry points, confidence calibration
+- `c41bc16` Fix scenario bar clipping long description text
+- `75e081d` Fix 'Got it' button not dismissing explainer overlay
+- `a32c6af` Redesign 3D visualization as interactive signal flow simulator
+- `3417fd1` Set nav logo to ONI full_name from brand.json
+- `ad8e34c` Add scroll-scale effect to slogan text on landing page
+- `41b5f54` Add quotes around "The OSI of Mind" tagline on landing page
+- `e3fb6c3` Rename nav logo from "ONI Neuroassurance" to "The ONI Project"
+- `ca44dda` Rename ONI Model to ONI Explorer and match nav button to theme color
+- `0a38eb3` Update header label to Neurosecurity & Ethics Standard
+- `bdee4ea` Remove Neural Security Stack section, update interactive tools fallback count
+- `c0bb4a2` Update threat taxonomy counts: 7→10 tactics, 21→46 techniques across repo
+- `b111066` Add Neural Threat Taxonomy publication
+- `810dd32` Expand Neural Threat Taxonomy: 32 → 46 attacks, 10 tactics
+- `02be1f8` Remove all trademark (™) symbols and trademark language
+- `2c286df` Rebrand "ONI Neural Security" to "ONI Neuroassurance" across docs site
+- `c7387dd` Update publications with regulatory landscape, governance refs, and math corrections
+- `777af95` Add landing screen with two clear view options to framework viz
+- `de1a4c5` Fix stale references across documentation
+- `80e4db7` Make TARA descriptions accurate: foundational math, not production system
+- `d0cb479` Reframe TARA to lead with capability, not status
+- `af96f0e` Clarify TARA as research tool, remove Autodidact section
+- `beecc48` Collapse dual-track into single neuroethics-led roadmap and gap analysis
+- `2cbfa76` Add neuroethics governance gaps to Research Gaps table and visualization
+- `49b1aaa` Update roadmap to dual-track: Research & Governance + Engineering
+- `fbd80f6` Restructure ONI for neuroethics-first positioning
+- `13b45f9` Update documentation links, cross-references, and page trees for governance docs
+- `f4a9b75` Add Vision and Bigger Than Me sections to ABOUT.md, add vision callout to README
+- `f7e09ed` Update regulatory compliance: US state laws, MIND Act, international neurorights
+- `ea34813` Update vision: replace IEEE 802 comparison with technical implementation approach
+- `e4b27c5` Add UNESCO Recommendation on Ethics of Neurotechnology (2025) alignment
+- `bd5b57a` Add dual-view navigation to ONI Framework visualization
+
+### 2026-01-29
+- `1d11fa4` Add Documentation Hub — 50+ documents organized into 9 categories
+- `b5d92ae` Fix Framework stat link to point to ONI Wiki
+- `5f640b9` Replace 08-oni-framework-viz with 3D Three.js concentric shell model, rename ONI Academy to Autodidact
+- `80b6e71` Add mathematical foundations, 3D visualization, rigorous self-audit, and corrected physics
+- `6a42b67` Shorten CTA scene gap - video now 3:51
+- `a9a0b7d` Update documentation with video production references + add generation scripts
+- `26671d3` Add ONI Demo Video to GitHub Pages
+- `5d655af` ONI Demo Video v1.0 Complete + Documentation
+- `ecb7599` Add harmonic progression (4th → 5th → Major) with music theory documentation
+- `4390276` Add sound engineering documentation for ONI demo video
+- `85128c4` Fix grammar: deserves → deserve
+- `2309831` Update slogan: deserves the most thought
+- `bf56ca0` Update website with new slogan
+- `e76de28` Update slogan wording
+
+### 2026-01-28
+- `5c2c32f` Fix slogan: deserve → deserves
+- `46733d2` Update ONI slogan in brand.json
+- `81d20f5` Add Session Memory system to AGENTS.md
+- `250a1ee` Replace background with flowing wave canvas animation
+- `f59cda2` Fix neural dots z-index to appear above grid background
+- `a09aa93` Add neural dots background animation to ONI Framework viz
+- `7f8d89e` Update Autodidact docs: browser AI & animation engine features
+- `0cd0078` Rename nav link: Autodidactive → ONI Search, demo → WIP
+- `e0b28a9` Update README.md
+- `55ae6cf` Move ONI Model link to right nav, style green
+- `5bf812a` Update learnviz .gitignore to exclude generated media
+- `479b180` Update Autodidact docs: Autodidactive web platform + BCI vision
+- `2063490` Rebrand to Autodidactive, reposition as demo
+- `136785b` Update ONI Academy nav: remove emoji, add alpha tag
+- `4f0be9d` Add ONI Academy link to GitHub Pages navigation
+- `bb219dd` Update documentation for ONI Academy v0.2
+- `885f98f` Fix action versions to match last successful run
+- `da59424` Revert action versions, keep autodidact build path fix
+- `6b08dc7` Fix GitHub Actions versions in publish workflow
+- `cd659c7` Fix oni-academy build path in publish workflow
+- `4076c96` Remove quotes from slogan on GitHub Pages
+- `03a5a3c` Fix LearnViz imports for package installation
+- `96d4c76` Add Publications link to GitHub Pages navbar
+- `b4a5ecf` Package ONI Academy v0.2.0 with LearnViz integration
+- `141af44` Refine LearnViz UI and integrate with ONI Academy
+- `b5f3376` Add Ollama integration and neuroscience templates to LearnViz
+- `e201efa` Add local web UI and auto video+audio combining
+- `42a2d1b` Mark Autodidact module as complete in roadmap
+- `d58914b` Fix text overlap in templates, add narration system
+- `16146f9` Fix broken links and sync slogan with brand.json
+- `cf5be41` Update LearnViz docs: neuroscience templates and examples
+- `c48dc80` Simplify stats labels
+- `156aa97` Add neuroscience templates to LearnViz
+- `50cb823` Replace commits stat with infinity symbol
+- `56f6f0c` Update main README with autodidact educational ecosystem
+- `1eae3f4` Add autodidact ecosystem README
+- `f846f8b` Update slogan with trademark pending status
+- `4067d9f` Move LearnViz to autodidact + add adaptive learning vision
+- `624a12b` Add LearnViz - automated learning visualization pipeline
+
+### 2026-01-27
+- `de8b6a1` docs: actually rename TLDR.md to GLOSSARY.md
+- `ed8683e` docs: condense ABOUT.md for clarity and impact
+- `19c9070` feat: update TitleScene with enhanced animations
+
+### 2026-01-26
+- `fc1b279` docs: rename TLDR.md to GLOSSARY.md, disable TruffleHog action
+- `ccdef4e` Revise funding message in FUNDING.yml
+- `18a8f95` Revise funding information in FUNDING.yml
+- `a2faf46` Revise funding details in FUNDING.yml
+- `353f078` Revise FUNDING.yml with new funding links
+- `08882d4` Merge pull request #13 from qikevinl/dependabot/github_actions/codecov/codecov-action-5
+- `d6b6527` ci: bump codecov/codecov-action from 4 to 5
+- `4a506d2` Merge pull request #12 from qikevinl/dependabot/github_actions/actions/github-script-8
+- `7578d07` ci: bump actions/github-script from 7 to 8
+- `fb72cf4` Merge pull request #10 from qikevinl/dependabot/github_actions/actions/setup-python-6
+- `2836ffc` Merge pull request #9 from qikevinl/dependabot/github_actions/github/codeql-action-4
+- `97c3e2a` Merge pull request #8 from qikevinl/dependabot/github_actions/actions/upload-artifact-6
+- `625c7f8` Merge pull request #24 from qikevinl/auto-index-update
+- `0e48b82` ci: bump actions/setup-python from 5 to 6
+- `42639b5` ci: bump actions/upload-artifact from 4 to 6
+- `343cdd5` ci: bump github/codeql-action from 3 to 4
+- `8dfe3c1` fix: Remove invalid 'models: read' permission from workflow
+- `8ab6e42` docs: auto-generate repository index
+- `9095aa8` docs: update file trees and references for brand folder move
+- `f05c5df` docs: add TLDR.md to README navigation
+- `2cf25e3` Move brand assets to MAIN/resources/brand/ folder
+- `070df1b` fix: use PR instead of direct push for auto-index workflow
+- `5729d0f` Move neuroscience-homework-todo to autodidact/
+- `e67237f` ci: add auto-index workflow using GitHub Models
+- `c99b2ba` Add repository security policy and CODEOWNERS
+- `dfe3752` Add BCI zoom video assets: labeled images, frames, and labeling script
+- `4212882` Merge pull request #22 from qikevinl/qikevinl-patch-5
+- `f02f190` Update brand.json
+- `3c61831` Revise brand.json notes for clarity and security
+- `c8a8601` Reorganize visualizing-the-mind into 3D/2D-mindmapper folders
+- `cd86e62` Rename learning/ folder to autodidact/
+- `1e7ab7c` Move Research-BCI_Mouse_Movement.md to motor-cortex folder
+- `8740259` Add note regarding env. variables in brand.json
+- `9bf393a` Update slogan for clarity and impact
+- `8264764` Merge pull request #21 from qikevinl/qikevinl-patch-4
+- `5af9767` Revise README with updated tagline and content
+- `4846bb0` Update README with project challenges and objectives
+- `ba424ad` Reorganize visualizing-the-mind into 3D/2D mindmapper folders
+- `c73d72c` Reorganize: Create learning/ folder for educational content
+- `a258a86` Add visualizing-the-mind README with learning objectives
+- `b573747` Add scientific explanations for all ONI layer mappings
+- `81d5f56` Self-assignment homework.
+- `382dc47` Add BCI-Functional Electrode Zone Classification
+- `b825bf0` Move brain region folders into brain-regions/ subfolder
+- `13b9d6c` Move visualizations → neuroscience-homework-todo/visualizing-the-mind
+- `aa30b48` Update all docs and trees for neuroscience-homework-todo rename
+- `7aae2c4` Rename neuroscience-bci → neuroscience-homework-todo
+- `2a5dedc` Move brain-anatomy to root as neuroscience-bci
+- `28b8407` Add BCI zoom visualizations (Manim + Blender)
+- `c0b0aa7` Remove unused Brain3D.tsx component
+- `030db07` Add pending visualizations folder with BCI-to-Neuron Zoom project
+- `f324b1f` Fix layer names in ONI Framework Viz to match ONI_LAYERS.md
+- `7fc17b6` Change REST API status to 'Unplanned'
+- `7c2c3ea` Merge pull request #20 from qikevinl/qikevinl-patch-3
+- `774b544` Revise ONI definition and update model link
+- `7b67868` Merge pull request #19 from qikevinl/qikevinl-patch-2
+- `f490115` Merge branch 'main' into qikevinl-patch-2
+- `f8d1997` Update ONI acronym from 'Organic' to 'Open'
+- `2273a2e` Move ONI Model link before Roadmap in nav
+- `d8aae92` Add ONI Model link to navigation bar
+- `18f89db` Add ONI Framework Visualization page (08-oni-framework-viz)
+- `330e6f9` Make layer bars clickable - link to Layer Explorer
+- `2222518` Add BCI Zoom Animation project: brain-to-molecule visualization
+- `ade77d3` Add API Type section clarifying Library API vs REST API
+- `47c03a9` Fix version in pyproject.toml to 0.2.6
+- `28fe2f7` Bump version to 0.2.6 for PyPI release
+- `3b99066` Add comprehensive API documentation (API.md)
+- `f81ff9b` Move typing cursor from tagline to hero description
+- `ae2d36c` Update API Reference to table format for easy scanning
+- `de342ee` Restore NeuralFirewall, update API examples with neuroscience mappings
+- `51e0279` Reduce footer copyright text size
+- `41492b3` Move zone labels sideways on left, remove redundant gateway label
+- `01e1659` Add anomaly detection visualization to demo video
+- `0cbfab6` Add section title for 14-layer stack on website
+- `ad6e045` Add neuroscience mappings API: brain regions, neurotransmitters, functions
+- `8571c8d` Add video watermark: © 2026 Kevin Qi • ONI Framework™
+- `682e500` Update L9-L14 biology layer naming based on neuroscience research
+- `da46f7b` Add Detection Theory: Mathematical framework for neural signal threat detection
+- `1450a96` Update copyright and trademark notice
+- `7a6e4be` docs: update Claude instructions for TARA Stack rename
+- `b6cc34c` docs: update footer with TARA Stack™, center text, remove created by
+- `1681bf1` Update: Concise copyright notice in website footer
+- `0309a80` docs: update AGENTS.md with session 14 learnings
+- `88151bc` fix(qa): use correct class names ONIStack instead of ONI_LAYERS
+- `8577388` pm: update federated learning component status in prd.json
+- `c54396b` pm: create centralized project management hub with status dashboard
+- `0a9f856` docs: add trademark and legal protection notice to footer
+- `64fa191` project: update M8 Privacy-First Architecture to In Progress
+- `d705196` fix(qa): correct import names and formula check
+- `9bc43fa` docs: remove "education" from neurosecurity link text
+- `ef7c4d1` docs: add DATA_POLICY_FAQ.md and update navigation
+- `61fd939` ci: add comprehensive QA pipeline
+- `9bd5050` chore: bump versions for PyPI release
+- `b3e04e5` chore: update project docs and privacy monitoring visualization
+- `6560700` brand: rename TARA Platform to TARA Stack
+- `d64bd1b` docs: update AGENTS.md with session learnings
+- `52d2067` feat: add privacy-preserving monitoring to demo, docs, and roadmap
+- `d5bde88` fix: correct SRI hashes for AOS library (fixes black screen)
+- `7f0097a` fix: update slogan fallback to match brand.json, improve layer animation reliability
+- `557ede5` video(demo): update manifesto to "Your Mind. Your Privacy. Our Future."
+- `f9e51ea` docs: add privacy-preserving monitoring to visualization index
+- `c97da7a` video(demo): add birth effect and update finale text styling
+- `b3d625a` chore: add privacy monitoring visualization and update video demo
+- `507a1f2` security: expand scanning to cover all code in repository
+- `49de797` security: add nosec annotations to acknowledge reviewed code patterns
+- `39eb8cc` video(demo): redesign finale with white background and geometric waves
+- `01956ea` video(demo): replace GitHub link with qinnovate.com in CTA scene
+- `c57940c` security: add JavaScript/HTML scanning to security workflow
+- `e5caedd` docs: add website security controls section to TRANSPARENCY.md
+- `15d3300` video(demo): add selling points, wave transitions, and enhanced animations
+- `127b2b0` security: add input validation and CSP for GitHub Pages
+- `81a59a9` ui: load vision from brand.json on GitHub Pages
+- `d8c7013` brand: add privacy to vision statement
+- `6a8ed04` brand: add vision statement to ONI
+- `47a9d9e` video(demo): enhance credits scene with wave effect and NEURO gradient
+- `caa56f9` ui: increase horizontal padding on TARA and Academy card descriptions
+- `35bfaa5` video: update credits and layers animation scenes
+- `2e3524c` ui: add left-to-right text reveal animation for mission tagline
+- `6980b0c` video(demo): enhance CTA scene and credits animations
+- `c7a834b` ui: fix stats suffix display and align card descriptions
+- `ef78de7` brand: update ONI slogan and streamline mission
+- `a23c234` video: update demo theme and CTA scene
+- `9d6bfa6` fix: correct broken links in docs and PyPI READMEs
+- `688574b` fix(docs): correct ONI Threat Matrix link
+- `eb71191` fix(oni-academy): use absolute URL for ONI_ACADEMY.md link, bump to v0.1.3
+- `c845468` ui: fix oni-framework link and update layers animation styles
+- `e887aff` video(demo): Update script with threshold defense narration, rename LayersScene
+- `bab5efb` Add 14-layer animation with L8 Neural Gateway emphasis
+- `ed1e039` docs(oni-academy): add alpha status disclaimer, bump to v0.1.2
+- `c1011ae` Remove email from author fields in all pyproject.toml
+- `408c050` chore: bump oni-framework to v0.2.3, update description for Cₛ Core
+- `f6dbcab` ui: add API and EDU badges to package cards on GitHub Pages
+- `318d494` chore(oni-academy): remove TARA from [full] dependency, bump to v0.1.1
+- `68bdbd7` chore: update CoherenceScene
+- `a6623f5` docs: enhance coherence formula documentation and api references
+- `0b2a3d5` chore: update transparency docs, index, and coherence scene
+- `e927653` chore: update Cₛ formula references and video demo improvements
+- `bea14c2` ui: rename ONI Framework card to Cₛ Core on GitHub Pages
+- `6ef50aa` feat: separate oni-academy as independent PyPI package
+- `f4c6bca` Rename Coherence Metric card to ONI Framework
+- `0b0e71e` Replace Neural Firewall with ONI Academy on GitHub Pages
+- `d1892cb` Update Coherence Metric: add 'signatures' to description
+- `a3927ec` Update Coherence Metric description on GitHub Pages
+- `783f34a` ui: add '+' suffix to Commits and Threat Signatures stats
+- `27331a8` ui: reorder stats, rename to Threat Signatures, update Coherence description
+- `a7a738e` Update brand.json: refine ONI slogan and mission
+- `397dc1e` fix: update GitHub Actions to use tara-nsec-platform directory
+- `4c0e9f4` feat: add dynamic stats system and slogan banner
+- `6b45a12` Update publish.yml
+- `10275ac` fix: correct tara path in publish workflow
+- `cede994` ui: add dynamic background and scroll-reveal layers animation
+- `3451dbe` docs: update AGENTS.md with 2026-01-26 session accomplishments
+- `67c699e` ui: reorder Interactive Learning cards, update description
+- `4cac378` Release v0.2.2 (oni-framework) and v0.8.1 (oni-tara)
+- `13472f9` fix: revert slogan to 'Our minds. Our rules. Our future.'
+- `fe8c684` docs: document 2026-01-26 session accomplishments
+- `ae056e0` Fix tagline centering with !important override
+- `3bcd647` revert: remove oni-demo-motion from gitignore
+- `d054448` chore: ignore oni-demo-motion folder
+- `4b14e9a` Fix ONI Academy UI formatting issues
+- `86bd08e` refactor: move brand.json to MAIN/resources/
+- `6f3c56d` Merge pull request #18 from qikevinl/qikevinl-patch-1
+- `cb68ef8` Modify description in README.md
+- `16e7e42` brand: change slogan to singular form
+- `a882fd3` Add automated accessibility compliance checking
+- `6bebb05` chore: remove .vite cache from git, update gitignore
+- `53dc600` Add WCAG 2.1 AA accessibility compliance to ONI Academy and TARA
+- `0ad61e2` feat(brand): add slogan and TARA sync to brand script
+- `ff039bd` Update video demo scenes
+- `3f2317d` Add dynamic typing animation to mock terminal
+- `88eb54f` Update mission and make GitHub Pages load from brand.json
+- `282f9cb` Add API Playground with mock terminal to ONI Academy
+- `dfc2281` Reorganize repository structure for cleaner navigation
+- `8b5e0da` Add brand sync script and GitHub Action
+- `da4c25e` Reorganize brand.json as single source of truth at repo root
+- `34a39f2` Fix TARA fallback brand values to Response Automation
+- `6179a40` Add brand.json reference to README, fix brand.py to load from JSON
+- `c11193a` Rebrand ONI to Open Neurosecurity Interoperability
+- `715a80c` Update ONI acronym to Open Neurosecurity Interoperability
+- `1728693` Add Dependabot auto-merge workflow
+
+### 2026-01-25
+- `e961a47` Fix esbuild CORS vulnerability (medium severity)
+- `f2c048a` Add brand.py as single source of truth for ONI/TARA project identity
+- `55b7f4c` refactor(demo-video): Simplify title scene and remove unused components
+- `cbaa779` feat(demo-video): Add vector wave components for tech aesthetic
+- `39072e3` docs: Update documentation for Dependabot and GitHub Pages animations
+- `1f55f38` Add Dependabot config and dynamic animations to GitHub Pages
+- `ee33d9e` feat(demo-video): Add calm, relaxing title scene
+- `cc78828` feat(demo-video): Add Threads brain wave animation for title
+- `c81dfff` feat(demo-video): Add React Bits-style animated text components
+- `72f1e7f` feat(demo-video): Add canvas-based animation components
+- `c279316` feat(demo): Add Motion Canvas demo + enhance Remotion video
+- `6c191ff` fix(oni-framework): Fix demo API calls, bump to v0.2.1
+- `938e1e6` ci: Update publish workflow to support both packages
+- `09f0b55` Rebrand README header with new marketing copy
+- `4c0aa70` Update ONI description in README
+- `aa7bd54` Update ONI description in README
+- `0e41896` Fix formatting and punctuation in README.md
+- `388f3b2` Fix grammatical error in README description
+- `78b22e1` Update introductory text in README.md
+- `257d11e` Update README.md for clarity and formatting
+- `b5d4ec5` I finally have a decent slogan!
+- `0dde581` test(oni-framework): Add tests for CLI and package initialization
+- `481ec01` feat(tara): Add OpenBCI hardware adapter skeleton
+- `f1351ff` Update hero tagline: punchy marketing copy
+- `052e913` feat(oni-demo-video): Enhanced scenes and animations
+- `0dd3eb3` feat(oni-framework): v0.2.0 with interactive UI and CLI
+- `74af9b9` Simplify hero description for general audience
+- `9b6699a` docs: Update documentation for CI/CD pipeline and v0.8.0 release
+- `9753215` Update nav logo: ONI → ONI Neural Security
+- `ebbd883` Add CI/CD workflows: tests.yml and security.yml
+- `ccfd405` Standardize TARA acronym: Telemetry Analysis & Response Automation
+- `ac25691` Fix stats: Unit Tests → Commits with correct link
+- `30f99f1` Move Get Involved section to bottom
+- `635a99d` Update mission statement
+- `da18e87` Make stats row interactive with hover links
+- `3ccae93` Add ONI demo video project (Remotion)
+- `6aefcde` Streamline landing page: consolidate mission, remove redundancy
+- `941bcd1` Add mission statement and company-standard sections to GitHub Pages
+- `6c8aeb0` Update Interactive Learning section to reference ONI
+- `6c0d4c7` Bump version to 0.8.0: bidirectional BCI security, MOABB tests
+- `590cf39` Add Mapped TTPs stat to hero section
+- `473c5a5` Remove ATT&CK trademark, credit MITRE as inspiration
+- `3b9f0b2` Rebrand hero: ONI Model + Neural Security Standard positioning
+- `a62fd22` Add bidirectional BCI support to Neural Firewall
+- `396718f` Update GitHub Pages hero: reposition branding hierarchy
+- `af6492e` Close TARA rename task - keeping current name
+- `7d7f32b` Add researcher verification report for bias reduction
+- `a884992` Add awesome-bci tools review for ONI integration
+- `1e24e80` Remove neural tissue section from documentation
+- `df2ee5f` Revise ONI Framework paper abstract for clarity
+- `a8c1f9e` Add ONI Framework paper abstract
+- `ba62084` Remove task for verifying notable researchers list
+- `254539a` Add ONI Threat Matrix documentation (7 tactics, 21 techniques)
+- `2c53c97` Add info boxes to all 6 interactive visualizations
+- `e04493f` Add Obsidian task tracking and visualization updates
+- `32ff6e1` Update ONI Threat Matrix preview to cleaner MITRE-style design
+- `10ef3ca` Update GitHub Pages branding and remove tier labels
+- `928c527` Add API.md documentation and update CLAUDE.md maintenance instructions
+- `914f24a` Add Obsidian tasks extraction for 2026-01-25
+- `9f246a0` Add Yale BCI threat model with CVSS v4.0 scoring
+- `7c6f94f` Add Regulatory Compliance Guide for ONI-compliant BCIs
+- `61f4b14` Add publication links and new universities to academic landscape
+- `6a084dd` Update ACADEMIC_LANDSCAPE.md
+- `ccda4a0` Fix Streamlit deprecated use_container_width parameter
+- `ca2b286` Rename section 'Inspirational Works' to 'Inspirational Muse'
+- `89d79db` Rename 'ONI ATT&CK Matrix' to 'ONI Threat Matrix'
+- `8fff45c` Update Hourglass prompt description in documentation
+- `35f76fb` Revise Tamara Bonaci's patent status in contributions
+- `9f1cf51` Fix last arrow in Research Gaps diagram
+- `91bbd97` Update ABOUT.md
+- `a856a28` Update ABOUT.md
+- `5dbe698` Update ABOUT.md
+- `42a58ca` Update ABOUT.md
+- `3188e41` Update ABOUT.md
+- `37bebd0` Update README.md
+- `ed8f5df` Update README.md
+- `25c9c0e` Update README.md
+- `3663ef0` Update README.md
+- `72dc762` Add ONI ATT&CK Matrix (06) and update visualization counts
+- `e4020ce` Update README.md
+- `9bbd233` Update html_bridge.py visualization path
+- `53a8b05` Rename interactive-concept-demo to interactive-oni-visualizations
+- `845f04c` Add research gaps table and interactive visualization links
+- `7fddf84` Remove 14-layer text, keep image only
+- `7443adc` Remove 'dashboard' from TARA description
+- `12550c6` Increase 14-layer diagram size by 30%
+- `4f21a3d` [Refactor] Complete TARA restructuring: tara_mvp + interactive-concept-demo
+- `5ce2a2c` Fix TARA description on GitHub Pages
+- `ea37319` Rename tara package to tara_mvp
+- `4f4dfb8` Swap Navigation and Privacy sections in README
+- `af4ba66` Update GitHub Pages: move architecture image, update test count
+- `a81fe88` Update TARA acronym: Telemetry Analysis and Response Automation
+- `194b8cf` Add SVG previews to visualization cards on main page
+- `b2cdece` Add EMOTIV as priority partnership opportunity
+- `d8eca11` Add inspirational works and update README with Yale
+- `75932a0` Update README.md
+- `42097e2` [Add] ONI Threat Matrix - Interactive neural threat visualization
+- `d250ee3` [Docs] Update GitHub Pages visualization index
+- `08e6d49` Add ONI ATT&CK Matrix visualization
+- `e2eddea` [Docs] TARA v0.6.1: Comprehensive documentation for Neural Simulator, Neurosecurity, and Attack Simulator
+- `6e1c52b` Add Yale, UNC, Tongji to academic landscape
+
+### 2026-01-24
+- `94e5a81` [Update] TARA v0.6.0 - Major UI enhancements with neurosecurity and MOABB features
+- `5e76d9f` [Update] GitHub Pages - TARA Platform nav, ONI Banner, MVP badge
+- `8356f6d` [Update] Move Design System to separate page, clean up visualizations index
+- `18304f1` [Fix] Remove 'partners' wording - accurate citation language
+- `387b9f0` Fix publish.yml workflow path
+- `e74418c` [Update] GitHub Pages - add layers diagram, fix research wording
+- `5886c4d` [Update] Redesign GitHub Pages landing page
+- `1b8ee28` Release oni-tara v0.5.1: Fix Layer Explorer interactivity
+- `bd5c651` Fix Layer Explorer interactivity + comprehensive educational content
+- `d0e9265` [Fix] Graceful handling when visualizations folder missing from PyPI package
+- `7722643` Add academic alignment visualization + Remotion project
+- `9f5c00c` [Update] ONI layer explorer visualization
+- `c2cdf20` [Add] Root .gitignore and update layer explorer visualization
+- `6e02c8a` [Update] Fix remaining prototype-mvp path references
+- `10854ae` [Update] TARA UI with visualization suite integration
+- `8b87f77` [Add] Comprehensive project management system with Kanban and risk assessment
+- `3ddb3cc` [Update] README.md for consolidated TARA package structure
+- `8071357` [Docs] Document historical false positives in security audit
+- `68450da` [Update] CLAUDE.md - fix stale prototype-mvp reference
+- `e4ce812` [Fix] Security audit false positive - exclude patterns folder
+- `d3bd07f` [Update] INDEX.md for new TARA package structure
+- `49e0edd` [Add] GitHub Pages setup for interactive visualizations
+- `9922be3` [Reorganize] Move TARA source from prototype-mvp to tara-neural-security-platform
+- `44528e6` [Add] Table of contents to 9 large documentation files
+- `0786e25` [Fix] CRITICAL: L9-L14 domain labels corrected from Silicon to Biology
+- `b3cdc84` [Add] Future work: L11-L14 standards development
+- `987d6b8` [Reorganize] Major restructure + Academic landscape research
+- `83baa0a` [Add] agents: Research Verification Protocol and Persona System
+- `6508f68` [Update] governance/TRANSPARENCY: Expand Learning Moment analysis
+- `828e1ef` [Update] governance/TRANSPARENCY: Expand AI tool disclosure and cognitive analysis
+- `ab68259` Add MOABB adapter for real EEG dataset integration
+- `0f5ba5f` Update TRANSPARENCY.md
+- `03f0371` Add Lázaro-Muñoz neuroethics framework integration
+- `c35c25b` Add Partnerships & Future Directions documentation
+
+### 2026-01-23
+- `2069e78` Expand 6-Layer BCI Threat Model section in RELATED_WORK.md
+- `7013c6a` Update AGENTS.md with reorganization learning
+- `62f4bd7` Reorganize repository structure for better organization
+- `fefdfa9` Update INDEX.md and add INDEX.md Update Protocol
+- `378eef4` Add full Privacy & Ethics statement to NEUROETHICS_ALIGNMENT.md
+- `570b60e` Move ONI_LAYERS.md to oni-framework folder
+- `65e3850` Update README: Shorten Privacy & Ethics statement
+- `2fed74d` Fix tara package structure for proper pip installation
+- `0de7f04` Add TARA section to Python Library documentation
+- `8f74fde` Move ONI hourglass image to Complete 14-Layer Model section
+- `76f82ef` Add ONI 14-layer hourglass image to ONI_LAYERS.md
+- `0f1034e` Reorganize repository structure
+- `ebd576f` Fix: Update install command to oni-tara in TARA README
+- `f14f2a7` Update publish workflow: skip existing versions on PyPI
+- `f8eac4a` Add neurosecurity module and acknowledge prior BCI security research
+- `4b2aaaa` Add oni-tara v0.4.0 with neurosecurity module
+- `4bd1fae` Update README.md
+
+### 2026-01-22
+- `38d7ab5` Add: ONI 14-layer hourglass diagram to README
+- `8e25758` Update and rename CHATGPT_HOURGLASS_PROMPT.md to ONI_HOURGLASS_PROMPT.md
+- `520ad9c` Update: Correct ONI layer model and add project management infrastructure
+- `f92410f` Update README.md
+- `b810923` Add: TARA Neural Security Platform v0.3.0
+- `7793a9c` Add: NeuroSim neural network simulator for ONI Framework
+- `eeece69` Update documentation with transparency files and links
+- `6dba544` Add transparency documentation for Responsible AI compliance
+- `59872d0` Update README.md
+- `94d43ed` Add: Security Audit Pipeline for secrets and PII detection
+- `5d3633a` Update ABOUT.md
+- `ff8258f` Add non-technical documentation for collaborators
+- `771db07` Reorganize: Distinguish main wiki (INDEX.md) from topic overviews (README.md)
+- `0ce3c30` Update documentation for oni-framework v0.1.0
+- `e600240` Add Python library section to README
+- `6575bfb` Fix remaining prototype path references in docs
+- `e2237c4` Prepare oni-framework for PyPI release
+- `6097ce3` Move oni-visualizations up, remove prototypes/ wrapper
+- `4d675ad` Consolidate quantum topics into quantum-encryption/
+- `a1efcdd` Add oni-framework Python package
+- `2f05d39` Update oni-visualizations README with beginner-friendly instructions
+- `c885f7f` Add adoption strategy and Python package specification
+- `ce7eb70` Add Quantum Keys publication and update all documentation
+- `4ffad42` Update ABOUT.md
+- `6af6202` Add files via upload
+- `0869e24` Remove docx files from tunneling-traversal-time
+- `7e9a00c` Update PROCESS_IMPROVEMENTS.md to reflect current state
+- `4dc2777` Add Tunneling Traversal Time publication with APA formatting
+
+### 2026-01-21
+- `0ad63b5` Update ABOUT.md
+- `8c6fee9` Delete .gitignore
+- `06f841e` Restructure MAIN folder and consolidate navigation
+- `173484b` Remove obsolete medium_template_v2.py
+- `0db3664` Add Quantum Security publication and update blog template
+- `eef0d50` Rename Medium to Blog and fix broken links in ONI_WIKI.md
+- `d9bcd97` Add ONI Visualization Suite: 5 interactive educational web apps
+- `ea63415` Delete .gitignore
+- `3a6061f` Move ONI_WIKI.md to MAIN/ directory
+- `42e4392` Remove .DS_Store and add to .gitignore
+- `99d997a` Rename ONI_NEXUS.md to ONI_WIKI.md
+- `2332783` Update CLAUDE.md v3.2 with stronger README update requirements
+- `7207750` Update README and PROCESS_IMPROVEMENTS with nexus navigation
+- `6756faf` Add ONI Nexus architecture for scalable framework expansion
+- `e7c8ff3` Add documentation comment to keywords.json
+- `e7c424d` Add medium_template_v2.py with ASCII table and divider support
+
+### 2026-01-20
+- `65717b8` Update templates and acknowledgments across all publications
+- `f14f930` Restructure cicd-pipeline directory
+- `97893b8` Update TechDoc naming convention and add table of contents
+- `9584e02` Update README.md
+- `2a4973d` Update README.md
+- `f4b8cf0` Update README.md
+- `e85e944` Reorganize: Rename CICD to CICD-Pipeline, move scripts inside
+- `845a358` Rename Paper to TechDoc across all documents
+- `2a00f38` Update README: Move repo structure before Objective
+- `f41ef90` Update Medium template: Add GitHub collaboration footer
+- `acfecbe` Update ABOUT.md
+- `fd946e0` Update ABOUT.md
+- `5244829` Reorganize: Move oni-framework into publications with 0- prefix
+- `a6c4eef` Update ABOUT.md with origin story and inspiration
+- `451fe97` Update README and CONTRIBUTING documentation
+- `e666ccc` Reorganize: Move non-content to artifacts/, add publication keywords
+- `c8126b1` Reorganize: Move ONI Framework to MAIN level, update Medium metadata
+- `2315024` Reorganize: Separate content from infrastructure in MAIN
+- `105f432` Rename README.AI.md to CLAUDE.md
+- `2e2db5b` Add Claude AI instructions and process improvements
+- `f4edcb3` Reorganize repository structure with MAIN folder
+- `64585f0` Apply APA 7th edition formatting to all technical papers
+- `fa4cc8d` Remove Week#_ prefixes from filenames and fix broken links
+- `0d816f0` Rename AboutMe.md to ABOUT.md and update author bio
+- `dc48c55` Add Neural Firewall Architecture technical paper
+- `2d04936` Reorganize repo: rename docs to publications, clean up Medium posts
+- `599e809` Fix formatting for Scale-Frequency Invariant publications
+
+### 2026-01-18
+- `f217c89` Auto-publish: 2026-01-18 12:13
+- `638ff04` Auto-publish: 2026-01-18 00:34
+- `9ab21fa` Add AboutMe.md - author bio and project context
+- `39d7727` ONI Framework: Restructured with separate topics, Apache 2.0 license
+
+## Future Work Status
+
+| Initiative | Status |
+|-----------|--------|
+| Multi-AI CI/CD Validation | Pending |
+| ~~STRIDE Threat Matrix~~ | Done |
+| ~~Classical-Quantum Bridge~~ | Done |
+| Recover Function | Pending |
+| Human-in-the-Loop Validation | Pending |
+| Live BCI Testing | Pending |
+| BCI-Enhanced Website | Pending |
+
+## prd.json Metrics
+
+| Metric | Value |
+|--------|-------|
+| Total tasks | 46 |
+| Completed | 40 |
+| In progress | 0 |
+| Pending | 6 |
+| Completion rate | 87% |
