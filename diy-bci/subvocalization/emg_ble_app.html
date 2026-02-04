@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>EMG SubVocal BCI</title>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<style>
+/* ============================================================
+   THEME
+   ============================================================ */
+:root {
+    --bg: #0a0a1a;
+    --surface: #12122a;
+    --surface2: #1a1a3a;
+    --border: #2a2a4a;
+    --text: #e0e0f0;
+    --text-dim: #8888aa;
+    --accent: #00d4ff;
+    --accent-dim: #0088aa;
+    --green: #00ff88;
+    --red: #ff4466;
+    --orange: #ffaa00;
+    --purple: #aa66ff;
+    --ch1: #ff6b9d;
+    --ch2: #00d4ff;
+    --ch3: #00ff88;
+    --ch4: #ffaa00;
+    --font: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 8px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.header h1 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--red);
+    transition: background 0.3s;
+}
+
+.status-dot.connected { background: var(--green); }
+.status-dot.connecting {
+    background: var(--orange);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ============================================================
+   CONNECT BUTTON
+   ============================================================ */
+.connect-btn {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--accent);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.connect-btn:active {
+    background: var(--accent);
+    color: var(--bg);
+    transform: scale(0.98);
+}
+
+.connect-btn.connected {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+/* ============================================================
+   COMMAND DISPLAY
+   ============================================================ */
+.command-display {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.command-display.active {
+    border-color: var(--green);
+    background: rgba(0, 255, 136, 0.05);
+}
+
+.command-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.command-word {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.command-word.detected { color: var(--green); }
+
+.command-confidence {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-dim);
+}
+
+.confidence-bar {
+    width: 200px;
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 2px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.15s;
+    width: 0%;
+}
+
+/* ============================================================
+   SIGNAL DISPLAY
+   ============================================================ */
+.signal-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.signal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.signal-header h2 {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.signal-stats {
+    font-size: 11px;
+    color: var(--text-dim);
+}
+
+.channel-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    height: 70px;
+}
+
+.channel-row:last-child { border-bottom: none; }
+
+.channel-label {
+    width: 80px;
+    padding: 0 10px;
+    font-size: 10px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+}
+
+.channel-label .ch-name { font-weight: 600; }
+.channel-label .ch-value {
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.channel-canvas {
+    flex: 1;
+    height: 100%;
+}
+
+.ch1-color { color: var(--ch1); }
+.ch2-color { color: var(--ch2); }
+.ch3-color { color: var(--ch3); }
+.ch4-color { color: var(--ch4); }
+
+/* ============================================================
+   CONTROLS
+   ============================================================ */
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.ctrl-btn {
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+}
+
+.ctrl-btn:active {
+    background: var(--surface2);
+    transform: scale(0.97);
+}
+
+.ctrl-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.ctrl-btn .btn-icon {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.ctrl-btn .btn-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ============================================================
+   GAIN SELECTOR
+   ============================================================ */
+.gain-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.gain-panel h3 {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.gain-options {
+    display: flex;
+    gap: 6px;
+}
+
+.gain-opt {
+    flex: 1;
+    padding: 8px 4px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: var(--font);
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+}
+
+.gain-opt.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+/* ============================================================
+   LOG
+   ============================================================ */
+.log-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.log-panel p {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-bottom: 2px;
+    word-break: break-all;
+}
+
+.log-panel p.error { color: var(--red); }
+.log-panel p.success { color: var(--green); }
+.log-panel p.command { color: var(--accent); }
+
+/* ============================================================
+   COMMAND HISTORY
+   ============================================================ */
+.history-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.history-panel h3 {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.history-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.history-item {
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--surface2);
+    font-size: 11px;
+    color: var(--green);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.history-item .history-time {
+    color: var(--text-dim);
+    margin-left: 6px;
+    font-size: 9px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+    text-align: center;
+    padding: 12px;
+    font-size: 10px;
+    color: var(--text-dim);
+}
+
+/* ============================================================
+   NOT SUPPORTED BANNER
+   ============================================================ */
+.not-supported {
+    padding: 20px;
+    background: rgba(255, 68, 102, 0.1);
+    border: 1px solid var(--red);
+    border-radius: 12px;
+    text-align: center;
+    color: var(--red);
+    line-height: 1.6;
+}
+
+.not-supported a {
+    color: var(--accent);
+}
+
+/* ============================================================
+   MODEL PANEL
+   ============================================================ */
+.model-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.model-panel h3 {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.model-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 11px;
+}
+
+.model-status .model-badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.model-badge.none {
+    background: rgba(255, 68, 102, 0.15);
+    color: var(--red);
+}
+
+.model-badge.threshold {
+    background: rgba(255, 170, 0, 0.15);
+    color: var(--orange);
+}
+
+.model-badge.tfjs {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--green);
+}
+
+.model-info {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.model-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.model-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.model-btn:active {
+    background: var(--surface2);
+    transform: scale(0.97);
+}
+
+.model-btn.primary {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.model-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Hidden file input */
+.hidden-input {
+    display: none;
+}
+
+/* Probability bars */
+.prob-bars {
+    margin-top: 10px;
+}
+
+.prob-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 10px;
+}
+
+.prob-label {
+    width: 55px;
+    text-align: right;
+    color: var(--text-dim);
+    text-transform: uppercase;
+}
+
+.prob-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.prob-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.15s;
+    background: var(--accent);
+}
+
+.prob-value {
+    width: 35px;
+    text-align: right;
+    color: var(--text-dim);
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>EMG SUBVOCAL</h1>
+        <div style="display:flex;align-items:center;gap:8px;">
+            <span id="statusText" style="font-size:11px;color:var(--text-dim)">Disconnected</span>
+            <div class="status-dot" id="statusDot"></div>
+        </div>
+    </div>
+
+    <!-- NOT SUPPORTED (hidden by default) -->
+    <div class="not-supported" id="notSupported" style="display:none">
+        <p><strong>Web Bluetooth not supported</strong></p>
+        <p>Open this page in <strong>Chrome</strong> on Android, macOS, Windows, or ChromeOS.</p>
+        <p>iOS Safari does not support Web Bluetooth.<br>
+        For iOS, use <a href="https://apps.apple.com/app/bluefy/id1492822055">Bluefy</a> browser
+        or the <a href="https://apps.apple.com/app/nrf-connect/id1054362403">nRF Connect</a> app.</p>
+    </div>
+
+    <!-- CONNECT -->
+    <button class="connect-btn" id="connectBtn" onclick="toggleConnection()">
+        CONNECT TO DEVICE
+    </button>
+
+    <!-- COMMAND DISPLAY -->
+    <div class="command-display" id="commandDisplay">
+        <div class="command-label">Detected Command</div>
+        <div class="command-word" id="commandWord">---</div>
+        <div class="command-confidence" id="commandConfidence"></div>
+        <div class="confidence-bar">
+            <div class="confidence-fill" id="confidenceFill"></div>
+        </div>
+    </div>
+
+    <!-- SIGNAL WAVEFORMS -->
+    <div class="signal-panel">
+        <div class="signal-header">
+            <h2>Live Signal</h2>
+            <span class="signal-stats" id="signalStats">0 Hz | 0 samples</span>
+        </div>
+        <div class="channel-row">
+            <div class="channel-label">
+                <div class="ch-name ch1-color">CH1</div>
+                <div class="ch-value" id="ch1val">Mentalis</div>
+            </div>
+            <canvas class="channel-canvas" id="canvas0"></canvas>
+        </div>
+        <div class="channel-row">
+            <div class="channel-label">
+                <div class="ch-name ch2-color">CH2</div>
+                <div class="ch-value" id="ch2val">Masseter</div>
+            </div>
+            <canvas class="channel-canvas" id="canvas1"></canvas>
+        </div>
+        <div class="channel-row">
+            <div class="channel-label">
+                <div class="ch-name ch3-color">CH3</div>
+                <div class="ch-value" id="ch3val">Submental</div>
+            </div>
+            <canvas class="channel-canvas" id="canvas2"></canvas>
+        </div>
+        <div class="channel-row">
+            <div class="channel-label">
+                <div class="ch-name ch4-color">CH4</div>
+                <div class="ch-value" id="ch4val">Laryngeal</div>
+            </div>
+            <canvas class="channel-canvas" id="canvas3"></canvas>
+        </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+        <button class="ctrl-btn" id="recordBtn" onclick="toggleRecording()">
+            <span class="btn-icon" id="recordIcon">&#9679;</span>
+            <span class="btn-label" id="recordLabel">Record</span>
+        </button>
+        <button class="ctrl-btn" id="exportBtn" onclick="exportData()">
+            <span class="btn-icon">&#8681;</span>
+            <span class="btn-label">Export CSV</span>
+        </button>
+        <button class="ctrl-btn" id="freezeBtn" onclick="toggleFreeze()">
+            <span class="btn-icon">&#9208;</span>
+            <span class="btn-label">Freeze</span>
+        </button>
+        <button class="ctrl-btn" id="classifyBtn" onclick="toggleClassify()">
+            <span class="btn-icon">&#9881;</span>
+            <span class="btn-label">Classify</span>
+        </button>
+    </div>
+
+    <!-- ML MODEL -->
+    <div class="model-panel">
+        <h3>ML Model</h3>
+        <div class="model-status">
+            <span class="model-badge threshold" id="modelBadge">THRESHOLD</span>
+            <span id="modelName">RMS activity detection</span>
+        </div>
+        <div class="model-info" id="modelInfo">
+            Load a TensorFlow.js model for real classification.
+            Train with <code>emg_recorder.py</code>, export with <code>export_tfjs_model.py</code>.
+        </div>
+        <div class="model-actions">
+            <button class="model-btn primary" id="loadModelBtn" onclick="loadModelFromFolder()">
+                Load Model Folder
+            </button>
+            <button class="model-btn" onclick="loadModelFromURL()">
+                Load from URL
+            </button>
+            <button class="model-btn" id="unloadModelBtn" onclick="unloadModel()" disabled>
+                Unload
+            </button>
+        </div>
+        <input type="file" id="modelFolderInput" class="hidden-input"
+               webkitdirectory multiple onchange="handleModelFiles(event)">
+        <div class="prob-bars" id="probBars" style="display:none"></div>
+    </div>
+
+    <!-- GAIN -->
+    <div class="gain-panel">
+        <h3>ADC Gain (PGA)</h3>
+        <div class="gain-options">
+            <button class="gain-opt" onclick="setGain(0)">6.1V</button>
+            <button class="gain-opt" onclick="setGain(1)">4.1V</button>
+            <button class="gain-opt" onclick="setGain(2)">2.0V</button>
+            <button class="gain-opt active" onclick="setGain(3)">1.0V</button>
+            <button class="gain-opt" onclick="setGain(4)">0.5V</button>
+            <button class="gain-opt" onclick="setGain(5)">0.3V</button>
+        </div>
+    </div>
+
+    <!-- COMMAND HISTORY -->
+    <div class="history-panel">
+        <h3>Command History</h3>
+        <div class="history-list" id="historyList">
+            <span style="color:var(--text-dim);font-size:11px">No commands yet</span>
+        </div>
+    </div>
+
+    <!-- LOG -->
+    <div class="log-panel" id="logPanel"></div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        EMG SubVocal BCI &mdash; Web Bluetooth Receiver
+    </div>
+
+</div>
+
+<script>
+// ============================================================
+// BLE CONSTANTS (must match firmware)
+// ============================================================
+const SERVICE_UUID        = '4fafc201-1fb5-459e-8fcc-c5c9c331914b';
+const CHAR_DATA_UUID      = 'beb5483e-36e1-4688-b7f5-ea07361b26a8';
+const CHAR_CONTROL_UUID   = 'd5875403-2945-4a30-a79e-1bfe0537b29d';
+
+// ============================================================
+// STATE
+// ============================================================
+let bleDevice = null;
+let bleServer = null;
+let dataCharacteristic = null;
+let controlCharacteristic = null;
+let isConnected = false;
+let isRecording = false;
+let isFrozen = false;
+let isClassifying = false;
+
+// Signal data (ring buffers per channel)
+const DISPLAY_SAMPLES = 400;
+const NUM_CHANNELS = 4;
+const channelData = Array.from({length: NUM_CHANNELS},
+    () => new Float32Array(DISPLAY_SAMPLES));
+let writeIndex = 0;
+
+// Stats
+let sampleCount = 0;
+let lastStatsTime = performance.now();
+let currentHz = 0;
+
+// Recording buffer
+let recordedData = [];
+let recordStartTime = 0;
+
+// Classification
+const VOTE_SIZE = 7;
+let voteBuffer = [];
+let lastCommand = null;
+let commandHistory = [];
+
+// Canvas contexts
+const canvasCtxs = [];
+const CH_COLORS = ['#ff6b9d', '#00d4ff', '#00ff88', '#ffaa00'];
+const CH_NAMES = ['Mentalis', 'Masseter', 'Submental', 'Laryngeal'];
+
+// ============================================================
+// TENSORFLOW.JS MODEL STATE
+// ============================================================
+let tfjsModel = null;        // tf.LayersModel
+let modelScaler = null;      // {mean: [], scale: []}
+let modelLabels = null;       // ['silence', 'yes', 'no', ...]
+let modelConfig = null;       // feature extraction config
+let classifierMode = 'threshold';  // 'threshold' or 'tfjs'
+
+// Feature extraction window buffer (for TFJS classifier)
+const FEAT_WINDOW_SIZE = 50;  // default, overridden by model config
+const FEAT_STEP = 25;         // classify every N samples
+let featBuffer = [];          // accumulates raw samples for windowing
+let featSampleCounter = 0;
+
+// Bandpass filter state (Butterworth IIR, per channel)
+// We implement a simple biquad cascade in JS for real-time filtering
+let filterStates = null;
+
+// ============================================================
+// INITIALIZATION
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+    if (!navigator.bluetooth) {
+        document.getElementById('notSupported').style.display = 'block';
+        document.getElementById('connectBtn').style.display = 'none';
+        log('Web Bluetooth not supported in this browser', 'error');
+        return;
+    }
+
+    for (let i = 0; i < NUM_CHANNELS; i++) {
+        const canvas = document.getElementById(`canvas${i}`);
+        const ctx = canvas.getContext('2d');
+        canvasCtxs.push(ctx);
+        resizeCanvas(canvas);
+    }
+
+    window.addEventListener('resize', () => {
+        for (let i = 0; i < NUM_CHANNELS; i++) {
+            resizeCanvas(document.getElementById(`canvas${i}`));
+        }
+    });
+
+    requestAnimationFrame(renderLoop);
+
+    // Check if TensorFlow.js loaded
+    if (typeof tf !== 'undefined') {
+        log(`TensorFlow.js ${tf.version.tfjs} loaded`, 'success');
+    } else {
+        log('TensorFlow.js not loaded — ML classification unavailable', 'error');
+    }
+
+    log('Ready. Tap CONNECT to pair with ESP32.', 'success');
+});
+
+function resizeCanvas(canvas) {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const w = rect.width - 80;
+    const h = rect.height;
+    canvas.width = w * window.devicePixelRatio;
+    canvas.height = h * window.devicePixelRatio;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+}
+
+// ============================================================
+// BLE CONNECTION
+// ============================================================
+async function toggleConnection() {
+    if (isConnected) disconnect();
+    else await connect();
+}
+
+async function connect() {
+    try {
+        setStatus('connecting');
+        log('Scanning for EMG-SubVocal device...');
+
+        bleDevice = await navigator.bluetooth.requestDevice({
+            filters: [{ name: 'EMG-SubVocal' }],
+            optionalServices: [SERVICE_UUID]
+        });
+
+        bleDevice.addEventListener('gattserverdisconnected', onDisconnected);
+
+        log('Connecting to GATT server...');
+        bleServer = await bleDevice.gatt.connect();
+
+        log('Getting EMG service...');
+        const service = await bleServer.getPrimaryService(SERVICE_UUID);
+
+        log('Subscribing to data stream...');
+        dataCharacteristic = await service.getCharacteristic(CHAR_DATA_UUID);
+        await dataCharacteristic.startNotifications();
+        dataCharacteristic.addEventListener(
+            'characteristicvaluechanged', onDataReceived);
+
+        try {
+            controlCharacteristic = await service.getCharacteristic(
+                CHAR_CONTROL_UUID);
+            log('Control channel ready', 'success');
+        } catch (e) {
+            log('Control channel not available (read-only mode)');
+            controlCharacteristic = null;
+        }
+
+        isConnected = true;
+        setStatus('connected');
+        log('Connected to EMG-SubVocal', 'success');
+
+        const btn = document.getElementById('connectBtn');
+        btn.textContent = 'DISCONNECT';
+        btn.classList.add('connected');
+
+        sampleCount = 0;
+        lastStatsTime = performance.now();
+
+    } catch (error) {
+        setStatus('disconnected');
+        if (error.name === 'NotFoundError') {
+            log('No device selected', 'error');
+        } else {
+            log(`Connection failed: ${error.message}`, 'error');
+        }
+    }
+}
+
+function disconnect() {
+    if (bleDevice && bleDevice.gatt.connected) {
+        bleDevice.gatt.disconnect();
+    }
+    onDisconnected();
+}
+
+function onDisconnected() {
+    isConnected = false;
+    dataCharacteristic = null;
+    controlCharacteristic = null;
+    setStatus('disconnected');
+
+    const btn = document.getElementById('connectBtn');
+    btn.textContent = 'CONNECT TO DEVICE';
+    btn.classList.remove('connected');
+
+    log('Disconnected');
+}
+
+function setStatus(state) {
+    const dot = document.getElementById('statusDot');
+    const text = document.getElementById('statusText');
+    dot.className = 'status-dot ' + state;
+    text.textContent = state.charAt(0).toUpperCase() + state.slice(1);
+}
+
+// ============================================================
+// DATA RECEPTION
+// ============================================================
+function onDataReceived(event) {
+    const data = event.target.value;
+
+    if (data.byteLength === 12) {
+        const timestamp = data.getUint32(0, true);
+        const samples = [
+            data.getInt16(4, true),
+            data.getInt16(6, true),
+            data.getInt16(8, true),
+            data.getInt16(10, true)
+        ];
+        processSample(timestamp, samples);
+    } else if (data.byteLength > 0) {
+        const decoder = new TextDecoder();
+        const text = decoder.decode(data).trim();
+        if (text && !text.startsWith('#')) {
+            const parts = text.split(',').map(Number);
+            if (parts.length >= 5 && !isNaN(parts[0])) {
+                processSample(parts[0], parts.slice(1, 5));
+            }
+        }
+    }
+}
+
+function processSample(timestamp, samples) {
+    for (let ch = 0; ch < NUM_CHANNELS; ch++) {
+        channelData[ch][writeIndex] = samples[ch];
+    }
+    writeIndex = (writeIndex + 1) % DISPLAY_SAMPLES;
+
+    sampleCount++;
+
+    const now = performance.now();
+    if (now - lastStatsTime >= 1000) {
+        currentHz = Math.round(sampleCount / ((now - lastStatsTime) / 1000));
+        document.getElementById('signalStats').textContent =
+            `${currentHz} Hz | ${sampleCount} samples`;
+        sampleCount = 0;
+        lastStatsTime = now;
+    }
+
+    for (let ch = 0; ch < NUM_CHANNELS; ch++) {
+        const el = document.getElementById(`ch${ch + 1}val`);
+        el.textContent = `${samples[ch]}`;
+    }
+
+    if (isRecording) {
+        recordedData.push({ t: timestamp, ch: [...samples] });
+    }
+
+    if (isClassifying) {
+        if (classifierMode === 'tfjs' && tfjsModel) {
+            classifySampleTFJS(samples);
+        } else {
+            classifySampleThreshold(samples);
+        }
+    }
+}
+
+// ============================================================
+// SIGNAL RENDERING
+// ============================================================
+function renderLoop() {
+    if (!isFrozen) {
+        for (let ch = 0; ch < NUM_CHANNELS; ch++) {
+            drawChannel(ch);
+        }
+    }
+    requestAnimationFrame(renderLoop);
+}
+
+function drawChannel(ch) {
+    const ctx = canvasCtxs[ch];
+    if (!ctx) return;
+
+    const canvas = ctx.canvas;
+    const w = canvas.width;
+    const h = canvas.height;
+    const dpr = window.devicePixelRatio;
+
+    ctx.fillStyle = '#0a0a1a';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.strokeStyle = 'rgba(42, 42, 74, 0.5)';
+    ctx.lineWidth = dpr;
+    ctx.beginPath();
+    ctx.moveTo(0, h / 2);
+    ctx.lineTo(w, h / 2);
+    ctx.stroke();
+
+    const data = channelData[ch];
+    if (!data) return;
+
+    let min = Infinity, max = -Infinity;
+    for (let i = 0; i < DISPLAY_SAMPLES; i++) {
+        const v = data[i];
+        if (v < min) min = v;
+        if (v > max) max = v;
+    }
+
+    const range = Math.max(max - min, 100);
+    const mid = (max + min) / 2;
+    const scaledMin = mid - range * 0.6;
+    const scaledMax = mid + range * 0.6;
+
+    ctx.strokeStyle = CH_COLORS[ch];
+    ctx.lineWidth = 1.5 * dpr;
+    ctx.beginPath();
+
+    for (let i = 0; i < DISPLAY_SAMPLES; i++) {
+        const idx = (writeIndex + i) % DISPLAY_SAMPLES;
+        const v = data[idx];
+        const x = (i / DISPLAY_SAMPLES) * w;
+        const y = h - ((v - scaledMin) / (scaledMax - scaledMin)) * h;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    const lastIdx = (writeIndex - 1 + DISPLAY_SAMPLES) % DISPLAY_SAMPLES;
+    const lastV = data[lastIdx];
+    const lastY = h - ((lastV - scaledMin) / (scaledMax - scaledMin)) * h;
+    ctx.fillStyle = CH_COLORS[ch];
+    ctx.beginPath();
+    ctx.arc(w - 2 * dpr, lastY, 3 * dpr, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+// ============================================================
+// CLASSIFICATION — THRESHOLD MODE (fallback)
+// ============================================================
+const RMS_WINDOW = 20;
+let rmsBuffer = Array.from({length: NUM_CHANNELS}, () => []);
+
+function classifySampleThreshold(samples) {
+    for (let ch = 0; ch < NUM_CHANNELS; ch++) {
+        rmsBuffer[ch].push(samples[ch]);
+        if (rmsBuffer[ch].length > RMS_WINDOW) rmsBuffer[ch].shift();
+    }
+
+    if (rmsBuffer[0].length < RMS_WINDOW) return;
+
+    const rms = rmsBuffer.map(buf => {
+        const mean = buf.reduce((a, b) => a + b, 0) / buf.length;
+        const variance = buf.reduce((a, b) => a + (b - mean) ** 2, 0)
+                         / buf.length;
+        return Math.sqrt(variance);
+    });
+
+    const threshold = 200;
+    const totalRMS = rms.reduce((a, b) => a + b, 0);
+    const isActive = totalRMS > threshold;
+
+    let command = 'silence';
+    if (isActive) {
+        const maxCh = rms.indexOf(Math.max(...rms));
+        const chCommands = ['yes', 'no', 'go', 'stop'];
+        command = chCommands[maxCh];
+    }
+
+    voteBuffer.push(command);
+    if (voteBuffer.length > VOTE_SIZE) voteBuffer.shift();
+
+    if (voteBuffer.length >= VOTE_SIZE) {
+        const counts = {};
+        voteBuffer.forEach(v => counts[v] = (counts[v] || 0) + 1);
+        let best = 'silence', bestCount = 0;
+        for (const [cmd, count] of Object.entries(counts)) {
+            if (count > bestCount) { best = cmd; bestCount = count; }
+        }
+        updateCommandDisplay(best, bestCount / VOTE_SIZE, null);
+    }
+}
+
+// ============================================================
+// CLASSIFICATION — TENSORFLOW.JS MODE
+// ============================================================
+
+// --- In-browser feature extraction (mirrors Python pipeline) ---
+
+function extractFeaturesJS(window1D) {
+    // Matches extract_features() in emg_recorder.py
+    const N = window1D.length;
+    if (N === 0) return [0, 0, 0, 0, 0, 0, 0, 0];
+
+    // MAV
+    let absSum = 0;
+    for (let i = 0; i < N; i++) absSum += Math.abs(window1D[i]);
+    const mav = absSum / N;
+
+    // RMS
+    let sqSum = 0;
+    for (let i = 0; i < N; i++) sqSum += window1D[i] * window1D[i];
+    const rms = Math.sqrt(sqSum / N);
+
+    // Waveform Length
+    let wl = 0;
+    for (let i = 1; i < N; i++) wl += Math.abs(window1D[i] - window1D[i - 1]);
+
+    // Variance
+    let mean = 0;
+    for (let i = 0; i < N; i++) mean += window1D[i];
+    mean /= N;
+    let varSum = 0;
+    for (let i = 0; i < N; i++) varSum += (window1D[i] - mean) ** 2;
+    const variance = varSum / N;
+
+    // IEMG
+    const iemg = absSum;
+
+    // Zero Crossings
+    const thresh = 0.01 * rms;
+    let zc = 0;
+    for (let i = 1; i < N; i++) {
+        const a = window1D[i - 1], b = window1D[i];
+        if ((a > 0 && b < 0) || (a < 0 && b > 0)) {
+            if (Math.abs(b - a) >= thresh) zc++;
+        }
+    }
+
+    // Slope Sign Changes
+    let ssc = 0;
+    for (let i = 1; i < N - 1; i++) {
+        const d1 = window1D[i] - window1D[i - 1];
+        const d2 = window1D[i] - window1D[i + 1];
+        if (d1 * d2 > 0) ssc++;
+    }
+
+    // Average Amplitude Change
+    const aac = wl / (N - 1);
+
+    return [mav, rms, wl, variance, iemg, zc, ssc, aac];
+}
+
+function extractWindowFeaturesJS(windowMultichannel) {
+    // windowMultichannel: array of arrays [[ch1...], [ch2...], [ch3...], [ch4...]]
+    const features = [];
+    for (let ch = 0; ch < NUM_CHANNELS; ch++) {
+        features.push(...extractFeaturesJS(windowMultichannel[ch]));
+    }
+    return features;  // length = NUM_CHANNELS * 8 = 32
+}
+
+function scaleFeatures(features) {
+    // StandardScaler: (x - mean) / scale
+    if (!modelScaler) return features;
+    const scaled = new Array(features.length);
+    for (let i = 0; i < features.length; i++) {
+        scaled[i] = (features[i] - modelScaler.mean[i]) / modelScaler.scale[i];
+    }
+    return scaled;
+}
+
+// --- Simple IIR biquad bandpass for real-time filtering ---
+
+function designBiquadBandpass(fs, fLow, fHigh) {
+    // Simple 2nd-order bandpass biquad coefficients
+    // Using BLT (bilinear transform) of analog bandpass
+    const w0Low = 2 * Math.PI * fLow / fs;
+    const w0High = 2 * Math.PI * fHigh / fs;
+    const w0 = Math.sqrt(w0Low * w0High);  // center frequency
+    const bw = w0High - w0Low;  // bandwidth
+    const Q = w0 / bw;
+
+    const alpha = Math.sin(w0) / (2 * Q);
+    const cosW0 = Math.cos(w0);
+
+    const b0 = alpha;
+    const b1 = 0;
+    const b2 = -alpha;
+    const a0 = 1 + alpha;
+    const a1 = -2 * cosW0;
+    const a2 = 1 - alpha;
+
+    return {
+        b: [b0 / a0, b1 / a0, b2 / a0],
+        a: [1, a1 / a0, a2 / a0]
+    };
+}
+
+function initFilterStates() {
+    const fs = modelConfig ? modelConfig.sample_rate : 200;
+    const fLow = modelConfig ? modelConfig.highpass_freq : 20;
+    const fHigh = modelConfig ? modelConfig.lowpass_freq : 100;
+    const coeff = designBiquadBandpass(fs, fLow, fHigh);
+
+    filterStates = [];
+    for (let ch = 0; ch < NUM_CHANNELS; ch++) {
+        filterStates.push({
+            coeff: coeff,
+            z1: 0, z2: 0  // state variables
+        });
+    }
+}
+
+function applyBiquad(sample, state) {
+    const {b, a} = state.coeff;
+    const out = b[0] * sample + state.z1;
+    state.z1 = b[1] * sample - a[1] * out + state.z2;
+    state.z2 = b[2] * sample - a[2] * out;
+    return out;
+}
+
+// --- Main TFJS classification pipeline ---
+
+function classifySampleTFJS(samples) {
+    // Apply real-time filter per channel
+    if (!filterStates) initFilterStates();
+
+    const filtered = samples.map((s, ch) => applyBiquad(s, filterStates[ch]));
+
+    // Accumulate into feature window buffer
+    featBuffer.push(filtered);
+    featSampleCounter++;
+
+    const winSize = modelConfig ? modelConfig.window_size : FEAT_WINDOW_SIZE;
+    const stepSize = Math.floor(winSize * (modelConfig ? (1 - modelConfig.window_overlap) : 0.5));
+
+    // Keep buffer from growing unbounded
+    if (featBuffer.length > winSize * 2) {
+        featBuffer = featBuffer.slice(-winSize);
+    }
+
+    // Only classify every stepSize samples
+    if (featSampleCounter % stepSize !== 0) return;
+    if (featBuffer.length < winSize) return;
+
+    // Get the latest window
+    const windowData = featBuffer.slice(-winSize);
+
+    // Transpose to per-channel arrays
+    const perChannel = [];
+    for (let ch = 0; ch < NUM_CHANNELS; ch++) {
+        perChannel.push(windowData.map(s => s[ch]));
+    }
+
+    // Extract features
+    const features = extractWindowFeaturesJS(perChannel);
+
+    // Scale
+    const scaled = scaleFeatures(features);
+
+    // Run inference
+    runTFJSInference(scaled);
+}
+
+async function runTFJSInference(scaledFeatures) {
+    if (!tfjsModel) return;
+
+    // Create input tensor
+    const inputTensor = tf.tensor2d([scaledFeatures]);
+
+    // Predict
+    const output = tfjsModel.predict(inputTensor);
+    const probabilities = await output.data();
+
+    // Clean up tensors
+    inputTensor.dispose();
+    output.dispose();
+
+    // Find best class
+    let bestIdx = 0, bestProb = 0;
+    for (let i = 0; i < probabilities.length; i++) {
+        if (probabilities[i] > bestProb) {
+            bestProb = probabilities[i];
+            bestIdx = i;
+        }
+    }
+
+    const command = modelLabels[bestIdx];
+
+    // Majority vote
+    voteBuffer.push(command);
+    if (voteBuffer.length > VOTE_SIZE) voteBuffer.shift();
+
+    if (voteBuffer.length >= VOTE_SIZE) {
+        const counts = {};
+        voteBuffer.forEach(v => counts[v] = (counts[v] || 0) + 1);
+        let best = 'silence', bestCount = 0;
+        for (const [cmd, count] of Object.entries(counts)) {
+            if (count > bestCount) { best = cmd; bestCount = count; }
+        }
+
+        const confidence = bestCount / VOTE_SIZE;
+        updateCommandDisplay(best, confidence, probabilities);
+    }
+}
+
+// ============================================================
+// MODEL LOADING
+// ============================================================
+
+function loadModelFromFolder() {
+    document.getElementById('modelFolderInput').click();
+}
+
+async function handleModelFiles(event) {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    log('Loading model files...');
+
+    // Build a map of filename -> File
+    const fileMap = {};
+    for (const file of files) {
+        // Remove directory prefix to get just the filename
+        const name = file.name;
+        fileMap[name] = file;
+    }
+
+    // Check required files
+    if (!fileMap['model.json']) {
+        log('model.json not found in selected folder', 'error');
+        return;
+    }
+
+    try {
+        // Load scaler
+        if (fileMap['scaler.json']) {
+            const scalerText = await fileMap['scaler.json'].text();
+            modelScaler = JSON.parse(scalerText);
+            log(`Scaler loaded: ${modelScaler.n_features} features`);
+        } else {
+            log('scaler.json not found — features will not be normalized', 'error');
+        }
+
+        // Load labels
+        if (fileMap['labels.json']) {
+            const labelsText = await fileMap['labels.json'].text();
+            modelLabels = JSON.parse(labelsText);
+            log(`Labels loaded: ${modelLabels.join(', ')}`);
+        } else {
+            log('labels.json not found — using numeric indices', 'error');
+            modelLabels = null;
+        }
+
+        // Load config
+        if (fileMap['config.json']) {
+            const configText = await fileMap['config.json'].text();
+            modelConfig = JSON.parse(configText);
+            log(`Config loaded: ${modelConfig.window_ms}ms window, ${modelConfig.sample_rate}Hz`);
+
+            // Use labels from config if labels.json wasn't found
+            if (!modelLabels && modelConfig.class_labels) {
+                modelLabels = modelConfig.class_labels;
+            }
+        }
+
+        // Load TensorFlow.js model
+        // We need to create a virtual file system for tf.loadLayersModel
+        // using IOHandler that reads from the File objects
+
+        const modelJSON = await fileMap['model.json'].text();
+        const modelTopology = JSON.parse(modelJSON);
+
+        // Find weight files (group1-shard1of1.bin, etc.)
+        const weightFiles = {};
+        for (const [name, file] of Object.entries(fileMap)) {
+            if (name.endsWith('.bin')) {
+                weightFiles[name] = file;
+            }
+        }
+
+        // Create custom IOHandler
+        const ioHandler = {
+            load: async function() {
+                // Load weight data
+                const weightSpecs = modelTopology.weightsManifest
+                    ? modelTopology.weightsManifest[0].weights
+                    : [];
+                const weightPaths = modelTopology.weightsManifest
+                    ? modelTopology.weightsManifest[0].paths
+                    : [];
+
+                const weightDataArrays = [];
+                for (const path of weightPaths) {
+                    const wFile = weightFiles[path];
+                    if (!wFile) {
+                        throw new Error(`Weight file ${path} not found`);
+                    }
+                    const arrayBuffer = await wFile.arrayBuffer();
+                    weightDataArrays.push(arrayBuffer);
+                }
+
+                // Concatenate all weight buffers
+                const totalBytes = weightDataArrays.reduce(
+                    (sum, buf) => sum + buf.byteLength, 0);
+                const combined = new ArrayBuffer(totalBytes);
+                const view = new Uint8Array(combined);
+                let offset = 0;
+                for (const buf of weightDataArrays) {
+                    view.set(new Uint8Array(buf), offset);
+                    offset += buf.byteLength;
+                }
+
+                return {
+                    modelTopology: modelTopology.modelTopology,
+                    weightSpecs: weightSpecs,
+                    weightData: combined,
+                };
+            }
+        };
+
+        log('Loading TensorFlow.js model...');
+        tfjsModel = await tf.loadLayersModel(ioHandler);
+
+        // Get model info
+        const inputShape = tfjsModel.inputs[0].shape;
+        const outputShape = tfjsModel.outputs[0].shape;
+        const paramCount = tfjsModel.countParams();
+
+        log(`Model loaded: input=${JSON.stringify(inputShape)}, ` +
+            `output=${JSON.stringify(outputShape)}, ` +
+            `params=${paramCount.toLocaleString()}`, 'success');
+
+        // Default labels if none loaded
+        if (!modelLabels) {
+            modelLabels = Array.from({length: outputShape[1]},
+                (_, i) => `class_${i}`);
+        }
+
+        // Update UI
+        classifierMode = 'tfjs';
+        updateModelUI();
+
+        // Build probability bars
+        buildProbBars();
+
+        // Reset filter states for new config
+        filterStates = null;
+        featBuffer = [];
+        featSampleCounter = 0;
+
+    } catch (error) {
+        log(`Model load failed: ${error.message}`, 'error');
+        console.error(error);
+    }
+
+    // Reset input so same folder can be re-selected
+    event.target.value = '';
+}
+
+async function loadModelFromURL() {
+    const url = prompt(
+        'Enter URL to model.json:\n\n' +
+        'Example: http://localhost:8080/tfjs_model/model.json\n\n' +
+        'The scaler.json, labels.json, config.json, and .bin files ' +
+        'must be in the same directory.',
+        'http://localhost:8080/tfjs_model/model.json'
+    );
+
+    if (!url) return;
+
+    try {
+        const baseURL = url.replace(/model\.json$/, '');
+
+        log(`Loading model from ${baseURL}...`);
+
+        // Load metadata files
+        try {
+            const scalerResp = await fetch(baseURL + 'scaler.json');
+            if (scalerResp.ok) modelScaler = await scalerResp.json();
+        } catch (e) { log('scaler.json not found at URL'); }
+
+        try {
+            const labelsResp = await fetch(baseURL + 'labels.json');
+            if (labelsResp.ok) modelLabels = await labelsResp.json();
+        } catch (e) { log('labels.json not found at URL'); }
+
+        try {
+            const configResp = await fetch(baseURL + 'config.json');
+            if (configResp.ok) {
+                modelConfig = await configResp.json();
+                if (!modelLabels && modelConfig.class_labels) {
+                    modelLabels = modelConfig.class_labels;
+                }
+            }
+        } catch (e) { log('config.json not found at URL'); }
+
+        // Load TFJS model
+        tfjsModel = await tf.loadLayersModel(url);
+
+        const outputShape = tfjsModel.outputs[0].shape;
+        const paramCount = tfjsModel.countParams();
+
+        if (!modelLabels) {
+            modelLabels = Array.from({length: outputShape[1]},
+                (_, i) => `class_${i}`);
+        }
+
+        log(`Model loaded: ${paramCount.toLocaleString()} params, ` +
+            `${modelLabels.length} classes`, 'success');
+
+        classifierMode = 'tfjs';
+        updateModelUI();
+        buildProbBars();
+        filterStates = null;
+        featBuffer = [];
+        featSampleCounter = 0;
+
+    } catch (error) {
+        log(`Model load failed: ${error.message}`, 'error');
+    }
+}
+
+function unloadModel() {
+    if (tfjsModel) {
+        tfjsModel.dispose();
+        tfjsModel = null;
+    }
+    modelScaler = null;
+    modelLabels = null;
+    modelConfig = null;
+    classifierMode = 'threshold';
+    filterStates = null;
+    featBuffer = [];
+    featSampleCounter = 0;
+
+    updateModelUI();
+    document.getElementById('probBars').style.display = 'none';
+    document.getElementById('probBars').innerHTML = '';
+
+    log('Model unloaded, reverted to threshold mode');
+}
+
+function updateModelUI() {
+    const badge = document.getElementById('modelBadge');
+    const name = document.getElementById('modelName');
+    const info = document.getElementById('modelInfo');
+    const unloadBtn = document.getElementById('unloadModelBtn');
+
+    if (classifierMode === 'tfjs' && tfjsModel) {
+        badge.className = 'model-badge tfjs';
+        badge.textContent = 'TFJS';
+        name.textContent = `${modelLabels.length} classes`;
+        info.textContent = `Classes: ${modelLabels.join(', ')} | ` +
+            `${tfjsModel.countParams().toLocaleString()} parameters`;
+        unloadBtn.disabled = false;
+    } else {
+        badge.className = 'model-badge threshold';
+        badge.textContent = 'THRESHOLD';
+        name.textContent = 'RMS activity detection';
+        info.innerHTML = 'Load a TensorFlow.js model for real classification. ' +
+            'Train with <code>emg_recorder.py</code>, export with ' +
+            '<code>export_tfjs_model.py</code>.';
+        unloadBtn.disabled = true;
+    }
+}
+
+function buildProbBars() {
+    if (!modelLabels) return;
+
+    const container = document.getElementById('probBars');
+    container.style.display = 'block';
+    container.innerHTML = '';
+
+    for (const label of modelLabels) {
+        const row = document.createElement('div');
+        row.className = 'prob-row';
+        row.innerHTML = `
+            <span class="prob-label">${label}</span>
+            <div class="prob-bar-bg">
+                <div class="prob-bar-fill" id="prob-${label}" style="width:0%"></div>
+            </div>
+            <span class="prob-value" id="probval-${label}">0%</span>
+        `;
+        container.appendChild(row);
+    }
+}
+
+function updateProbBars(probabilities) {
+    if (!modelLabels || !probabilities) return;
+
+    for (let i = 0; i < modelLabels.length; i++) {
+        const label = modelLabels[i];
+        const pct = (probabilities[i] * 100);
+        const bar = document.getElementById(`prob-${label}`);
+        const val = document.getElementById(`probval-${label}`);
+        if (bar) {
+            bar.style.width = `${pct}%`;
+            bar.style.background = pct > 50 ? 'var(--green)' :
+                                   pct > 25 ? 'var(--accent)' : 'var(--text-dim)';
+        }
+        if (val) val.textContent = `${pct.toFixed(0)}%`;
+    }
+}
+
+// ============================================================
+// COMMAND DISPLAY (shared by both classifiers)
+// ============================================================
+function updateCommandDisplay(command, confidence, probabilities) {
+    const wordEl = document.getElementById('commandWord');
+    const confEl = document.getElementById('commandConfidence');
+    const fillEl = document.getElementById('confidenceFill');
+    const display = document.getElementById('commandDisplay');
+
+    wordEl.textContent = command;
+    confEl.textContent = `${Math.round(confidence * 100)}% confidence`;
+    fillEl.style.width = `${confidence * 100}%`;
+
+    if (probabilities) updateProbBars(probabilities);
+
+    if (command !== 'silence' && confidence >= 0.6) {
+        wordEl.classList.add('detected');
+        display.classList.add('active');
+
+        if (command !== lastCommand) {
+            lastCommand = command;
+            addToHistory(command);
+            triggerHaptic();
+            log(`Command: ${command.toUpperCase()} (${Math.round(confidence * 100)}%)`, 'command');
+        }
+    } else {
+        wordEl.classList.remove('detected');
+        display.classList.remove('active');
+        if (command === 'silence') lastCommand = null;
+    }
+}
+
+function addToHistory(command) {
+    const time = new Date().toLocaleTimeString([], {
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    commandHistory.unshift({ command, time });
+    if (commandHistory.length > 20) commandHistory.pop();
+
+    const list = document.getElementById('historyList');
+    list.innerHTML = commandHistory.map(item =>
+        `<div class="history-item">${item.command}<span class="history-time">${item.time}</span></div>`
+    ).join('');
+}
+
+function triggerHaptic() {
+    if (navigator.vibrate) navigator.vibrate(50);
+}
+
+// ============================================================
+// CONTROLS
+// ============================================================
+function toggleRecording() {
+    isRecording = !isRecording;
+    const btn = document.getElementById('recordBtn');
+    const icon = document.getElementById('recordIcon');
+    const label = document.getElementById('recordLabel');
+
+    if (isRecording) {
+        recordedData = [];
+        recordStartTime = performance.now();
+        btn.classList.add('active');
+        icon.style.color = 'var(--red)';
+        label.textContent = 'Stop';
+        log('Recording started');
+    } else {
+        btn.classList.remove('active');
+        icon.style.color = '';
+        label.textContent = 'Record';
+        const duration = ((performance.now() - recordStartTime) / 1000).toFixed(1);
+        log(`Recording stopped: ${recordedData.length} samples, ${duration}s`, 'success');
+    }
+}
+
+function toggleFreeze() {
+    isFrozen = !isFrozen;
+    const btn = document.getElementById('freezeBtn');
+    btn.classList.toggle('active', isFrozen);
+    btn.querySelector('.btn-label').textContent = isFrozen ? 'Unfreeze' : 'Freeze';
+}
+
+function toggleClassify() {
+    isClassifying = !isClassifying;
+    const btn = document.getElementById('classifyBtn');
+    btn.classList.toggle('active', isClassifying);
+    btn.querySelector('.btn-label').textContent = isClassifying ? 'Stop' : 'Classify';
+
+    if (isClassifying) {
+        voteBuffer = [];
+        lastCommand = null;
+        rmsBuffer = Array.from({length: NUM_CHANNELS}, () => []);
+        featBuffer = [];
+        featSampleCounter = 0;
+        filterStates = null;
+
+        const mode = classifierMode === 'tfjs' && tfjsModel ? 'TFJS ML' : 'threshold';
+        log(`Classification started (${mode} mode)`);
+    } else {
+        const wordEl = document.getElementById('commandWord');
+        wordEl.textContent = '---';
+        wordEl.classList.remove('detected');
+        document.getElementById('commandDisplay').classList.remove('active');
+        document.getElementById('confidenceFill').style.width = '0%';
+        log('Classification stopped');
+    }
+}
+
+function exportData() {
+    if (recordedData.length === 0) {
+        log('No recorded data to export', 'error');
+        return;
+    }
+
+    let csv = 'timestamp_ms,ch1_mentalis,ch2_masseter,ch3_submental,ch4_laryngeal\n';
+    recordedData.forEach(row => {
+        csv += `${row.t},${row.ch.join(',')}\n`;
+    });
+
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    a.href = url;
+    a.download = `emg_recording_${timestamp}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    log(`Exported ${recordedData.length} samples as CSV`, 'success');
+}
+
+// ============================================================
+// GAIN CONTROL
+// ============================================================
+async function setGain(level) {
+    document.querySelectorAll('.gain-opt').forEach((btn, i) => {
+        btn.classList.toggle('active', i === level);
+    });
+
+    if (controlCharacteristic) {
+        try {
+            const encoder = new TextEncoder();
+            await controlCharacteristic.writeValue(
+                encoder.encode(`G${level}\n`));
+            const labels = ['6.144V', '4.096V', '2.048V',
+                            '1.024V', '0.512V', '0.256V'];
+            log(`PGA gain set: +/-${labels[level]}`);
+        } catch (e) {
+            log(`Failed to set gain: ${e.message}`, 'error');
+        }
+    } else {
+        log('Control channel not connected — set gain via serial', 'error');
+    }
+}
+
+async function sendCommand(cmd) {
+    if (!controlCharacteristic) { log('Not connected', 'error'); return; }
+    try {
+        const encoder = new TextEncoder();
+        await controlCharacteristic.writeValue(encoder.encode(cmd + '\n'));
+    } catch (e) {
+        log(`Send failed: ${e.message}`, 'error');
+    }
+}
+
+// ============================================================
+// LOGGING
+// ============================================================
+function log(message, type = '') {
+    const panel = document.getElementById('logPanel');
+    const p = document.createElement('p');
+    p.className = type;
+    const time = new Date().toLocaleTimeString([], {
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    p.textContent = `[${time}] ${message}`;
+    panel.appendChild(p);
+    panel.scrollTop = panel.scrollHeight;
+    while (panel.children.length > 50) {
+        panel.removeChild(panel.firstChild);
+    }
+}
+
+// ============================================================
+// KEYBOARD SHORTCUTS
+// ============================================================
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT') return;
+    switch (e.key) {
+        case ' ': e.preventDefault(); toggleConnection(); break;
+        case 'r': toggleRecording(); break;
+        case 'f': toggleFreeze(); break;
+        case 'c': toggleClassify(); break;
+        case 'e': exportData(); break;
+        case 'm': loadModelFromFolder(); break;
+    }
+});
+</script>
+</body>
+</html>
