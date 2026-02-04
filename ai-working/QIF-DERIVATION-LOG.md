@@ -1418,8 +1418,99 @@ Rationale:
 
 ---
 
-*Document version: 1.7*
+## Entry 23: Classical-Quantum Bridge — Shared Threat Matrix
+
+**Date:** 2026-02-03
+**Context:** Formalizing the relationship between Classical (ONI 14-Layer) and Quantum (QIF 7-Band Hourglass) threat models through a shared data structure.
+**AI Systems:** Claude (Opus 4.5) — implementation. Kevin — architecture decision.
+
+### The Problem
+
+Threat data existed in 4 separate locations with no cross-referencing:
+
+1. `ONI_THREAT_MATRIX.md` — 10 tactics, 21 core + 3 proposed techniques (Classical layers only)
+2. `threats.py` — 7 predefined threat signatures with Kohno taxonomy (single layer targets)
+3. `config.py THREAT_MODEL` — 12 attack types with quantum detection capability (bands only)
+4. `QIF-WHITEPAPER.md §11` — defense matrix with QI equation terms (prose)
+
+Each source had partial information. No single source mapped a threat to BOTH models. This meant that adding a new threat required updating 4 files manually, with no validation that the mappings were consistent.
+
+### The Insight
+
+The `V2_TO_V3_MIGRATION` map in `config.py` already proves these models are structurally equivalent — every Classical layer has a Quantum band counterpart. If the layer architecture is bridgeable, the threat data should be too.
+
+The key design decision: a **single JSON file** (`MAIN/shared/threat-matrix.json`) where every threat entry MUST have both `classical` and `quantum` mappings. This makes the bridge explicit and machine-validatable. It also makes the as-code principle concrete — `config.py` now loads its `THREAT_MODEL` from this JSON rather than hardcoding it.
+
+### What Was Built
+
+1. **`MAIN/shared/threat-matrix.json`** — Single source of truth containing:
+   - 9 tactics (7 from ONI + 2 new: Quantum-Specific Threats, Infrastructure Attacks)
+   - 34 techniques (21 from ONI + 3 proposed + 6 quantum-specific + 4 infrastructure)
+   - 6 defense mappings (coherence metric, BCI anonymizer, QKD, emergency shutoff, quantum biometric, tunneling profile)
+   - 4 neurorights (mental privacy, mental integrity, cognitive liberty, psychological continuity)
+   - Full `_meta` section with migration map mirroring `V2_TO_V3_MIGRATION`
+
+2. **`MAIN/shared/bridge.py`** — Validation script that:
+   - Validates every technique has both `classical` and `quantum` mappings
+   - Checks layer→band translations match `V2_TO_V3_MIGRATION`
+   - Validates all CIA impacts, Kohno types, layer/band identifiers
+   - Generates filtered views (`--model classical`, `--model quantum`)
+   - Shows detection capability diff (`--diff`)
+   - Reports statistics (`--stats`)
+
+3. **`config.py` updated** — `THREAT_MODEL` is now computed from `threat-matrix.json` at import time, maintaining backward compatibility while eliminating duplication.
+
+4. **`content-manifest.json` updated** — New "bridge" category with threat-matrix and validator entries.
+
+5. **Venn center link updated** — Now points to `documentation/#bridge` instead of `quantum/#scene-governance`.
+
+### Architecture Decision: Why JSON, Not Python
+
+JSON was chosen over Python dataclasses (like `threats.py`) because:
+- JSON is language-agnostic — the web frontend can read it directly
+- JSON is human-editable without Python knowledge
+- JSON validates structurally (schema validation is straightforward)
+- The bridge validator (`bridge.py`) provides the programmatic layer
+
+### Verification
+
+```bash
+$ python bridge.py --validate
+# 0 errors, 1 warning (INF-T001 intentional: BLE targets S1/S2 directly, not via L→S3 migration)
+
+$ python bridge.py --stats
+# 9 tactics, 34 techniques, 6 defenses, 4 neurorights
+# 4 quantum-only detections, 3 proposed techniques
+```
+
+### Files Changed
+
+| File | Action |
+|------|--------|
+| `MAIN/shared/threat-matrix.json` | **Created** — single source of truth |
+| `MAIN/shared/bridge.py` | **Created** — validation + views |
+| `MAIN/shared/README.md` | **Created** — documentation |
+| `MAIN/qif/qif-lab/src/config.py` | **Modified** — loads THREAT_MODEL from JSON |
+| `docs/content-manifest.json` | **Modified** — added bridge category |
+| `docs/index.html` | **Modified** — Venn center → documentation/#bridge |
+| `README.md` | **Modified** — repo structure tree + Future Work updated |
+
+### AI Involvement
+
+- **Claude (Opus 4.5):** Implemented the full bridge architecture — merged data from all 4 sources, wrote the JSON schema, built the validation script, updated config.py loader, updated manifest and index.html.
+- **Kevin:** Designed the bridge concept in the plan. Made the architectural decision that the shared JSON should be the single source of truth (not Python, not markdown). Decided on the Venn center link target change.
+
+### Status
+
+- **Classification:** Architectural — affects cross-model data flow, threat documentation, as-code principle
+- **Impact:** Threat data is now unified. Adding a new threat requires updating ONE file. Validation catches inconsistencies.
+- **Action items:** Future — add STRIDE categories to shared matrix, integrate bridge.py into CI/CD pipeline
+- **Dependencies:** Entry 16 (v3.1 Hourglass), Entry 22 (Classical 14-layer validation)
+
+---
+
+*Document version: 1.8*
 *Created: 2026-02-02*
-*Last entry: #22 (2026-02-03)*
+*Last entry: #23 (2026-02-03)*
 *Maintainer: Quantum Intelligence (Kevin Qi + Claude, Opus 4.5)*
 *Location: qinnovates/mindloft/drafts/ai-working/QIF-DERIVATION-LOG.md*
