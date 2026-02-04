@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "version": "1.0",
+    "version": "1.1",
     "description": "Shared threat matrix — single source of truth for both Classical (ONI 14-Layer) and Quantum (QIF 7-Band Hourglass) models",
-    "last_updated": "2026-02-03",
+    "last_updated": "2026-02-04",
     "models": {
       "classical": "ONI 14-Layer (L1-L14)",
       "quantum": "QIF 7-Band Hourglass (N3/N2/N1/I0/S1/S2/S3)"
@@ -27,7 +27,8 @@
       "ONI_THREAT_MATRIX.md — 10 tactics, 21 core + 3 proposed techniques",
       "threats.py — 7 predefined threat signatures, Kohno taxonomy",
       "config.py THREAT_MODEL — 12 attack types with quantum detection",
-      "QIF-WHITEPAPER.md §11 — defense matrix"
+      "QIF-WHITEPAPER.md §11 — defense matrix",
+      "Microsoft STRIDE threat model — Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege"
     ],
     "references": [
       "Kohno, T., et al. (2009). Neurosecurity: Security and Privacy for Neural Devices. Neurosurgical Focus, 27(1).",
@@ -66,6 +67,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": "T1595",
             "neurorights_impact": ["mental_privacy"]
           }
@@ -93,6 +95,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy"],
             "academic_reference": "Bonaci et al. (2015) demonstrated side-channel attacks on consumer EEG devices"
@@ -121,6 +124,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy"]
           }
@@ -156,6 +160,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "High", "A": "High"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Spoofing", "Elevation of Privilege"],
             "yale_category": "AUTHENTICATION",
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity", "mental_privacy"]
@@ -184,6 +189,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Spoofing", "Tampering", "Elevation of Privilege"],
             "yale_category": "WIRELESS",
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy", "mental_integrity"]
@@ -212,6 +218,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "High", "A": "High"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Elevation of Privilege"],
             "yale_category": "SOFTWARE_UPDATE",
             "mitre_technique": "T1195.002",
             "neurorights_impact": ["mental_integrity", "cognitive_liberty"]
@@ -241,6 +248,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Spoofing", "Elevation of Privilege"],
             "yale_category": "AUTHENTICATION",
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy", "mental_integrity"],
@@ -271,6 +279,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "yale_category": "ENCRYPTION",
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy"],
@@ -308,6 +317,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "High", "A": "High"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Spoofing"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity", "cognitive_liberty"]
           }
@@ -335,6 +345,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity"]
           }
@@ -362,6 +373,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "High", "A": "High"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Spoofing"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity", "cognitive_liberty"]
           }
@@ -397,6 +409,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Repudiation"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity"]
           }
@@ -424,6 +437,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Elevation of Privilege"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity", "cognitive_liberty"]
           }
@@ -451,6 +465,7 @@
           "shared": {
             "cia_impact": {"C": "Low", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity"]
           }
@@ -486,6 +501,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "High", "A": "Low"},
             "kohno_type": "ALTERATION",
+            "stride": ["Spoofing", "Tampering"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity"]
           }
@@ -513,6 +529,7 @@
           "shared": {
             "cia_impact": {"C": "Low", "I": "High", "A": "Low"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Repudiation"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity"]
           }
@@ -540,6 +557,7 @@
           "shared": {
             "cia_impact": {"C": "Low", "I": "Medium", "A": "Low"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Denial of Service"],
             "mitre_technique": null,
             "neurorights_impact": []
           }
@@ -575,6 +593,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy", "cognitive_liberty"],
             "academic_reference": "Bonaci et al. (2015) demonstrated P300-based attacks on consumer BCIs"
@@ -603,6 +622,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy"]
           }
@@ -630,6 +650,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy", "cognitive_liberty"]
           }
@@ -665,6 +686,7 @@
           "shared": {
             "cia_impact": {"C": "Low", "I": "Medium", "A": "High"},
             "kohno_type": "BLOCKING",
+            "stride": ["Denial of Service"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity", "cognitive_liberty"]
           }
@@ -692,6 +714,7 @@
           "shared": {
             "cia_impact": {"C": "Low", "I": "High", "A": "High"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Elevation of Privilege"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity", "cognitive_liberty"],
             "academic_reference": "Schroder et al. (2025) — AI-mediated malicious stimulation scenario"
@@ -720,6 +743,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Elevation of Privilege"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity", "cognitive_liberty", "psychological_continuity"]
           }
@@ -748,6 +772,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "High", "A": "High"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Denial of Service", "Elevation of Privilege"],
             "yale_category": "All",
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity", "cognitive_liberty", "mental_privacy"],
@@ -782,6 +807,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy"]
           }
@@ -806,6 +832,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Spoofing", "Tampering", "Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy", "mental_integrity"]
           }
@@ -830,6 +857,7 @@
           "shared": {
             "cia_impact": {"C": "Medium", "I": "High", "A": "Low"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Elevation of Privilege"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity"]
           }
@@ -854,6 +882,7 @@
           "shared": {
             "cia_impact": {"C": "Low", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Spoofing"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_integrity"]
           }
@@ -878,6 +907,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy"]
           }
@@ -902,6 +932,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "High", "A": "Medium"},
             "kohno_type": "ALTERATION",
+            "stride": ["Spoofing", "Elevation of Privilege"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy", "psychological_continuity"]
           }
@@ -937,6 +968,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy"]
           }
@@ -964,6 +996,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "High", "A": "High"},
             "kohno_type": "ALTERATION",
+            "stride": ["Tampering", "Elevation of Privilege"],
             "mitre_technique": "T1195",
             "neurorights_impact": ["mental_integrity", "cognitive_liberty"]
           }
@@ -991,6 +1024,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Medium", "A": "Medium"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure", "Tampering", "Elevation of Privilege"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy"]
           }
@@ -1018,6 +1052,7 @@
           "shared": {
             "cia_impact": {"C": "High", "I": "Low", "A": "Low"},
             "kohno_type": "EAVESDROPPING",
+            "stride": ["Information Disclosure"],
             "mitre_technique": null,
             "neurorights_impact": ["mental_privacy", "cognitive_liberty"]
           }

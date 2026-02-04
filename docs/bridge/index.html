@@ -696,6 +696,14 @@ footer a:hover { color: var(--text-bright); }
             });
         }
 
+        // STRIDE
+        if (t.shared.stride && t.shared.stride.length) {
+            html += '<h4>STRIDE</h4>';
+            t.shared.stride.forEach(function(s) {
+                html += '<span class="nr-tag" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:var(--amber)">' + s + '</span> ';
+            });
+        }
+
         // Kohno type
         if (t.shared.kohno_type) {
             html += '<h4>Kohno Type</h4><p class="qa-text">' + t.shared.kohno_type + '</p>';
