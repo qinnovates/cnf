@@ -55,35 +55,66 @@ Without neuroethics as the foundation, both models risk enabling the very threat
 
 ---
 
-## Pillars
+## NIST CSF Functions — How This Project Is Organized
 
-### [Research](MAIN/) — Discover + Build
+> Structured around the [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework) functions, applied to the neural security domain.
 
-Brain-computer interfaces are being implanted in humans today — with no universal security standard. This pillar creates the science and the tools to change that.
+### [Identify](MAIN/) — Map the Attack Surface
+
+Understand the neural threat landscape before building defenses. BCIs are being implanted in humans today — with no universal security standard. This function creates the science to change that.
 
 | Component | Model | Description |
 |-----------|-------|-------------|
-| [QIF Framework](MAIN/qif/) | Quantum | 7-band hourglass architecture, 9 architectural docs + 9 governance docs |
+| [QIF Framework](MAIN/qif/) | Quantum | 7-band hourglass architecture, 9 architectural docs |
 | [QIF Whitepaper](MAIN/qif/QIF-WHITEPAPER.md) | Quantum | Comprehensive working paper — v3.1 with Hamiltonian, Nobel Prize context |
+| [Threat Taxonomy](MAIN/legacy-core/publications/) | Classical | 10 tactics, 46 techniques across the 14-layer model |
 | [Field Journal](MAIN/qif/QIF-FIELD-JOURNAL.md) | Quantum | First-person research observations |
-| [Legacy Core (ONI)](MAIN/legacy-core/) | Classical | 31 publications, Python packages, TARA platform |
 
-**Key resources:**
-- [QIF Framework (9 docs)](MAIN/qif/framework/) — read in order, 01 through 09
-- [Governance (9 docs)](MAIN/qif/governance/) — neuroethics, regulatory compliance, consent
-- [Publications (31 papers)](MAIN/legacy-core/publications/) — coherence metric, neural firewall, quantum encryption
-- [Interactive Whitepaper](docs/whitepaper/)
+### [Protect](MAIN/legacy-core/) — Build the Defenses
 
-### [Signal](autodidact/) — Teach + Lead
+Implement safeguards — from Python packages to architectural standards — that limit or contain the impact of neural security events.
 
-Making neuroscience and BCI security accessible through interactive tools, educational modules, and hands-on experiences.
+| Component | Model | Description |
+|-----------|-------|-------------|
+| [oni-framework](MAIN/legacy-core/oni-framework/) | Classical | `pip install oni-framework` — 14-layer model, coherence metric, neural firewall |
+| [oni-tara](MAIN/legacy-core/tara-nsec-platform/) | Classical | `pip install oni-tara` — real-time BCI security monitoring |
+| [QI Equation](MAIN/qif/QIF-WHITEPAPER.md) | Quantum | Two complementary formulations — unified security metric |
+| [Legacy Core (ONI)](MAIN/legacy-core/) | Classical | 31 publications, foundational research |
+
+### [Detect](docs/visualizations/) — See What Others Miss
+
+Find and analyze what classical security cannot see — quantum-scale anomalies at the electrode-tissue interface.
+
+| Component | Model | Description |
+|-----------|-------|-------------|
+| [Coherence Metric](MAIN/legacy-core/publications/coherence-metric/) | Classical | Cₛ = e^(−(σ²ᵩ + σ²τ + σ²ᵧ)) — signal trust scoring |
+| [QI Equation](MAIN/qif/QIF-WHITEPAPER.md) | Quantum | Quantum indeterminacy as a detection signal |
+| [Visualizations](docs/visualizations/) | Both | 13+ interactive tools for exploring framework behavior |
+
+### [Govern](MAIN/qif/governance/) — Neuroethics as Foundation
+
+Establish the ethical and regulatory context that makes both models trustworthy. Without governance, security is just capability without conscience.
+
+| Component | Description |
+|-----------|-------------|
+| [Governance (9 docs)](MAIN/qif/governance/) | Neuroethics, regulatory compliance, consent, UNESCO alignment |
+| [Transparency](MAIN/qif/governance/TRANSPARENCY.md) | Human-AI collaboration audit trail |
+| [Neuroethics Alignment](MAIN/qif/governance/NEUROETHICS_ALIGNMENT.md) | Framework-to-ethics principle mapping |
+
+### [Respond](autodidact/) — Teach + Equip
+
+Take action — not just against incidents, but against ignorance. Making neuroscience and BCI security accessible so the field can respond collectively.
 
 | Component | Description |
 |-----------|-------------|
 | [Autodidactive](autodidact/oni-academy/) | Educational modules — `pip install oni-academy` |
-| [Visualizations](docs/visualizations/) | 13+ interactive web-based framework demos |
 | [Neuroscience](autodidact/neuroscience/) | BCI fundamentals and neuroscience learning |
 | [Media](autodidact/) | BCI zoom animations, motion graphics, workflow tools |
+| [Blog](https://qinnovate.com/mindloft/blog/) | Public-facing research communication |
+
+### Recover — *Future Work*
+
+Incident response and recovery for neural security breaches. What happens after a BCI is compromised? This function is not yet built — and that honesty is part of the research.
 
 **Python packages:**
 ```bash
@@ -98,20 +129,20 @@ pip install oni-academy     # Autodidactive — self-adaptive learning
 
 ```
 mindloft/
-├── MAIN/                              # RESEARCH: Discover + Build
+├── MAIN/                              # IDENTIFY + PROTECT: Map & build defenses
 │   ├── qif/                           # QUANTUM: QIF Framework (active, v3.1)
-│   │   ├── framework/                 # 9 architectural documents
-│   │   ├── governance/                # 9 neuroethics + compliance docs
+│   │   ├── framework/                 # 9 architectural documents (IDENTIFY)
+│   │   ├── governance/                # 9 neuroethics + compliance docs (GOVERN)
 │   │   ├── qif-lab/                   # Equation code, tests, Quarto whitepaper
 │   │   └── images/                    # QIF model diagrams
 │   └── legacy-core/                   # CLASSICAL: ONI Foundation (established)
-│       ├── publications/              # 31 papers across 8 topics
-│       ├── oni-framework/             # Python: pip install oni-framework
-│       ├── tara-nsec-platform/        # Python: pip install oni-tara
+│       ├── publications/              # 31 papers across 8 topics (IDENTIFY)
+│       ├── oni-framework/             # Python: pip install oni-framework (PROTECT)
+│       ├── tara-nsec-platform/        # Python: pip install oni-tara (PROTECT)
 │       ├── resources/                 # Brand, templates, pipeline, editor
 │       └── archive/                   # Website evolution (v1-v6)
 │
-├── autodidact/                        # SIGNAL: Teach + Lead
+├── autodidact/                        # RESPOND: Teach + equip
 │   ├── oni-academy/                   # Python: pip install oni-academy
 │   ├── neuroscience/                  # Neuroscience fundamentals
 │   ├── bci-zoom/                      # BCI zoom animation
@@ -122,7 +153,7 @@ mindloft/
 │   ├── index.html                     # Venn diagram landing (Classical | Quantum)
 │   ├── classical/                     # Classical model site (ONI 14-layer)
 │   ├── quantum/                       # Quantum model site (QIF hourglass)
-│   ├── visualizations/                # 13+ interactive tools
+│   ├── visualizations/                # 13+ interactive tools (DETECT)
 │   ├── documentation/                 # Documentation hub
 │   └── whitepaper/                    # Published whitepaper
 ```
