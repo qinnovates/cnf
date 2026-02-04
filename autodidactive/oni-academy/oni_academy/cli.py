@@ -166,7 +166,7 @@ Web Tools (no installation required):
         if not learnviz_ui.exists():
             print("⚠️  LearnViz UI not found.")
             print("\nTo install LearnViz:")
-            print("  cd autodidact/learnviz")
+            print("  cd autodidactive/learnviz")
             print("  pip install -r requirements.txt")
             sys.exit(1)
 

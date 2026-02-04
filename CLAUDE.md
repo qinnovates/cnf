@@ -103,7 +103,7 @@ mindloft/                               # Local folder (remote: github.com/qinno
 │   │   ├── oni-product-demo/           # ONI demo video (Remotion) + rendered MP4
 │   │   └── archive/                    # Website evolution (v1-v5)
 │
-├── autodidact/                        # Educational content
+├── autodidactive/                     # Educational content
 │   ├── oni-academy/                   # ONI Academy (pip install oni-academy)
 │   ├── neuroscience/                  # Personal neuroscience learning
 │   ├── learnviz/                      # Learning visualization tools
@@ -268,7 +268,7 @@ Push to GitHub → website auto-updates on next page load.
 | `tara-nsec-platform/` | **TARA package** | Source, tests, visualizations, pyproject.toml |
 | `publications/` | **Content only** | Blog posts, technical documents |
 
-> **Note:** `oni-academy/` has moved to `autodidact/oni-academy/` (root-level `autodidact/` folder).
+> **Note:** `oni-academy/` has moved to `autodidactive/oni-academy/` (root-level `autodidactive/` folder).
 | `resources/templates/` | Formatting templates | APA template, Blog template |
 | `resources/pipeline/` | Research pipeline | Incoming papers, processed, scripts, keywords |
 | `resources/editor/` | **Editor Agent** | Quality validation, sync rules, auto-fix logic |

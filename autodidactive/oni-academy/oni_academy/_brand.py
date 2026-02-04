@@ -30,7 +30,7 @@ class ProjectBrand:
 def _load_brand_json() -> dict:
     """Load brand.json from MAIN/legacy-core/resources/brand/."""
     possible_paths = [
-        Path(__file__).parent.parent.parent.parent / "MAIN" / "resources" / "brand" / "brand.json",  # autodidact/oni-academy -> root -> MAIN/legacy-core/resources/brand
+        Path(__file__).parent.parent.parent.parent / "MAIN" / "resources" / "brand" / "brand.json",  # autodidactive/oni-academy -> root -> MAIN/legacy-core/resources/brand
         Path(__file__).parent.parent.parent / "resources" / "brand" / "brand.json",  # Legacy path
         Path(__file__).parent.parent / "resources" / "brand" / "brand.json",  # If restructured
     ]

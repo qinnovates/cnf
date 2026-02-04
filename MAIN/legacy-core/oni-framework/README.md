@@ -102,7 +102,7 @@ print(da.required_cofactors)  # ['Fe²⁺', 'BH4', 'O₂']
 
 ## Package Architecture
 
-> **This package is the core API library.** For educational content and interactive learning, see [ONI Academy](https://github.com/qinnovates/mindloft/blob/main/autodidact/oni-academy/ONI_ACADEMY.md) (`pip install oni-academy`).
+> **This package is the core API library.** For educational content and interactive learning, see [ONI Academy](https://github.com/qinnovates/mindloft/blob/main/autodidactive/oni-academy/ONI_ACADEMY.md) (`pip install oni-academy`).
 
 ```
 oni-framework (pip install oni-framework)

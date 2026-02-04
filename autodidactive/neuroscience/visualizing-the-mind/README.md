@@ -163,5 +163,5 @@ manim -pql scenes/bci_zoom_animation.py BCIZoomAnimation
 
 ---
 
-*Part of the [autodidact/neuroscience](../) learning project*
+*Part of the [autodidactive/neuroscience](../) learning project*
 *Last Updated: 2026-01-26*

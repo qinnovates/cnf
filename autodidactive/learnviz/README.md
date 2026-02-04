@@ -78,7 +78,7 @@ python learnviz.py "Explain photosynthesis" --ollama --ollama-model codellama --
 ### Installation
 
 ```bash
-cd autodidact/learnviz
+cd autodidactive/learnviz
 
 # Install Python dependencies
 pip install -r requirements.txt

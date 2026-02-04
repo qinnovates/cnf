@@ -455,7 +455,7 @@ All future BCI learning features are secured by the QIF Framework:
 ## File Structure
 
 ```
-autodidact/
+autodidactive/
 ├── README.md                    # This file — ecosystem overview
 ├── pyproject.toml               # Python package configuration
 │
@@ -506,7 +506,7 @@ Or just use the [web tools](https://qinnovates.github.io/mindloft/visualizations
 ### For Creating Visualizations
 
 ```bash
-cd autodidact/learnviz
+cd autodidactive/learnviz
 
 # Install Manim
 pip install manim

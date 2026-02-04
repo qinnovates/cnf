@@ -158,7 +158,7 @@ Generates `GLOSSARY.md` using AI based on repository structure.
 
 | Setting | Value |
 |---------|-------|
-| **Trigger** | Push to `main` (MAIN/legacy-core/** or autodidact/** changes), manual |
+| **Trigger** | Push to `main` (MAIN/legacy-core/** or autodidactive/** changes), manual |
 | **AI Model** | gpt-4o-mini via GitHub Models |
 | **Output** | `GLOSSARY.md` |
 

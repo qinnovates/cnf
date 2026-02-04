@@ -5,14 +5,14 @@ on:
     branches: [main]
     paths:
       - 'neurosec-research/oni-framework/**'
-      - 'autodidact/oni-academy/**'
+      - 'autodidactive/oni-academy/**'
       - 'neurosec-research/tara-nsec-platform/**'
       - '.github/workflows/tests.yml'
   pull_request:
     branches: [main]
     paths:
       - 'neurosec-research/oni-framework/**'
-      - 'autodidact/oni-academy/**'
+      - 'autodidactive/oni-academy/**'
       - 'neurosec-research/tara-nsec-platform/**'
   workflow_dispatch:
 
@@ -111,18 +111,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest pytest-cov
           pip install -e neurosec-research/oni-framework
-          pip install -e autodidact/oni-academy[dev]
+          pip install -e autodidactive/oni-academy[dev]
 
       - name: Run tests
         run: |
-          cd autodidact/oni-academy
+          cd autodidactive/oni-academy
           pytest tests/ -v --cov=oni_academy --cov-report=xml || echo "No tests yet"
 
       - name: Upload coverage
         uses: codecov/codecov-action@v5
         if: matrix.python-version == '3.11' && matrix.os == 'ubuntu-latest'
         with:
-          file: autodidact/oni-academy/coverage.xml
+          file: autodidactive/oni-academy/coverage.xml
           flags: oni-academy
           name: oni-academy-coverage
         continue-on-error: true

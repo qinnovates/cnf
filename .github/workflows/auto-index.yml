@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - 'MAIN/**'
-      - 'autodidact/**'
+      - 'autodidactive/**'
   workflow_dispatch:
     inputs:
       target:

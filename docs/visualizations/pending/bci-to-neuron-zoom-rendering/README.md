@@ -40,9 +40,9 @@ A visual journey that starts at the BCI hardware level and zooms progressively d
 
 ### Brain Region Research
 
-- **[Research-BCI_Mouse_Movement.md](../../../../autodidact/neuroscience/brain-regions/cerebral-cortex/motor-cortex/Research-BCI_Mouse_Movement.md)** — Deep dive on electrode placement, neural decoding, BCI specifications
-- **[Neuroscience & BCI Research](../../../../autodidact/neuroscience/)** — Folder structure for brain region documentation
-- **[Visualizing the Mind](../../../../autodidact/neuroscience/visualizing-the-mind/)** — 3D-mindmapper (Blender) and 2D-mindmapper (Manim) projects
+- **[Research-BCI_Mouse_Movement.md](../../../../autodidactive/neuroscience/brain-regions/cerebral-cortex/motor-cortex/Research-BCI_Mouse_Movement.md)** — Deep dive on electrode placement, neural decoding, BCI specifications
+- **[Neuroscience & BCI Research](../../../../autodidactive/neuroscience/)** — Folder structure for brain region documentation
+- **[Visualizing the Mind](../../../../autodidactive/neuroscience/visualizing-the-mind/)** — 3D-mindmapper (Blender) and 2D-mindmapper (Manim) projects
 - ONI_LAYERS.md biological foundation section for molecular cascade details
 
 ---

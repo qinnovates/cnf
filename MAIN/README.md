@@ -32,7 +32,7 @@ MAIN/
 │   ├── project/      Project management
 │   └── archive/      Historical website versions
 │
-See also: [autodidact/](../autodidact/) — Educational content (oni-academy, learnviz, BCI fundamentals)
+See also: [autodidactive/](../autodidactive/) — Educational content (oni-academy, learnviz, BCI fundamentals)
 ```
 
 ## Key Resources

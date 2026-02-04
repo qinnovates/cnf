@@ -217,8 +217,8 @@ Already set up in `MAIN/legacy-core/oni-product-demo/` - can reuse infrastructur
 
 ## Related Documents
 
-- [Research-BCI_Mouse_Movement.md](../../autodidact/neuroscience/brain-regions/cerebral-cortex/motor-cortex/Research-BCI_Mouse_Movement.md) — Electrode specs, neural decoding
-- [scales.json](../../autodidact/neuroscience/visualizing-the-mind/2D-mindmapper/manim/bci-zoom/data/scales.json) — Scientific scale data
+- [Research-BCI_Mouse_Movement.md](../../autodidactive/neuroscience/brain-regions/cerebral-cortex/motor-cortex/Research-BCI_Mouse_Movement.md) — Electrode specs, neural decoding
+- [scales.json](../../autodidactive/neuroscience/visualizing-the-mind/2D-mindmapper/manim/bci-zoom/data/scales.json) — Scientific scale data
 - [KANBAN.md](../../MAIN/legacy-core/project/KANBAN.md) — Backlog item: `bci-macro-to-micro-visualization`
 
 ---

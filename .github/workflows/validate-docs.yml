@@ -5,14 +5,14 @@ on:
     paths:
       - 'docs/content-manifest.json'
       - 'MAIN/**'
-      - 'autodidact/**'
+      - 'autodidactive/**'
       - 'docs/**'
     branches: [main]
   pull_request:
     paths:
       - 'docs/content-manifest.json'
       - 'MAIN/**'
-      - 'autodidact/**'
+      - 'autodidactive/**'
       - 'docs/**'
 
 jobs:

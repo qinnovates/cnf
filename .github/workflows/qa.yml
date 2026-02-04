@@ -61,7 +61,7 @@ jobs:
           # Install packages
           pip install -e neurosec-research/oni-framework -q
           pip install -e neurosec-research/tara-nsec-platform -q
-          pip install -e autodidact/oni-academy -q
+          pip install -e autodidactive/oni-academy -q
 
           # Test oni-framework brand loading
           python -c "
@@ -128,7 +128,7 @@ jobs:
         run: |
           pip install -e neurosec-research/oni-framework
           pip install -e neurosec-research/tara-nsec-platform
-          pip install -e autodidact/oni-academy
+          pip install -e autodidactive/oni-academy
 
       - name: Validate core imports
         run: |

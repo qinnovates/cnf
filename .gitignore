@@ -59,7 +59,7 @@ node_modules/
 .vite/
 
 # Learnviz generated outputs
-autodidact/learnviz/output/*.mp4
-autodidact/learnviz/output/*.mp3
-autodidact/learnviz/output/*.json
-autodidact/learnviz/output/*_narration.txt
+autodidactive/learnviz/output/*.mp4
+autodidactive/learnviz/output/*.mp3
+autodidactive/learnviz/output/*.json
+autodidactive/learnviz/output/*_narration.txt

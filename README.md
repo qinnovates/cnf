@@ -1,14 +1,22 @@
-# Mindloft
+<div align="center">
+  <img src="docs/images/mindloft-hearts.png" alt="Mindloft" width="420">
 
-> *"The most important connections require the most thought."*
+  # M I N D L O F T
 
-**Qinnovate** — the engine. **Mindloft** — the workshop.
-Where security engineering meets neuroethics — building the frameworks that protect minds in the age of brain-computer interfaces.
+  **Security Engineering meets Neuroethics**
 
-> *"Let's Mind Our Way."* — **Direct link:** [qinnovate.com/mindloft](https://qinnovate.com/mindloft/)
+  *Safeguarding BCIs on the road to Web 5.0*
 
-[![Tests](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml)
-[![Security](https://github.com/qinnovates/mindloft/actions/workflows/security.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/security.yml)
+  **Qinnovate** — the engine. **Mindloft** — the workshop.
+
+  > *"The most important connections require the most thought."*
+
+  [![Tests](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/tests.yml)
+  [![Security](https://github.com/qinnovates/mindloft/actions/workflows/security.yml/badge.svg)](https://github.com/qinnovates/mindloft/actions/workflows/security.yml)
+
+  [qinnovate.com/mindloft](https://qinnovate.com/mindloft/) · *"Let's Mind Our Way."*
+
+</div>
 
 ## Table of Contents
 
@@ -115,15 +123,15 @@ Establish the ethical and regulatory context that makes both models trustworthy.
 | [Transparency](MAIN/governance/TRANSPARENCY.md) | Human-AI collaboration audit trail |
 | [Neuroethics Alignment](MAIN/governance/NEUROETHICS_ALIGNMENT.md) | Framework-to-ethics principle mapping |
 
-### [Respond](autodidact/) — Teach + Equip
+### [Respond](autodidactive/) — Teach + Equip
 
 Take action — not just against incidents, but against ignorance. Making neuroscience and BCI security accessible so the field can respond collectively.
 
 | Component | Description |
 |-----------|-------------|
-| [Autodidactive](autodidact/oni-academy/) | Educational modules — `pip install oni-academy` |
-| [Neuroscience](autodidact/neuroscience/) | BCI fundamentals and neuroscience learning |
-| [Media](autodidact/) | BCI zoom animations, motion graphics, workflow tools |
+| [Autodidactive](autodidactive/oni-academy/) | Educational modules — `pip install oni-academy` |
+| [Neuroscience](autodidactive/neuroscience/) | BCI fundamentals and neuroscience learning |
+| [Media](autodidactive/) | BCI zoom animations, motion graphics, workflow tools |
 | [Blog](https://qinnovate.com/mindloft/blog/) | Public-facing research communication |
 
 ### Recover — *Future Work*
@@ -172,7 +180,7 @@ mindloft/
 │       ├── resources/                 # Brand, templates, pipeline, editor
 │       └── archive/                   # Website evolution (v1-v6)
 │
-├── autodidact/                        # RESPOND: Teach + equip
+├── autodidactive/                     # RESPOND: Teach + equip
 │   ├── oni-academy/                   # Python: pip install oni-academy
 │   ├── neuroscience/                  # Neuroscience fundamentals
 │   ├── bci-zoom/                      # BCI zoom animation

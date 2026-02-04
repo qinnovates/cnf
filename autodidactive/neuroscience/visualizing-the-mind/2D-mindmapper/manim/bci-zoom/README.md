@@ -33,7 +33,7 @@ This captures the fundamental relationship: **smaller structures = faster events
 pip install manim
 
 # Navigate to project
-cd autodidact/neuroscience/visualizing-the-mind/2D-mindmapper/manim/bci-zoom
+cd autodidactive/neuroscience/visualizing-the-mind/2D-mindmapper/manim/bci-zoom
 
 # Quick preview (low quality)
 manim -pql scenes/bci_zoom_animation.py BCIZoomAnimation

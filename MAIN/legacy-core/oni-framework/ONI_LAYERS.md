@@ -663,7 +663,7 @@ This invariant helps validate signals: violations may indicate attacks or malfun
 | `docs/index.html` | HTML | GitHub Pages visualization (14-layer animation) |
 | `MAIN/legacy-core/oni-product-demo/src/components/LayerStack.tsx` | React/Remotion | Demo video layer stack component |
 | `MAIN/legacy-core/oni-product-demo/src/data/oni-theme.ts` | TypeScript | Video theme colors and layer comments |
-| `autodidact/motion/src/theme.ts` | TypeScript | Motion Canvas video theme |
+| `autodidactive/motion/src/theme.ts` | TypeScript | Motion Canvas video theme |
 | `MAIN/legacy-core/tara-nsec-platform/tara_mvp/visualization/themes/oni_theme.py` | Python | TARA dashboard visualization |
 | `MAIN/legacy-core/resources/editor/checks/layer_validation.md` | Markdown | Editor Agent validation rules |
 | `MAIN/legacy-core/oni-framework/oni/layers.py` | Python | ONI Framework Python API |

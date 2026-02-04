@@ -21,7 +21,7 @@ mindloft/
 │       ├── project/          # Project management
 │       ├── resources/        # Templates, brand, pipeline
 │       └── oni-product-demo/ # ONI demo video (Remotion)
-├── autodidact/               # Educational content
+├── autodidactive/            # Educational content
 │   ├── oni-academy/          # ONI Academy
 │   ├── bci-zoom/             # BCI zoom animation
 │   ├── motion/               # Motion graphics

@@ -7,7 +7,7 @@ on:
       # Python packages
       - 'neurosec-research/oni-framework/**/*.py'
       - 'neurosec-research/tara-nsec-platform/**/*.py'
-      - 'autodidact/oni-academy/**/*.py'
+      - 'autodidactive/oni-academy/**/*.py'
       # GitHub Pages (HTML/JS)
       - 'docs/**/*.html'
       - 'docs/**/*.js'

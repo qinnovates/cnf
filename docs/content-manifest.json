@@ -448,21 +448,21 @@
           "title": "ONI Academy",
           "description": "Structured curriculum with learning modules. pip install oni-academy.",
           "badge": "guide",
-          "path": "autodidact/oni-academy/ONI_ACADEMY.md"
+          "path": "autodidactive/oni-academy/ONI_ACADEMY.md"
         },
         {
           "id": "learnviz",
           "title": "LearnViz",
           "description": "Adaptive visualization engine. Concept-to-code-to-video pipeline for personalized learning.",
           "badge": "guide",
-          "path": "autodidact/learnviz/README.md"
+          "path": "autodidactive/learnviz/README.md"
         },
         {
           "id": "neuroscience",
           "title": "Neuroscience",
           "description": "Personal neuroscience learning roadmap. Brain regions, motor cortex research, BCI fundamentals.",
           "badge": "guide",
-          "path": "autodidact/neuroscience/README.md"
+          "path": "autodidactive/neuroscience/README.md"
         }
       ]
     }

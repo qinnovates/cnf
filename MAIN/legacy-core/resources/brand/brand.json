@@ -81,7 +81,7 @@
     "consumers": [
       "neurosec-research/oni-framework/oni/brand.py",
       "neurosec-research/tara-nsec-platform/tara_mvp/_brand.py",
-      "autodidact/oni-academy/oni_academy/_brand.py",
+      "autodidactive/oni-academy/oni_academy/_brand.py",
       "neurosec-research/resources/brand/sync_brand.py",
       "docs/index.html",
       "video/demo/src/data/oni-theme.ts",

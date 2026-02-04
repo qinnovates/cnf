@@ -136,7 +136,7 @@
 ### Historical Reference - Files to Check for Threshold Values
 - `/oni/neurosecurity/legacy-core/oni-framework/COHERENCE.md`
 - `/oni/neurosecurity/legacy-core/oni-framework/ONI_LAYERS.md`
-- `/oni/autodidact/oni-academy/` (course materials)
+- `/oni/autodidactive/oni-academy/` (course materials)
 - `/oni/docs/` (GitHub Pages source)
 - `/oni/README.md`
 
