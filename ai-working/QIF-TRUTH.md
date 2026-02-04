@@ -95,7 +95,7 @@ QI ranges were lowered dramatically in v3.1 to avoid implying quantum dominance 
 | L11 (Cognitive Transport) | N2 | Sensorimotor Processing |
 | L12 (Cognitive Session) | N3 | Integrative Association |
 | L13 (Semantic Layer) | N3 | Integrative Association |
-| L14 (Identity Layer) | N3 | Integrative Association (merged from former N4) |
+| L14 (Cognitive Sovereignty) | N3 | Integrative Association (merged from former N4) |
 
 ---
 

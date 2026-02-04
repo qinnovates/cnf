@@ -23,6 +23,7 @@
 
 | Date | Event | Link |
 |------|-------|------|
+| 2026-02-03 ~night | Classical-Hourglass reconciliation, L14→Cognitive Sovereignty, I0 physical defense | [Entry 22](#entry-22-classical-hourglass-reconciliation-and-cognitive-sovereignty-rename) |
 | 2026-02-03 ~night | Research landscape: who's working on H_total, what impacts QI validity | [Entry 19](#entry-19-research-landscape-assessment--who-is-working-on-h_total-and-what-impacts-qi-equation-validity) |
 | 2026-02-03 ~night | Hamiltonian as implicit root of QI equation — unifying insight | [Entry 18](#entry-18-the-hamiltonian-is-the-missing-root-node-of-the-qi-equation) |
 | 2026-02-02 ~late night | Immersive UX: Kokoro TTS, hourglass scroll, Field Notes | [Entry 17](#entry-17-immersive-whitepaper-ux--audio-hourglass-scroll-field-notes) |
@@ -1245,8 +1246,180 @@ QIF sits at an intersection where multiple fields are advancing independently bu
 
 ---
 
-*Document version: 1.5*
+## Entry 20: Classical Model Architecture Review — L8 Positioning and L14 Consciousness Scope
+
+**Date:** 2026-02-03
+**Context:** During the Classical/Quantum restructure and NIST CSF adoption for the README, Kevin raised two foundational questions about the ONI 14-layer Classical model that must be resolved before building a shared STRIDE threat matrix on top of the architecture.
+
+### Question 1: Is L8 (Neural Gateway) correctly positioned?
+
+**The tension:** In the OSI model, L1 is the Physical layer — it covers physical transmission media. A BCI electrode touching neural tissue is arguably the most physical interface in the entire system. Yet in the ONI model, this physical electrode-tissue contact point maps to L8, which sits *above* the entire OSI stack. The biological layers (L9-L14) then extend further upward.
+
+**Why this matters now:** The project is building a shared threat matrix (STRIDE × both models) where layer/band ordering affects attack surface mapping. If L8's position is architecturally indefensible, the entire threat taxonomy built on top of it inherits that weakness. Better to challenge it now than patch it later.
+
+**Three architectures under evaluation:**
+- **A) Upward extension (current):** L1-L7 OSI → L8 Gateway → L9-L14 Biology. Preserves OSI numbering but places the most physical interface at L8.
+- **B) Hourglass (QIF already does this):** N3/N2/N1 | I0 | S1/S2/S3. Interface at center. But this would mean the Classical model converges with the Quantum model's topology.
+- **C) Physical-first:** L1 = Electrode-Tissue → ascending biology → L8 Gateway → L9-L14 Silicon. Respects L1-as-physical but reverses OSI numbering engineers expect.
+
+**Relevance to QIF:** The QIF 7-band hourglass already resolves this by placing the interface (I0) at the center with biology and silicon on either side. If the Classical model adopts a similar topology, the two models become more structurally aligned — which could simplify the shared threat matrix but risks making the Classical model redundant as just "QIF with more layers."
+
+### Question 2: Does L14 ("Identity & Ethics") imply consciousness modeling?
+
+**The problem:** L14 is described as covering "selfhood, consciousness, decision-making." This language implies the framework models or addresses consciousness. It does not. Neither the Classical nor Quantum model claims to solve or model consciousness. This is a security framework, not a theory of mind.
+
+**What L14 must address (security-relevant):**
+- Neural identity as authentication (brain patterns are unique)
+- Cognitive integrity (BCI must not alter who you are)
+- Mental privacy (protecting thought content from extraction)
+- Ethical boundaries (what BCIs should never do)
+
+**What L14 must NOT claim:**
+- A theory of consciousness
+- The ability to measure or model subjective experience
+- Any stance on the "hard problem"
+
+**Why this matters:** Academic reviewers would reasonably flag "consciousness" in a security framework's layer description as scope creep or unfounded claims. The framework's credibility depends on clearly scoping what it addresses.
+
+### Validation Methodology
+
+**Multi-AI independent review (Stage 2 per PROPAGATION.md):**
+
+| AI System | Role | Context Given |
+|-----------|------|---------------|
+| **Gemini 2.5** (Google, CLI) | Independent reviewer | Full architectural context, three options for each question, instructed to challenge current design |
+| **Claude Opus 4.5** (Anthropic, research agent) | Independent researcher | Same questions with web search for published precedent (OSI extensions, Purdue model, neurorights literature) |
+| **Aurora** (Claude, reasoning persona) | Synthesis and adjudication | Receives both outputs, identifies convergence/divergence, recommends final approach |
+
+**Human role:** Kevin identified both questions, will make final architectural decisions based on the evidence. The AI systems provide research and analysis; the human decides.
+
+**Rationale for multi-AI approach:** Per PROPAGATION.md Section E, significant framework changes require independent review to counteract confirmation bias. Architectural questions about the Classical model's foundation qualify as significant — the threat taxonomy, firewall placement, and all 31 publications reference the current layer numbering.
+
+### Status
+
+- **Classification:** Architectural review — foundational validity check
+- **Impact:** HIGH — affects all Classical model documentation, threat taxonomy, Python packages, and the shared threat matrix design
+- **Current state:** AWAITING RESULTS — Gemini and Claude research agents running in parallel
+- **Action items (pending results):**
+  1. Compare Gemini and Claude findings for convergence
+  2. Aurora synthesis of recommendations
+  3. Kevin makes final decision on both questions
+  4. If architecture changes: propagate per PROPAGATION.md change protocol
+  5. If architecture holds: document the validation as confirmation
+- **Dependencies:** Entry 14 (v3.0 hourglass), Entry 15 (v3.1 7-band), Entry 16 (Gemini peer review precedent)
+
+---
+
+## Entry 21: NIST CSF Functions Adopted as Project Organization Framework
+
+**Date:** 2026-02-03
+**Context:** During the Classical/Quantum restructure, Kevin explored using cybersecurity framework terminology to replace generic project pillar names ("Research — Discover + Build", "Signal — Teach + Lead"). Evaluated three options: Cyber Kill Chain (offensive), NIST CSF (defensive), and STRIDE (threat classification).
+
+### Decision: NIST CSF 2.0 Functions
+
+**Chosen framework:** NIST Cybersecurity Framework 2.0's six functions (Govern, Identify, Protect, Detect, Respond, Recover) as the organizing principle for the project README and repository structure.
+
+**Rationale:** The project is defensive by nature — it protects neural interfaces, it doesn't attack them. Using offensive terminology (Kill Chain) would create a tension that, while interesting, misrepresents the project's intent. NIST CSF is:
+- Defensive-first (matches project mission)
+- Widely recognized by security professionals
+- Government-standard (NIST carries institutional credibility)
+- Already referenced in QIF governance documents (REGULATORY_COMPLIANCE.md)
+
+**Mapping implemented:**
+
+| NIST Function | Pillar Name | Maps To |
+|---|---|---|
+| **Identify** | Map the Attack Surface | `MAIN/` research, QIF framework, threat taxonomy |
+| **Protect** | Build the Defenses | Python packages, QI equation, ONI publications |
+| **Detect** | See What Others Miss | Coherence metric, QI equation monitoring, visualizations |
+| **Govern** | Neuroethics as Foundation | 9 governance docs, transparency, ethics alignment |
+| **Respond** | Teach + Equip | Autodidactive, neuroscience, blog |
+| **Recover** | *Future Work* | Neural incident response (not yet built) |
+
+**STRIDE deferred:** STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) was identified as a complementary threat classification framework to be applied *within* both Classical and Quantum models — not as the organizational structure, but as the shared threat language for the planned threat matrix. This is a future task.
+
+**AI involvement:** Claude proposed the NIST mapping after Kevin explored Kill Chain and STRIDE options. Kevin decided NIST was the best fit. Claude implemented the README changes.
+
+### Status
+
+- **Classification:** Project organization — non-technical but affects public-facing presentation
+- **Impact:** README restructured, repo tree comments updated
+- **Action items:** None — implemented and committed
+- **Dependencies:** None
+
+---
+
+## Entry 22: Classical-Hourglass Reconciliation and Cognitive Sovereignty Rename
+
+**Date:** 2026-02-03 ~night
+**Context:** Following the multi-AI validation (Entry 20) where both Gemini and Claude agreed that (1) L8 positioning was a category error, (2) the hourglass is the most defensible architecture, and (3) L14 should stop referencing "consciousness." Kevin's key requirement: the Classical 14-layer model must remain valid as a solid, adoptable framework.
+
+### The Reconciliation
+
+The hourglass does not replace the Classical model. It reframes it. The 14-layer model is the hourglass *expanded* — a detailed engineering view where each band decomposes into actionable layers:
+
+| Hourglass Band | Classical Layers | Domain |
+|---|---|---|
+| S3 | L5–L7 | Digital application |
+| S2 | L3–L4 | Digital transport |
+| S1 | L1–L2 | Silicon hardware |
+| **I0** | **L8** | **Electrode-tissue boundary** |
+| N1 | L9–L10 | Neural signaling |
+| N2 | L11–L12 | Neural processing |
+| N3 | L13–L14 | Cognitive integrity |
+
+**When to use which:**
+- **Classical 14-layer** → Security teams, threat analysis, firewall rules, OSI-native audiences
+- **Hourglass 7-band** → Researchers, physicists, architects designing cross-domain systems
+
+The key insight: the hourglass corrects the *mental model*, not the content. L8 was always the physical interface. The 14-layer numbering implied it was "above" L7 in abstraction. The hourglass makes its true nature visible: the waist, the narrowest point, the most physical part of the system.
+
+### The Physical Interface Defense
+
+**Objection:** "BCIs are physical. The interface should be at L1, not L8."
+
+**Defense:** The hourglass resolves this. I0 IS the physical layer. It is not "above" anything — it is the waist of the hourglass, the most constrained point. Everything above it (N1–N3) is progressively more abstract neural processing. Everything below it (S1–S3) is progressively more abstract digital processing. The waist is where platinum touches tissue.
+
+**Published precedent:**
+- **Purdue Enterprise Reference Architecture** (ICS/SCADA): Physical process sits at Level 0 (center), not above the network stack
+- **EvoArch model** (Akhshabi & Dovrolis, 2011): Layered protocol stacks naturally evolve toward hourglasses, with the most universal protocol at the waist
+- **OSI "Layer 0" precedent** (Belden): Industry already extends OSI downward when the physical domain requires it
+
+### The Cognitive Sovereignty Rename
+
+**L14 "Identity & Ethics" → L14 "Cognitive Sovereignty"**
+
+Rationale:
+- "Identity" implies modeling consciousness — which is scientifically indefensible for a security framework
+- "Cognitive Sovereignty" subsumes all four Ienca & Andorno (2017) neurorights: cognitive liberty, mental privacy, mental integrity, psychological continuity
+- These are measurable, verifiable, security-relevant properties — unlike "consciousness"
+- The term "sovereignty" implies protection of rights, which is exactly what the security framework does
+- Both Gemini and Claude independently converged on removing "consciousness" — Claude proposed "Sovereignty," Gemini proposed "Cognitive Integrity"
+
+### Files Modified
+
+- `QIF-WHITEPAPER.md` — Section 5: added §5.7 (Classical-Hourglass reconciliation), expanded §5.3 (I0 physical defense), renamed L14, updated §14 consciousness references
+- `01-WHY-REVAMP.md` — Reframed "What Goes" to "What Changes," softened language to show 14-layer is reframed not discarded
+- `QIF-TRUTH.md` — L14 renamed in migration table
+
+### AI Involvement
+
+- **Gemini (2.5 Pro):** Independent research on L8 positioning and L14 scoping. Proposed dual-stack model and "Cognitive Integrity Layer" naming.
+- **Claude (Opus 4.5):** Independent research on same questions. Proposed hourglass + "Cognitive Sovereignty" naming. Cited EvoArch, Purdue, Ienca/Andorno.
+- **Aurora synthesis:** Kevin reviewed both, chose hourglass (not dual-stack) and "Sovereignty" (not "Integrity"). Claude drafted the reconciliation and defense language.
+- **Kevin:** Made the decision to keep Classical 14-layer as valid engineering view. This was the critical design decision that the AI agents didn't suggest — they recommended replacement, Kevin insisted on coexistence.
+
+### Status
+
+- **Classification:** Architectural — affects layer naming, model relationship, public positioning
+- **Impact:** L14 renamed across whitepaper and framework docs. Classical model explicitly validated as engineering view.
+- **Action items:** Propagate "Cognitive Sovereignty" to remaining framework docs (08, 09), config.py, README.md references
+- **Dependencies:** Entry 20 (multi-AI validation results)
+
+---
+
+*Document version: 1.7*
 *Created: 2026-02-02*
-*Last entry: #19 (2026-02-03)*
+*Last entry: #22 (2026-02-03)*
 *Maintainer: Quantum Intelligence (Kevin Qi + Claude, Opus 4.5)*
 *Location: qinnovates/mindloft/drafts/ai-working/QIF-DERIVATION-LOG.md*
