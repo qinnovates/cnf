@@ -389,7 +389,7 @@
             <p class="subtitle">Securing today's neural frontier</p>
         </a>
 
-        <a href="#" class="sphere-label label-quantum" id="label-quantum" onclick="event.preventDefault(); if(window.startPortalTransition) window.startPortalTransition('quantum/');">
+        <a href="quantum/" class="sphere-label label-quantum" id="label-quantum">
             <span class="tooltip">Quantum Model for Neurosecurity</span>
             <h2>Quantum Model</h2>
             <p class="subtitle">Securing tomorrow's neural frontier</p>
@@ -598,7 +598,7 @@
                 } else if (hit === classicalSphere) {
                     window.location.href = 'classical/';
                 } else if (hit === quantumSphere) {
-                    window.startPortalTransition('quantum/');
+                    startPortalTransition('quantum/');
                 }
             }
         }
@@ -712,10 +712,16 @@
         gsap.to('#label-quantum', { opacity: 1, y: 0, duration: 0.8, delay: 1.0, ease: 'power2.out' });
         gsap.to('#label-center', { opacity: 1, y: 0, duration: 0.8, delay: 1.2, ease: 'power2.out' });
 
+        // --- Quantum label click handler ---
+        document.getElementById('label-quantum').addEventListener('click', function(e) {
+            e.preventDefault();
+            startPortalTransition('quantum/');
+        });
+
         // --- Portal Transition ---
         var tunnelRings = [];
 
-        window.startPortalTransition = function(destination) {
+        function startPortalTransition(destination) {
             if (isTransitioning) return;
             isTransitioning = true;
 
@@ -772,7 +778,7 @@
             tl.call(function() {
                 window.location.href = destination;
             }, null, 2.6);
-        };
+        }
 
         function spawnTunnelRings() {
             var ringCount = 24;
