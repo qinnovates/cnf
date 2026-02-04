@@ -9,6 +9,24 @@
 
 ---
 
+## Table of Contents
+
+- [Core Equations](#core-equations)
+- [What This API Does](#what-this-api-does)
+- [Quick Reference](#quick-reference)
+- [Package Architecture](#package-architecture)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Detection Signatures](#detection-signatures)
+- [Project Structure](#project-structure)
+- [API Reference](#api-reference)
+- [Documentation & Resources](#documentation--resources)
+- [Contributing](#contributing)
+- [License](#license)
+- [Citation](#citation)
+
+---
+
 ## Core Equations
 
 ### Coherence Score (Cₛ)

@@ -8,6 +8,49 @@ The `autodidact` module is the educational arm of Mindloft. It's not just docume
 
 ---
 
+## Table of Contents
+
+- [Autodidactive: The Web Platform](#autodidactive-the-web-platform)
+  - [Relationship to QIF](#relationship-to-qif)
+  - [Why the Separation Matters](#why-the-separation-matters)
+  - [Current Features (Demo)](#current-features-demo)
+  - [Browser AI & Animations (v0.2)](#browser-ai--animations-v02)
+  - [Live Demo](#live-demo)
+- [The BCI Vision](#the-bci-vision)
+  - [The Future: Learning Through BCIs](#the-future-learning-through-bcis)
+  - [How This Enhances QIF](#how-this-enhances-qif)
+  - [The Feedback Loop](#the-feedback-loop)
+- [AI-Powered Learning Pipeline](#ai-powered-learning-pipeline)
+- [The Adaptive Learning Vision](#the-adaptive-learning-vision)
+- [Components](#components)
+  - [1. Autodidactive Web -- Interactive Learning Platform](#1-autodidactive-web--interactive-learning-platform)
+  - [2. LearnViz -- Adaptive Visualization Engine](#2-learnviz--adaptive-visualization-engine)
+  - [3. QIF Academy -- Structured Curriculum](#3-qif-academy--structured-curriculum)
+  - [4. Neuroscience -- Research Foundation](#4-neuroscience--research-foundation)
+- [How They Align](#how-they-align)
+- [Design Principles](#design-principles)
+  - [1. Separation of Concerns](#1-separation-of-concerns)
+  - [2. Adaptive by Default](#2-adaptive-by-default)
+  - [3. Progressive Enhancement](#3-progressive-enhancement)
+  - [4. Security-First (QIF Integration)](#4-security-first-qif-integration)
+- [Roadmap](#roadmap)
+  - [Phase 1: Foundation](#phase-1-foundation-)
+  - [Phase 2: Autodidactive Web Platform](#phase-2-autodidactive-web-platform--current)
+  - [Phase 3: Content Expansion](#phase-3-content-expansion)
+  - [Phase 4: Adaptive Learning](#phase-4-adaptive-learning)
+  - [Phase 5: AR/Glasses Integration](#phase-5-arglasses-integration)
+  - [Phase 6: BCI Integration (Long-term Vision)](#phase-6-bci-integration-long-term-vision)
+- [File Structure](#file-structure)
+- [Getting Started](#getting-started)
+  - [For Interactive Learning (Easiest)](#for-interactive-learning-easiest)
+  - [For QIF Academy (pip install)](#for-qif-academy-pip-install)
+  - [For Creating Visualizations](#for-creating-visualizations)
+  - [For Contributing Research](#for-contributing-research)
+- [Philosophy](#philosophy)
+- [Related](#related)
+
+---
+
 ## Autodidactive: The Web Platform
 
 **[Autodidactive](https://frontend-phi-seven-64.vercel.app)** is the public-facing web application built on this research. It's a demo of what adaptive AI-driven learning can look like.

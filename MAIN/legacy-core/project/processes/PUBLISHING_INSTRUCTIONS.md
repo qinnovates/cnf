@@ -397,7 +397,7 @@ Update `TRANSPARENCY.md` (repository root) whenever:
 
 ### NEUROETHICS_ALIGNMENT.md Updates
 
-Update `MAIN/qif/governance/NEUROETHICS_ALIGNMENT.md` when:
+Update `MAIN/governance/NEUROETHICS_ALIGNMENT.md` when:
 
 - New framework components are added
 - Security features are modified

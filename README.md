@@ -16,6 +16,26 @@ https://github.com/qinnovates/mindloft/releases/download/v1.0.0-demo/ONIDemoVide
 
 </div>
 
+## Table of Contents
+
+- [Two Models. One Mission.](#two-models-one-mission)
+  - [Classical Model — Securing Today](#classical-model--securing-today)
+  - [Quantum Model — Securing Tomorrow](#quantum-model--securing-tomorrow)
+  - [Neuroethics — The Bridge](#neuroethics--the-bridge)
+- [NIST CSF Functions — How This Project Is Organized](#nist-csf-functions--how-this-project-is-organized)
+  - [Identify — Map the Attack Surface](#identify--map-the-attack-surface)
+  - [Protect — Build the Defenses](#protect--build-the-defenses)
+  - [Detect — See What Others Miss](#detect--see-what-others-miss)
+  - [Govern — Neuroethics as Foundation](#govern--neuroethics-as-foundation)
+  - [Respond — Teach + Equip](#respond--teach--equip)
+  - [Recover — Future Work](#recover--future-work)
+- [Repository Structure](#repository-structure)
+- [Project Evolution](#project-evolution)
+- [Live Site — qinnovate.com/mindloft](#live-site--qinnovatecommindloft)
+  - [Main Pages](#main-pages)
+  - [Legacy Archive](#legacy-archive)
+- [About](#about)
+
 ---
 
 ## Two Models. One Mission.
@@ -33,7 +53,7 @@ https://github.com/qinnovates/mindloft/releases/download/v1.0.0-demo/ONIDemoVide
 
 The ONI 14-layer model extends the OSI networking stack into the biological domain, providing the first comprehensive reference architecture for BCI security.
 
-- 14-layer OSI extension (L1-L14: Silicon → Gateway → Biology)
+- 14-layer OSI extension (L1-L14: Silicon → Gateway → Cognitive Sovereignty)
 - 31 research publications across 8 topics
 - Python packages: `oni-framework`, `oni-tara`
 - Threat taxonomy: 10 tactics, 46 techniques
@@ -49,7 +69,7 @@ The QIF (Quantum Indeterministic Framework, pronounced "CHIEF") rebuilds BCI sec
 - 9 governance documents (neuroethics, regulatory compliance, consent)
 - Interactive whitepaper with AI voiceover
 
-### [Neuroethics](MAIN/qif/governance/) — The Bridge
+### [Neuroethics](MAIN/governance/) — The Bridge
 
 Without neuroethics as the foundation, both models risk enabling the very threats they aim to prevent. Just as ethical hackers protect classical systems against nation-state threats, neuroethics must be the architectural foundation for both approaches.
 
@@ -91,15 +111,15 @@ Find and analyze what classical security cannot see — quantum-scale anomalies 
 | [QI Equation](MAIN/qif/QIF-WHITEPAPER.md) | Quantum | Quantum indeterminacy as a detection signal |
 | [Visualizations](docs/visualizations/) | Both | 13+ interactive tools for exploring framework behavior |
 
-### [Govern](MAIN/qif/governance/) — Neuroethics as Foundation
+### [Govern](MAIN/governance/) — Neuroethics as Foundation
 
 Establish the ethical and regulatory context that makes both models trustworthy. Without governance, security is just capability without conscience.
 
 | Component | Description |
 |-----------|-------------|
-| [Governance (9 docs)](MAIN/qif/governance/) | Neuroethics, regulatory compliance, consent, UNESCO alignment |
-| [Transparency](MAIN/qif/governance/TRANSPARENCY.md) | Human-AI collaboration audit trail |
-| [Neuroethics Alignment](MAIN/qif/governance/NEUROETHICS_ALIGNMENT.md) | Framework-to-ethics principle mapping |
+| [Governance (9 docs)](MAIN/governance/) | Neuroethics, regulatory compliance, consent, UNESCO alignment |
+| [Transparency](MAIN/governance/TRANSPARENCY.md) | Human-AI collaboration audit trail |
+| [Neuroethics Alignment](MAIN/governance/NEUROETHICS_ALIGNMENT.md) | Framework-to-ethics principle mapping |
 
 ### [Respond](autodidact/) — Teach + Equip
 
@@ -116,6 +136,15 @@ Take action — not just against incidents, but against ignorance. Making neuros
 
 Incident response and recovery for neural security breaches. What happens after a BCI is compromised? This function is not yet built — and that honesty is part of the research.
 
+### Future Work
+
+| Initiative | Description |
+|-----------|-------------|
+| **Multi-AI CI/CD Validation** | Incorporate cross-AI review (Gemini, Claude, others) into CI/CD pipeline as automated consistency checks — validating that changes to one model propagate correctly to both Classical and Quantum frameworks. A feedback cycle that also surfaces the work to external AI systems for broader review. |
+| **STRIDE Threat Matrix** | Shared `threat-matrix.json` mapping STRIDE categories (Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation of Privilege) to both Classical 14-layer and Quantum 7-band models. Single source of truth for cross-model threat analysis. |
+| **Classical-Quantum Bridge** | Architecture ensuring changes to shared concepts (threats, defenses, neurorights) propagate between both models automatically while maintaining consistency and accuracy — validating both frameworks against each other. |
+| **Recover Function** | Incident response and recovery playbooks for neural security breaches. |
+
 **Python packages:**
 ```bash
 pip install oni-framework   # 14-layer model, coherence metric, neural firewall
@@ -130,9 +159,9 @@ pip install oni-academy     # Autodidactive — self-adaptive learning
 ```
 mindloft/
 ├── MAIN/                              # IDENTIFY + PROTECT: Map & build defenses
+│   ├── governance/                    # 9 neuroethics + compliance docs (GOVERN)
 │   ├── qif/                           # QUANTUM: QIF Framework (active, v3.1)
 │   │   ├── framework/                 # 9 architectural documents (IDENTIFY)
-│   │   ├── governance/                # 9 neuroethics + compliance docs (GOVERN)
 │   │   ├── qif-lab/                   # Equation code, tests, Quarto whitepaper
 │   │   └── images/                    # QIF model diagrams
 │   └── legacy-core/                   # CLASSICAL: ONI Foundation (established)

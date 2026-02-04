@@ -636,9 +636,9 @@ Target: 0 critical and serious violations.
 
 ```bash
 # Existing accessibility checker for Python packages
-python MAIN/qif/governance/scripts/check_accessibility.py
-python MAIN/qif/governance/scripts/check_accessibility.py --verbose
-python MAIN/qif/governance/scripts/check_accessibility.py --strict
+python MAIN/governance/scripts/check_accessibility.py
+python MAIN/governance/scripts/check_accessibility.py --verbose
+python MAIN/governance/scripts/check_accessibility.py --strict
 ```
 
 #### GitHub Action

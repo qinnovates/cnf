@@ -108,7 +108,7 @@
   2. Phase 2 — Semantic: ARIA landmarks, heading hierarchy, `aria-label`, `aria-live`, SVG alt text, WebGL fallback
   3. Phase 3 — Keyboard & Motor: keyboard audit, trap prevention, target sizing (24px min), spacing
   4. Phase 6 — Verification: Lighthouse, axe-core, VoiceOver, NVDA, keyboard-only, 200% zoom
-- **Reference:** `MAIN/qif/governance/ACCESSIBILITY.md` (full requirements document)
+- **Reference:** `MAIN/governance/ACCESSIBILITY.md` (full requirements document)
 - **Estimate:** Large effort
 
 ### [P2] accessible-landing-site ⭐ NEW

@@ -8,6 +8,26 @@
 
 ---
 
+## Table of Contents
+
+- [Quick Start](#quick-start)
+  - [Prerequisites](#prerequisites)
+  - [Render the Whitepaper](#render-the-whitepaper)
+  - [Run Equation Tests](#run-equation-tests)
+- [Architecture](#architecture)
+  - [As-Code Principle](#as-code-principle)
+- [How to Collaborate](#how-to-collaborate)
+  - [For Researchers](#for-researchers)
+  - [For Ethicists & Policy Researchers](#for-ethicists--policy-researchers)
+  - [For Experimentalists](#for-experimentalists)
+  - [For Engineers](#for-engineers)
+- [Interactive Features (HTML Whitepaper)](#interactive-features-html-whitepaper)
+- [Security](#security)
+- [Key Files Outside This Directory](#key-files-outside-this-directory)
+- [Citation](#citation)
+
+---
+
 ## Quick Start
 
 ### Prerequisites

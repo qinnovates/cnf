@@ -54,7 +54,7 @@ We present the QI equation in two complementary forms — an additive engineerin
 > **QIF** is pronounced **"chief"** — as in: chief of neural security.
 
 ::: {.callout-note title="AI Transparency Disclosure"}
-`{python} FRAMEWORK['ai_transparency']['statement']` For methodology, contribution matrix, and documented corrections, see **[TRANSPARENCY.md](../../main/MAIN/qif/governance/TRANSPARENCY.md)**. For the complete timestamped audit trail — every derivation, AI contribution, validation result, and decision rationale — see **[`{python} FRAMEWORK['ai_transparency']['audit_trail']`](`{python} FRAMEWORK['ai_transparency']['audit_trail']`)**.
+`{python} FRAMEWORK['ai_transparency']['statement']` For methodology, contribution matrix, and documented corrections, see **[TRANSPARENCY.md](../../main/MAIN/governance/TRANSPARENCY.md)**. For the complete timestamped audit trail — every derivation, AI contribution, validation result, and decision rationale — see **[`{python} FRAMEWORK['ai_transparency']['audit_trail']`](`{python} FRAMEWORK['ai_transparency']['audit_trail']`)**.
 :::
 
 ::: {.callout-important title="Before You Read: What This Paper Is and Isn't"}

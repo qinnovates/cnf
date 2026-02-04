@@ -12,6 +12,20 @@ Named after Tara, the Buddhist goddess of protection who guides travelers safely
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [CLI Reference](#cli-reference)
+- [Architecture](#architecture)
+- [Dashboard Features](#dashboard-features)
+- [Attack Patterns](#attack-patterns)
+- [Detection Rules](#detection-rules)
+- [Neurosecurity Module](#neurosecurity-module)
+
+---
+
 ## Overview
 
 TARA provides:

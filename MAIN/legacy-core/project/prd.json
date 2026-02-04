@@ -110,7 +110,7 @@
       "id": "lazaro-munoz-consent-framework",
       "description": "Create INFORMED_CONSENT_FRAMEWORK.md based on Lázaro-Muñoz research",
       "status": "complete",
-      "exit_condition": "MAIN/qif/governance/INFORMED_CONSENT_FRAMEWORK.md exists with consent requirements",
+      "exit_condition": "MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md exists with consent requirements",
       "completed_at": "2026-01-24",
       "priority": "high",
       "learnings": "Integrated 8 ethical themes from aDBS research (91% privacy concerns, 74% consent, 57% autonomy). Continuous consent model required for adaptive devices."
@@ -119,7 +119,7 @@
       "id": "lazaro-munoz-post-deployment",
       "description": "Create POST_DEPLOYMENT_ETHICS.md for device lifecycle management",
       "status": "complete",
-      "exit_condition": "MAIN/qif/governance/POST_DEPLOYMENT_ETHICS.md exists with lifecycle framework",
+      "exit_condition": "MAIN/governance/POST_DEPLOYMENT_ETHICS.md exists with lifecycle framework",
       "completed_at": "2026-01-24",
       "priority": "high",
       "learnings": "Post-trial access is ethically problematic when no alternatives exist. Device maintenance costs $10K+/year. No US requirements for post-trial services."
@@ -128,7 +128,7 @@
       "id": "lazaro-munoz-pediatric",
       "description": "Create PEDIATRIC_CONSIDERATIONS.md for minors and incapacity",
       "status": "complete",
-      "exit_condition": "MAIN/qif/governance/PEDIATRIC_CONSIDERATIONS.md exists with tri-level authorization model",
+      "exit_condition": "MAIN/governance/PEDIATRIC_CONSIDERATIONS.md exists with tri-level authorization model",
       "completed_at": "2026-01-24",
       "priority": "high",
       "learnings": "Don't treat minors as small adults. 4 pressing concerns: uncertainty (72%), decision-making roles (52%), information scarcity (52%), regulatory status (24%). Assent capacity concerns at 80%."

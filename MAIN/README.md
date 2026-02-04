@@ -6,13 +6,22 @@ This pillar contains all neurosecurity research under the Mindloft umbrella.
 
 ---
 
+## Table of Contents
+
+- [Structure](#structure)
+- [Key Resources](#key-resources)
+- [Evolution](#evolution)
+
+---
+
 ## Structure
 
 ```
 MAIN/
+├── governance/       Ethics, compliance, accessibility (9 docs)
+│
 ├── qif/              Quantum Indeterminacy Framework (current)
 │   ├── framework/    Core research (9 papers)
-│   ├── governance/   Ethics, compliance, accessibility
 │   └── images/       QIF model diagrams
 │
 ├── legacy-core/      ONI Framework legacy (v1)

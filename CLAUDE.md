@@ -29,8 +29,8 @@
 | **Website Stats** | `docs/index.html` | **Dynamic stats system - see "Website Stats System" section** |
 | **Main Wiki (INDEX)** | `MAIN/legacy-core/INDEX.md` | **Central hub - navigation, dependencies, cross-references** |
 | **Python Package** | `MAIN/legacy-core/oni-framework/` | **pip install oni-framework** |
-| **Transparency Statement** | `MAIN/qif/governance/TRANSPARENCY.md` | **Human-AI collaboration audit trail** |
-| **Neuroethics Alignment** | `MAIN/qif/governance/NEUROETHICS_ALIGNMENT.md` | **Framework-to-ethics principle mapping** |
+| **Transparency Statement** | `MAIN/governance/TRANSPARENCY.md` | **Human-AI collaboration audit trail** |
+| **Neuroethics Alignment** | `MAIN/governance/NEUROETHICS_ALIGNMENT.md` | **Framework-to-ethics principle mapping** |
 | **Research Verification** | `MAIN/legacy-core/resources/agents/RESEARCH_VERIFICATION_PROTOCOL.md` | **Anti-hallucination firewall for claims** |
 | **Personas** | `MAIN/legacy-core/resources/agents/PERSONAS.md` | **Agent personas for research verification** |
 | Topic README Template | `MAIN/legacy-core/resources/templates/README_TEMPLATE.md` | Template for topic-level overviews |
@@ -58,6 +58,8 @@
 
 > **Why this distinction?** `INDEX.md` is unique to the main wiki. Topic folders use `README.md` because GitHub automatically renders it when viewing folders, providing a better browsing experience.
 
+> **All README.md files MUST include a `## Table of Contents` section** listing all H2 (and optionally H3) headings as anchor links. Place it immediately after the title/description block. Update it whenever headings change.
+
 ---
 
 ## Repository File Tree
@@ -80,10 +82,11 @@ mindloft/                               # Local folder (remote: github.com/qinno
 ├── MAIN/                      # ═══ ALL NEUROSECURITY CONTENT ═══
 │   ├── README.md
 │   │
+│   ├── governance/                     # 9 neuroethics & compliance documents
+│   │
 │   ├── qif/                            # QIF — Quantum Indeterministic Framework (v2)
 │   │   ├── README.md                   # Framework overview + model concept image
 │   │   ├── framework/                  # 9 architectural documents (01-09)
-│   │   ├── governance/                 # 9 neuroethics & compliance documents
 │   │   └── images/                     # QIF model concept diagrams
 │   │
 │   ├── legacy-core/                    # Original ONI research (preserved)
@@ -783,12 +786,12 @@ Use this text in all technical documents:
 
 | Document | Location | Purpose |
 |----------|----------|---------|
-| `TRANSPARENCY.md` | `MAIN/qif/governance/` | Audit trail of Human-AI cognitive boundary |
-| `NEUROETHICS_ALIGNMENT.md` | `MAIN/qif/governance/` | Maps framework components to ethical principles |
+| `TRANSPARENCY.md` | `MAIN/governance/` | Audit trail of Human-AI cognitive boundary |
+| `NEUROETHICS_ALIGNMENT.md` | `MAIN/governance/` | Maps framework components to ethical principles |
 
 ### When to Update TRANSPARENCY.md
 
-Update `MAIN/qif/governance/TRANSPARENCY.md` whenever:
+Update `MAIN/governance/TRANSPARENCY.md` whenever:
 
 1. **New publications are added** — Add to contribution matrix if significant AI assistance used
 2. **Code changes with AI assistance** — Document any AI suggestions that were rejected/modified
@@ -818,7 +821,7 @@ When documenting significant AI interactions, use this format:
 
 ### NEUROETHICS_ALIGNMENT.md Updates
 
-Update `MAIN/qif/governance/NEUROETHICS_ALIGNMENT.md` when:
+Update `MAIN/governance/NEUROETHICS_ALIGNMENT.md` when:
 
 1. **New framework components added** — Map to ethical principles
 2. **Security features modified** — Update ethical reasoning

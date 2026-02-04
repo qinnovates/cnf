@@ -290,70 +290,70 @@
           "title": "Transparency Statement",
           "description": "Human-AI collaboration audit trail. Cognitive boundary documentation and HITL methodology.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/TRANSPARENCY.md"
+          "path": "MAIN/governance/TRANSPARENCY.md"
         },
         {
           "id": "neuroethics-alignment",
           "title": "Neuroethics Alignment",
           "description": "Maps framework components to cognitive liberty, mental privacy, and mental integrity principles.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/NEUROETHICS_ALIGNMENT.md"
+          "path": "MAIN/governance/NEUROETHICS_ALIGNMENT.md"
         },
         {
           "id": "informed-consent",
           "title": "Informed Consent Framework",
           "description": "Consent architecture for BCIs. Continuous consent, withdrawal protocols, capacity assessment.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/INFORMED_CONSENT_FRAMEWORK.md"
+          "path": "MAIN/governance/INFORMED_CONSENT_FRAMEWORK.md"
         },
         {
           "id": "pediatric-considerations",
           "title": "Pediatric Considerations",
           "description": "Guidelines for minors and individuals with limited capacity. Age-appropriate consent models.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/PEDIATRIC_CONSIDERATIONS.md"
+          "path": "MAIN/governance/PEDIATRIC_CONSIDERATIONS.md"
         },
         {
           "id": "post-deployment-ethics",
           "title": "Post-Deployment Ethics",
           "description": "Device lifecycle, maintenance obligations, abandonment prevention, end-of-life protocols.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/POST_DEPLOYMENT_ETHICS.md"
+          "path": "MAIN/governance/POST_DEPLOYMENT_ETHICS.md"
         },
         {
           "id": "regulatory-compliance",
           "title": "Regulatory Compliance",
           "description": "US & international regulatory mapping: FDA, state neurorights laws, MIND Act, UNESCO, Chile, EU.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/REGULATORY_COMPLIANCE.md"
+          "path": "MAIN/governance/REGULATORY_COMPLIANCE.md"
         },
         {
           "id": "unesco-alignment",
           "title": "UNESCO Alignment",
           "description": "Mapping to UNESCO Recommendation on Ethics of Neurotechnology (2025). 15 of 17 elements implemented.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/UNESCO_ALIGNMENT.md"
+          "path": "MAIN/governance/UNESCO_ALIGNMENT.md"
         },
         {
           "id": "data-policy-faq",
           "title": "Data Policy FAQ",
           "description": "Privacy questions, anonymization, user rights, known vulnerabilities.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/DATA_POLICY_FAQ.md"
+          "path": "MAIN/governance/DATA_POLICY_FAQ.md"
         },
         {
           "id": "accessibility",
           "title": "Accessibility",
           "description": "Accessibility standards and compliance for ONI tools and documentation.",
           "badge": "guide",
-          "path": "MAIN/qif/governance/ACCESSIBILITY.md"
+          "path": "MAIN/governance/ACCESSIBILITY.md"
         },
         {
           "id": "qif-neuroethics",
           "title": "QIF NeuroEthics",
           "description": "11 open questions on quantum biometric governance, regulatory gaps (HIPAA/GDPR/CCPA/EU AI Act/Chile Neurorights), and admissions thesis foundation.",
           "badge": "research",
-          "path": "MAIN/qif/governance/QIF-NEUROETHICS.md",
+          "path": "MAIN/governance/QIF-NEUROETHICS.md",
           "note": "Living document — sourced from drafts/ai-working/QIF-NEUROETHICS.md"
         }
       ]

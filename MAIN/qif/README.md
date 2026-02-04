@@ -10,6 +10,17 @@
 
 ---
 
+## Table of Contents
+
+- [What This Is](#what-this-is)
+- [The Framework (9 documents)](#the-framework-9-documents)
+- [Governance (Neuroethics First)](#governance-neuroethics-first)
+- [Key Concepts](#key-concepts)
+- [Two Models, One Mission](#two-models-one-mission)
+- [Evolution](#evolution)
+
+---
+
 ## What This Is
 
 A ground-up architectural redesign of BCI (Brain-Computer Interface) security, built from neuroscience constraints rather than retrofitted IT models. This is the Quantum Model — the active research framework that builds upon the [Classical Model (ONI)](../legacy-core/).
@@ -43,15 +54,15 @@ The original ONI Framework put the Neural Gateway at Layer 8 (middle of a 14-lay
 
 | Document | Focus |
 |----------|-------|
-| [TRANSPARENCY](governance/TRANSPARENCY.md) | Human-AI collaboration audit trail |
-| [NEUROETHICS_ALIGNMENT](governance/NEUROETHICS_ALIGNMENT.md) | Framework-to-ethics principle mapping |
-| [UNESCO_ALIGNMENT](governance/UNESCO_ALIGNMENT.md) | 15/17 UNESCO Recommendation elements implemented |
-| [REGULATORY_COMPLIANCE](governance/REGULATORY_COMPLIANCE.md) | FDA, state laws, MIND Act, EU alignment |
-| [INFORMED_CONSENT](governance/INFORMED_CONSENT_FRAMEWORK.md) | Consent requirements (Lazaro-Munoz framework) |
-| [POST_DEPLOYMENT](governance/POST_DEPLOYMENT_ETHICS.md) | Device lifecycle and abandonment prevention |
-| [PEDIATRIC](governance/PEDIATRIC_CONSIDERATIONS.md) | Minors and limited capacity guidelines |
-| [DATA_POLICY](governance/DATA_POLICY_FAQ.md) | Privacy FAQ and user rights |
-| [ACCESSIBILITY](governance/ACCESSIBILITY.md) | Accessibility standards and compliance |
+| [TRANSPARENCY](../governance/TRANSPARENCY.md) | Human-AI collaboration audit trail |
+| [NEUROETHICS_ALIGNMENT](../governance/NEUROETHICS_ALIGNMENT.md) | Framework-to-ethics principle mapping |
+| [UNESCO_ALIGNMENT](../governance/UNESCO_ALIGNMENT.md) | 15/17 UNESCO Recommendation elements implemented |
+| [REGULATORY_COMPLIANCE](../governance/REGULATORY_COMPLIANCE.md) | FDA, state laws, MIND Act, EU alignment |
+| [INFORMED_CONSENT](../governance/INFORMED_CONSENT_FRAMEWORK.md) | Consent requirements (Lazaro-Munoz framework) |
+| [POST_DEPLOYMENT](../governance/POST_DEPLOYMENT_ETHICS.md) | Device lifecycle and abandonment prevention |
+| [PEDIATRIC](../governance/PEDIATRIC_CONSIDERATIONS.md) | Minors and limited capacity guidelines |
+| [DATA_POLICY](../governance/DATA_POLICY_FAQ.md) | Privacy FAQ and user rights |
+| [ACCESSIBILITY](../governance/ACCESSIBILITY.md) | Accessibility standards and compliance |
 
 ---
 
@@ -87,4 +98,4 @@ This framework evolved from the original ONI (Open Neurosecurity Interoperabilit
 *Author: Kevin Qi*
 *Started: February 2026*
 *Status: Active Design Phase*
-*See also: [Classical Model →](../legacy-core/) | [Neuroethics →](governance/)*
+*See also: [Classical Model →](../legacy-core/) | [Neuroethics →](../governance/)*

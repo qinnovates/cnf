@@ -11,9 +11,9 @@
 ```
 mindloft/
 ├── MAIN/
+│   ├── governance/            # 9 ethics/compliance documents
 │   ├── qif/                  # Quantum Indeterminacy Framework
-│   │   ├── framework/        # 9 research documents
-│   │   └── governance/       # 9 ethics/compliance documents
+│   │   └── framework/        # 9 research documents
 │   └── legacy-core/          # ONI Foundation (v1)
 │       ├── oni-framework/    # Python package
 │       ├── tara-nsec-platform/

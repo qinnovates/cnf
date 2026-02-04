@@ -48,7 +48,7 @@ jobs:
       - name: Run accessibility checker
         id: a11y-check
         run: |
-          cd qif/governance/scripts
+          cd MAIN/governance/scripts
           if [ "${{ github.event.inputs.strict }}" == "true" ]; then
             python check_accessibility.py --verbose --strict
           else
@@ -73,7 +73,7 @@ jobs:
         with:
           name: accessibility-report
           path: |
-            qif/governance/scripts/*.log
+            MAIN/governance/scripts/*.log
           retention-days: 30
         continue-on-error: true
 

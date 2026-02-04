@@ -262,15 +262,15 @@ The ONI Framework maintains Responsible AI standards and documents alignment wit
 
 | Document | Purpose |
 |----------|---------|
-| [DATA_POLICY_FAQ.md](governance/DATA_POLICY_FAQ.md) | **FAQ & Data Policy** — privacy questions, anonymization, user rights, known vulnerabilities |
-| [TRANSPARENCY.md](governance/TRANSPARENCY.md) | Human-AI collaboration audit trail — cognitive boundary documentation, HITL methodology |
-| [NEUROETHICS_ALIGNMENT.md](governance/NEUROETHICS_ALIGNMENT.md) | Maps framework components to cognitive liberty, mental privacy, mental integrity principles |
-| [UNESCO_ALIGNMENT.md](governance/UNESCO_ALIGNMENT.md) | **UNESCO Recommendation (2025) mapping** — 15 of 17 elements fully implemented across all three pillars |
-| [REGULATORY_COMPLIANCE.md](governance/REGULATORY_COMPLIANCE.md) | **US & international regulatory mapping** — FDA, HIPAA, NIST, state neurorights laws, MIND Act, UNESCO, Chile, EU |
-| [INFORMED_CONSENT_FRAMEWORK.md](governance/INFORMED_CONSENT_FRAMEWORK.md) | Consent requirements for neural devices (Lázaro-Muñoz framework) |
-| [POST_DEPLOYMENT_ETHICS.md](governance/POST_DEPLOYMENT_ETHICS.md) | Device lifecycle, maintenance obligations, abandonment prevention |
-| [PEDIATRIC_CONSIDERATIONS.md](governance/PEDIATRIC_CONSIDERATIONS.md) | Guidelines for minors and individuals with limited capacity |
-| [ACCESSIBILITY.md](governance/ACCESSIBILITY.md) | Accessibility standards and compliance for ONI tools and documentation |
+| [DATA_POLICY_FAQ.md](../governance/DATA_POLICY_FAQ.md) | **FAQ & Data Policy** — privacy questions, anonymization, user rights, known vulnerabilities |
+| [TRANSPARENCY.md](../governance/TRANSPARENCY.md) | Human-AI collaboration audit trail — cognitive boundary documentation, HITL methodology |
+| [NEUROETHICS_ALIGNMENT.md](../governance/NEUROETHICS_ALIGNMENT.md) | Maps framework components to cognitive liberty, mental privacy, mental integrity principles |
+| [UNESCO_ALIGNMENT.md](../governance/UNESCO_ALIGNMENT.md) | **UNESCO Recommendation (2025) mapping** — 15 of 17 elements fully implemented across all three pillars |
+| [REGULATORY_COMPLIANCE.md](../governance/REGULATORY_COMPLIANCE.md) | **US & international regulatory mapping** — FDA, HIPAA, NIST, state neurorights laws, MIND Act, UNESCO, Chile, EU |
+| [INFORMED_CONSENT_FRAMEWORK.md](../governance/INFORMED_CONSENT_FRAMEWORK.md) | Consent requirements for neural devices (Lázaro-Muñoz framework) |
+| [POST_DEPLOYMENT_ETHICS.md](../governance/POST_DEPLOYMENT_ETHICS.md) | Device lifecycle, maintenance obligations, abandonment prevention |
+| [PEDIATRIC_CONSIDERATIONS.md](../governance/PEDIATRIC_CONSIDERATIONS.md) | Guidelines for minors and individuals with limited capacity |
+| [ACCESSIBILITY.md](../governance/ACCESSIBILITY.md) | Accessibility standards and compliance for ONI tools and documentation |
 | [RELATED_WORK.md](RELATED_WORK.md) | Prior BCI security research — acknowledges foundational work, positions ONI's contribution |
 | [ACADEMIC_LANDSCAPE.md](ACADEMIC_LANDSCAPE.md) | **Research landscape** — top universities, key researchers, collaboration opportunities |
 | [PARTNERSHIPS.md](PARTNERSHIPS.md) | Partnership opportunities, implementation roadmap, how to get involved |
@@ -450,14 +450,6 @@ MAIN/legacy-core/
 ├── CONTRIBUTING.md             # Contribution guidelines
 ├── RELATED_WORK.md             # Prior BCI security research
 ├── ACADEMIC_LANDSCAPE.md       # Universities, researchers, collaboration opportunities
-│
-├── governance/                 # Ethics & transparency
-│   ├── DATA_POLICY_FAQ.md      # **FAQ & Data Policy** — privacy, anonymization, vulnerabilities
-│   ├── TRANSPARENCY.md         # Human-AI collaboration audit trail
-│   ├── NEUROETHICS_ALIGNMENT.md # Framework-to-ethics principle mapping
-│   ├── INFORMED_CONSENT_FRAMEWORK.md # Consent requirements (Lázaro-Muñoz)
-│   ├── POST_DEPLOYMENT_ETHICS.md     # Device lifecycle ethics
-│   └── PEDIATRIC_CONSIDERATIONS.md   # Minors and incapacity guidelines
 │
 ├── project/                    # Project management
 │   ├── README.md               # **STATUS DASHBOARD — start here**

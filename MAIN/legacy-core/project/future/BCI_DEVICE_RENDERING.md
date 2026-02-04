@@ -117,7 +117,7 @@ Per the as-code principle:
 
 ## References
 
-- BCI Mode specification: `MAIN/qif/governance/ACCESSIBILITY.md` (Section 5)
+- BCI Mode specification: `MAIN/governance/ACCESSIBILITY.md` (Section 5)
 - Coherence metric implementation: `qif-lab/src/qif_equations.py`
 - Synthetic data generator: `qif-lab/src/synthetic_data.py`
 - Web Bluetooth API: https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API

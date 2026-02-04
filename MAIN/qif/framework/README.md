@@ -7,6 +7,14 @@
 
 ---
 
+## Table of Contents
+
+- [Navigation](#-navigation)
+- [One-Line Summary](#-one-line-summary)
+- [Design Principles](#-design-principles)
+
+---
+
 ## 🗂️ Navigation
 
 | # | Document | Purpose |

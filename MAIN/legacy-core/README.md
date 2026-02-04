@@ -6,6 +6,19 @@
 
 ---
 
+## Table of Contents
+
+- [Securing Today's Neural Frontier](#securing-todays-neural-frontier)
+- [Contents](#contents)
+  - [Publications (31 documents across 8 topics)](#publications-31-documents-across-8-topics)
+  - [Python Packages](#python-packages)
+  - [Threat Taxonomy](#threat-taxonomy)
+  - [Resources](#resources)
+  - [Archive](#archive)
+- [Relationship to the Quantum Model](#relationship-to-the-quantum-model)
+
+---
+
 ## Securing Today's Neural Frontier
 
 The Classical Model extends the OSI networking stack into the biological domain, providing the first comprehensive reference architecture for brain-computer interface security. This is the established foundation that the [Quantum Model (QIF)](../qif/) builds upon.
@@ -72,4 +85,4 @@ The publications here remain valid research. The architectural model evolved.
 
 *Originally developed as: ONI (Open Neurosecurity Interoperability)*
 *Author: Kevin Qi*
-*See also: [Quantum Model →](../qif/) | [Neuroethics →](../qif/governance/)*
+*See also: [Quantum Model →](../qif/) | [Neuroethics →](../governance/)*
