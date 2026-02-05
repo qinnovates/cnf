@@ -780,7 +780,10 @@
         }
 
         #sc-player {
-            display: none;
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
         }
     </style>
 </head>
@@ -976,6 +979,7 @@
     <iframe id="sc-player"
         width="100%" height="166"
         scrolling="no" frameborder="no"
+        allow="autoplay"
         src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/keviano/kulhi-loach&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
     </iframe>
 
@@ -1187,11 +1191,14 @@
             const toggle = document.getElementById('music-toggle');
             const iframe = document.getElementById('sc-player');
             let widget = null;
+            let widgetReady = false;
             let isPlaying = false;
             let hasInteracted = false;
+            let pendingPlay = false; // User clicked before widget ready
             let playTimeAccumulated = 0;
             let playStartTime = null;
             let messagePhase = 0; // 0=none, 1=follow, 2=first piece, 3=learning, 4=collapsed
+            let firstPlay = true; // Start halfway on first play
 
             // Message elements
             const msgFollow = document.getElementById('msg-follow');
@@ -1209,20 +1216,23 @@
                 widget = SC.Widget(iframe);
 
                 widget.bind(SC.Widget.Events.READY, function() {
+                    widgetReady = true;
                     // Set volume to comfortable level
-                    widget.setVolume(40);
+                    widget.setVolume(50);
 
-                    // Auto-play after first user interaction anywhere on page
-                    if (!hasInteracted) {
-                        document.addEventListener('click', function autoPlay() {
-                            if (!hasInteracted) {
-                                hasInteracted = true;
-                                widget.play();
-                                isPlaying = true;
-                                toggle.classList.add('playing');
-                                document.removeEventListener('click', autoPlay);
-                            }
-                        }, { once: false });
+                    // If user clicked before ready, play now
+                    if (pendingPlay) {
+                        pendingPlay = false;
+                        firstPlay = false;
+                        // Play first, then seek halfway
+                        widget.play();
+                        setTimeout(function() {
+                            widget.getDuration(function(duration) {
+                                if (duration > 0) {
+                                    widget.seekTo(duration / 2);
+                                }
+                            });
+                        }, 200);
                     }
                 });
 
@@ -1230,6 +1240,8 @@
                     isPlaying = true;
                     toggle.classList.add('playing');
                     playStartTime = Date.now();
+                    // Ensure volume is set when playing starts
+                    widget.setVolume(50);
                     startMessageSequence();
                 });
 
@@ -1244,9 +1256,15 @@
                 });
 
                 widget.bind(SC.Widget.Events.FINISH, function() {
-                    // Loop the track
+                    // Loop the track from the beginning
                     widget.seekTo(0);
                     widget.play();
+                });
+
+                widget.bind(SC.Widget.Events.ERROR, function() {
+                    console.error('SoundCloud widget error - track may not be available');
+                    isPlaying = false;
+                    toggle.classList.remove('playing');
                 });
             }
 
@@ -1297,13 +1315,33 @@
             // Toggle button click
             toggle.addEventListener('click', function(e) {
                 e.stopPropagation();
-                if (!widget) return;
+                e.preventDefault();
 
+                hasInteracted = true;
+
+                if (!widgetReady || !widget) {
+                    // Widget not ready yet, queue the play
+                    pendingPlay = true;
+                    toggle.classList.add('playing');
+                    return;
+                }
+
+                // Simple toggle based on tracked state
                 if (isPlaying) {
                     widget.pause();
                 } else {
+                    // Play first, then seek halfway on first play
                     widget.play();
-                    hasInteracted = true;
+                    if (firstPlay) {
+                        firstPlay = false;
+                        setTimeout(function() {
+                            widget.getDuration(function(duration) {
+                                if (duration > 0) {
+                                    widget.seekTo(duration / 2);
+                                }
+                            });
+                        }, 200);
+                    }
                 }
             });
 
