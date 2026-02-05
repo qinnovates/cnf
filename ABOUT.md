@@ -42,9 +42,31 @@ In the 1970s, computer networks were fragmented — every manufacturer had its o
 
 They didn't wait until networking was "figured out." They built the framework while the technology was still evolving, and it shaped everything that followed.
 
-When I was in Istanbul, I found a hidden gem — the oldest bookstore in the city. Inside, I discovered a copy of *The Development of the Periodic Law*, published in 1896 by F.P. Venable, Ph.D., Professor at the University of North Carolina. It only contained the original periodic elements — about 78 known at the time, before the discovery of noble gases. The book documents how the periodic table went through dozens of visual representations — circles, spirals, waves, towers — before arriving at the rectangular grid even children explore today. Mendeleev didn't just organize what was known — he left gaps for what wasn't. Those gaps predicted elements that were later discovered.
+## The Discovery
 
-I carried an entire stack of books through Istanbul, to Morocco, and back home — like a father gripping onto their child with all their might through foreign territory. Airport security at every stop questioned why I had them. That journey fueled something in me: a hunger for yesterday to act as the foundation for tomorrow.
+I was torn. I wanted to see the world — to explore beyond the bubble I'd unknowingly built around myself. But a devastating experience from years past had quietly drawn boundaries I was never meant to live within. I had never left the States.
+
+Then a good friend returned from Istanbul. The way they spoke about it — the stories, the wonder in their voice — something pulled at me. I hadn't considered Istanbul before. I hadn't considered anywhere. But their transformation made me want to try.
+
+When I landed, the old patterns kicked in. Fear. Anxiety. The familiar weight of boundaries I thought I'd outgrown — and it didn't help that a terrorist bombing happened the day I arrived, just one block from where I was initially staying. But then I met Ali — my Airbnb host — and everything shifted. Ali was like a sagacious captain straight out of Melville's *Moby Dick* — the kind of man who had traveled the world and carried its stories in his eyes. He treated me like family. When he mentioned one of the oldest bookstores in the city and saw the spark in my eyes, he didn't just point me there. He came with me. And when I lost myself in the stacks — pulling atlases, flipping through century-old pages — he waited. Two hours. Patiently. No rush, no judgment. Just presence.
+
+That moment broke something open in me.
+
+<div align="center">
+<table><tr>
+<td><img src="docs/images/istanbul/kevin-reading.jpg" alt="Kevin reading in Istanbul bookstore" width="180"></td>
+<td><img src="docs/images/istanbul/kevin-ladder.jpg" alt="Kevin on ladder in bookstore" width="180"></td>
+<td><img src="docs/images/istanbul/kevin-map.jpg" alt="Kevin with antique map" width="180"></td>
+<td><img src="docs/images/istanbul/ali-thumbsup.jpg" alt="Ali giving thumbs up" width="180"></td>
+</tr></table>
+<em>Istanbul, 2019 — Ali patiently waited as I found the perfect map to bring home.</em>
+</div>
+
+What I gathered from that journey was insight. Insight is action earned through lived experience — and without experience, insight stays absent. Istanbul shaped me into who I am today. From my recent readings, I've learned that the people I admire all had to climb mountains, and many fell. But the ones who endured didn't just get back up — they learned *how* they fell. They redirected. They found a way to tell their story in a new light — one that helps others see what they can learn from, so perhaps they never have to fall the same way.
+
+Ali showed me a hidden gem: the oldest bookstore in the city. Inside, I discovered a copy of *The Development of the Periodic Law*, published in 1896 by F.P. Venable, Ph.D., Professor at the University of North Carolina. It only contained the original periodic elements — about 78 known at the time, before the discovery of noble gases. The book documents how the periodic table went through dozens of visual representations — circles, spirals, waves, towers — before arriving at the rectangular grid even children explore today. Mendeleev didn't just organize what was known — he left gaps for what wasn't. Those gaps predicted elements that were later discovered.
+
+I carried an entire stack of books through Istanbul, to Morocco, and back home — guarding them through foreign territory like treasures. Airport security at every stop questioned why I had them. That journey fueled something in me: a hunger for yesterday to act as the foundation for tomorrow.
 
 QIF follows the same principle. There are unknowns in neuroscience today — and that frontier is being challenged every day. Like the OSI model and the periodic table, QIF is a living framework: organizing what we know, highlighting what we don't, evolving as discovery fills in the gaps. From these foundations: limitless possibilities — security integration, automated signal detection through TARA, and directions we haven't yet imagined.
 
