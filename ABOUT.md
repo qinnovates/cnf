@@ -59,7 +59,7 @@ That moment broke something open in me.
 <td><img src="docs/images/istanbul/kevin-map.jpg" alt="Kevin with antique map" width="180"></td>
 <td><img src="docs/images/istanbul/ali-thumbsup.jpg" alt="Ali giving thumbs up" width="180"></td>
 </tr></table>
-<em>Istanbul, 2019 — Ali patiently waited as I found the perfect map to bring home.</em>
+<em>Istanbul, 2022 — Ali patiently waited as I found the perfect map to bring home.</em>
 </div>
 
 What I gathered from that journey was insight. Insight is action earned through lived experience — and without experience, insight stays absent. Istanbul shaped me into who I am today. From my recent readings, I've learned that the people I admire all had to climb mountains, and many fell. But the ones who endured didn't just get back up — they learned *how* they fell. They redirected. They found a way to tell their story in a new light — one that helps others see what they can learn from, so perhaps they never have to fall the same way.
