@@ -1,0 +1,63 @@
+name: Sync Wiki
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'docs/qif-whitepaper/README.md'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+
+      - name: Checkout wiki repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}.wiki
+          path: wiki
+
+      - name: Sync README files to wiki
+        run: |
+          # Home page
+          cp README.md wiki/Home.md
+
+          # QIF Whitepaper page (if exists)
+          if [ -f "docs/qif-whitepaper/README.md" ]; then
+            cp docs/qif-whitepaper/README.md wiki/QIF-Whitepaper.md
+          fi
+
+          # Create sidebar navigation
+          cat > wiki/_Sidebar.md << 'EOF'
+          ## Mindloft Wiki
+
+          **Product Company**
+          - [Home](Home)
+
+          **Products**
+          - [Mindloft Core](Home#-products)
+          - [Subvocalization BCI](Home#subvocalization-bci-early-development)
+
+          **Documentation**
+          - [QIF Whitepaper](QIF-Whitepaper)
+
+          ---
+
+          **Links**
+          - [GitHub Repo](https://github.com/qinnovates/mindloft)
+          - [Website](https://mindloft.org)
+          - [Standards (Qinnovate)](https://qinnovate.com)
+          EOF
+
+      - name: Commit and push to wiki
+        run: |
+          cd wiki
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Auto-sync from main repo: ${{ github.sha }}"
+          git push
