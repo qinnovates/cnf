@@ -141,12 +141,15 @@ Mindloft operates on the **CIV (Continuous Iteration & Validation)** lifecycle, 
 - Hypothesis formulation based on real-world neural signal data
 
 **2. 🛠️ Proof-of-Concept & Development (Mindloft Lab)**
-- Building testable security models
-- **POC exploit development in controlled laboratory environments**
+- Building testable models (security vulnerabilities, new features, capabilities)
+- **POC development in controlled laboratory environments:**
+  - Security POCs: Testing vulnerabilities and threat models
+  - Feature POCs: Prototyping new BCI capabilities
+  - Capability POCs: Validating detection methods or security mechanisms
 - Draft frameworks and equation validation in qif-lab
 - QIF-WHITEPAPER.md: Formalizing findings
 
-**Critical:** All POC exploit testing occurs **exclusively in isolated lab environments** under strict ethical research constraints. We never deploy exploits against production systems or real-world targets.
+**Critical:** All POC testing occurs **exclusively in isolated lab environments** under strict ethical research constraints. For security POCs, we never deploy exploits against production systems or real-world targets. For feature POCs, new capabilities undergo rigorous validation before standardization.
 
 **3. ✅ Validation & Feedback (Qinnovate Standards)**
 - Submit findings to Qinnovate for peer review
@@ -176,7 +179,10 @@ Mindloft operates on the **CIV (Continuous Iteration & Validation)** lifecycle, 
 
 ### Why This Matters
 
-When we discover a vulnerability through lab POC testing, we don't just patch it — we work with Qinnovate to ensure the entire BCI security community benefits from the finding. The vulnerability becomes a **validated data point** that strengthens the standard for everyone.
+When we validate a POC in the lab — whether it's a security vulnerability, a new BCI capability, or an enhanced detection method — we don't just implement it in our products. We work with Qinnovate to ensure the entire BCI security community benefits from the finding. Every validated POC becomes a **peer-reviewed data point** that strengthens the standard for everyone:
+- **Security POCs** reveal vulnerabilities that get formally documented and mitigated
+- **Feature POCs** introduce new capabilities that become standardized for the ecosystem
+- **Capability POCs** validate detection methods that improve threat intelligence for all
 
 **Our role:** The hands-on lab and product builder
 **Qinnovate's role:** The governing body that validates and standardizes our findings
