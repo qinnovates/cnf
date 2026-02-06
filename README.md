@@ -1,4 +1,21 @@
-# Mindloft
+<div align="center">
+
+![divider](https://raw.githubusercontent.com/qinnovates/mindloft/main/docs/images/divider-dash.svg)
+
+</div>
+
+# MINDLOFT
+
+<div align="center">
+
+**Qinnovate** — *The Engine* (open standards)
+**Mindloft** — *The Workshop* (products & platforms)
+
+*Think: W3C defines web standards, Chrome implements them*
+
+</div>
+
+---
 
 **Building BCI-Native Tools for Web 5.0**
 
