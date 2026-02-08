@@ -1,5 +1,5 @@
 /**
- * QBrand — Lightweight brand token loader for qinnovate.com
+ * QBrand — Lightweight brand token loader for mindloft.org
  *
  * Fetches brands.json, caches it, and injects CSS custom properties.
  * Pages should keep hardcoded :root CSS as fallback (no FOUC).

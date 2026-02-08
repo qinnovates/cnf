@@ -12,15 +12,15 @@
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QInnovate</title>
-  <meta name="description" content="QInnovate — Securing the Neural Frontier.">
-  <meta property="og:title" content="QInnovate">
+  <title>Mindloft CTF</title>
+  <meta name="description" content="Mindloft — Securing the Neural Frontier.">
+  <meta property="og:title" content="Mindloft CTF">
   <meta property="og:description" content="Securing the Neural Frontier.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mindloft.org/ctf/">
   <meta property="og:image" content="https://mindloft.org/images/ONI_Banner_Logo.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="QInnovate">
+  <meta name="twitter:title" content="Mindloft CTF">
   <meta name="twitter:description" content="Securing the Neural Frontier.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0f'/><text x='50' y='62' font-family='Arial' font-size='48' font-weight='bold' fill='%2300e5ff' text-anchor='middle'>Q</text></svg>">
 
@@ -654,7 +654,7 @@
         <input type="email" class="recruit-input" id="recruit-email" placeholder="your@email.com" required>
         <label class="recruit-checkbox-row">
           <input type="checkbox" id="recruit-newsletter">
-          Keep me updated on QInnovate research
+          Keep me updated on Mindloft research
         </label>
         <textarea class="recruit-textarea" id="recruit-ideas" placeholder="Ideas, feedback, or what drew you here..."></textarea>
         <button type="submit" class="recruit-submit">Get in Touch &rarr;</button>
@@ -805,7 +805,7 @@
     (function() {
       var toggle = document.getElementById('a11y-toggle');
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var effectsOn = localStorage.getItem('qinnovate-effects');
+      var effectsOn = localStorage.getItem('mindloft-effects');
 
       if (prefersReduced) {
         effectsOn = false;
@@ -833,7 +833,7 @@
 
       toggle.addEventListener('click', function() {
         effectsOn = !effectsOn;
-        localStorage.setItem('qinnovate-effects', effectsOn);
+        localStorage.setItem('mindloft-effects', effectsOn);
         applyEffects(effectsOn);
       });
     })();
@@ -1082,7 +1082,7 @@
         if (ideas) body += 'Ideas/Feedback:\n' + ideas + '\n\n';
         body += 'Flags captured: ' + window._ctf.state.flags.join(', ');
 
-        window.location.href = 'mailto:kevin@qinnovate.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = 'mailto:kevin@mindloft.org?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       });
 
       // Triple-click easter egg on mystery
