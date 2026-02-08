@@ -14,9 +14,15 @@
 >
 > **ONI content preserved at:** `docs/legacy/` (website versions), `docs/legacy/whitepaper-oni/` (ONI whitepaper), `MAIN/legacy-core/` (original research)
 >
-> **QIF whitepaper:** `docs/whitepaper/` — interactive immersive experience (3D scroll, AI voiceover, BCI-adaptive). Content will be populated from QIF-WHITEPAPER.md draft.
+> **QIF whitepaper:** The published whitepaper lives on **qinnovate.com** (the standards body site), NOT on mindloft.org. The `docs/whitepaper/` and `docs/qif-whitepaper/` folders on mindloft are **STALE (v3.0) and should NOT be updated.** All whitepaper updates go through the qinnovate repo.
 >
 > **When in doubt:** If a task references "the framework," "the whitepaper," or "the model" — it means QIF, not ONI.
+>
+> **ARCHIVED — DO NOT MODIFY:**
+> - `docs/whitepaper/` — Stale v3.0 whitepaper. Do NOT update. Redirects to `docs/qif-whitepaper/`.
+> - `docs/qif-whitepaper/` — Stale v3.0 immersive whitepaper. Do NOT update. Framework whitepapers are published on qinnovate.com.
+> - `docs/legacy/` — Archived ONI website versions and ONI whitepaper. Do NOT update.
+> - `qinnovates/qinnovates.github.io` repo — **ARCHIVED.** Merged into qinnovate. Never push to or reference for new work.
 
 ---
 
@@ -1013,6 +1019,6 @@ mkdir MAIN/legacy-core/publications/[topic-name]/
 
 ---
 
-*Version: 8.1*
-*Last Updated: 2026-01-24*
+*Version: 8.2*
+*Last Updated: 2026-02-08*
 *For: Claude AI Assistant*
