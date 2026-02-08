@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neural Alert</title>
+    <style>
+        body { font-family: system-ui; background: #1a1a2e; color: white; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+        .alert-card { background: #16213e; border: 2px solid #e94560; border-radius: 16px; padding: 32px; max-width: 400px; text-align: center; box-shadow: 0 0 30px rgba(233,69,96,0.3); }
+        .icon { font-size: 48px; margin-bottom: 16px; }
+        h1 { font-size: 20px; margin-bottom: 8px; color: #e94560; }
+        p { font-size: 14px; color: #a8a8b3; line-height: 1.6; margin-bottom: 16px; }
+        .details { background: #0f3460; border-radius: 8px; padding: 12px; margin: 16px 0; text-align: left; font-size: 13px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 4px 0; }
+        .detail-label { color: #a8a8b3; }
+        .detail-value { color: white; font-weight: 500; }
+        .btn { padding: 12px 24px; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 600; width: 100%; margin-top: 8px; }
+        .btn-danger { background: #e94560; color: white; }
+        .btn-dismiss { background: #0f3460; color: #a8a8b3; }
+    </style>
+</head>
+<body>
+    <div class="alert-card">
+        <div class="icon">Warning</div>
+        <h1>Impedance Anomaly Detected</h1>
+        <p>Channel 47 has exceeded the impedance threshold. Signal quality may be degraded. Recommended action: recalibrate or check electrode contact.</p>
+        <div class="details">
+            <div class="detail-row"><span class="detail-label">Channel</span><span class="detail-value">47</span></div>
+            <div class="detail-row"><span class="detail-label">Impedance</span><span class="detail-value">12.3k ohm</span></div>
+            <div class="detail-row"><span class="detail-label">Threshold</span><span class="detail-value">10.0k ohm</span></div>
+            <div class="detail-row"><span class="detail-label">Duration</span><span class="detail-value">4m 32s</span></div>
+            <div class="detail-row"><span class="detail-label">QI Impact</span><span class="detail-value">-0.03 (minimal)</span></div>
+        </div>
+        <button class="btn btn-danger">Recalibrate Now</button>
+        <button class="btn btn-dismiss">Dismiss</button>
+    </div>
+</body>
+</html>

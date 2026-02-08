@@ -44,7 +44,6 @@ All three brands share the "QI" root, which carries a double meaning:
 
 | Usage | Meaning |
 |-------|---------|
-| **QI** (collaboration) | Quantum Intelligence — Kevin Qi + Claude, thinking together |
 | **QI** (variable) | Quantum Indeterminacy — the core variable in the QIF equation |
 | **QInnovate** | QI + Innovate — the organization |
 | **QIF** | QI + Framework — the framework |

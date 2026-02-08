@@ -476,4 +476,4 @@ Full derivations: QIF-DERIVATION-LOG.md Entry 35
 *Document version: 4.0*
 *Created: 2026-02-02*
 *Last updated: 2026-02-06*
-*Maintainer: Quantum Intelligence (Kevin Qi + Claude)*
+*Maintainer: Kevin Qi*

@@ -1,0 +1,110 @@
+[
+  {
+    "file": "bci-alert.html",
+    "original": {
+      "total_bytes": 2393,
+      "html_bytes": 1234,
+      "css_bytes": 1159,
+      "js_bytes": 0
+    },
+    "staves": {
+      "total_bytes": 856,
+      "valid": true,
+      "header_bytes": 16,
+      "string_pool_bytes": 427,
+      "string_pool_entries": 59,
+      "style_table_bytes": 158,
+      "style_table_entries": 12,
+      "dom_bytecode_bytes": 255,
+      "dom_opcodes": 88,
+      "total_staves_bytes": 856
+    },
+    "compression": {
+      "ratio_percent": 64.2,
+      "bytes_saved": 1537,
+      "reduction_factor": 2.8
+    },
+    "pq_comparison": {
+      "pq_handshake_overhead_bytes": 23666,
+      "content_savings_bytes": 1537,
+      "net_savings_bytes": -22129,
+      "pq_offset": false,
+      "sessions_to_offset": 16,
+      "classical_total": 11905,
+      "pq_total": 35571,
+      "pq_plus_staves_total": 34034
+    }
+  },
+  {
+    "file": "bci-dashboard.html",
+    "original": {
+      "total_bytes": 20633,
+      "html_bytes": 12196,
+      "css_bytes": 6809,
+      "js_bytes": 1628
+    },
+    "staves": {
+      "total_bytes": 4353,
+      "valid": true,
+      "header_bytes": 16,
+      "string_pool_bytes": 1933,
+      "string_pool_entries": 243,
+      "style_table_bytes": 559,
+      "style_table_entries": 47,
+      "dom_bytecode_bytes": 1845,
+      "dom_opcodes": 666,
+      "total_staves_bytes": 4353
+    },
+    "compression": {
+      "ratio_percent": 78.9,
+      "bytes_saved": 16280,
+      "reduction_factor": 4.7
+    },
+    "pq_comparison": {
+      "pq_handshake_overhead_bytes": 23666,
+      "content_savings_bytes": 16280,
+      "net_savings_bytes": -7386,
+      "pq_offset": false,
+      "sessions_to_offset": 2,
+      "classical_total": 30145,
+      "pq_total": 53811,
+      "pq_plus_staves_total": 37531
+    }
+  },
+  {
+    "file": "bci-settings.html",
+    "original": {
+      "total_bytes": 10500,
+      "html_bytes": 7703,
+      "css_bytes": 2033,
+      "js_bytes": 764
+    },
+    "staves": {
+      "total_bytes": 3355,
+      "valid": true,
+      "header_bytes": 16,
+      "string_pool_bytes": 1874,
+      "string_pool_entries": 150,
+      "style_table_bytes": 266,
+      "style_table_entries": 24,
+      "dom_bytecode_bytes": 1199,
+      "dom_opcodes": 410,
+      "total_staves_bytes": 3355
+    },
+    "compression": {
+      "ratio_percent": 68.0,
+      "bytes_saved": 7145,
+      "reduction_factor": 3.1
+    },
+    "pq_comparison": {
+      "pq_handshake_overhead_bytes": 23666,
+      "content_savings_bytes": 7145,
+      "net_savings_bytes": -16521,
+      "pq_offset": false,
+      "sessions_to_offset": 4,
+      "classical_total": 20012,
+      "pq_total": 43678,
+      "pq_plus_staves_total": 36533
+    }
+  }
+]

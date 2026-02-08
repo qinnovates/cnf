@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Interface Dashboard</title>
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --success: #0f9d58;
+            --warning: #f4b400;
+            --danger: #db4437;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #202124;
+            --text-secondary: #5f6368;
+            --border: #dadce0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        header h1 { font-size: 20px; font-weight: 500; }
+        .status-bar {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-connected { background-color: var(--success); }
+        .status-warning { background-color: var(--warning); }
+        .status-error { background-color: var(--danger); }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-value {
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--text);
+            margin: 8px 0;
+        }
+        .metric-unit {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .metric-change {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .metric-up { background: #e6f4ea; color: var(--success); }
+        .metric-down { background: #fce8e6; color: var(--danger); }
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 4px;
+            margin-top: 12px;
+        }
+        .channel {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: 500;
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text);
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: var(--bg); }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .btn-primary:hover { background: #1557b0; }
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .alert-warning {
+            background: #fef7e0;
+            border: 1px solid var(--warning);
+            color: #856404;
+        }
+        .alert-success {
+            background: #e6f4ea;
+            border: 1px solid var(--success);
+            color: #155724;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+        th {
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+        .signal-quality {
+            display: inline-flex;
+            gap: 2px;
+        }
+        .signal-bar {
+            width: 3px;
+            background: var(--border);
+            border-radius: 1px;
+        }
+        .signal-bar.active { background: var(--success); }
+        .footer {
+            margin-top: 24px;
+            padding: 16px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+        }
+        .qi-score {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .qi-badge {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        .qi-high { background: #e6f4ea; color: var(--success); }
+        .qi-medium { background: #fef7e0; color: #856404; }
+        .qi-low { background: #fce8e6; color: var(--danger); }
+        .nav-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 16px;
+        }
+        .nav-tab {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            cursor: pointer;
+        }
+        .nav-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Neural Interface Dashboard</h1>
+        <div class="status-bar">
+            <span class="status-indicator status-connected"></span>
+            <span>Connected</span>
+            <span style="color: var(--text-secondary)">|</span>
+            <span>Device: NI-7200</span>
+            <span style="color: var(--text-secondary)">|</span>
+            <span>Uptime: 4h 23m</span>
+            <button class="btn btn-danger">Emergency Stop</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="alert alert-warning">
+            <span>Channel 47 showing elevated impedance (12.3k ohm). Recommend recalibration.</span>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active">Overview</div>
+            <div class="nav-tab">Channels</div>
+            <div class="nav-tab">Stimulation</div>
+            <div class="nav-tab">Security</div>
+            <div class="nav-tab">Settings</div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Signal Quality</span>
+                    <span class="metric-change metric-up">+2.3%</span>
+                </div>
+                <div class="metric-value">94.7<span class="metric-unit">%</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 94.7%; background: var(--success);"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">QI Score</span>
+                    <span class="qi-badge qi-high">Secure</span>
+                </div>
+                <div class="metric-value">0.87</div>
+                <p style="font-size: 13px; color: var(--text-secondary);">All bands within expected range. No anomalies detected.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Frame Rate</span>
+                    <span class="metric-change metric-up">Stable</span>
+                </div>
+                <div class="metric-value">250<span class="metric-unit">fps</span></div>
+                <p style="font-size: 13px; color: var(--text-secondary);">64 channels active. Latency: 3.2ms</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Battery</span>
+                </div>
+                <div class="metric-value">73<span class="metric-unit">%</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 73%; background: var(--success);"></div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Est. 6h 12m remaining</p>
+            </div>
+        </div>
+
+        <div class="grid" style="margin-top: 16px;">
+            <div class="card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <span class="card-title">Channel Map (64 Channels)</span>
+                    <button class="btn">Recalibrate</button>
+                </div>
+                <div class="channel-grid">
+                    <div class="channel" style="background: #0f9d58;">1</div>
+                    <div class="channel" style="background: #0f9d58;">2</div>
+                    <div class="channel" style="background: #0f9d58;">3</div>
+                    <div class="channel" style="background: #0f9d58;">4</div>
+                    <div class="channel" style="background: #0f9d58;">5</div>
+                    <div class="channel" style="background: #0f9d58;">6</div>
+                    <div class="channel" style="background: #0f9d58;">7</div>
+                    <div class="channel" style="background: #0f9d58;">8</div>
+                    <div class="channel" style="background: #0f9d58;">9</div>
+                    <div class="channel" style="background: #0f9d58;">10</div>
+                    <div class="channel" style="background: #0f9d58;">11</div>
+                    <div class="channel" style="background: #0f9d58;">12</div>
+                    <div class="channel" style="background: #0f9d58;">13</div>
+                    <div class="channel" style="background: #0f9d58;">14</div>
+                    <div class="channel" style="background: #0f9d58;">15</div>
+                    <div class="channel" style="background: #0f9d58;">16</div>
+                    <div class="channel" style="background: #0f9d58;">17</div>
+                    <div class="channel" style="background: #0f9d58;">18</div>
+                    <div class="channel" style="background: #0f9d58;">19</div>
+                    <div class="channel" style="background: #0f9d58;">20</div>
+                    <div class="channel" style="background: #0f9d58;">21</div>
+                    <div class="channel" style="background: #0f9d58;">22</div>
+                    <div class="channel" style="background: #0f9d58;">23</div>
+                    <div class="channel" style="background: #0f9d58;">24</div>
+                    <div class="channel" style="background: #0f9d58;">25</div>
+                    <div class="channel" style="background: #1a73e8;">26</div>
+                    <div class="channel" style="background: #0f9d58;">27</div>
+                    <div class="channel" style="background: #0f9d58;">28</div>
+                    <div class="channel" style="background: #0f9d58;">29</div>
+                    <div class="channel" style="background: #0f9d58;">30</div>
+                    <div class="channel" style="background: #0f9d58;">31</div>
+                    <div class="channel" style="background: #0f9d58;">32</div>
+                    <div class="channel" style="background: #0f9d58;">33</div>
+                    <div class="channel" style="background: #0f9d58;">34</div>
+                    <div class="channel" style="background: #0f9d58;">35</div>
+                    <div class="channel" style="background: #0f9d58;">36</div>
+                    <div class="channel" style="background: #0f9d58;">37</div>
+                    <div class="channel" style="background: #0f9d58;">38</div>
+                    <div class="channel" style="background: #f4b400;">39</div>
+                    <div class="channel" style="background: #0f9d58;">40</div>
+                    <div class="channel" style="background: #0f9d58;">41</div>
+                    <div class="channel" style="background: #0f9d58;">42</div>
+                    <div class="channel" style="background: #0f9d58;">43</div>
+                    <div class="channel" style="background: #0f9d58;">44</div>
+                    <div class="channel" style="background: #0f9d58;">45</div>
+                    <div class="channel" style="background: #0f9d58;">46</div>
+                    <div class="channel" style="background: #db4437;">47</div>
+                    <div class="channel" style="background: #0f9d58;">48</div>
+                    <div class="channel" style="background: #0f9d58;">49</div>
+                    <div class="channel" style="background: #0f9d58;">50</div>
+                    <div class="channel" style="background: #0f9d58;">51</div>
+                    <div class="channel" style="background: #0f9d58;">52</div>
+                    <div class="channel" style="background: #0f9d58;">53</div>
+                    <div class="channel" style="background: #0f9d58;">54</div>
+                    <div class="channel" style="background: #0f9d58;">55</div>
+                    <div class="channel" style="background: #0f9d58;">56</div>
+                    <div class="channel" style="background: #0f9d58;">57</div>
+                    <div class="channel" style="background: #0f9d58;">58</div>
+                    <div class="channel" style="background: #0f9d58;">59</div>
+                    <div class="channel" style="background: #0f9d58;">60</div>
+                    <div class="channel" style="background: #0f9d58;">61</div>
+                    <div class="channel" style="background: #0f9d58;">62</div>
+                    <div class="channel" style="background: #0f9d58;">63</div>
+                    <div class="channel" style="background: #0f9d58;">64</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">NSP Security Status</span>
+                </div>
+                <table>
+                    <tr><th>Parameter</th><th>Status</th></tr>
+                    <tr><td>Encryption</td><td>AES-256-GCM</td></tr>
+                    <tr><td>Key Exchange</td><td>ML-KEM-768</td></tr>
+                    <tr><td>Signature</td><td>ML-DSA-65</td></tr>
+                    <tr><td>Last Key Rotation</td><td>32s ago</td></tr>
+                    <tr><td>Session Duration</td><td>4h 23m</td></tr>
+                    <tr><td>Rotations</td><td>263</td></tr>
+                    <tr><td>PQ Status</td><td style="color: var(--success);">Active</td></tr>
+                    <tr><td>Cert Expiry</td><td>2028-03-15</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="grid" style="margin-top: 16px;">
+            <div class="card" style="grid-column: span 3;">
+                <div class="card-header">
+                    <span class="card-title">Recent Events</span>
+                    <button class="btn">Export Log</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Event</th>
+                            <th>Severity</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>16:42:03</td>
+                            <td>Key Rotation</td>
+                            <td><span class="qi-badge qi-high">Info</span></td>
+                            <td>Session key rotated successfully. ML-KEM-768 rekey complete.</td>
+                        </tr>
+                        <tr>
+                            <td>16:41:15</td>
+                            <td>Impedance Alert</td>
+                            <td><span class="qi-badge qi-medium">Warning</span></td>
+                            <td>Channel 47 impedance elevated to 12.3k ohm (threshold: 10k).</td>
+                        </tr>
+                        <tr>
+                            <td>16:38:22</td>
+                            <td>QI Check</td>
+                            <td><span class="qi-badge qi-high">Info</span></td>
+                            <td>Periodic QI assessment passed. All bands nominal. Score: 0.87.</td>
+                        </tr>
+                        <tr>
+                            <td>16:35:01</td>
+                            <td>Firmware</td>
+                            <td><span class="qi-badge qi-high">Info</span></td>
+                            <td>Firmware version 3.2.1 verified. Integrity check passed.</td>
+                        </tr>
+                        <tr>
+                            <td>16:30:00</td>
+                            <td>Calibration</td>
+                            <td><span class="qi-badge qi-high">Info</span></td>
+                            <td>Auto-calibration completed for 64 channels. SNR improved 1.2%.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Neural Interface Dashboard v3.2 | NSP Protocol v0.3 | QIF Framework</p>
+            <p>Device ID: NI-7200-A3F2 | Manufacturer: Qinnovate | Serial: QN-2026-00142</p>
+        </div>
+    </div>
+
+    <script>
+        // Simulate real-time updates
+        function updateMetrics() {
+            const signalQuality = (94 + Math.random() * 2).toFixed(1);
+            const qiScore = (0.85 + Math.random() * 0.05).toFixed(2);
+            const battery = Math.max(0, 73 - (Date.now() % 100) / 1000).toFixed(0);
+
+            document.querySelectorAll('.metric-value')[0].innerHTML =
+                signalQuality + '<span class="metric-unit">%</span>';
+            document.querySelectorAll('.metric-value')[1].textContent = qiScore;
+        }
+
+        // Update every 2 seconds
+        setInterval(updateMetrics, 2000);
+
+        // Tab switching
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Emergency stop confirmation
+        document.querySelector('.btn-danger').addEventListener('click', function() {
+            if (confirm('Are you sure you want to trigger an emergency stop? This will halt all stimulation and recording.')) {
+                alert('Emergency stop triggered. All operations halted.');
+            }
+        });
+
+        // Recalibrate button
+        document.querySelector('.btn').addEventListener('click', function() {
+            this.textContent = 'Calibrating...';
+            this.disabled = true;
+            setTimeout(() => {
+                this.textContent = 'Recalibrate';
+                this.disabled = false;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

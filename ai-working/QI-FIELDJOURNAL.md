@@ -212,6 +212,6 @@ Translation: "The Hamiltonian tells the quantum state how to change over time."
 
 ---
 
-*Part of the [QIF Project](https://github.com/qinnovates/mindloft) — Quantum Intelligence Field Journal*
+*Part of the [QIF Project](https://github.com/qinnovates/mindloft) — QIF Field Journal*
 *Started: 2026-02-03*
 *Entries: 7 (QP: 5, NS: 2)*

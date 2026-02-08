@@ -1,7 +1,7 @@
 # Neural Sensory Protocol — Visual Rendering Research
 
 > **Status:** Early research / concept development
-> **Author:** Kevin Qi (Quantum Intelligence)
+> **Author:** Kevin Qi
 > **Created:** 2026-02-06
 > **Location:** Mindloft drafts (research playground)
 > **Related:** QIF-FIELD-NOTES.md Entry 2, Qinnovate NSP Use-Case

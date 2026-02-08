@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Settings</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; padding: 24px; }
+        h1 { font-size: 24px; margin-bottom: 24px; font-weight: 600; }
+        h2 { font-size: 16px; margin-bottom: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .setting-row:last-child { border-bottom: none; }
+        .setting-label { font-size: 14px; font-weight: 500; }
+        .setting-desc { font-size: 12px; color: #999; margin-top: 2px; }
+        .toggle { width: 48px; height: 24px; background: #ccc; border-radius: 12px; position: relative; cursor: pointer; }
+        .toggle.active { background: #4caf50; }
+        .toggle::after { content: ''; width: 20px; height: 20px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.2s; }
+        .toggle.active::after { left: 26px; }
+        select { padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; background: white; }
+        input[type="range"] { width: 120px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500; }
+        .btn-primary { background: #1a73e8; color: white; }
+        .btn-secondary { background: #eee; color: #333; }
+        .btn-group { display: flex; gap: 8px; margin-top: 16px; justify-content: flex-end; }
+        .badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+        .badge-green { background: #e8f5e9; color: #2e7d32; }
+        .badge-yellow { background: #fff3e0; color: #e65100; }
+        .badge-red { background: #ffebee; color: #c62828; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Device Settings</h1>
+
+        <h2>Recording</h2>
+        <div class="card">
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Sample Rate</div>
+                    <div class="setting-desc">Higher rates improve signal resolution but increase power consumption</div>
+                </div>
+                <select>
+                    <option>125 Hz</option>
+                    <option selected>250 Hz</option>
+                    <option>500 Hz</option>
+                    <option>1000 Hz</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Active Channels</div>
+                    <div class="setting-desc">Number of electrode channels to record simultaneously</div>
+                </div>
+                <select>
+                    <option>16</option>
+                    <option>32</option>
+                    <option selected>64</option>
+                    <option>128</option>
+                    <option>256</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Impedance Threshold</div>
+                    <div class="setting-desc">Alert when channel impedance exceeds this value</div>
+                </div>
+                <div>
+                    <input type="range" min="5" max="50" value="10">
+                    <span>10k ohm</span>
+                </div>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Auto-Calibration</div>
+                    <div class="setting-desc">Automatically calibrate channels every 30 minutes</div>
+                </div>
+                <div class="toggle active"></div>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Noise Filter</div>
+                    <div class="setting-desc">60 Hz notch filter for power line interference</div>
+                </div>
+                <div class="toggle active"></div>
+            </div>
+        </div>
+
+        <h2>Security</h2>
+        <div class="card">
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Encryption</div>
+                    <div class="setting-desc">AES-256-GCM authenticated encryption for all data</div>
+                </div>
+                <span class="badge badge-green">Enabled</span>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Post-Quantum Key Exchange</div>
+                    <div class="setting-desc">ML-KEM-768 (FIPS 203) lattice-based key encapsulation</div>
+                </div>
+                <select>
+                    <option>ML-KEM-512 (Level 1)</option>
+                    <option selected>ML-KEM-768 (Level 3)</option>
+                    <option>ML-KEM-1024 (Level 5)</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Key Rotation Interval</div>
+                    <div class="setting-desc">How often session keys are rotated</div>
+                </div>
+                <select>
+                    <option>10 seconds</option>
+                    <option>30 seconds</option>
+                    <option selected>60 seconds</option>
+                    <option>5 minutes</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">QI Monitoring</div>
+                    <div class="setting-desc">Continuous quantum indeterminacy assessment for anomaly detection</div>
+                </div>
+                <div class="toggle active"></div>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Firmware Rollback Protection</div>
+                    <div class="setting-desc">Prevent loading firmware older than current version</div>
+                </div>
+                <div class="toggle active"></div>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Certificate Status</div>
+                    <div class="setting-desc">Device certificate expiration and chain validity</div>
+                </div>
+                <span class="badge badge-green">Valid until 2028-03-15</span>
+            </div>
+        </div>
+
+        <h2>Power</h2>
+        <div class="card">
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Power Mode</div>
+                    <div class="setting-desc">Balance between performance and battery life</div>
+                </div>
+                <select>
+                    <option>Low Power</option>
+                    <option selected>Balanced</option>
+                    <option>High Performance</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Sleep on Disconnect</div>
+                    <div class="setting-desc">Enter low-power sleep when BLE connection is lost</div>
+                </div>
+                <div class="toggle active"></div>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Wake-on-Signal</div>
+                    <div class="setting-desc">Wake from sleep when neural signal exceeds threshold</div>
+                </div>
+                <div class="toggle"></div>
+            </div>
+        </div>
+
+        <h2>Connectivity</h2>
+        <div class="card">
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">BLE Protocol</div>
+                    <div class="setting-desc">Bluetooth Low Energy version and configuration</div>
+                </div>
+                <span class="badge badge-green">BLE 5.3 Connected</span>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">MTU Size</div>
+                    <div class="setting-desc">Maximum transmission unit for BLE packets</div>
+                </div>
+                <select>
+                    <option>23 bytes (default)</option>
+                    <option selected>247 bytes (extended)</option>
+                    <option>512 bytes (BLE 5.x)</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <div>
+                    <div class="setting-label">Connection Interval</div>
+                    <div class="setting-desc">BLE connection event interval</div>
+                </div>
+                <select>
+                    <option selected>7.5 ms (fastest)</option>
+                    <option>15 ms</option>
+                    <option>30 ms</option>
+                    <option>100 ms (low power)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary">Reset to Defaults</button>
+            <button class="btn btn-primary">Save Settings</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            this.textContent = 'Saving...';
+            setTimeout(() => {
+                this.textContent = 'Saved!';
+                setTimeout(() => { this.textContent = 'Save Settings'; }, 1500);
+            }, 800);
+        });
+
+        document.querySelectorAll('input[type="range"]').forEach(range => {
+            range.addEventListener('input', function() {
+                this.nextElementSibling.textContent = this.value + 'k ohm';
+            });
+        });
+    </script>
+</body>
+</html>

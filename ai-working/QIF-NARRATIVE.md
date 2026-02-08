@@ -3,7 +3,7 @@
 ### A Neuroethics Framework for the Most Intimate Data in Human History
 
 **Kevin Qi**
-*Independent Researcher, Quantum Intelligence (QI) Project*
+*Independent Researcher*
 *February 2026*
 
 ---

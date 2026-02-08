@@ -320,7 +320,7 @@ def main():
     # ── Footer ──
     footer_y = eq_y - 1.6
     ax.text(CENTER_X, footer_y,
-            "Quantum Intelligence  •  Kevin Qi + Claude  •  qinnovates/mindloft  •  2026-02-06",
+            "Kevin Qi  •  Qinnovate  •  qinnovates/mindloft  •  2026-02-06",
             ha="center", va="center", fontsize=8, color="#9ca3af", fontfamily="monospace")
 
     plt.tight_layout()
