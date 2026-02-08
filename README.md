@@ -34,48 +34,12 @@ Mindloft is a commercial startup building innovative brain-computer interface pr
 ## 🚀 What is Mindloft?
 
 Mindloft builds:
-- **🧠 BCI Security Tools** — QIF-compliant security tools and platforms
+- **🧠 BCI Security Tools** — QIF-compliant security research and lab testing for current and future BCI risks and vulnerabilities
 - **🌐 Web 5.0 Infrastructure** — BCI-native web technologies
 - **🗣️ Subvocalization BCI** — Silent speech interface for secure web access
 - **🔐 Security Implementations** — Commercial QIF reference implementation
 - **🛠️ Developer Tools** — SDKs, APIs, libraries for BCI app development
 
----
-
-## 🏗️ Products
-
-### Mindloft Core (In Development)
-BCI security engine implementing the QIF Framework specification.
-
-**Features:**
-- Real-time coherence monitoring
-- Quantum-aware threat detection
-- Neural signal integrity validation
-- 11-band hourglass architecture (v4.0)
-
-**Status:** Early development
-**License:** Proprietary
-
-### Mindloft Cloud (Planned)
-Managed BCI security platform for developers.
-
-**Features:**
-- Hosted QIF compliance checking
-- Neural signal analysis APIs
-- Threat intelligence feeds
-- Security dashboards
-
-**Status:** Roadmap
-**License:** Proprietary SaaS
-
-### Mindloft SDK (Planned)
-Developer toolkit for building QIF-compliant BCI applications.
-
-**Features:**
-- Python/JavaScript libraries
-- CLI tools
-- Testing frameworks
-- Documentation & examples
 
 **Status:** Roadmap
 **License:** Dual-license (open-source foundations, commercial use requires license)
