@@ -284,7 +284,7 @@ Mindloft seeks partnerships with:
 - **Investors** — Seed/Series A funding
 - **Research Institutions** — Clinical trials, validation
 
-**Contact:** hello@mindloft.org
+**Contact:** kevin@qinnovate.com
 
 ---
 
