@@ -47,8 +47,6 @@ Mindloft builds:
 ### Subvocalization BCI (Early Development)
 Silent speech interface for Web 5.0 neural access.
 
-**Repository:** [github.com/kevinqicode/subvocalization-bci](https://github.com/kevinqicode/subvocalization-bci)
-
 **Features:**
 - Silent speech recognition
 - Neural command interface
@@ -272,7 +270,7 @@ Mindloft seeks partnerships with:
 - **Standards Body:** [qinnovate.com](https://qinnovate.com)
 - **GitHub (Products):** [github.com/qinnovates/mindloft](https://github.com/qinnovates/mindloft)
 - **GitHub (Standards):** [github.com/qinnovates/qinnovate](https://github.com/qinnovates/qinnovate)
-- **Subvocalization BCI:** [github.com/kevinqicode/subvocalization-bci](https://github.com/kevinqicode/subvocalization-bci)
+
 
 ---
 
