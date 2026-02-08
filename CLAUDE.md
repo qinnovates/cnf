@@ -28,7 +28,7 @@
 | **Content Manifest** | `docs/content-manifest.json` | **Single source of truth for all documentation links — update paths here, not in HTML** |
 | **Website Stats** | `docs/index.html` | **Dynamic stats system - see "Website Stats System" section** |
 | **Main Wiki (INDEX)** | `MAIN/legacy-core/INDEX.md` | **Central hub - navigation, dependencies, cross-references** |
-| **Python Package** | `MAIN/legacy-core/oni-framework/` | **pip install oni-framework** |
+| **Python Package** | `tools/qif-framework/` | **QIF v4.0 — 11-band hourglass model** |
 | **Transparency Statement** | `MAIN/governance/TRANSPARENCY.md` | **Human-AI collaboration audit trail** |
 | **Neuroethics Alignment** | `MAIN/governance/NEUROETHICS_ALIGNMENT.md` | **Framework-to-ethics principle mapping** |
 | **Research Verification** | `MAIN/legacy-core/resources/agents/RESEARCH_VERIFICATION_PROTOCOL.md` | **Anti-hallucination firewall for claims** |
@@ -95,7 +95,7 @@ mindloft/                               # Local folder (remote: github.com/qinno
 │   │   ├── RELATED_WORK.md
 │   │   ├── ACADEMIC_LANDSCAPE.md
 │   │   ├── PARTNERSHIPS.md
-│   │   ├── oni-framework/              # Python package (pip install oni-framework)
+│   │   ├── oni-framework/              # LEGACY — archived to archived/oni-framework/
 │   │   ├── tara-nsec-platform/         # TARA package (pip install oni-tara)
 │   │   ├── publications/               # 31 research papers across 8 topics
 │   │   ├── project/                    # Project management (prd.json, KANBAN.md)
@@ -264,7 +264,7 @@ Push to GitHub → website auto-updates on next page load.
 |--------|---------|----------------|
 | `governance/` | **Ethics, transparency & regulatory** | 9 documents: TRANSPARENCY, NEUROETHICS_ALIGNMENT, UNESCO_ALIGNMENT, REGULATORY_COMPLIANCE, INFORMED_CONSENT, POST_DEPLOYMENT, PEDIATRIC, DATA_POLICY_FAQ, ACCESSIBILITY |
 | `project/` | **Project management** | prd.json, processes/ (workflows, improvements) |
-| `oni-framework/` | **Python library** | Source code, tests, package config (pip installable) |
+| `tools/qif-framework/` | **QIF v4.0 Python library** | 11-band model, coherence metric, firewall (pip installable) |
 | `tara-nsec-platform/` | **TARA package** | Source, tests, visualizations, pyproject.toml |
 | `publications/` | **Content only** | Blog posts, technical documents |
 
@@ -338,7 +338,7 @@ The Editor Agent ensures consistency and accuracy across all documentation:
 
 | File | Purpose |
 |------|---------|
-| `checks/layer_validation.md` | 14-layer model accuracy (CRITICAL) |
+| `checks/layer_validation.md` | Band model accuracy — QIF v4.0 (CRITICAL) |
 | `checks/sync_rules.md` | Cross-reference cascade rules |
 | `checks/naming_rules.md` | File/folder naming patterns |
 | `checks/format_rules.md` | Template compliance |
@@ -348,7 +348,7 @@ The Editor Agent ensures consistency and accuracy across all documentation:
 When content conflicts, use this priority:
 
 1. `TechDoc-*.md` files (technical truth)
-2. `oni-framework/oni/*.py` (implementation)
+2. `tools/qif-framework/qif/*.py` (implementation)
 3. `INDEX.md` (navigation)
 4. Topic `README.md` (summaries)
 5. Root `README.md` (public overview)
@@ -359,11 +359,11 @@ When content conflicts, use this priority:
 
 These MUST match the authoritative TechDoc:
 
-**14-Layer Model:**
+**QIF v4.0 Hourglass Model (11-band, 7-1-3):**
 ```
-L1-L7: Silicon (Physical Carrier → Application Interface)
-L8: Neural Gateway (Bridge)
-L9-L14: Biology (Ion Channel Encoding → Identity & Ethics)
+N7-N1: Neural Domain (Neocortex → Spinal Cord)
+I0:    Neural Interface (electrode-tissue boundary — hourglass waist)
+S1-S3: Silicon Domain (Analog → Digital → Radio/Wireless)
 ```
 
 **Coherence Formula:** Cₛ = e^(−(σ²φ + σ²τ + σ²γ))
@@ -560,7 +560,7 @@ Every claim gets tagged:
 ```
 0. QIF-TRUTH.md          (canonical — outside repo)
 1. TechDoc-*.md           (technical truth within repo)
-2. oni-framework/oni/*.py  (implementation)
+2. tools/qif-framework/qif/*.py  (implementation)
 3. INDEX.md               (navigation)
 4. Topic README.md        (summaries)
 5. Root README.md         (public overview)
@@ -824,7 +824,7 @@ For each publishing session, verify:
 - [ ] Any AI corrections/overrides documented in governance/TRANSPARENCY.md "Refinement Loop" section
 - [ ] Contribution matrix updated if new content domains added
 - [ ] "Last Updated" date changed in governance/TRANSPARENCY.md header
-- [ ] Commit includes `Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>` tag
+- [ ] Commit includes `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>` tag
 
 ### Cognitive Boundary Documentation Format
 
@@ -861,7 +861,7 @@ Verification: Human (method used)
 - Human decisions noted
 - AI suggestions accepted/rejected noted
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 ```
 
 ---
@@ -876,7 +876,7 @@ Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 - Why it changed
 - Updated keywords.json (if applicable)
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 ```
 
 ### Action Verbs

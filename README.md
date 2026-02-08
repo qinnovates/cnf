@@ -51,7 +51,7 @@ BCI security engine implementing the QIF Framework specification.
 - Real-time coherence monitoring
 - Quantum-aware threat detection
 - Neural signal integrity validation
-- 7-band hourglass architecture
+- 11-band hourglass architecture (v4.0)
 
 **Status:** Early development
 **License:** Proprietary
@@ -234,17 +234,21 @@ This is how we ensure Mindloft products aren't just secure today — they're bui
 
 ```
 mindloft/
-├── docs/                    # GitHub Pages website (mindloft.org)
+├── tools/
+│   ├── qif-framework/      # QIF v4.0 Python package (11-band hourglass)
+│   ├── tara-nsec-platform/ # TARA security platform
+│   └── ctf/                # CTF challenges
+│
+├── archived/
+│   └── oni-framework/      # Legacy ONI 14-layer model (deprecated)
+│
+├── docs/                   # GitHub Pages website (mindloft.org)
 │   ├── index.html          # Homepage
 │   ├── qif-whitepaper/     # Interactive whitepaper
 │   ├── bci-news/           # News aggregator (75+ sources)
 │   ├── visualizations/     # 12 interactive tools
 │   ├── js/                 # Navigation system (as-code)
 │   └── css/                # Styles
-│
-├── core/                   # Mindloft Core (future)
-├── sdk/                    # Mindloft SDK (future)
-├── cloud/                  # Mindloft Cloud (future)
 │
 ├── README.md               # This file
 ├── LICENSE                 # Proprietary license

@@ -10,13 +10,17 @@
 
 ```
 mindloft/
+├── tools/
+│   ├── qif-framework/        # QIF v4.0 Python package (11-band hourglass)
+│   ├── tara-nsec-platform/   # TARA security platform
+│   └── ctf/                  # CTF challenges
+├── archived/
+│   └── oni-framework/        # Legacy ONI 14-layer model (deprecated)
 ├── MAIN/
 │   ├── governance/            # 9 ethics/compliance documents
 │   ├── qif/                  # Quantum Indeterminacy Framework
 │   │   └── framework/        # 9 research documents
 │   └── legacy-core/          # ONI Foundation (v1)
-│       ├── oni-framework/    # Python package
-│       ├── tara-nsec-platform/
 │       ├── publications/     # 31 papers
 │       ├── project/          # Project management
 │       ├── resources/        # Templates, brand, pipeline
@@ -42,8 +46,8 @@ This repository encompasses multiple domains related to neurosecurity, project m
 | Folder                | Description                                      | Key Documents |
 |----------------------|--------------------------------------------------|---------------|
 | [governance](governance)          | Policies and ethical frameworks for governance | ACCESSIBILITY.md, NEUROETHICS_ALIGNMENT.md |
-| [oni-framework](oni-framework)      | Core framework for Organic Neurocomputing Interfaces | README.md, API.md, CHANGELOG.md |
-| [project](project)           | Management of ONI project lifecycle               | PROJECT_MANAGEMENT.md, KANBAN.md |
+| [qif-framework](tools/qif-framework) | QIF v4.0 — 11-band hourglass model for BCI security | README.md, CHANGELOG.md |
+| [project](project)           | Management of QIF project lifecycle               | PROJECT_MANAGEMENT.md, KANBAN.md |
 | [publications](publications)   | Research publications and technical documentation | Blog-ONI_Framework.md, TechDoc-Coherence_Metric_Detailed.md |
 | [resources](resources)         | Helpful materials like templates and workflows    | BLOG_TEMPLATE.md, RESEARCH_INTEGRATION_WORKFLOW.md |
 | [tara-nsec-platform](tara-nsec-platform)  | The TARA neural security platform                    | README.md, AGENTS.md |

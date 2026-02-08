@@ -1,3 +1,6 @@
+> **ARCHIVED:** This is the legacy ONI 14-layer model (v2.0). It is no longer actively developed.
+> See [`tools/qif-framework/`](../../tools/qif-framework/) for the active **QIF v4.0** model (11-band hourglass, 7-1-3 architecture).
+
 # Cₛ Core (ONI Framework)
 
 **Mathematical API for detection signatures and anomaly validation in brain-computer interfaces.**

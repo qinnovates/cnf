@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in the ONI Framework, please report it responsibly.
+If you discover a security vulnerability in the QIF Framework, please report it responsibly.
 
 ### Private Disclosure (Preferred)
 
@@ -115,7 +115,7 @@ The following files require explicit maintainer approval to modify:
 .github/CODEOWNERS          # Self-protecting
 .github/workflows/          # CI/CD pipelines (prevents malicious publish)
 MAIN/legacy-core/resources/brand/brand.json   # Brand configuration
-MAIN/legacy-core/oni-framework/ONI_LAYERS.md  # Authoritative layer definitions
+tools/qif-framework/qif/bands.py              # Authoritative band definitions (QIF v4.0)
 ```
 
 ### PyPI Publishing Security
@@ -380,7 +380,7 @@ missionEl.textContent = safeMission;  // Safe - treats content as text
 
 ## Acknowledgments
 
-We appreciate responsible security researchers who help keep ONI secure. Contributors who report valid vulnerabilities will be acknowledged here (with permission).
+We appreciate responsible security researchers who help keep QIF secure. Contributors who report valid vulnerabilities will be acknowledged here (with permission).
 
 ---
 
